@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# Word files
+*.docx
+
 # Log file
 *.log
 

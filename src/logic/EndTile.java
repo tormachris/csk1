@@ -2,9 +2,22 @@ package logic;
 
 public class EndTile extends Tile {
 	
+	/**
+	 * Acts like a normal Tile, however if the Thing gets accepted it will call the OnEndTile 
+	 * function of the Thing 
+	 * @param t The Thing that moves onto the EndTile
+	 * @return Shows whether the Thing has been accepted
+	 */
 	public boolean Accept(Thing t)
 	{
-		return true;
+		//calls the same function of its superclass
+		boolean accepted = super.Accept(t);
+		//if the Thing is allowed to move onto the Tile the EndTile will trigger its OnEndTile()
+		//function in order to inform the Thing that it has moved onto a Switch
+		if(accepted)
+			t.OnEndTile(this);
+		return accepted;
+
 	}
 
 }

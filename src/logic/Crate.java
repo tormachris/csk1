@@ -11,10 +11,5 @@ public class Crate extends Thing{
 	{
 		
 	}
-	
-	public boolean UpdateOwner(Thing t)
-	{
-		return true;
-	}
 
 }
