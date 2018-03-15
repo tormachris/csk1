@@ -75,3 +75,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+#Word ignore backup files
+~#*.docx
