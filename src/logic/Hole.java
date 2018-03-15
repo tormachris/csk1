@@ -2,8 +2,22 @@ package logic;
 
 public class Hole extends Tile {
 	
-	private boolean open;
+	private Boolean open;
 	
+	/**
+	 * @return the open
+	 */
+	public Boolean getOpen() {
+		return open;
+	}
+
+	/**
+	 * @param open the open to set
+	 */
+	public void setOpen(Boolean open) {
+		this.open = open;
+	}
+
 	/**
 	 * This function is called when a Thing moves onto a Hole.
 	 * @param t The Thing that moves.

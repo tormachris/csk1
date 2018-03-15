@@ -2,7 +2,7 @@ package logic;
 
 public class Worker extends Thing{
 	
-	private int points;
+	private Integer points;
 	
 	/**
 	 * This function is called whenever a Worker gets hit by another Worker. As a worker can't 
@@ -21,10 +21,19 @@ public class Worker extends Thing{
 	{
 		
 	}
-	
-	public void OnEndTile(EndTile t)
-	{
-		
+
+	/**
+	 * @return the points
+	 */
+	public Integer getPoints() {
+		return points;
+	}
+
+	/**
+	 * @param points the points to set
+	 */
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 	
 }

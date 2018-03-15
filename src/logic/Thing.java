@@ -1,10 +1,20 @@
 package logic;
 
-public class Thing {
+public abstract class Thing {
 	
 	private Thing owner;
 	private Direction moving;
 	private Tile tile;
+	
+	/**
+	 * Default Constructor
+	 * @param None
+	 */
+	public Thing() {
+		//Let this be a warning, if a thing's owner is null, it is brand new!
+		owner=null;
+		tile=null; //Hanging in the aether.
+	}
 	
 	/**
 	 * Collides the Thing with another Thing
@@ -27,7 +37,7 @@ public class Thing {
 	 */
 	public boolean Move(Direction d)
 	{	
-		//getting the neighbor of the current Tile and setting the moving attribute
+		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
 		newTile = tile.GetNeighbor(d);
 		moving = d;
@@ -57,11 +67,7 @@ public class Thing {
 	public final boolean UpdateOwner(Thing t)
 	{
 		this.owner = t;
-	return true;	//valami ellenõrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
-	}
-	public void Destroy()
-	{
-		
+		return true;	//valami ellenõrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
 	}
 	
 	/**
@@ -74,9 +80,13 @@ public class Thing {
 		s.Activate(this);
 	}
 	
+	/**
+	 * Called when a worker is on an EndTile. Does nothing, unless overridden.
+	 * @param t	EndTile the worker is on
+	 */
 	public void OnEndTile(EndTile t)
 	{
-		
+		return;
 	}
 	
 	/**
@@ -95,5 +105,10 @@ public class Thing {
 	public final Tile GetTile()
 	{
 		return tile;
+	}
+	
+	public void Destroy()
+	{
+		
 	}
 }

@@ -1,15 +1,23 @@
 package logic;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Map implements Steppable {
 	
-	private int ticksRemain;
-	private int defaultTime;
-	private List<Crate> crates = new ArrayList<Crate>();
-	private List<Worker> workers = new ArrayList<Worker>();
-	private List<Tile> tiles = new ArrayList<Tile>();
+	private Integer ticksRemain;
+	private Integer defaultTime;
+	private Set<Crate> crates;
+	private Set<Worker> workers;
+	private Set<Tile> tiles;
+	
+	/**
+	 * Default constructor
+	 */
+	public Map() {
+		setCrates(new HashSet<Crate>());
+		setWorkers(new HashSet<Worker>());
+		setTiles(new HashSet<Tile>());
+	}
 	
 	public void StartMap()
 	{
@@ -28,7 +36,7 @@ public class Map implements Steppable {
 	public void ResetTimer()
 	{
 		//reseting the time
-		ticksRemain = defaultTime;
+		setTicksRemain(defaultTime);
 		return;
 	}
 	
@@ -48,4 +56,72 @@ public class Map implements Steppable {
 		return;
 	}
 
+	/**
+	 * @return the tiles
+	 */
+	public Set<Tile> getTiles() {
+		return tiles;
+	}
+
+	/**
+	 * @param tiles the tiles to set
+	 */
+	public void setTiles(Set<Tile> tiles) {
+		this.tiles = tiles;
+	}
+	/**
+	 * @return the ticksRemain
+	 */
+	public Integer getTicksRemain() {
+		return ticksRemain;
+	}
+
+	/**
+	 * @param ticksRemain the ticksRemain to set
+	 */
+	public void setTicksRemain(Integer ticksRemain) {
+		this.ticksRemain = ticksRemain;
+	}
+
+	/**
+	 * @return the defaultTime
+	 */
+	public Integer getDefaultTime() {
+		return defaultTime;
+	}
+
+	/**
+	 * @param defaultTime the defaultTime to set
+	 */
+	public void setDefaultTime(Integer defaultTime) {
+		this.defaultTime = defaultTime;
+	}
+
+	/**
+	 * @return the crates
+	 */
+	public Set<Crate> getCrates() {
+		return crates;
+	}
+
+	/**
+	 * @param crates the crates to set
+	 */
+	public void setCrates(Set<Crate> crates) {
+		this.crates = crates;
+	}
+
+	/**
+	 * @return the workers
+	 */
+	public Set<Worker> getWorkers() {
+		return workers;
+	}
+
+	/**
+	 * @param workers the workers to set
+	 */
+	public void setWorkers(Set<Worker> workers) {
+		this.workers = workers;
+	}
 }

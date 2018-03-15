@@ -1,6 +1,6 @@
 package logic;
 
-import java.util.AbstractMap;
+import java.util.*;
 
 public class Tile {
 	
@@ -31,7 +31,9 @@ public class Tile {
 		//returns with the acceptence anyway
 		return accepted;
 	}
-	
+	public Tile() {
+		nexttiles=new HashMap<Direction, Tile>();
+	}
 	/**
 	 * Removes the Thing from the tile.
 	 * @param t The Thing that is wanted to be removed.
