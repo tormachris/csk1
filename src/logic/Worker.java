@@ -1,5 +1,8 @@
 package logic;
 
+/**
+ * Represents a worker controlled by the player.
+ */
 public class Worker extends Thing{
 	
 	private Integer points;

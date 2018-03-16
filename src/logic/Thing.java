@@ -1,5 +1,9 @@
 package logic;
 
+/**
+ * Represents a general thing that moves on the map.
+ * Abstract.
+ */
 public abstract class Thing {
 	
 	private Thing owner;
@@ -39,7 +43,7 @@ public abstract class Thing {
 	{	
 		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
-		newTile = tile.GetNeighbor(d);
+		newTile = tile.GetNeighbour(d);
 		moving = d;
 		
 		//checking whether the new Tile accepts the Thing
@@ -53,7 +57,9 @@ public abstract class Thing {
 		
 		return moved;
 	}
-	
+	/**
+	 * Called when hit by another thing.
+	 */
 	public boolean HitBy(Thing t,Direction d, Thing o)
 	{
 		return true;

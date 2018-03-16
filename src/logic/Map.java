@@ -2,6 +2,10 @@ package logic;
 
 import java.util.*;
 
+/**
+ * Represents a map that has things on it.
+ * The Map can also step.
+ */
 public class Map implements Steppable {
 	
 	private Integer ticksRemain;
@@ -10,21 +14,30 @@ public class Map implements Steppable {
 	private Set<Worker> workers;
 	private Set<Tile> tiles;
 	
+	private static final int defaultTicksRemain=100000000;
+	
 	/**
 	 * Default constructor
+	 * Initialises the sets and Integers.
 	 */
 	public Map() {
 		setCrates(new HashSet<Crate>());
 		setWorkers(new HashSet<Worker>());
 		setTiles(new HashSet<Tile>());
+		ticksRemain=Integer.valueOf(defaultTicksRemain);
 	}
 	
+	/**
+	 * Starts the map.
+	 */
 	public void StartMap()
 	{
-		
-		
+			
 	}
 	
+	/**
+	 * Called when the map ends.
+	 */
 	public void EndMap()
 	{
 		
@@ -41,7 +54,7 @@ public class Map implements Steppable {
 	}
 	
 	/**
-	 * Function which is called at every tick. If there are no crates, only one worker or no more
+	 * Called by the Timer at every Tick. If there are no crates, only one worker or no more
 	 * time left it will end the map. Else it will shorten the remaining time by one second.
 	 */
 	public void Step()

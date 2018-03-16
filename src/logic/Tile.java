@@ -1,7 +1,9 @@
 package logic;
-
 import java.util.*;
 
+/**
+ * Represents a general Tile that is on the Map.
+ */
 public class Tile {
 	
 	private Thing thing;
@@ -28,11 +30,15 @@ public class Tile {
 		if(accepted)
 			thing = t;
 		
-		//returns with the acceptence anyway
+		//returns with the acceptance anyway
 		return accepted;
 	}
+	/**
+	 * Default constructor, initialises the Map and the "thing" variable.
+	 */
 	public Tile() {
 		nexttiles=new HashMap<Direction, Tile>();
+		thing=null;
 	}
 	/**
 	 * Removes the Thing from the tile.
@@ -48,22 +54,24 @@ public class Tile {
 	
 	/**
 	 * Returns the Tile that is in specified Direction from this Tile.
-	 * @param d The Direction in which the neighbor Tile should be returned.
-	 * @return The neighbor Tile in the given Direction
+	 * @param d The Direction in which the neighbour Tile should be returned.
+	 * @return The neighbour Tile in the given Direction
 	 */
-	public Tile GetNeighbor(Direction d)
+	public Tile GetNeighbour(Direction d)
 	{
 		return nexttiles.get(d);
 	}
 	
 	/**
-	 * Sets a Tile as a neighbor of this Tile.
+	 * Sets a Tile as a neighbour of this Tile.
 	 * @param d Shows in which Direction the other Tile is from this Tile 
-	 * @param t The other Tile that should be placed as a neighbor.
+	 * @param t The other Tile that should be placed as a neighbour.
 	 */
-	public void SetNeighbor(Direction d, Tile t)
+	public void SetNeighbour(Direction d, Tile t)
 	{
-		//putting the tile in the nexttiles AbstractMap
+		//putting the tile in the "nexttiles" Map if there is a valid d passed.
+		if(d==null)
+			throw new NullPointerException("d cannot be null");
 		nexttiles.put(d, t);
 	}
 

@@ -1,5 +1,10 @@
 package logic;
 
+/** Represents an Tile that "Consumes" Crates.
+ * @author Kristof
+ * @version 1.0
+ * @since 1.0
+*/
 public class EndTile extends Tile {
 	
 	/**

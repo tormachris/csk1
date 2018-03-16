@@ -1,8 +1,30 @@
 package logic;
 
+/** Represents a Tile, that (if active) will kill any Thing that is on it.
+ * Activated by the Map (Static) or a Switch (Dynamic)
+ * @author Kristof
+ * @version 1.0
+ * @since 1.0
+*/
 public class Hole extends Tile {
 	
 	private Boolean open;
+	
+	/**
+	 * With this constructor one can make a permanently open Hole.
+	 * (By not attaching an instance to any switch and making isOpen true
+	 * @param isOpen: default state
+	 */
+	public Hole(Boolean isOpen) {
+		this.setOpen(isOpen);
+	}
+	
+	/**
+	 * Default constructor
+	 */
+	public Hole() {
+		this.setOpen(Boolean.valueOf(false));
+	}
 	
 	/**
 	 * @return the open

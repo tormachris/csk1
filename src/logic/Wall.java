@@ -1,5 +1,8 @@
 package logic;
 
+/**
+ * Represents a wall on the map that will never be occupied.
+ */
 public class Wall extends Tile {
 	
 	/**

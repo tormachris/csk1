@@ -23,11 +23,12 @@ public class Switch extends Tile {
 	
 	/**
 	 * 
-	 * @param t
+	 * Does not activate if a random Thing is on it.
+	 * @param t General Thing. (Like a Worker)
 	 */
 	public void Activate(Thing t)
 	{
-		
+		return;
 	}
 	
 	/**
@@ -37,15 +38,19 @@ public class Switch extends Tile {
 	 */
 	public void Activate(Crate c)
 	{
-		hole.ToggleOpen();
+		if(hole!=null)
+			hole.ToggleOpen();
+		else throw new NullPointerException("hole is null");
 	}
 	
 	/**
 	 * Setter of the attribute Hole.
 	 * @param newvalue The new hole
 	 */
-	public void SetHole(Hole newvalue)
+	public void setHole(Hole newvalue)
 	{
-		hole = newvalue;
+		if(newvalue!=null)
+			hole=newvalue;
+		else throw new NullPointerException("newvalue is null");
 	}
 }

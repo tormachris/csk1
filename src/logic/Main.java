@@ -4,6 +4,7 @@
 package logic;
 
 /**
+ * Starting point of the program
  * @author kristof
  *
  */
