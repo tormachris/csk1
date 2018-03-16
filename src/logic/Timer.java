@@ -8,21 +8,22 @@ import java.util.*;
 public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
-	private static final int milisecstowait=100; //Modify interval here, pls.
+	private static final int MILISECSTOWAIT=100; //Modify interval here, pls.
 	
 	/**
 	 * Constructor. Initialises the set of steppables.
 	 */
 	public Timer() {
-		steppables = new HashSet<Steppable>();
+		steppables = new HashSet<>();
 		this.start(); //Start itself automagically, so you don't have to!
 	}
 	
+	@Override
 	public void run() {
 		while(true) { //I don't know if this is how to do it, but this works!
-			this.Tick(); //Let's Tick
+			this.tick(); //Let's Tick
 			try {
-				Thread.sleep(milisecstowait);
+				Thread.sleep(MILISECSTOWAIT);
 			} catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
@@ -33,7 +34,7 @@ public class Timer extends Thread{
 	 * This method is the tick of the timer.
 	 * Calls the Step function of every registered Steppable class.
 	 */
-	public void Tick()
+	public void tick()
 	{
 	    for(Steppable s:steppables) {
 	    	s.Step();
@@ -44,10 +45,10 @@ public class Timer extends Thread{
 	 * Register a Steppable class.
 	 * @param s: Steppable to register.
 	 */
-	public void addSteppable(Steppable s) throws Exception
+	public void addSteppable(Steppable s)
 	{
 		if(s==null) throw new NullPointerException("Cannot add null to our set of Steppables.");
-		if(this.steppables.contains(s)) throw new Exception("Item already in collection.");
+		if(this.steppables.contains(s)) throw new IllegalArgumentException("Item already in collection.");
 		this.steppables.add(s);
 		
 	}
@@ -56,11 +57,11 @@ public class Timer extends Thread{
 	 * De-register a Steppable class.
 	 * @param s: Steppable to de-register.
 	 */
-	public void RemoveSteppable(Steppable s) throws Exception
+	public void removeSteppable(Steppable s)
 	{
 		if(s==null) throw new NullPointerException("Cannot remove null from our set of Steppables.");
-		if (this.steppables.isEmpty()) throw new Exception("This collection is empty.");
-		if (!(this.steppables.contains(s))) throw new Exception("Item not in collection.");
+		if (this.steppables.isEmpty()) throw new IllegalArgumentException("This collection is empty.");
+		if (!(this.steppables.contains(s))) throw new IllegalArgumentException("Item not in collection.");
 		this.steppables.remove(s);
 	}
 	
