@@ -8,6 +8,6 @@ public interface Steppable {
 	/**
 	 *  Called by the Timer at every Tick.
 	 */
-	public void Step();
+	public void step();
 
 }

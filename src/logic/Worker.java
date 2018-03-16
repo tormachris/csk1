@@ -15,14 +15,15 @@ public class Worker extends Thing{
 	 * @param o	 The owner of the other worker.
 	 * @return	 False because workers can't be moved by other workers.
 	 */
-	public boolean HitBy(Worker w,Direction d,Worker o)
+	public boolean hitBy(Worker w,Direction d,Worker o)
 	{
 		return false;
 	}
 
-	public void Destroy()
+	@Override
+	public void destroy()
 	{
-		
+		//Please implement
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class Map implements Steppable {
 	private Set<Worker> workers;
 	private Set<Tile> tiles;
 	
-	private static final int defaultTicksRemain=100000000;
+	private static final int DEFAULTTICKSREMAIN=100000000;
 	
 	/**
 	 * Default constructor
@@ -24,29 +24,29 @@ public class Map implements Steppable {
 		setCrates(new HashSet<Crate>());
 		setWorkers(new HashSet<Worker>());
 		setTiles(new HashSet<Tile>());
-		ticksRemain=Integer.valueOf(defaultTicksRemain);
+		ticksRemain=Integer.valueOf(DEFAULTTICKSREMAIN);
 	}
 	
 	/**
 	 * Starts the map.
 	 */
-	public void StartMap()
+	public void startMap()
 	{
-			
+		//Please implement
 	}
 	
 	/**
 	 * Called when the map ends.
 	 */
-	public void EndMap()
+	public void endMap()
 	{
-		
+		//Please implement
 	}
 	
 	/**
 	 * Resets the remaining time to the default time of a game.
 	 */
-	public void ResetTimer()
+	public void resetTimer()
 	{
 		//reseting the time
 		setTicksRemain(defaultTime);
@@ -57,11 +57,11 @@ public class Map implements Steppable {
 	 * Called by the Timer at every Tick. If there are no crates, only one worker or no more
 	 * time left it will end the map. Else it will shorten the remaining time by one second.
 	 */
-	public void Step()
+	public void step()
 	{
 		//checking if there is any reason to end the map
-		if(crates.size() == 0 || workers.size() != 2 || ticksRemain == 0)
-			EndMap();
+		if(crates.isEmpty() || workers.size() != 2 || ticksRemain == 0)
+			endMap();
 		else
 			//shortening the remaining time by 1s
 			ticksRemain--;

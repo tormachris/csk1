@@ -11,7 +11,8 @@ public class Wall extends Tile {
 	 * @param t The Thing that tries to move.
 	 * @return False as a Wall will not accept anything.
 	 */
-	public boolean Accept(Thing t)
+	@Override
+	public boolean accept(Thing t)
 	{
 		return false;
 	}

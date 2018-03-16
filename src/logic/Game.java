@@ -24,10 +24,10 @@ public class Game {
 	 * (The first being its constructor)
 	 * @param m: Map to start (WHY?)
 	 */
-	public void Start(Map m)
+	public void start(Map m)
 	{
 		if(m!=null)
-			m.StartMap();
+			m.startMap();
 		else throw new NullPointerException("m cannot be null");
 		
 	}
@@ -35,9 +35,9 @@ public class Game {
 	/**
 	 * Called when the game is over.
 	 */
-	public void End()
+	public void end()
 	{
-		
+		//Please implement
 	}
 
 	/**

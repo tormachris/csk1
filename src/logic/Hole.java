@@ -45,17 +45,18 @@ public class Hole extends Tile {
 	 * @param t The Thing that moves.
 	 * @return Shows if the Thing has been accepted.
 	 */
-	public  boolean Accept(Thing t)
+	@Override
+	public  boolean accept(Thing t)
 	{	boolean accepted;
 		//if the hole is open it destroys every thing that moves onto it
 		if(open)
 		{
-			t.Destroy();
+			t.destroy();
 			accepted = true;
 		}
 		//if it is not open it will act just like a normal tile
 		else
-			accepted = super.Accept(t);
+			accepted = super.accept(t);
 		
 		return accepted;
 	}
@@ -63,7 +64,7 @@ public class Hole extends Tile {
 	/**
 	 * Changes the state of the hole.
 	 */
-	public void ToggleOpen()
+	public void toggleOpen()
 	{
 		open = !open;
 	}

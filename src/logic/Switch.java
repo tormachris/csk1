@@ -10,14 +10,15 @@ public class Switch extends Tile {
 	 * @param t The Thing that moves onto the Switch
 	 * @return Shows whether the Thing has been accepted
 	 */
-	public boolean Accept(Thing t)
+	@Override
+	public boolean accept(Thing t)
 	{
 		//calls the same function of its superclass
-		boolean accepted = super.Accept(t);
+		boolean accepted = super.accept(t);
 		//if the Thing is allowed to move onto the Tile the Switch will trigger its OnSwitch()
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
-			t.OnSwitch(this);
+			t.onSwitch(this);
 		return accepted;
 	}
 	
@@ -26,7 +27,7 @@ public class Switch extends Tile {
 	 * Does not activate if a random Thing is on it.
 	 * @param t General Thing. (Like a Worker)
 	 */
-	public void Activate(Thing t)
+	public void activate(Thing t)
 	{
 		return;
 	}
@@ -36,10 +37,10 @@ public class Switch extends Tile {
 	 * Switch will toggle the state of the Hole linked to it.
 	 * @param c The Crate that has moved onto the Switch.
 	 */
-	public void Activate(Crate c)
+	public void activate(Crate c)
 	{
 		if(hole!=null)
-			hole.ToggleOpen();
+			hole.toggleOpen();
 		else throw new NullPointerException("hole is null");
 	}
 	

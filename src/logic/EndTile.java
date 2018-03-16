@@ -13,14 +13,15 @@ public class EndTile extends Tile {
 	 * @param t The Thing that moves onto the EndTile
 	 * @return Shows whether the Thing has been accepted
 	 */
-	public boolean Accept(Thing t)
+	@Override
+	public boolean accept(Thing t)
 	{
 		//calls the same function of its superclass
-		boolean accepted = super.Accept(t);
+		boolean accepted = super.accept(t);
 		//if the Thing is allowed to move onto the Tile the EndTile will trigger its OnEndTile()
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
-			t.OnEndTile(this);
+			t.onEndTile(this);
 		return accepted;
 
 	}

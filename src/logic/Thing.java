@@ -25,11 +25,11 @@ public abstract class Thing {
 	 * @param t The other Thing
 	 * @return Indicates whether there has been movement due to the collision.
 	 */
-	public boolean CollideWith(Thing t)
+	public boolean collideWith(Thing t)
 	{
 		boolean collided;
 		//Hitting the other Thing with this towards this one's moving direction
-		collided = t.HitBy(this, moving , this.owner);
+		collided = t.hitBy(this, moving , this.owner);
 		return collided;
 		
 	}
@@ -39,19 +39,19 @@ public abstract class Thing {
 	 * @param d The given direction.
 	 * @return The return value indicates if the moving towards d direction was possible.
 	 */
-	public boolean Move(Direction d)
+	public boolean move(Direction d)
 	{	
 		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
-		newTile = tile.GetNeighbour(d);
+		newTile = tile.getNeighbour(d);
 		moving = d;
 		
 		//checking whether the new Tile accepts the Thing
-		boolean moved = newTile.Accept(this);
+		boolean moved = newTile.accept(this);
 		if(moved)
 		{
 			//if the Thing was accepted by the new Tile the Thing moves to it.
-			tile.Remove(this);
+			tile.remove(this);
 			tile = newTile;
 		}
 		
@@ -60,7 +60,7 @@ public abstract class Thing {
 	/**
 	 * Called when hit by another thing.
 	 */
-	public boolean HitBy(Thing t,Direction d, Thing o)
+	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
 		return true;
 	}
@@ -70,7 +70,7 @@ public abstract class Thing {
 	 * @param t
 	 * @return
 	 */
-	public final boolean UpdateOwner(Thing t)
+	public final boolean updateOwner(Thing t)
 	{
 		this.owner = t;
 		return true;	//valami ellenõrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
@@ -80,17 +80,17 @@ public abstract class Thing {
 	 * This function should be called whenever a Thing moves onto a Switch.
 	 * @param s The Switch onto which the Thing has moved.
 	 */
-	public void OnSwitch(Switch s)
+	public void onSwitch(Switch s)
 	{	
 		//tries to activate the switch
-		s.Activate(this);
+		s.activate(this);
 	}
 	
 	/**
 	 * Called when a worker is on an EndTile. Does nothing, unless overridden.
 	 * @param t	EndTile the worker is on
 	 */
-	public void OnEndTile(EndTile t)
+	public void onEndTile(EndTile t)
 	{
 		return;
 	}
@@ -99,7 +99,7 @@ public abstract class Thing {
 	 *Getter of the attribute owner.
 	 * @return The owner of the Thing
 	 */
-	public final Thing GetOwner()
+	public final Thing getOwner()
 	{
 		return owner;
 	}
@@ -108,12 +108,12 @@ public abstract class Thing {
 	 * Getter of the Tile on which the Thing is at the given moment.
 	 * @return The tile
 	 */
-	public final Tile GetTile()
+	public final Tile getTile()
 	{
 		return tile;
 	}
 	
-	public void Destroy()
+	public void destroy()
 	{
 		
 	}

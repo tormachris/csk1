@@ -37,7 +37,7 @@ public class Timer extends Thread{
 	public void tick()
 	{
 	    for(Steppable s:steppables) {
-	    	s.Step();
+	    	s.step();
 	    }
 	}
 	

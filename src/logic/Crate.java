@@ -18,7 +18,8 @@ public class Crate extends Thing{
 	/**
 	 * Called when a Crate is hit by some thing.
 	*/
-	public boolean HitBy(Thing t,Direction d,Thing o)
+	@Override
+	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
 		return true;
 	}
@@ -26,9 +27,10 @@ public class Crate extends Thing{
 	/**
 	 * Called by an EndTile, when a crate occupies it.
 	*/
-	public void OnEndTile(EndTile t)
+	@Override
+	public void onEndTile(EndTile t)
 	{
-		
+		//Please implement this
 	}
 
 }

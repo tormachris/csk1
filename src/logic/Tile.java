@@ -7,14 +7,14 @@ import java.util.*;
 public class Tile {
 	
 	private Thing thing;
-	private AbstractMap<Direction, Tile> nexttiles;
+	private EnumMap<Direction, Tile> nexttiles;
 	
 	/**
 	 * Whenever a Thing tries to move onto the Tile this function is called. 
 	 * @param t the Thing that tries to move
 	 * @return Indicates whether the Thing has been accepted
 	 */
-	public boolean Accept(Thing t)
+	public boolean accept(Thing t)
 	{
 		boolean accepted;
 		//if the Tile is empty it will accept
@@ -24,7 +24,7 @@ public class Tile {
 		//if it is not empty it will make the moving Thing collide with the Thing that is
 		//currently on the Tile 
 		else
-			accepted = t.CollideWith(thing);
+			accepted = t.collideWith(thing);
 		
 		//if it has been accepted then it refreshes the thing attribute
 		if(accepted)
@@ -37,14 +37,14 @@ public class Tile {
 	 * Default constructor, initialises the Map and the "thing" variable.
 	 */
 	public Tile() {
-		nexttiles=new HashMap<Direction, Tile>();
+		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
-	}
+	}	
 	/**
 	 * Removes the Thing from the tile.
 	 * @param t The Thing that is wanted to be removed.
 	 */
-	public void Remove(Thing t)
+	public void remove(Thing t)
 	{
 		//checking if the Thing is on this Tile
 		if(t.equals(thing))
@@ -57,7 +57,7 @@ public class Tile {
 	 * @param d The Direction in which the neighbour Tile should be returned.
 	 * @return The neighbour Tile in the given Direction
 	 */
-	public Tile GetNeighbour(Direction d)
+	public Tile getNeighbour(Direction d)
 	{
 		return nexttiles.get(d);
 	}
@@ -67,7 +67,7 @@ public class Tile {
 	 * @param d Shows in which Direction the other Tile is from this Tile 
 	 * @param t The other Tile that should be placed as a neighbour.
 	 */
-	public void SetNeighbour(Direction d, Tile t)
+	public void setNeighbour(Direction d, Tile t)
 	{
 		//putting the tile in the "nexttiles" Map if there is a valid d passed.
 		if(d==null)
