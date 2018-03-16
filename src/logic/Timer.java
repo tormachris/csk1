@@ -5,16 +5,28 @@ import java.util.*;
 /**
  * Represents Timer that tics every once in a while.
  */
-public class Timer { //Please make the Timer work. Reminder: Java has shit that will execute periodically.
-					 //Make this a child of that and make this class ready for work.
+public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
+	private static final int milisecstowait=100; //Modify interval here, pls.
 	
 	/**
 	 * Constructor. Initialises the set of steppables.
 	 */
 	public Timer() {
 		steppables = new HashSet<Steppable>();
+		this.start(); //Start itself automagically, so you don't have to!
+	}
+	
+	public void run() {
+		while(true) { //I don't know if this is how to do it, but this works!
+			this.Tick(); //Let's Tick
+			try {
+				Thread.sleep(milisecstowait);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+		}
 	}
 	
 	/**
