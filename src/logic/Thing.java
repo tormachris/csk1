@@ -73,7 +73,7 @@ public abstract class Thing {
 	public final boolean updateOwner(Thing t)
 	{
 		this.owner = t;
-		return true;	//valami ellenõrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
+		return true;	//valami ellenÅ‘rzÃ©s kÃ©ne ide hogy legyen Ã©rtelme a visszatÃ©rÃ©si Ã©rtÃ©knek de nemtom
 	}
 	
 	/**
