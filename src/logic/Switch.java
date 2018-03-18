@@ -32,13 +32,11 @@ public class Switch extends Tile {
 	 * Switch will toggle the state of the Hole linked to it.
 	 * @param c The Crate that has moved onto the Switch.
 	 */
-	public void activate(Thing c)
+	public void activate()
 	{
-		if(hole!=null) {
-			System.out.println(">[:Hole].toggleOpen()");
-			hole.toggleOpen();
-		}
-		else throw new NullPointerException("hole is null");
+		System.out.println(">[:Hole].toggleOpen()");
+		hole.toggleOpen();
+		System.out.println("<[:Hole].activate(c)");
 	}
 	
 	/**
@@ -69,14 +67,5 @@ public class Switch extends Tile {
 		System.out.println("!New instance of Hole created.");
 		System.out.println(">[:Hole].setHole(h)");
 		this.setHole(h);
-	}
-	
-	/**
-	 * Default constructor. Makes the switch essentially useless, unless one manually sets the hole property.
-	 */
-	Switch(){
-		System.out.println("!New instance of Hole created.");
-		hole=null;
-		System.out.println("!!!SET THE VALUE OF hole");
 	}
 }
