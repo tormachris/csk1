@@ -148,4 +148,19 @@ public class Map implements Steppable {
 		this.workers = workers;
 		System.out.println("<[:Map].setWorkers(workers): void");
 	}
+	
+	public void removeWorker(Worker w) {
+		
+		this.workers.remove(w);
+	}
+	
+	public void removeCrate(Crate c) {
+		
+		this.crates.remove(c);
+	}
+	
+	public void removeTile(Tile t) {
+		
+		this.tiles.remove(t);
+	}
 }
