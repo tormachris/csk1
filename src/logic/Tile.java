@@ -63,6 +63,7 @@ public class Tile {
 			thing = null;
 			System.out.println("#thing= null");
 		}
+		System.out.println(">[:Tile].remove(t):void");
 	}
 	
 	/**
@@ -72,6 +73,8 @@ public class Tile {
 	 */
 	public Tile getNeighbour(Direction d)
 	{
+		System.out.println(">[:Tile].nexttiles.get(d)");
+		System.out.println("<[:Tile].getNeighbour(d): tile");
 		return nexttiles.get(d);
 	}
 	
@@ -85,19 +88,24 @@ public class Tile {
 		//putting the tile in the "nexttiles" Map if there is a valid d passed.
 		if(d==null)
 			throw new NullPointerException("d cannot be null");
+		System.out.println(">[:Tile].nexttiles.put(d,t)");
 		nexttiles.put(d, t);
+		System.out.println("<[:Tile].setNeighbour(d): void");
 	}
 	/**
 	 * @return the thing
 	 */
 	public Thing getThing() {
+		System.out.println("<[:Tile].getThing(): thing");
 		return thing;
 	}
 	/**
 	 * @param thing the thing to set
 	 */
 	public void setThing(Thing thing) {
+		System.out.println("#thing= thing"); //WOWEE
 		this.thing = thing;
+		System.out.println("<[:Tile].setThing(thing): void");
 	}
 
 }
