@@ -49,14 +49,6 @@ public class Game {
 	}
 
 	/**
-	 * @return the maps
-	 */
-	public Set<Map> getMaps() {
-		System.out.println("<[:Game].getMaps(): maps");
-		return maps;
-	}
-
-	/**
 	 * @param maps the maps to set
 	 */
 	private void setMaps(Set<Map> maps) {
@@ -71,6 +63,16 @@ public class Game {
 	public void addMap(Map m) {
 		if (m!=null) maps.add(m);
 		else throw new IllegalArgumentException("Cannot add null to maps collection.");
+		System.out.println("<[:Game].addMap(m):void");
+	}
+	
+	/**
+	 * @param m the map to remove
+	 */
+	public void removeMap(Map m) {
+		if (m!=null) maps.add(m);
+		else throw new IllegalArgumentException("Cannot add null to maps collection.");
+		if (maps.contains(m)) maps.remove(m);
 		System.out.println("<[:Game].addMap(m):void");
 	}
 	
