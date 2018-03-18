@@ -51,6 +51,7 @@ public class Hole extends Tile {
 	 */
 	@Override
 	public  boolean accept(Thing t){
+		System.out.println("!This is a Hole");
 		Boolean accepted;
 		//if the hole is open it destroys every thing that moves onto it
 		if(open.booleanValue())
