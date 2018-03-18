@@ -9,9 +9,9 @@ import java.util.*;
 public class Map implements Steppable {
 	
 	private Integer ticksRemain;
-	private Set<Crate> crates; //TODO: ADDER FUNCTION
-	private Set<Worker> workers; //TODO: ADDER
-	private Set<Tile> tiles; //TODO: ADDER
+	private Set<Crate> crates; 
+	private Set<Worker> workers; 
+	private Set<Tile> tiles; 
 	
 	private static final int DEFAULTTICKSREMAIN=100000000;
 	
@@ -149,18 +149,65 @@ public class Map implements Steppable {
 		System.out.println("<[:Map].setWorkers(workers): void");
 	}
 	
+	/**
+	 * @param w the worker to add
+	 */	
+		public void addWorker(Worker w) {
+		if(w==null)
+			throw new IllegalArgumentException("Cannot add null to workers collection.");
+		else {
+			this.workers.add(w);
+		System.out.println("<[:Map].addWorker(w):void");
+		}
+	}
+	
+	/**
+	 * @param worker the Worker to remove
+	 */
 	public void removeWorker(Worker w) {
-		
+		if(this.workers.contains(w)) {
 		this.workers.remove(w);
+		System.out.println("<[:Map].removeWorker(w):void");
+		}
 	}
-	
+	/**
+	 * @param c the Crate to add
+	 */
+	public void addCrate(Crate c) {
+	if(c==null)
+		throw new IllegalArgumentException("Cannot add null to crates collection.");
+	else {
+		this.crates.add(c);
+		System.out.println("<[:Map].addCrate(c):void");
+		}
+	}	
+	/**
+	 * @param c the Crate to remove
+	 */
 	public void removeCrate(Crate c) {
-		
+		if(this.crates.contains(c)) {
 		this.crates.remove(c);
+		System.out.println("<[:Map].removeCrate(c):void");
+		}
 	}
-	
+	/**
+	 * @param t the Tile to add
+	 */
+	public void addTile(Tile t) {
+	if(t==null)
+		throw new IllegalArgumentException("Cannot add null to tiles collection.");
+	else {
+		this.tiles.add(t);
+		System.out.println("<[:Map].addTile(t):void");
+		}
+	}
+	/**
+	 * @param t the Tile to remove
+	 */
 	public void removeTile(Tile t) {
-		
+		if(this.tiles.contains(t)){
 		this.tiles.remove(t);
+		System.out.println("<[:Map].removeTile(t):void");
+		}
 	}
 }

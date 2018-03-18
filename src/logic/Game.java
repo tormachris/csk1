@@ -22,7 +22,7 @@ public class Game {
 	}
 	
 	/**
-	 * Called when a map stars.
+	 * Called when a map starts.
 	 * Think of this as a 2nd phase of the initialisation of a map.
 	 * (The first being its constructor)
 	 * @param m: Map to start
