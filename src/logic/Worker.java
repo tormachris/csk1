@@ -17,6 +17,8 @@ public class Worker extends Thing{
 	 */
 	public boolean hitBy(Worker w,Direction d,Thing o)
 	{
+		System.out.println("<[:Worker].hitBy(w,d,o)");
+		System.out.println("!I am not going to do anything, bc I was hit by a Worker.");
 		return false;
 	}
 	
@@ -32,18 +34,22 @@ public class Worker extends Thing{
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
-		
+		System.out.println(">[:Worker].updateOwner(o)");
 		this.updateOwner(o); 	//updating the owner for the action
 		
-		boolean moved = this.move(d); //trying to move..
-		
-		if(moved)
+		System.out.println(">[:Worker].updateOwner(o)");
+		Boolean moved = Boolean.valueOf(this.move(d)); //trying to move..
+		System.out.println("#moved= "+ moved.toString());
+		if(moved.booleanValue()) {
+			System.out.println(">[:Worker].updateOwner(this)");
 			this.updateOwner(this);  //we need to reset the owner
-		else 
+		}
+		else {
+			System.out.println(">[:Worker].destroy()");
 			this.destroy(); //if the Worker couldn't move he will get squashed
-		
+		}
+		System.out.println("<[:Worker].hitBy(t,d,o): true");
 		return true; //gives space for the Crate incoming
-		
 	}
 	
 	/**
@@ -53,12 +59,14 @@ public class Worker extends Thing{
 	public void destroy()
 	{
 		//Please implement
+		System.out.println("<[:Worker].destroy():void");
 	}
 
 	/**
 	 * @return the points
 	 */
 	public Integer getPoints() {
+		System.out.println("<[:Worker].getPoints(): " + points.toString());
 		return points;
 	}
 
@@ -66,7 +74,9 @@ public class Worker extends Thing{
 	 * @param points the points to set
 	 */
 	public void setPoints(Integer points) {
+		System.out.println("#points= points");
 		this.points = points;
+		System.out.println("<[:Worker].setPoints(points): void");
 	}
 	
 }

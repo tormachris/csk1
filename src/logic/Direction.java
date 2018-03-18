@@ -7,6 +7,9 @@ package logic;
 */
 public enum Direction {
 	
-	NORTH,SOUTH,WEST,EAST
-
+	NORTH //NORTH is UP in the game.
+	,SOUTH //SOUTH is DOWN in the game.
+	,WEST //WEST is LEFT in the game
+	,EAST //EAST is RIGHT in the game
+		//The enum contains quarters and not directions to be more expandable.
 }
