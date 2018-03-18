@@ -72,7 +72,7 @@ public class Crate extends Thing{
 		System.out.println("!Check what type of Thing this is!");
 		//tries to activate the switch
 		System.out.println(">[:Switch].activate(this)");
-		s.activate(this);
+		s.activate();
 		System.out.println("<[:Thing].onSwitch(t): void");
 	}
 

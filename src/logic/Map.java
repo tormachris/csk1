@@ -9,9 +9,9 @@ import java.util.*;
 public class Map implements Steppable {
 	
 	private Integer ticksRemain;
-	private Set<Crate> crates; //TODO: ADDER FUNCTION
-	private Set<Worker> workers; //TODO: ADDER
-	private Set<Tile> tiles; //TODO: ADDER
+	private Set<Crate> crates;
+	private Set<Worker> workers;
+	private Set<Tile> tiles;
 	
 	private static final int DEFAULTTICKSREMAIN=100000000;
 	
@@ -150,7 +150,6 @@ public class Map implements Steppable {
 	}
 	
 	public void removeWorker(Worker w) {
-		
 		this.workers.remove(w);
 	}
 	

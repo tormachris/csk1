@@ -70,9 +70,8 @@ public class Game {
 	 * @param m the map to remove
 	 */
 	public void removeMap(Map m) {
-		if (m!=null) maps.add(m);
-		else throw new IllegalArgumentException("Cannot add null to maps collection.");
-		if (maps.contains(m)) maps.remove(m);
+		if (m==null) throw new IllegalArgumentException("Cannot remove null to maps collection.");
+		else if (maps.contains(m)) maps.remove(m);
 		System.out.println("<[:Game].addMap(m):void");
 	}
 	
