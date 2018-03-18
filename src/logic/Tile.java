@@ -16,29 +16,40 @@ public class Tile {
 	 */
 	public boolean accept(Thing t)
 	{
-		boolean accepted;
+		Boolean accepted;
 		//if the Tile is empty it will accept
-		if(thing == null)
-			accepted = true;
+		if(thing == null) {
+			accepted = Boolean.TRUE;
+			System.out.println("#accepted= "+ accepted.toString());
+		}
 		
 		//if it is not empty it will make the moving Thing collide with the Thing that is
 		//currently on the Tile 
-		else
-			accepted = t.collideWith(thing);
+		else {
+			accepted = Boolean.valueOf(t.collideWith(thing));
+			System.out.println("#accepted= "+ accepted.toString());
+		}
 		
 		//if it has been accepted then it refreshes the thing attribute
-		if(accepted)
+		if(accepted.booleanValue()) {
 			thing = t;
+			System.out.println("#thing= t");
+		}
 		
 		//returns with the acceptance anyway
-		return accepted;
+		System.out.println("<[:Tile].accpet(t): " + accepted.toString());
+		return accepted.booleanValue();
 	}
 	/**
 	 * Default constructor, initialises the Map and the "thing" variable.
 	 */
 	public Tile() {
+		System.out.println("!New instance of Tile created.");
 		nexttiles=new EnumMap<>(Direction.class);
+		System.out.println("#nexttiles=new EnumMap<>(Direction.class)");
 		thing=null;
+		System.out.println("#thing= null");
+		System.out.println("<[:Tile].Tile():void");
 	}	
 	/**
 	 * Removes the Thing from the tile.
@@ -47,9 +58,11 @@ public class Tile {
 	public void remove(Thing t)
 	{
 		//checking if the Thing is on this Tile
-		if(t.equals(thing))
+		if(t.equals(thing)) {
 			//if that's true the Thing will be removed
 			thing = null;
+			System.out.println("#thing= null");
+		}
 	}
 	
 	/**
