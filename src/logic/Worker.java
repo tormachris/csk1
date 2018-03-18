@@ -20,24 +20,35 @@ public class Worker extends Thing{
 		return false;
 	}
 	
+	/**
+	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
+	 * worker's tile anyway so this will return true value however the worker might get 
+	 * squashed.
+	 * @param t The Thing that hits the Worker
+	 * @param d The Direction towards the Worker is hit
+	 * @param o The owner of the Thing
+	 * @return true as there should be movement
+	 */
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
 		
-		this.updateOwner(o);
+		this.updateOwner(o); 	//updating the owner for the action
 		
-		boolean moved = this.move(d);
+		boolean moved = this.move(d); //trying to move..
 		
 		if(moved)
-			return true;
+			this.updateOwner(this);  //we need to reset the owner
 		else 
-		{
-			this.destroy();
-			return true;
-		}
+			this.destroy(); //if hthe Worker couldn't move he will get squashed
+		
+		return true; //gives space for the Crate incoming
 		
 	}
-
+	
+	/**
+	 * This function represents the death of a worker.
+	 */
 	@Override
 	public void destroy()
 	{

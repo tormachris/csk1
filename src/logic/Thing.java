@@ -71,9 +71,9 @@ public abstract class Thing {
 	}
 	
 	/**
-	 * 
-	 * @param t
-	 * @return
+	 * Updates the owner f the Thing
+	 * @param t The new owner
+	 * @return if the update was successful
 	 */
 	public final boolean updateOwner(Thing t)
 	{

@@ -17,20 +17,33 @@ public class Crate extends Thing{
 	
 	/**
 	 * Called when a Crate is hit by some thing.
+	 * @param t The Thing that hits the Crate.
+	 * @param d The Direction towards the Crate is hit
+	 * @param o The owner of the Thing
+	 * @return
 	*/
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
-		return true;
+		this.updateOwner(o);
+		
+		boolean moved = this.move(d);
+		
+		return moved;
 	}
 	
 	/**
 	 * Called by an EndTile, when a crate occupies it.
+	 * @param t The EndTile the Crate moves onto.
 	*/
 	@Override
 	public void onEndTile(EndTile t)
-	{
-		//Please implement this
+	{	//Incrementing the owner's points by 1
+		Worker w = (Worker)this.getOwner();
+		w.setPoints(w.getPoints() + 1);
+		//Destroying the Crate
+		destroy();
 	}
+
 
 }
