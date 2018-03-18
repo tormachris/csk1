@@ -12,3 +12,4 @@ src/logic/EndTile.java
 src/logic/Hole.java
 src/logic/Thing.java
 src/logic/Map.java
+src/logic/Menu.java
