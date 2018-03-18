@@ -34,7 +34,7 @@ public class Switch extends Tile {
 	 */
 	public void activate(Thing t)
 	{
-		System.out.println("<[:Thing].activate(t): void");
+		System.out.println("<[:Hole].activate(t): void");
 		return;
 	}
 	
@@ -77,6 +77,7 @@ public class Switch extends Tile {
 	 * Constructor. Sets the hole.
 	 */
 	Switch(Hole h){
+		System.out.println("!New instance of Hole created.");
 		System.out.println(">[:Hole].setHole(h)");
 		this.setHole(h);
 	}
@@ -85,6 +86,7 @@ public class Switch extends Tile {
 	 * Default constructor. Makes the switch essentially useless, unless one manually sets the hole property.
 	 */
 	Switch(){
+		System.out.println("!New instance of Hole created.");
 		hole=null;
 		System.out.println("!!!SET THE VALUE OF hole");
 	}

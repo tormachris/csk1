@@ -15,6 +15,7 @@ public abstract class Thing {
 	 * @param None
 	 */
 	public Thing() {
+		System.out.println("!New instance of Thing created."); //LOLOLOL WILL NEVER HAPPEN
 		//Let this be a warning, if a thing's owner is null, it is brand new!
 		owner=null;
 		tile=null; //Hanging in the aether.
