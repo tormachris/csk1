@@ -75,6 +75,7 @@ public class Menu {
 	
 	private void first() {
 		
+		
 	}
 	
 	private void second() {
@@ -82,6 +83,7 @@ public class Menu {
 	}
 	
 	private void third(){
+		
 		
 	}
 	
