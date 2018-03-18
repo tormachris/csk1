@@ -28,22 +28,11 @@ public class Switch extends Tile {
 	}
 	
 	/**
-	 * 
-	 * Does not activate if a random Thing is on it.
-	 * @param t General Thing. (Like a Worker)
-	 */
-	public void activate(Thing t)
-	{
-		System.out.println("<[:Hole].activate(t): void");
-		return;
-	}
-	
-	/**
 	 * This function should be called when a Crate moves onto a switch. If this happens the
 	 * Switch will toggle the state of the Hole linked to it.
 	 * @param c The Crate that has moved onto the Switch.
 	 */
-	public void activate(Crate c)
+	public void activate(Thing c)
 	{
 		if(hole!=null) {
 			System.out.println(">[:Hole].toggleOpen()");
