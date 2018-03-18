@@ -78,5 +78,9 @@ public class Hole extends Tile {
 		System.out.println("#open=" + open.toString());
 		open = !open;
 		System.out.println("<[:Hole].toggleOpen():void");
+		if(open.booleanValue() && this.getThing()!=null)
+		{
+			this.getThing().destroy();
+		}
 	}
 }
