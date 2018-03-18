@@ -47,18 +47,23 @@ public abstract class Thing {
 		System.out.println("!Check what type of Thing this is!");
 		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
+		System.out.println("#newTile= tile.getNeighbour(d)");
 		newTile = tile.getNeighbour(d);
+		System.out.println("#moving=d");
 		moving = d;
 		
 		//checking whether the new Tile accepts the Thing
-		boolean moved = newTile.accept(this);
+		Boolean moved = newTile.accept(this);
 		if(moved)
 		{
 			//if the Thing was accepted by the new Tile the Thing moves to it.
+			System.out.println(">[:Tile].remove(this)");
 			tile.remove(this);
+			System.out.println("#tile=newTile");
 			tile = newTile;
 		}
 		
+		System.out.println("<[:Thing].move(d): " + moved.toString());
 		return moved;
 	}
 	/**
@@ -67,11 +72,12 @@ public abstract class Thing {
 	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
 		System.out.println("!Check what type of Thing this is!");
-		
+		System.out.println(">[:Thing].updateOwner(o)");
 		this.updateOwner(o);
 		
-		boolean moved = this.move(d);
-		
+		System.out.println(">[:Thing].move(d)");
+		Boolean moved = Boolean.valueOf(this.move(d));
+		System.out.println("<[:Thing].hitBy(t,d,o): " + moved.toString());
 		return moved;
 	}
 	
@@ -83,19 +89,21 @@ public abstract class Thing {
 	public final boolean updateOwner(Thing t)
 	{
 		System.out.println("!Check what type of Thing this is!");
+		System.out.println("#owner=t");
 		this.owner = t;
+		System.out.println("<[:Thing].updateOwner(t): true");
 		return true;	//valami ellenorzes kene ide, hogy legyen ertelme, vagy nem tudom
 	}
 	
 	/**
-	 * This function should be called whenever a Thing moves onto a Switch.
+	 * This function is called by a switch this Thing is on.
 	 * @param s The Switch onto which the Thing has moved.
 	 */
 	public void onSwitch(Switch s)
 	{	
 		System.out.println("!Check what type of Thing this is!");
-		//tries to activate the switch
-		s.activate(this);
+		System.out.println("!I won't do anything, I am not heavy enough");
+		System.out.println("<[:Thing].onSwitch(t): void");
 	}
 	
 	/**
@@ -105,7 +113,8 @@ public abstract class Thing {
 	public void onEndTile(EndTile t)
 	{
 		System.out.println("!Check what type of Thing this is!");
-		return;
+		System.out.println("!I refuse to do anything, I am not Kul enough.");
+		System.out.println("<[:Thing].onEndTile(t): void");
 	}
 	
 	/**
@@ -115,6 +124,7 @@ public abstract class Thing {
 	public final Thing getOwner()
 	{
 		System.out.println("!Check what type of Thing this is!");
+		System.out.println("<[:Thing].getOwner(t): owner");
 		return owner;
 	}
 	
@@ -125,6 +135,7 @@ public abstract class Thing {
 	public final Tile getTile()
 	{
 		System.out.println("!Check what type of Thing this is!");
+		System.out.println("<[:Thing].getTile(t): tile");
 		return tile;
 	}
 	
@@ -132,5 +143,6 @@ public abstract class Thing {
 	{
 		System.out.println("!Check what type of Thing this is!");
 		//Please implement
+		System.out.println("<[:Thing].destroy(t): void");
 	}
 }

@@ -60,5 +60,19 @@ public class Crate extends Thing{
 		
 		System.out.println("<[:Crate].destroy():void");
 	}
+	
+	/**
+	 * This function is called by a switch this Thing is on.
+	 * @param s The Switch onto which the Thing has moved.
+	 */
+	@Override
+	public void onSwitch(Switch s)
+	{	
+		System.out.println("!Check what type of Thing this is!");
+		//tries to activate the switch
+		System.out.println(">[:Switch].activate(this)");
+		s.activate(this);
+		System.out.println("<[:Thing].onSwitch(t): void");
+	}
 
 }
