@@ -22,8 +22,8 @@ public class EndTile extends Tile {
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
 			t.onEndTile(this);
+		System.out.println("<[:EndTile].accept(t): " + accepted);
 		return accepted;
-
 	}
 
 }

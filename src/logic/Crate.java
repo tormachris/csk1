@@ -13,6 +13,7 @@ public class Crate extends Thing{
 	*/
 	public Crate() {
 		super();
+		System.out.println("!New Crate created.");
 	}
 	
 	/**
@@ -25,11 +26,13 @@ public class Crate extends Thing{
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
+		System.out.println(">[:Crate].updateOwner(o)");
 		this.updateOwner(o);
 		
-		boolean moved = this.move(d);
-		
-		return moved;
+		System.out.println(">[:Crate].move(d)");
+		Boolean moved=Boolean.valueOf(this.move(d));
+		System.out.println("<[:Crate].hitBy(t,d,o): " + moved.toString());
+		return moved.booleanValue();
 	}
 	
 	/**
@@ -39,11 +42,23 @@ public class Crate extends Thing{
 	@Override
 	public void onEndTile(EndTile t)
 	{	//Incrementing the owner's points by 1
+		System.out.println(">[:Crate].getOwner()");
 		Worker w = (Worker)this.getOwner();
+		System.out.println("!Worker's points increased.");
 		w.setPoints(w.getPoints() + 1);
 		//Destroying the Crate
-		destroy();
+		System.out.println(">[:Crate].destroy()");
+		this.destroy();
 	}
-
+	
+	/**
+	 * Called when this object is destroyed. (NOT A DESTRUCTOR)
+	*/
+	@Override
+	public void destroy() {
+		//Please implement
+		
+		System.out.println("<[:Crate].destroy():void");
+	}
 
 }

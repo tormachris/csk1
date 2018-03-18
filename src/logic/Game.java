@@ -10,11 +10,12 @@ import java.util.*;
 public class Game {
 	
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
-	
+	private static Game instance = null;
 	/**
 	 * Default contructor, initializes the maps Set with a super-duper fast HashSet <3
 	 */
 	public Game() {
+		System.out.println("!New Game instance created");
 		setMaps(new HashSet<Map>());
 	}
 	
@@ -29,7 +30,7 @@ public class Game {
 		if(m!=null)
 			m.startMap();
 		else throw new NullPointerException("m cannot be null");
-		
+		System.out.println("<[:Game].start(m):void");
 	}
 	
 	/**
@@ -38,12 +39,15 @@ public class Game {
 	public void end()
 	{
 		//Please implement
+		
+		System.out.println("<[:Game].end():void");
 	}
 
 	/**
 	 * @return the maps
 	 */
 	public Set<Map> getMaps() {
+		System.out.println("<[:Game].getMaps(): maps");
 		return maps;
 	}
 
@@ -51,7 +55,29 @@ public class Game {
 	 * @param maps the maps to set
 	 */
 	public void setMaps(Set<Map> maps) {
+		System.out.println("#maps got a new value");
 		this.maps = maps;
+		System.out.println("<[:Game].setMaps(maps): void");
 	}
-
+	
+	/**
+	 * @param m the map to add
+	 */
+	public void addMap(Map m) {
+		if (m!=null) maps.add(m);
+		else throw new IllegalArgumentException("Cannot add null to maps collection.");
+		System.out.println("<[:Game].addMap(m):void");
+	}
+	
+	/**
+	 * This method realizes Game being a singleton in Java.
+	 */
+	public static Game getInstance() {
+		System.out.println("!Getting instance of Game");
+		if(instance == null) {
+			instance = new Game();
+		}
+		System.out.println("<[:Game].getInstance(): instance");
+		return instance;
+	}
 }

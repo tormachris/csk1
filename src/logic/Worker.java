@@ -9,7 +9,7 @@ public class Worker extends Thing{
 	
 	/**
 	 * This function is called whenever a Worker gets hit by another Worker. As a worker can't 
-	 * move other workers by himself this Worker won't move.
+	 * move other workers, this Worker won't move.
 	 * @param w  The other worker
 	 * @param d  The direction towards the other worker is moving
 	 * @param o	 The owner of the other worker.
@@ -40,7 +40,7 @@ public class Worker extends Thing{
 		if(moved)
 			this.updateOwner(this);  //we need to reset the owner
 		else 
-			this.destroy(); //if hthe Worker couldn't move he will get squashed
+			this.destroy(); //if the Worker couldn't move he will get squashed
 		
 		return true; //gives space for the Crate incoming
 		
