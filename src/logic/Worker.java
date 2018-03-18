@@ -60,7 +60,7 @@ public class Worker extends Thing{
 	{
 		//Please implement
 		System.out.println("<[:Worker].destroy():void");
-		Game.getInstance().getMaps().remove(this);
+		Game.getInstance().getMaps().remove(); //EZ IGY NEM YO
 	}
 
 	/**

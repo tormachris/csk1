@@ -10,13 +10,15 @@ import java.util.*;
 public class Game {
 	
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
+	private Map currentmap;
 	private static Game instance = null;
 	/**
-	 * Default contructor, initializes the maps Set with a super-duper fast HashSet <3
+	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
 	public Game() {
 		System.out.println("!New Game instance created");
-		setMaps(new HashSet<Map>());
+		this.setMaps(new HashSet<Map>());
+		this.setCurrentmap(null);
 	}
 	
 	/**
@@ -27,8 +29,11 @@ public class Game {
 	 */
 	public void start(Map m)
 	{
-		if(m!=null)
+		if(m!=null) {
+			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed");
+			this.setCurrentmap(m);
 			m.startMap();
+		}
 		else throw new NullPointerException("m cannot be null");
 		System.out.println("<[:Game].start(m):void");
 	}
@@ -54,7 +59,7 @@ public class Game {
 	/**
 	 * @param maps the maps to set
 	 */
-	public void setMaps(Set<Map> maps) {
+	private void setMaps(Set<Map> maps) {
 		System.out.println("#maps got a new value");
 		this.maps = maps;
 		System.out.println("<[:Game].setMaps(maps): void");
@@ -79,5 +84,25 @@ public class Game {
 		}
 		System.out.println("<[:Game].getInstance(): instance");
 		return instance;
+	}
+
+	/**
+	 * @return the currentmap
+	 */
+	public Map getCurrentmap() {
+		System.out.println("<[:Game].getCurrentmap(): currentmap");
+		return currentmap;
+	}
+
+	/**
+	 * @param currentmap the currentmap to set
+	 */
+	private void setCurrentmap(Map currentmap) {
+		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map");
+		else {
+			System.out.println("#currentmap got a new value");
+			this.currentmap = currentmap;
+		}
+		System.out.println("<[:Game].setCurrentmap(currentmap): void");
 	}
 }
