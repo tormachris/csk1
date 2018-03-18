@@ -28,9 +28,11 @@ public abstract class Thing {
 	 */
 	public boolean collideWith(Thing t)
 	{
-		boolean collided;
+		Boolean collided;
 		//Hitting the other Thing with this towards this one's moving direction
-		collided = t.hitBy(this, moving , this.owner);
+		collided = Boolean.valueOf(t.hitBy(this, moving , this.owner));
+		System.out.println("<[:Thing].collideWith(t): "+ collided.toString());
+		System.out.println("!Check what type of Thing this is!");
 		return collided;
 		
 	}
@@ -42,6 +44,7 @@ public abstract class Thing {
 	 */
 	public boolean move(Direction d)
 	{	
+		System.out.println("!Check what type of Thing this is!");
 		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
 		newTile = tile.getNeighbour(d);
@@ -63,6 +66,7 @@ public abstract class Thing {
 	 */
 	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
+		System.out.println("!Check what type of Thing this is!");
 		
 		this.updateOwner(o);
 		
@@ -78,8 +82,9 @@ public abstract class Thing {
 	 */
 	public final boolean updateOwner(Thing t)
 	{
+		System.out.println("!Check what type of Thing this is!");
 		this.owner = t;
-		return true;	//valami ellenőrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
+		return true;	//valami ellenorzes kene ide, hogy legyen ertelme, vagy nem tudom
 	}
 	
 	/**
@@ -88,6 +93,7 @@ public abstract class Thing {
 	 */
 	public void onSwitch(Switch s)
 	{	
+		System.out.println("!Check what type of Thing this is!");
 		//tries to activate the switch
 		s.activate(this);
 	}
@@ -98,6 +104,7 @@ public abstract class Thing {
 	 */
 	public void onEndTile(EndTile t)
 	{
+		System.out.println("!Check what type of Thing this is!");
 		return;
 	}
 	
@@ -107,6 +114,7 @@ public abstract class Thing {
 	 */
 	public final Thing getOwner()
 	{
+		System.out.println("!Check what type of Thing this is!");
 		return owner;
 	}
 	
@@ -116,11 +124,13 @@ public abstract class Thing {
 	 */
 	public final Tile getTile()
 	{
+		System.out.println("!Check what type of Thing this is!");
 		return tile;
 	}
 	
 	public void destroy()
 	{
-		
+		System.out.println("!Check what type of Thing this is!");
+		//Please implement
 	}
 }
