@@ -4,7 +4,6 @@
 package logic;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * @author krist
@@ -109,25 +108,60 @@ public class Menu {
 	}
 	
 	private void fifth() {
-		
+		String rawinput=new String("");
+		System.out.print("\t *5.1 Nyitva van a lyuk? y/N \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//Setting up
+		Hole h=new Hole(rawinput.toLowerCase().charAt(0)=='y');
+		Tile t=new Tile();
+		t.setNeighbour(Direction.NORTH, h);
+		Worker w=new Worker();
+		Crate c= new Crate();
+		t.accept(c);
+		Tile t2=new Tile();
+		t2.setNeighbour(Direction.NORTH, t);
+		t2.accept(w);
+		//Moving
+		System.out.println("!Setup done, doing operation.");
+		w.move(Direction.NORTH);
 	}
 	
 	private void sixth() {
-	
+		String rawinput=new String("");
+		System.out.print("\t *6.1 Nyitva van a lyuk? y/N \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//Setting up
+		Hole h=new Hole(rawinput.toLowerCase().charAt(0)=='y');
+		Tile t=new Tile();
+		t.setNeighbour(Direction.NORTH, h);
+		Worker w=new Worker();
+		t.accept(w);
+		//Moving
+		System.out.println("!Setup done, doing operation.");
+		w.move(Direction.NORTH);
 	}
 	
 	private void seventh() {
+		Map map=new Map(); //ADDOLNI A CUCCOKAT
 		Hole h=new Hole();
-		Switch s=new Switch(h);
+		Switch s=new Switch(h);//They don't have to be neighbours
 		String rawinput=new String("");
-		System.out.print("\t *7.1Van valami a kapcsolon tartozo lyukon? y/N \n ?");
+		System.out.print("\t *7.1 Van valami a kapcsolon tartozo lyukon? y/N \n ?");
 		try {
 			rawinput=reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		if(rawinput.toLowerCase().charAt(0)=='y') {
-			System.out.print("\t \t *7.1Doboz van a lyukon? y/N \n ?");
+			System.out.print("\t \t *7.1 Doboz van a lyukon? y/N \n ?");
 			try {
 				rawinput=reader.readLine();
 			} catch (IOException e) {
@@ -142,6 +176,16 @@ public class Menu {
 				h.setThing(w);
 			}
 		}
+		Crate c2=new Crate();
+		Worker w2=new Worker();
+		Tile t1=new Tile();
+		t1.accept(c2);
+		t1.setNeighbour(Direction.NORTH, s);
+		Tile t2=new Tile();
+		t2.accept(w2);
+		t2.setNeighbour(Direction.NORTH, t1);
+		System.out.println("!Setup done, doing operation.");
+		w2.move(Direction.NORTH);
 	}
 	
 	private void eight() {
