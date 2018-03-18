@@ -12517,7 +12517,7 @@
 <XPD:REF name="Model">b11uyq54HEyi5+1AZbMuyQAA</XPD:REF>
 <XPD:REF name="ContainerView">Y8YcdkQGnk6IHQK5GapS2QAA</XPD:REF>
 <XPD:OBJ name="GuardLabel" type="LabelView" guid="KZfvw2k/u0iTZQjK+sAPVQAA">
-<XPD:ATTR name="Text" type="string">[crates Is Null Or workes !=2 Or timeremain ==0]</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">[crates Is Null Or workes &lt; 2 Or timeremain ==0]</XPD:ATTR>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -12719,7 +12719,7 @@
 <XPD:ATTR name="#Operands" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="Operands[0]" type="UMLInteractionOperand" guid="b11uyq54HEyi5+1AZbMuyQAA">
 <XPD:ATTR name="Name" type="string">InteractionOperand1</XPD:ATTR>
-<XPD:ATTR name="Guard" type="string">crates Is Null Or workes !=2 Or timeremain ==0</XPD:ATTR>
+<XPD:ATTR name="Guard" type="string">crates Is Null Or workes &lt; 2 Or timeremain ==0</XPD:ATTR>
 <XPD:REF name="CombinedFragment">e2wxWsbo/EmOQe7zhRURigAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">1</XPD:ATTR>
 <XPD:REF name="Views[0]">MJUWsUQ6rU2ctXcvG/6DcwAA</XPD:REF>

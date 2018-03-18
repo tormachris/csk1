@@ -74,5 +74,17 @@ public class Tile {
 			throw new NullPointerException("d cannot be null");
 		nexttiles.put(d, t);
 	}
+	/**
+	 * @return the thing
+	 */
+	public Thing getThing() {
+		return thing;
+	}
+	/**
+	 * @param thing the thing to set
+	 */
+	public void setThing(Thing thing) {
+		this.thing = thing;
+	}
 
 }
