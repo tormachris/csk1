@@ -32,7 +32,8 @@ public class Map implements Steppable {
 	 */
 	public void startMap()
 	{
-		//Please implement
+		this.resetTimer();
+		Timer.getInstance().addSteppable(this);
 	}
 	
 	/**
@@ -40,7 +41,7 @@ public class Map implements Steppable {
 	 */
 	public void endMap()
 	{
-		//Please implement
+		Timer.getInstance().removeSteppable(this);
 	}
 	
 	/**

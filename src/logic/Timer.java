@@ -9,6 +9,7 @@ public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
 	private static final int MILISECSTOWAIT=100; //Modify interval here, pls.
+	private static Timer instance = null;
 	
 	/**
 	 * Constructor. Initialises the set of steppables.
@@ -16,6 +17,15 @@ public class Timer extends Thread{
 	public Timer() {
 		steppables = new HashSet<>();
 		this.start(); //Start itself automagically, so you don't have to!
+	}
+	
+public static Timer getInstance() {
+		
+		if(instance == null) {
+			instance = new Timer();
+		}
+		
+		return instance;		
 	}
 	
 	@Override

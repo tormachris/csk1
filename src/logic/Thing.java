@@ -62,7 +62,12 @@ public abstract class Thing {
 	 */
 	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
-		return true;
+		
+		this.updateOwner(o);
+		
+		boolean moved = this.move(d);
+		
+		return moved;
 	}
 	
 	/**
