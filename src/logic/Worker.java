@@ -52,7 +52,7 @@ public class Worker extends Thing{
 	@Override
 	public void destroy()
 	{
-		//Please implement
+		Game.getInstance().getMaps().remove(this);
 	}
 
 	/**

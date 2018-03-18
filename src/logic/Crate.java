@@ -56,7 +56,8 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public void destroy() {
-		//Please implement
+		
+		Game.getInstance().getMaps().remove(this);
 		
 		System.out.println("<[:Crate].destroy():void");
 	}
