@@ -41,24 +41,33 @@ public class Menu {
 		
 		case(1):
 			first();
+		break;
 		case(2):
 			second();
+		break;
 		case(3):
 			third();
+		break;
 		case(4):
 			fourth();
+		break;
 		case(5):
 			fifth();
+		break;
 		case(6):
 			sixth();
+		break;
 		case(7):
 			seventh();
+		break;
 		case(8):
 			eight();
+		break;
 		case(9):
 			nineth();
+		break;
 		default:
-			{}
+		break;
 		}
 		}
 		return;

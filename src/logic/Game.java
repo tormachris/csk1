@@ -25,7 +25,7 @@ public class Game {
 	 * Called when a map stars.
 	 * Think of this as a 2nd phase of the initialisation of a map.
 	 * (The first being its constructor)
-	 * @param m: Map to start (WHY?)
+	 * @param m: Map to start
 	 */
 	public void start(Map m)
 	{
