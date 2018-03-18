@@ -15,9 +15,27 @@ public class Worker extends Thing{
 	 * @param o	 The owner of the other worker.
 	 * @return	 False because workers can't be moved by other workers.
 	 */
-	public boolean hitBy(Worker w,Direction d,Worker o)
+	public boolean hitBy(Worker w,Direction d,Thing o)
 	{
 		return false;
+	}
+	
+	@Override
+	public boolean hitBy(Thing t,Direction d,Thing o)
+	{
+		
+		this.updateOwner(o);
+		
+		boolean moved = this.move(d);
+		
+		if(moved)
+			return true;
+		else 
+		{
+			this.destroy();
+			return true;
+		}
+		
 	}
 
 	@Override

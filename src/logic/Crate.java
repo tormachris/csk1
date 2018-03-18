@@ -9,7 +9,7 @@ package logic;
 public class Crate extends Thing{
 	
 	/**
-	 * Constructor. Calles the super class' constructor.
+	 * Constructor. Calls the super class' constructor.
 	*/
 	public Crate() {
 		super();
