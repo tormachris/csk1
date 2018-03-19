@@ -38,7 +38,6 @@ public class Menu {
 	 * This method shows the menu. It is the entry point of the menu.
 	 */
 	public void show() {
-		Integer input;
 		String rawinput=new String("a");
 		while(rawinput.compareTo("")!=0) {
 			System.out.println("1. Worker Moves\n"
@@ -55,37 +54,44 @@ public class Menu {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			input=Integer.valueOf(rawinput.charAt(0));
-		
-			switch (input.intValue()) {
+			switch (rawinput.charAt(0)) {
 			
-			case(1):
+			case('1'):{
 				first();
-			break;
-			case(2):
+				break;
+			}
+			case('2'):{
 				second();
-			break;
-			case(3):
+				break;
+			}
+			case('3'):{
 				third();
-			break;
-			case(4):
+				break;
+			}
+			case('4'):{
 				fourth();
-			break;
-			case(5):
+				break;
+			}
+			case('5'):{
 				fifth();
-			break;
-			case(6):
+				break;
+			}
+			case('6'):{
 				sixth();
-			break;
-			case(7):
+				break;
+			}
+			case('7'):{
 				seventh();
-			break;
-			case(8):
+				break;
+			}
+			case('8'):{
 				eight();
-			break;
-			case(9):
+				break;
+			}
+			case('9'):{
 				nineth();
-			break;
+				break;
+			}
 			default:
 				break;
 		}
@@ -94,6 +100,7 @@ public class Menu {
 	}
 	
 	private void first() {
+		System.out.print("!1. Worker Moves");
 		Tile t1 = new Tile();
 		Worker w = new Worker();
 		
