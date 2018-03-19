@@ -13,8 +13,15 @@ public class Map implements Steppable {
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
 
-	private static final int DEFAULTTICKSREMAIN=Integer.MAX_VALUE;
+	private static final int DEFAULTTICKSREMAIN=10;
 	
+	/**
+	 * @return the defaultticksremain
+	 */
+	public static int getDefaultticksremain() {
+		return DEFAULTTICKSREMAIN;
+	}
+
 	/**
 	 * Default constructor
 	 * Initialises the sets and Integers.
@@ -75,7 +82,7 @@ public class Map implements Steppable {
 	public void step()
 	{
 		//checking if there is any reason to end the map
-		if(crates.isEmpty() || workers.size() <= 2 || ticksRemain == 0)
+		if(crates.isEmpty() || workers.size() <= 2 || ticksRemain.intValue()<=0)
 			endMap();
 		else
 			//shortening the remaining time by 1 tick

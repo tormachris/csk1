@@ -38,64 +38,77 @@ public class Menu {
 	 */
 	public void show() {
 		String rawinput=new String("a");
-		while(rawinput.compareTo("")!=0) {		//The view of the menu.
-			System.out.println("\n\n");
+
+		while(true) {
+
+			System.out.println("\n\n");			//The view of the menu.
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
-					+ "3. A Tile-re dobozt tolnanak\n"
+					+ "3. A Tile-re dobozt tolnanak\n"		
 					+ "4. Egy Jatekossal doboz utkozik\n"
 					+ "5. Egy lyukra dobozt tolnak\n"
 					+ "6.Egy lyukra jatakos akar lepni\n"
 					+ "7.Egy kapcsolora dobozt tolnak\n"
-					+ "0.Kilépés a játékból");
+					+ "8. Palya lep"
+					+ "9.Kilepes a jatekbol");
 			System.out.print('?');
 			try {
 				rawinput=reader.readLine();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			switch (rawinput.charAt(0)) {				//Choosing test type
+
+				
 			
 
-				case('0'):{
-					zeroth();
-					break;
-				}
-				case('1'):{
-					first();
-					break;
-				}
-				case('2'):{
-					second();
-					break;
-				}
-				case('3'):{
-					third();
-					break;
-				}
-				case('4'):{
-					fourth();
-					break;
-				}
-				case('5'):{
-					fifth();
-					break;
-				}
-				case('6'):{
-					sixth();
-					break;
-				}
-				case('7'):{
-					seventh();
-					break;
-				}
-				default:
-					break;
+			String pattern= "^[1-9]*$"; //Regex that says rawpattern should only contain numbers form 1 to 9
+			if(rawinput.compareTo("")!=0 && rawinput.matches(pattern)) {	//Choosing test type
+				switch (rawinput.charAt(0)) {
+					case('1'):{
+						first();
+						break;
+					}
+					case('2'):{
+						second();
+						break;
+					}
+					case('3'):{
+						third();
+						break;
+					}
+					case('4'):{
+						fourth();
+						break;
+					}
+					case('5'):{
+						fifth();
+						break;
+					}
+					case('6'):{
+						sixth();
+						break;
+					}
+					case('7'):{
+						seventh();
+						break;
+					}
+					case('8'):{
+						eighth();
+						break;
+					}
+					case('9'):{
+						ninth();
+						break;
+					}
+					default:
+						break;
 
+
+				}
 			}
 		}
-		return;
-	}
+	}	
+
 	
 	private void first() {
 		System.out.print("!1. Worker Moves");
@@ -445,11 +458,49 @@ public class Menu {
 		System.out.println("!Test Done");
 	}
 	
-	private void zeroth() {
-		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
+	private void eighth() {
+		System.out.println("!8. Palya lep");	
+		Map m=new Map();				//Setting up the map for the test.
+		Game.getInstance().addMap(m);
+		Worker w=new Worker();		//Adding a Worker to the test.
+		m.addWorker(w);
 		String rawinput=new String("");
+		System.out.print("\t *8.1 Van eleg munkas? y/N \n ?");	//Choosing test coreography.
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(rawinput.toLowerCase().charAt(0)=='y') {
+			Worker ww=new Worker();	//Adding second worker to the test.
+			m.addWorker(ww);
+		}
+		System.out.print("\t *8.2 Van doboz? y/N \n ?");	//Choosing test coreography.
+		try {
+			rawinput=reader.readLine();	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(rawinput.toLowerCase().charAt(0)=='y') {
+			Crate c=new Crate();		//Adding a Crate to the test.
+			m.addCrate(c);
+		}
+		System.out.println("\n\n");
+		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Map].startMap()");	//Test map is ready with contributors.
+		m.startMap();			//Starting the map for test case.
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
+		Game.getInstance().removeMap(m);
+		System.out.println("!Test Done");
+	}
+	
+	private void ninth() {
+		System.out.println("!9.Kilepes a jatekbol");
+		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
+		String rawinput=new String("");					
 		while(rawinput.toLowerCase().charAt(0)!='1' ||
-				rawinput.toLowerCase().charAt(0)!='2' ||		//Leaving the menu and the application.
+				rawinput.toLowerCase().charAt(0)!='2' ||		
 				rawinput.toLowerCase().charAt(0)!='q') {
 			try {
 				rawinput=reader.readLine();
@@ -458,7 +509,7 @@ public class Menu {
 			}
 			if (rawinput.toLowerCase().charAt(0)!='q') Game.getInstance().end();
 			else {
-				System.out.println("The application will now close!");
+				System.out.println("The application will now close!");	//Leaving the menu and the application.
 				System.exit(0);
 			}
 		}
