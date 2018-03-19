@@ -8,7 +8,7 @@ import java.util.*;
 public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
-	private static final int MILISECSTOWAIT=100; //Modify interval here, pls.
+	private static final int MILISECSTOWAIT=Integer.MAX_VALUE; //Modify interval here, pls.
 	private static Timer instance = null;
 	
 	/**

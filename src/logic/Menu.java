@@ -30,7 +30,6 @@ public class Menu {
 	 */
 	public Menu() {
 		reader = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
-		this.show();
 	}
 	
 	/**
@@ -94,13 +93,16 @@ public class Menu {
 			}
 			default:
 				break;
-		}
+			}
 		}
 		return;
 	}
 	
 	private void first() {
 		System.out.print("!1. Worker Moves");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		Tile t1 = new Tile();
 		Worker w = new Worker();
 		
@@ -118,28 +120,43 @@ public class Menu {
 		
 		case "w":
 			Wall wall = new Wall();
+			m.addTile(wall);
 			t1.setNeighbour(Direction.NORTH, wall);
 			wall.setNeighbour(Direction.SOUTH, t1);
 			break;
 		
 		case "e":
 			EndTile eT = new EndTile();
+			m.addTile(eT);
 			t1.setNeighbour(Direction.NORTH, eT);
 			eT.setNeighbour(Direction.SOUTH, t1);
 			break;
 		default:
 			break;
 		}
+		m.addTile(t1);
+		m.addWorker(w);
+		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
-
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void second() {
 		System.out.print("!2. Tile-re worker erkezne");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		Tile t1 = new Tile();
+		m.addTile(t1);
 		Tile t2 = new Tile();
+		m.addTile(t2);
 		Tile t3 = new Tile();
+		m.addTile(t3);
 		Worker w = new Worker();
+		m.addWorker(w);
 
 		t1.setNeighbour(Direction.NORTH, t2);
 		t1.setThing(w);
@@ -164,10 +181,12 @@ public class Menu {
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
 				Crate c=new Crate();
+				m.addCrate(c);
 				t2.setThing(c);
 			}
 			else {
 				Worker w2=new Worker();
+				m.addWorker(w2);
 				t2.setThing(w2);
 			}
 		}
@@ -175,19 +194,28 @@ public class Menu {
 			t3.setThing(null);
 		}
 		System.out.println("!Setup done, doing operation.");
-		
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
-
-		
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void third(){
 		System.out.print("!3. Tile-re worker erkezne");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		Tile t1 = new Tile();
+		m.addTile(t1);
 		Tile t2 = new Tile();
+		m.addTile(t2);
 		Tile t3 = new Tile();
+		m.addTile(t3);
 		Worker w = new Worker();
-		Crate c = new Crate();
+		m.addWorker(w);
+		Crate c=new Crate();
+		m.addCrate(c);
 		
 		t1.setNeighbour(Direction.NORTH, t2);
 		t1.setThing(w);
@@ -212,10 +240,12 @@ public class Menu {
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
 				Crate c2=new Crate();
+				m.addCrate(c2);
 				t3.setThing(c2);
 			}
 			else {
 				Worker w2=new Worker();
+				m.addWorker(w2);
 				t3.setThing(w2);
 			}
 		}
@@ -223,42 +253,63 @@ public class Menu {
 			t3.setThing(null);
 		}
 		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
-		
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void fourth() {
 		System.out.println("!4. Egy Jatekossal doboz utkozik");
 		//Setup
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		String rawinput=new String("");
-		Tile t0=new Tile();
-		Tile t1=new Tile();
-		Tile t2=new Tile();
+		Tile t0 = new Tile();
+		m.addTile(t0);
+		Tile t1 = new Tile();
+		m.addTile(t1);
+		Tile t2 = new Tile();
+		m.addTile(t2);
 		System.out.print("\t *4.1 Van hova csusznia a jatekosnak? y/N \n ?");
 		try {
 			rawinput=reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Tile t3=new Tile();
+		Tile t3 = new Tile();
+		m.addTile(t3);
 		Wall w3=new Wall();
+		m.addTile(w3);
 		if (rawinput.toLowerCase().charAt(0)=='y') t2.setNeighbour(Direction.NORTH, t3);
 		else t2.setNeighbour(Direction.NORTH, w3);
 		t0.setNeighbour(Direction.NORTH, t1);
 		t1.setNeighbour(Direction.NORTH, t2);
 		Worker w2=new Worker();
+		m.addWorker(w2);
 		t2.setThing(w2);
 		Crate c1=new Crate();
+		m.addCrate(c1);
 		t1.setThing(c1);
 		Worker w0=new Worker();
+		m.addWorker(w0);
 		t0.setThing(w0);
 		//Moving
 		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w0.move(Direction.NORTH);
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void fifth() {
 		System.out.println("!5. Egy lyukra dobozt tolnak");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		String rawinput=new String("");
 		System.out.print("\t *5.1 Nyitva van a lyuk? y/N \n ?");
 		try {
@@ -268,21 +319,32 @@ public class Menu {
 		}
 		//Setting up
 		Hole h=new Hole(rawinput.toLowerCase().charAt(0)=='y');
+		m.addTile(h);
 		Tile t=new Tile();
+		m.addTile(t);
 		t.setNeighbour(Direction.NORTH, h);
 		Worker w=new Worker();
+		m.addWorker(w);
 		Crate c= new Crate();
+		m.addCrate(c);
 		t.setThing(c);
 		Tile t2=new Tile();
+		m.addTile(t2);
 		t2.setNeighbour(Direction.NORTH, t);
 		t2.setThing(w);
 		//Moving
 		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
+		Game.getInstance().removeMap(m);
+		m.endMap();
 		w.move(Direction.NORTH);
 	}
 	
 	private void sixth() {
 		System.out.println("!6.Egy lyukra jatakos akar lepni");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		String rawinput=new String("");
 		System.out.print("\t *6.1 Nyitva van a lyuk? y/N \n ?");
 		try {
@@ -292,19 +354,31 @@ public class Menu {
 		}
 		//Setting up
 		Hole h=new Hole(rawinput.toLowerCase().charAt(0)=='y');
+		m.addTile(h);
 		Tile t=new Tile();
+		m.addTile(t);
 		t.setNeighbour(Direction.NORTH, h);
 		Worker w=new Worker();
+		m.addWorker(w);
 		t.setThing(w);
 		//Moving
 		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void seventh() {
 		System.out.println("!7.Egy kapcsolora dobozt tolnak");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		m.startMap();
 		Hole h=new Hole();
+		m.addTile(h);
 		Switch s=new Switch(h);//They don't have to be neighbours
+		m.addTile(s);
 		String rawinput=new String("");
 		System.out.print("\t *7.1 Van valami a kapcsolon tartozo lyukon? y/N \n ?");
 		try {
@@ -321,23 +395,33 @@ public class Menu {
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
 				Crate c=new Crate();
+				m.addCrate(c);
 				h.setThing(c);
 			}
 			else {
 				Worker w=new Worker();
+				m.addWorker(w);
 				h.setThing(w);
 			}
 		}
 		Crate c2=new Crate();
+		m.addCrate(c2);
 		Worker w2=new Worker();
+		m.addWorker(w2);
 		Tile t1=new Tile();
+		m.addTile(t1);
 		t1.setThing(c2);
 		t1.setNeighbour(Direction.NORTH, s);
 		Tile t2=new Tile();
+		m.addTile(t2);
 		t2.setThing(w2);
 		t2.setNeighbour(Direction.NORTH, t1);
 		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w2.move(Direction.NORTH);
+		Game.getInstance().removeMap(m);
+		m.endMap();
+		System.out.println("!Test Done");
 	}
 	
 	private void eight() {

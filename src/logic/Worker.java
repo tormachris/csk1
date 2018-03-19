@@ -33,7 +33,7 @@ public class Worker extends Thing{
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
 		if(t.getClass()==Worker.class) {
-			System.out.println("<[:Worker].hitBy(w,d,o)");
+			System.out.println("<[:Worker].hitBy(w,d,o):false");
 			System.out.println("!I am not going to do anything, bc I was hit by a Worker.");
 			return false;
 		}
