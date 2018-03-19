@@ -94,13 +94,30 @@ public class Menu {
 	
 	private void first() {
 		Tile t1 = new Tile();
-		Tile t2 = new Tile();
 		Worker w = new Worker();
 		
-		t1.setNeighbour(Direction.NORTH, t2);
 		t1.setThing(w);
-		t2.setNeighbour(Direction.SOUTH, t1);
 		
+		String rawinput=new String("");
+		System.out.print("\t *1.1Mi van a worker elott (Wall vagy EndTile) ? W/E \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		rawinput = rawinput.toLowerCase();
+		switch (rawinput) {
+		
+		case "w":
+			Wall wall = new Wall();
+			t1.setNeighbour(Direction.NORTH, wall);
+			wall.setNeighbour(Direction.SOUTH, t1);
+		
+		case "e":
+			EndTile eT = new EndTile();
+			t1.setNeighbour(Direction.NORTH, eT);
+			eT.setNeighbour(Direction.SOUTH, t1);
+		}
 		w.move(Direction.NORTH);
 
 	}
