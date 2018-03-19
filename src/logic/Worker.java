@@ -64,7 +64,9 @@ public class Worker extends Thing{
 	public void destroy()
 	{
 		System.out.println("<[:Worker].destroy():void");
+		System.out.println(">[:Game].getInstance().getCurrentmap().removeWorker(this)");
 		Game.getInstance().getCurrentmap().removeWorker(this);
+		System.out.println("<[:Worker].destroy():void");
 	}
 
 	/**

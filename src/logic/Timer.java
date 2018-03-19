@@ -9,7 +9,7 @@ public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
 	
-	private static final int TIMETOWAIT=100000; //Modify interval here, pls.
+	private static final int TIMETOWAIT=1000000; //Modify interval here, pls.
 	
 	private static Timer instance = null;
 	/**

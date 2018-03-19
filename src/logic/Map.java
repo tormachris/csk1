@@ -45,9 +45,9 @@ public class Map implements Steppable {
 	{
 		System.out.println(">[:Map].resetTimer()");
 		this.resetTimer();
-		System.out.println(">Timer.getInstance().addSteppable(this)");
+		System.out.println(">[:Timer].getInstance().addSteppable(this)");
 		Timer.getInstance().addSteppable(this);
-		System.out.println(">Game.getInstance().setCurrentmap(this)");
+		System.out.println(">[:Game].getInstance().setCurrentmap(this)");
 		Game.getInstance().setCurrentmap(this);
 		System.out.println("<[:Map].startMap()");
 	}
@@ -57,7 +57,7 @@ public class Map implements Steppable {
 	 */
 	public void endMap()
 	{
-		System.out.println(">Timer.getInstance().removeSteppable(this)");
+		System.out.println(">[:Timer].getInstance().removeSteppable(this)");
 		Timer.getInstance().removeSteppable(this);
 		System.out.println("<[:Map].endMap()");
 	}
