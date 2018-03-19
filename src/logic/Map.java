@@ -13,7 +13,7 @@ public class Map implements Steppable {
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
 
-	private static final int DEFAULTTICKSREMAIN=1000;
+	private static final int DEFAULTTICKSREMAIN=10;
 	
 	/**
 	 * @return the defaultticksremain
