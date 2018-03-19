@@ -215,7 +215,33 @@ public class Menu {
 	}
 	
 	private void fourth() {
-		
+		System.out.println("!Setting up operation.");
+		//Setup
+		String rawinput=new String("");
+		Tile t0=new Tile();
+		Tile t1=new Tile();
+		Tile t2=new Tile();
+		System.out.print("\t *4.1 Van hova csusznia a jatekosnak? y/N \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Tile t3=new Tile();
+		Wall w3=new Wall();
+		if (rawinput.toLowerCase().charAt(0)=='y') t2.setNeighbour(Direction.NORTH, t3);
+		else t2.setNeighbour(Direction.NORTH, w3);
+		t0.setNeighbour(Direction.NORTH, t1);
+		t1.setNeighbour(Direction.NORTH, t2);
+		Worker w2=new Worker();
+		t2.setThing(w2);
+		Crate c1=new Crate();
+		t1.setThing(c1);
+		Worker w0=new Worker();
+		t0.setThing(w0);
+		//Moving
+		System.out.println("!Setup done, doing operation.");
+		w0.move(Direction.NORTH);
 	}
 	
 	private void fifth() {
