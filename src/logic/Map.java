@@ -13,7 +13,7 @@ public class Map implements Steppable {
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
 
-	private static final int DEFAULTTICKSREMAIN=100000000;
+	private static final int DEFAULTTICKSREMAIN=Integer.MAX_VALUE;
 	
 	/**
 	 * Default constructor
@@ -40,6 +40,8 @@ public class Map implements Steppable {
 		this.resetTimer();
 		System.out.println(">Timer.getInstance().addSteppable(this)");
 		Timer.getInstance().addSteppable(this);
+		System.out.println(">Game.getInstance().setCurrentmap(this)");
+		Game.getInstance().setCurrentmap(this);
 		System.out.println("<[:Map].startMap()");
 	}
 	

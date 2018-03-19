@@ -98,7 +98,7 @@ public class Game {
 	/**
 	 * @param currentmap the currentmap to set
 	 */
-	private void setCurrentmap(Map currentmap) {
+	public void setCurrentmap(Map currentmap) {
 		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map");
 		else {
 			System.out.println("#currentmap got a new value");
