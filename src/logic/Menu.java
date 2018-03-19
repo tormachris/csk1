@@ -220,7 +220,7 @@ public class Menu {
 			}
 		}
 		if(rawinput.toLowerCase().charAt(0)=='n') {
-		t3.setThing(null);
+			t3.setThing(null);
 		}
 		System.out.println("!Setup done, doing operation.");
 		w.move(Direction.NORTH);
@@ -345,12 +345,6 @@ public class Menu {
 	}
 	
 	private void nineth() {
-		Tile t1=new Tile();
-		Tile t2=new Tile();
-		t1.setNeighbour(Direction.NORTH, t2);
-		t2.setNeighbour(Direction.SOUTH, t1);
-		
-		System.out.println(t1.getNeighbour(Direction.NORTH).toString());
 		
 	}
 }

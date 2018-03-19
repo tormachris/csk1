@@ -17,9 +17,7 @@ public class Worker extends Thing{
 	 */
 	public boolean hitBy(Worker w,Direction d,Thing o)
 	{
-		System.out.println("<[:Worker].hitBy(w,d,o)");
-		System.out.println("!I am not going to do anything, bc I was hit by a Worker.");
-		return false;
+		return true;
 	}
 	
 	/**
@@ -34,6 +32,12 @@ public class Worker extends Thing{
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
+		if(t.getClass()==Worker.class) {
+			System.out.println("<[:Worker].hitBy(w,d,o)");
+			System.out.println("!I am not going to do anything, bc I was hit by a Worker.");
+			return false;
+		}
+		else {
 		System.out.println(">[:Worker].updateOwner(o)");
 		this.updateOwner(o); 	//updating the owner for the action
 		
@@ -50,6 +54,7 @@ public class Worker extends Thing{
 		}
 		System.out.println("<[:Worker].hitBy(t,d,o): true");
 		return true; //gives space for the Crate incoming
+		}
 	}
 	
 	/**
