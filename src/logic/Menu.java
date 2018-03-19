@@ -39,6 +39,7 @@ public class Menu {
 	public void show() {
 		String rawinput=new String("a");
 		while(rawinput.compareTo("")!=0) {
+			System.out.println("\n\n");
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
 					+ "3. A Tile-re dobozt tolnanak\n"
@@ -55,44 +56,42 @@ public class Menu {
 			}
 			switch (rawinput.charAt(0)) {
 			
-			case('1'):{
-				first();		//Worker basic movement.
-				break;
-			}
-			case('2'):{
-				second();		//Is worker stopped by solid Thing on the next Tile.
-				break;
-			}
-			case('3'):{
-				third();		//Crates moving and reacting to other things.
-				break;
-			}
-			case('4'):{
-				fourth();		//Worker interaction with Crate.
-				break;
-			}
-			case('5'):{
-				fifth();		//Hole interaction with Crate.
-				break;
-			}
-			case('6'):{
-				sixth();		//Hole interaction with Worker.
-				break;
-			}
-			case('7'):{
-				seventh();		//Switch interaction with Crate.
-				break;
-			}
-			case('8'):{
-				eight();
-				break;
-			}
-			case('9'):{
-				nineth();
-				break;
-			}
-			default:
-				break;
+
+				case('0'):{
+					zeroth();
+					break;
+				}
+				case('1'):{
+					first();
+					break;
+				}
+				case('2'):{
+					second();
+					break;
+				}
+				case('3'):{
+					third();
+					break;
+				}
+				case('4'):{
+					fourth();
+					break;
+				}
+				case('5'):{
+					fifth();
+					break;
+				}
+				case('6'):{
+					sixth();
+					break;
+				}
+				case('7'):{
+					seventh();
+					break;
+				}
+				default:
+					break;
+
 			}
 		}
 		return;
@@ -136,9 +135,12 @@ public class Menu {
 		}
 		m.addTile(t1);
 		m.addWorker(w);
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -193,9 +195,12 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 			t3.setThing(null);
 		}
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -212,6 +217,8 @@ public class Menu {
 		m.addTile(t2);
 		Tile t3 = new Tile();
 		m.addTile(t3);
+		Tile t4 = new Tile();
+		m.addTile(t4);
 		Worker w = new Worker();
 		m.addWorker(w);
 		Crate c=new Crate();
@@ -223,6 +230,9 @@ public class Menu {
 		t2.setNeighbour(Direction.SOUTH, t1);
 		t2.setThing(c);
 		t3.setNeighbour(Direction.SOUTH, t2);
+		
+		t3.setNeighbour(Direction.NORTH, t4);
+		t4.setNeighbour(Direction.SOUTH, t3);
 
 		String rawinput=new String("");
 		System.out.print("\t *2.1Van valami a doboz mogotti Tile-on? y/N \n ?");
@@ -252,9 +262,12 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 			t3.setThing(null);
 		}
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -297,9 +310,12 @@ public class Menu {
 		m.addWorker(w0);
 		t0.setThing(w0);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w0.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -333,11 +349,15 @@ public class Menu {
 		t2.setNeighbour(Direction.NORTH, t);
 		t2.setThing(w);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
+		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
-		w.move(Direction.NORTH);
+		System.out.println("!Test Done");
 	}
 	
 	private void sixth() {
@@ -362,9 +382,12 @@ public class Menu {
 		m.addWorker(w);
 		t.setThing(w);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -416,19 +439,33 @@ public class Menu {
 		m.addTile(t2);
 		t2.setThing(w2);
 		t2.setNeighbour(Direction.NORTH, t1);
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w2.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
 	}
 	
-	private void eight() {
-		
-	}
-	
-	private void nineth() {
-		
+	private void zeroth() {
+		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
+		String rawinput=new String("");
+		while(rawinput.toLowerCase().charAt(0)!='1' ||
+				rawinput.toLowerCase().charAt(0)!='2' ||
+				rawinput.toLowerCase().charAt(0)!='q') {
+			try {
+				rawinput=reader.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (rawinput.toLowerCase().charAt(0)!='q') Game.getInstance().end();
+			else {
+				System.out.println("The application will now close!");
+				System.exit(0);
+			}
+		}
 	}
 }
