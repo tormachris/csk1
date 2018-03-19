@@ -30,6 +30,7 @@ public class Menu {
 	 */
 	public Menu() {
 		reader = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
+		this.show();
 	}
 	
 	/**
