@@ -47,6 +47,7 @@ public class Menu {
 					+ "5. Egy lyukra dobozt tolnak\n"
 					+ "6.Egy lyukra jatakos akar lepni\n"
 					+ "7.Egy kapcsolora dobozt tolnak\n"
+					+ "8. Palya lep"
 					+ "9.Kilepes a jatekbol");
 			System.out.print('?');
 			try {
@@ -54,13 +55,9 @@ public class Menu {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			String pattern= "^[0-9]*$";
+			String pattern= "^[1-9]*$"; //Regex that says rawpattern should only contain numbers form 1 to 9
 			if(rawinput.compareTo("")!=0 && rawinput.matches(pattern)) {
 				switch (rawinput.charAt(0)) {
-					case('9'):{
-						ninth();
-						break;
-					}
 					case('1'):{
 						first();
 						break;
@@ -87,6 +84,14 @@ public class Menu {
 					}
 					case('7'):{
 						seventh();
+						break;
+					}
+					case('8'):{
+						eighth();
+						break;
+					}
+					case('9'):{
+						ninth();
 						break;
 					}
 					default:
@@ -450,7 +455,45 @@ public class Menu {
 		System.out.println("!Test Done");
 	}
 	
+	private void eighth() {
+		System.out.println("!8. Palya lep");
+		Map m=new Map();
+		Game.getInstance().addMap(m);
+		Worker w=new Worker();
+		m.addWorker(w);
+		String rawinput=new String("");
+		System.out.print("\t *8.1 Van eleg munkas? y/N \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(rawinput.toLowerCase().charAt(0)=='y') {
+			Worker ww=new Worker();
+			m.addWorker(ww);
+		}
+		System.out.print("\t *8.2 Van doboz? y/N \n ?");
+		try {
+			rawinput=reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(rawinput.toLowerCase().charAt(0)=='y') {
+			Crate c=new Crate();
+			m.addCrate(c);
+		}
+		System.out.println("\n\n");
+		System.out.println("!Setup done, doing operation.");
+		System.out.println(">[:Map].startMap()");
+		m.startMap();
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
+		Game.getInstance().removeMap(m);
+		System.out.println("!Test Done");
+	}
+	
 	private void ninth() {
+		System.out.println("!9.Kilepes a jatekbol");
 		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
 		String rawinput=new String("");
 		while(rawinput.toLowerCase().charAt(0)!='1' ||
