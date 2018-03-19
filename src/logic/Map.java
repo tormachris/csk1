@@ -12,7 +12,7 @@ public class Map implements Steppable {
 	private Set<Crate> crates; 
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
-	
+
 	private static final int DEFAULTTICKSREMAIN=100000000;
 	
 	/**
@@ -166,6 +166,7 @@ public class Map implements Steppable {
 	 */
 	public void removeWorker(Worker w) {
 		if(this.workers.contains(w)) {
+
 		this.workers.remove(w);
 		System.out.println("<[:Map].removeWorker(w):void");
 		}

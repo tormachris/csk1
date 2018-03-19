@@ -6,7 +6,7 @@ package logic;
  */
 public abstract class Thing {
 	
-	private Thing owner;
+	private Thing owner; 
 	private Direction moving;
 	private Tile tile;
 	
@@ -82,7 +82,7 @@ public abstract class Thing {
 	}
 	
 	/**
-	 * Updates the owner f the Thing
+	 * Updates the owner of the Thing
 	 * @param t The new owner
 	 * @return if the update was successful
 	 */
@@ -92,7 +92,7 @@ public abstract class Thing {
 		System.out.println("#owner=t");
 		this.owner = t;
 		System.out.println("<[:Thing].updateOwner(t): true");
-		return true;	//valami ellenorzes kene ide, hogy legyen ertelme, vagy nem tudom
+		return true;	
 	}
 	
 	/**
@@ -139,10 +139,10 @@ public abstract class Thing {
 		return tile;
 	}
 	
-	public void destroy()
+	
+	 public void destroy()
 	{
 		System.out.println("!Check what type of Thing this is!");
-		//Please implement
 		System.out.println("<[:Thing].destroy(t): void");
 	}
 }

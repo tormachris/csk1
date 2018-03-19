@@ -103,7 +103,7 @@ public class Tile {
 	 * @param thing the thing to set
 	 */
 	public void setThing(Thing thing) {
-		System.out.println("#thing= thing"); //WOWEE
+		System.out.println("#thing= thing");
 		this.thing = thing;
 		System.out.println("<[:Tile].setThing(thing): void");
 	}

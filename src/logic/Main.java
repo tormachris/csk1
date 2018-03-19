@@ -1,5 +1,5 @@
 /**
- * 
+ * This is our one and single package for this skeleton.
  */
 package logic;
 
@@ -11,11 +11,12 @@ package logic;
 public class Main {
 
 	/**
+	 * Entry point of the program
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Auto-generated method stub
-
+		//Showing the menu
+		Menu.getInstance().show();
 	}
 
 }
