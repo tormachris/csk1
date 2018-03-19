@@ -90,7 +90,7 @@ public class Tile {
 			throw new NullPointerException("d cannot be null");
 		System.out.println(">[:Tile].nexttiles.put(d,t)");
 		nexttiles.put(d, t);
-		System.out.println("<[:Tile].setNeighbour(d): void");
+		System.out.println("<[:Tile].setNeighbour(d,t): void");
 	}
 	/**
 	 * @return the thing
@@ -105,6 +105,7 @@ public class Tile {
 	public void setThing(Thing thing) {
 		System.out.println("#thing= thing");
 		this.thing = thing;
+		thing.setTile(this);
 		System.out.println("<[:Tile].setThing(thing): void");
 	}
 

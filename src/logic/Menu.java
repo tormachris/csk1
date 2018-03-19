@@ -42,7 +42,7 @@ public class Menu {
 		while(rawinput.compareTo("")!=0) {
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
-					+ "3. A Tile-re dobozt tolnának\n"
+					+ "3. A Tile-re dobozt tolnanak\n"
 					+ "4. Egy Jatekossal doboz utkozik\n"
 					+ "5. Egy lyukra dobozt tolnak\n"
 					+ "6.Egy lyukra jatakos akar lepni\n"
@@ -135,7 +135,7 @@ public class Menu {
 	}
 	
 	private void second() {
-		
+		System.out.print("!2. Tile-re worker erkezne");
 		Tile t1 = new Tile();
 		Tile t2 = new Tile();
 		Tile t3 = new Tile();
@@ -182,6 +182,7 @@ public class Menu {
 	}
 	
 	private void third(){
+		System.out.print("!3. Tile-re worker erkezne");
 		Tile t1 = new Tile();
 		Tile t2 = new Tile();
 		Tile t3 = new Tile();
@@ -227,7 +228,7 @@ public class Menu {
 	}
 	
 	private void fourth() {
-		System.out.println("!Setting up operation.");
+		System.out.println("!4. Egy Jatekossal doboz utkozik");
 		//Setup
 		String rawinput=new String("");
 		Tile t0=new Tile();
@@ -257,6 +258,7 @@ public class Menu {
 	}
 	
 	private void fifth() {
+		System.out.println("!5. Egy lyukra dobozt tolnak");
 		String rawinput=new String("");
 		System.out.print("\t *5.1 Nyitva van a lyuk? y/N \n ?");
 		try {
@@ -280,6 +282,7 @@ public class Menu {
 	}
 	
 	private void sixth() {
+		System.out.println("!6.Egy lyukra jatakos akar lepni");
 		String rawinput=new String("");
 		System.out.print("\t *6.1 Nyitva van a lyuk? y/N \n ?");
 		try {
@@ -299,6 +302,7 @@ public class Menu {
 	}
 	
 	private void seventh() {
+		System.out.println("!7.Egy kapcsolora dobozt tolnak");
 		Hole h=new Hole();
 		Switch s=new Switch(h);//They don't have to be neighbours
 		String rawinput=new String("");
@@ -341,6 +345,12 @@ public class Menu {
 	}
 	
 	private void nineth() {
+		Tile t1=new Tile();
+		Tile t2=new Tile();
+		t1.setNeighbour(Direction.NORTH, t2);
+		t2.setNeighbour(Direction.SOUTH, t1);
+		
+		System.out.println(t1.getNeighbour(Direction.NORTH).toString());
 		
 	}
 }

@@ -139,6 +139,13 @@ public abstract class Thing {
 		return tile;
 	}
 	
+	/**
+	 * Setter of the Tile the Thing is on.
+	 * @param t The tile
+	 */
+	public final void setTile(Tile t) {
+		if(t!=null) tile=t;
+	}
 	
 	 public void destroy()
 	{
