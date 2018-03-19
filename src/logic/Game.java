@@ -97,10 +97,10 @@ public class Game {
 	 * @param currentmap the currentmap to set
 	 */
 	public void setCurrentmap(Map currentmap) {
-		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map");
+		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map"); //Checking that the map is in the collection
 		else {
 			System.out.println("#currentmap got a new value");
-			this.currentmap = currentmap;
+			this.currentmap = currentmap;	
 		}
 		System.out.println("<[:Game].setCurrentmap(currentmap): void");
 	}

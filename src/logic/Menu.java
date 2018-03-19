@@ -56,31 +56,31 @@ public class Menu {
 			switch (rawinput.charAt(0)) {
 			
 			case('1'):{
-				first();
+				first();		//Worker basic movement.
 				break;
 			}
 			case('2'):{
-				second();
+				second();		//Is worker stopped by solid Thing on the next Tile.
 				break;
 			}
 			case('3'):{
-				third();
+				third();		//Crates moving and reacting to other things.
 				break;
 			}
 			case('4'):{
-				fourth();
+				fourth();		//Worker interaction with Crate.
 				break;
 			}
 			case('5'):{
-				fifth();
+				fifth();		//Hole interaction with Crate.
 				break;
 			}
 			case('6'):{
-				sixth();
+				sixth();		//Hole interaction with Worker.
 				break;
 			}
 			case('7'):{
-				seventh();
+				seventh();		//Switch interaction with Crate.
 				break;
 			}
 			case('8'):{
@@ -100,16 +100,16 @@ public class Menu {
 	
 	private void first() {
 		System.out.print("!1. Worker Moves");
-		Map m=new Map();
-		Game.getInstance().addMap(m);
-		m.startMap();
-		Tile t1 = new Tile();
-		Worker w = new Worker();
+		Map m=new Map();						//Setting up the test map
+		Game.getInstance().addMap(m);			
+		m.startMap();							//Starting the test map
+		Tile t1 = new Tile();						
+		Worker w = new Worker();				//Worker added for tests
 		
 		t1.setThing(w);
 		
 		String rawinput=new String("");
-		System.out.print("\t *1.1Mi van a worker elott (Wall vagy EndTile) ? W/E \n ?");
+		System.out.print("\t *1.1Mi van a worker elott (Wall vagy EndTile) ? W/E \n ?");	//Choosing test case
 		try {
 			rawinput=reader.readLine();
 		} catch (IOException e) {
@@ -120,14 +120,14 @@ public class Menu {
 		
 		case "w":
 			Wall wall = new Wall();
-			m.addTile(wall);
+			m.addTile(wall);							//Checking interaction with a Wall.
 			t1.setNeighbour(Direction.NORTH, wall);
 			wall.setNeighbour(Direction.SOUTH, t1);
 			break;
 		
 		case "e":
 			EndTile eT = new EndTile();
-			m.addTile(eT);
+			m.addTile(eT);								//Checking  interaction with EndTile
 			t1.setNeighbour(Direction.NORTH, eT);
 			eT.setNeighbour(Direction.SOUTH, t1);
 			break;
