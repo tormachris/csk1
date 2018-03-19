@@ -112,11 +112,15 @@ public class Menu {
 			Wall wall = new Wall();
 			t1.setNeighbour(Direction.NORTH, wall);
 			wall.setNeighbour(Direction.SOUTH, t1);
+			break;
 		
 		case "e":
 			EndTile eT = new EndTile();
 			t1.setNeighbour(Direction.NORTH, eT);
 			eT.setNeighbour(Direction.SOUTH, t1);
+			break;
+		default:
+			break;
 		}
 		w.move(Direction.NORTH);
 
