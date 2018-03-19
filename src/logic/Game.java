@@ -17,8 +17,7 @@ public class Game {
 	 */
 	public Game() {
 		System.out.println("!New Game instance created");
-		this.setMaps(new HashSet<Map>());		
-		this.setCurrentmap(null);	//Before choosing map
+		this.setMaps(new HashSet<Map>());
 	}
 	
 	/**
@@ -32,7 +31,7 @@ public class Game {
 		if(m!=null) {
 			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed"); 	//Checking that the map actually exists.
 			this.setCurrentmap(m); 
-			m.startMap();	//Choosen map being started
+			m.startMap();	//Chosen map being started
 		}
 		else throw new NullPointerException("m cannot be null"); 
 		System.out.println("<[:Game].start(m):void");
