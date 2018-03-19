@@ -49,7 +49,7 @@ public class Menu {
 					+ "5. Egy lyukra dobozt tolnak\n"
 					+ "6.Egy lyukra jatakos akar lepni\n"
 					+ "7.Egy kapcsolora dobozt tolnak\n"
-					+ "8. Palya lep"
+					+ "8. Palya lep\n"
 					+ "9.Kilepes a jatekbol");
 			System.out.print('?');
 			try {
@@ -58,11 +58,7 @@ public class Menu {
 				e.printStackTrace();
 			}
 
-				
-			
-
-			String pattern= "^[1-9]*$"; //Regex that says rawpattern should only contain numbers form 1 to 9
-			if(rawinput.compareTo("")!=0 && rawinput.matches(pattern)) {	//Choosing test type
+			if(rawinput.compareTo("")!=0) {	//Choosing test type
 				switch (rawinput.charAt(0)) {
 					case('1'):{
 						first();
@@ -102,8 +98,6 @@ public class Menu {
 					}
 					default:
 						break;
-
-
 				}
 			}
 		}
@@ -129,7 +123,6 @@ public class Menu {
 		}
 		rawinput = rawinput.toLowerCase();
 		switch (rawinput) {
-		
 		case "w":
 			Wall wall = new Wall();
 			m.addTile(wall);							//Checking interaction with a Wall.
