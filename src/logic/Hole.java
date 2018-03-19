@@ -53,15 +53,15 @@ public class Hole extends Tile {
 	public  boolean accept(Thing t){
 		System.out.println("!This is a Hole");
 		Boolean accepted;
-		//if the hole is open it destroys every thing that moves onto it
+		//if the hole is open it destroys every thing that moves onto it.
 		if(open.booleanValue())
 		{
 			System.out.println(">[:Thing].destroy()");
-			t.destroy();
-			accepted = Boolean.TRUE;
+			t.destroy();	//Destroying the Thing on the Hole.
+			accepted = Boolean.TRUE;	
 			System.out.println("#accepted= "+ accepted.toString());
 		}
-		//if it is not open it will act just like a normal tile
+		//if it is not open it will act just like a normal tile.
 		else {
 			accepted = Boolean.valueOf(super.accept(t));
 			System.out.println("#accepted= "+ accepted.toString());
@@ -76,11 +76,11 @@ public class Hole extends Tile {
 	public void toggleOpen()
 	{
 		System.out.println("#open=" + open.toString());
-		open = !open;
+		open = !open;	//Changing to the opposite state
 		System.out.println("<[:Hole].toggleOpen():void");
 		if(open.booleanValue() && this.getThing()!=null)
 		{
-			this.getThing().destroy();
+			this.getThing().destroy();	//Destroying the Thing standing on the Hole when it is activated.
 		}
 	}
 }

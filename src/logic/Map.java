@@ -113,7 +113,7 @@ public class Map implements Steppable {
 	 */
 	public void setTicksRemain(Integer ticksRemain) {
 		System.out.println("#ticksRemain=" + ticksRemain.toString());
-		this.ticksRemain = ticksRemain;
+		this.ticksRemain = ticksRemain;	
 		System.out.println("<[:Map].setTicksRemain(ticksRemain): void");
 	}
 
@@ -156,7 +156,7 @@ public class Map implements Steppable {
 	 */	
 		public void addWorker(Worker w) {
 		if(w==null)
-			throw new IllegalArgumentException("Cannot add null to workers collection.");
+			throw new IllegalArgumentException("Cannot add null to workers collection.");	 //Checking for valid input 
 		else {
 			this.workers.add(w);
 		System.out.println("<[:Map].addWorker(w):void");
@@ -167,7 +167,7 @@ public class Map implements Steppable {
 	 * @param worker the Worker to remove
 	 */
 	public void removeWorker(Worker w) {
-		if(this.workers.contains(w)) {
+		if(this.workers.contains(w)) {	//Checking that the worker is on the map.
 
 		this.workers.remove(w);
 		System.out.println("<[:Map].removeWorker(w):void");
@@ -178,7 +178,7 @@ public class Map implements Steppable {
 	 */
 	public void addCrate(Crate c) {
 	if(c==null)
-		throw new IllegalArgumentException("Cannot add null to crates collection.");
+		throw new IllegalArgumentException("Cannot add null to crates collection.");	//Checking for valid input 
 	else {
 		this.crates.add(c);
 		System.out.println("<[:Map].addCrate(c):void");
@@ -188,8 +188,8 @@ public class Map implements Steppable {
 	 * @param c the Crate to remove
 	 */
 	public void removeCrate(Crate c) {
-		if(this.crates.contains(c)) {
-		this.crates.remove(c);
+		if(this.crates.contains(c)) {	
+		this.crates.remove(c);			//Checking that the Crate is in the crates collection.
 		System.out.println("<[:Map].removeCrate(c):void");
 		}
 	}
@@ -198,7 +198,7 @@ public class Map implements Steppable {
 	 */
 	public void addTile(Tile t) {
 	if(t==null)
-		throw new IllegalArgumentException("Cannot add null to tiles collection.");
+		throw new IllegalArgumentException("Cannot add null to tiles collection.");	//Checking for valid input.
 	else {
 		this.tiles.add(t);
 		System.out.println("<[:Map].addTile(t):void");
@@ -208,7 +208,7 @@ public class Map implements Steppable {
 	 * @param t the Tile to remove
 	 */
 	public void removeTile(Tile t) {
-		if(this.tiles.contains(t)){
+		if(this.tiles.contains(t)){	//Checking that the Tile is in the tiles collection.
 		this.tiles.remove(t);
 		System.out.println("<[:Map].removeTile(t):void");
 		}
