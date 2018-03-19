@@ -10,15 +10,15 @@ import java.util.*;
 public class Game {
 	
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
-	private Map currentmap;
+	private Map currentmap;	//We are playing on that map,that is the one stepping.
 	private static Game instance = null;
 	/**
 	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
 	public Game() {
 		System.out.println("!New Game instance created");
-		this.setMaps(new HashSet<Map>());
-		this.setCurrentmap(null);
+		this.setMaps(new HashSet<Map>());		
+		this.setCurrentmap(null);	//Before choosing map
 	}
 	
 	/**
@@ -30,11 +30,11 @@ public class Game {
 	public void start(Map m)
 	{
 		if(m!=null) {
-			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed");
-			this.setCurrentmap(m);
-			m.startMap();
+			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed"); 	//Checking that the map actually exists.
+			this.setCurrentmap(m); 
+			m.startMap();	//Choosen map being started
 		}
-		else throw new NullPointerException("m cannot be null");
+		else throw new NullPointerException("m cannot be null"); 
 		System.out.println("<[:Game].start(m):void");
 	}
 	
@@ -43,9 +43,8 @@ public class Game {
 	 */
 	public void end()
 	{
-		//Please implement
-		
 		System.out.println("<[:Game].end():void");
+		return;
 	}
 
 	/**
@@ -53,7 +52,7 @@ public class Game {
 	 */
 	private void setMaps(Set<Map> maps) {
 		System.out.println("#maps got a new value");
-		this.maps = maps;
+		this.maps = maps;	
 		System.out.println("<[:Game].setMaps(maps): void");
 	}
 	

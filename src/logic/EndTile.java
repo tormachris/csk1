@@ -16,8 +16,7 @@ public class EndTile extends Tile {
 	@Override
 	public boolean accept(Thing t)
 	{
-		System.out.println("!This is an EndTile");
-		//calls the same function of its superclass
+		System.out.println("!This is an EndTile");	//calls the same function of its superclass
 		boolean accepted = super.accept(t);
 		//if the Thing is allowed to move onto the Tile the EndTile will trigger its OnEndTile()
 		//function in order to inform the Thing that it has moved onto an EndTile.

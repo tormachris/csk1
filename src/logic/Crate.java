@@ -27,7 +27,7 @@ public class Crate extends Thing{
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
 		System.out.println(">[:Crate].updateOwner(o)");
-		this.updateOwner(o);
+		this.updateOwner(o);// Updating the owner in case of scoring
 		
 		System.out.println(">[:Crate].move(d)");
 		Boolean moved=Boolean.valueOf(this.move(d));
@@ -41,12 +41,11 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public void onEndTile(EndTile t)
-	{	//Incrementing the owner's points by 1
-		System.out.println(">[:Crate].getOwner()");
-		Worker w = (Worker)this.getOwner();
+	{	
+		System.out.println(">[:Crate].getOwner()"); //Incrementing the owner's points by 1
+		Worker w = (Worker)this.getOwner(); 
 		System.out.println("!Worker's points increased.");
-		w.setPoints(w.getPoints() + 1);
-		//Destroying the Crate
+		w.setPoints(w.getPoints() + 1); //Destroying the Crate
 		System.out.println(">[:Crate].destroy()");
 		this.destroy();
 	}
@@ -70,9 +69,8 @@ public class Crate extends Thing{
 	public void onSwitch(Switch s)
 	{	
 		System.out.println("!Check what type of Thing this is!");
-		//tries to activate the switch
 		System.out.println(">[:Switch].activate(this)");
-		s.activate();
+		s.activate();	//Activate the switch tile that contains the Crate
 		System.out.println("<[:Thing].onSwitch(t): void");
 	}
 
