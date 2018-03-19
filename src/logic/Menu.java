@@ -172,7 +172,7 @@ public class Menu {
 			}
 		}
 		if(rawinput.toLowerCase().charAt(0)=='n') {
-		t3.setThing(null);
+			t3.setThing(null);
 		}
 		System.out.println("!Setup done, doing operation.");
 		
