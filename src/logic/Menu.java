@@ -39,7 +39,7 @@ public class Menu {
 	 */
 	public void show() {
 		Integer input;
-		String rawinput=new String("");
+		String rawinput=new String("a");
 		while(rawinput.compareTo("")!=0) {
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
