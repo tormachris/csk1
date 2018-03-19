@@ -38,7 +38,7 @@ public class Menu {
 	 */
 	public void show() {
 		String rawinput=new String("a");
-		while(rawinput.compareTo("")!=0) {
+		while(true) {
 			System.out.println("\n\n");
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
@@ -54,45 +54,47 @@ public class Menu {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			switch (rawinput.charAt(0)) {
-				case('9'):{
-					ninth();
-					break;
-				}
-				case('1'):{
-					first();
-					break;
-				}
-				case('2'):{
-					second();
-					break;
-				}
-				case('3'):{
-					third();
-					break;
-				}
-				case('4'):{
-					fourth();
-					break;
-				}
-				case('5'):{
-					fifth();
-					break;
-				}
-				case('6'):{
-					sixth();
-					break;
-				}
-				case('7'):{
-					seventh();
-					break;
-				}
-				default:
-					break;
+			String pattern= "^[0-9]*$";
+			if(rawinput.compareTo("")!=0 && rawinput.matches(pattern)) {
+				switch (rawinput.charAt(0)) {
+					case('9'):{
+						ninth();
+						break;
+					}
+					case('1'):{
+						first();
+						break;
+					}
+					case('2'):{
+						second();
+						break;
+					}
+					case('3'):{
+						third();
+						break;
+					}
+					case('4'):{
+						fourth();
+						break;
+					}
+					case('5'):{
+						fifth();
+						break;
+					}
+					case('6'):{
+						sixth();
+						break;
+					}
+					case('7'):{
+						seventh();
+						break;
+					}
+					default:
+						break;
 
+				}
 			}
 		}
-		return;
 	}
 	
 	private void first() {
