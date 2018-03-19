@@ -78,7 +78,7 @@ public class Timer extends Thread{
 	public void addSteppable(Steppable s)
 	{
 		System.out.println("!Adding a steppable to Timer's collection.");
-		if(s==null) throw new NullPointerException("Cannot add null to our set of Steppables.");
+		if(s==null) throw new NullPointerException("Cannot add null to our set of Steppables."); //Checking for valid value.
 		if(this.steppables.contains(s)) throw new IllegalArgumentException("Item already in collection.");
 		this.steppables.add(s);
 		System.out.println("<[:Timer].addSteppable(s): void");

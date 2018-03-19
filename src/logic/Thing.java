@@ -73,10 +73,10 @@ public abstract class Thing {
 	{
 		System.out.println("!Check what type of Thing this is!");
 		System.out.println(">[:Thing].updateOwner(o)");
-		this.updateOwner(o);
+		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.
 		
 		System.out.println(">[:Thing].move(d)");
-		Boolean moved = Boolean.valueOf(this.move(d));
+		Boolean moved = Boolean.valueOf(this.move(d));		//The direction is set, and the Thing is pushed into this direction.
 		System.out.println("<[:Thing].hitBy(t,d,o): " + moved.toString());
 		return moved;
 	}

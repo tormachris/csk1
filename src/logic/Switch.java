@@ -45,9 +45,9 @@ public class Switch extends Tile {
 	 */
 	public void setHole(Hole newvalue)
 	{
-		if(newvalue!=null) {
+		if(newvalue!=null) {		//Checking for valid value
 			System.out.println("#hole=newvalue");
-			hole=newvalue;
+			hole=newvalue;	
 		}
 		else throw new NullPointerException("newvalue is null");
 	}
