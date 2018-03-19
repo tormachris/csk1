@@ -120,14 +120,14 @@ public class Menu {
 
 
 		String rawinput=new String("");
-		System.out.print("\t *3.1Van valami a worker elotti Tile-on? y/N \n ?");
+		System.out.print("\t *2.1Van valami a worker elotti Tile-on? y/N \n ?");
 		try {
 			rawinput=reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		if(rawinput.toLowerCase().charAt(0)=='y') {
-			System.out.print("\t \t *3.1Doboz van a Tile-on? y/N \n ?");
+			System.out.print("\t \t *2.1Doboz van a Tile-on? y/N \n ?");
 			try {
 			rawinput=reader.readLine();
 			} catch (IOException e) {
@@ -145,7 +145,7 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 		t3.setThing(null);
 		}
-
+		System.out.println("!Setup done, doing operation.");
 		
 		w.move(Direction.NORTH);
 
@@ -192,8 +192,7 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 		t3.setThing(null);
 		}
-
-		
+		System.out.println("!Setup done, doing operation.");
 		w.move(Direction.NORTH);
 		
 	}
@@ -216,10 +215,10 @@ public class Menu {
 		t.setNeighbour(Direction.NORTH, h);
 		Worker w=new Worker();
 		Crate c= new Crate();
-		t.accept(c);
+		t.setThing(c);
 		Tile t2=new Tile();
 		t2.setNeighbour(Direction.NORTH, t);
-		t2.accept(w);
+		t2.setThing(w);
 		//Moving
 		System.out.println("!Setup done, doing operation.");
 		w.move(Direction.NORTH);
@@ -238,14 +237,13 @@ public class Menu {
 		Tile t=new Tile();
 		t.setNeighbour(Direction.NORTH, h);
 		Worker w=new Worker();
-		t.accept(w);
+		t.setThing(w);
 		//Moving
 		System.out.println("!Setup done, doing operation.");
 		w.move(Direction.NORTH);
 	}
 	
 	private void seventh() {
-		Map map=new Map(); //ADDOLNI A CUCCOKAT
 		Hole h=new Hole();
 		Switch s=new Switch(h);//They don't have to be neighbours
 		String rawinput=new String("");
@@ -274,10 +272,10 @@ public class Menu {
 		Crate c2=new Crate();
 		Worker w2=new Worker();
 		Tile t1=new Tile();
-		t1.accept(c2);
+		t1.setThing(c2);
 		t1.setNeighbour(Direction.NORTH, s);
 		Tile t2=new Tile();
-		t2.accept(w2);
+		t2.setThing(w2);
 		t2.setNeighbour(Direction.NORTH, t1);
 		System.out.println("!Setup done, doing operation.");
 		w2.move(Direction.NORTH);
