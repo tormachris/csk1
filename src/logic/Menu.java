@@ -47,7 +47,7 @@ public class Menu {
 					+ "5. Egy lyukra dobozt tolnak\n"
 					+ "6.Egy lyukra jatakos akar lepni\n"
 					+ "7.Egy kapcsolora dobozt tolnak\n"
-					+ "0.Kilépés a játékból");
+					+ "9.Kilepes a jatekbol");
 			System.out.print('?');
 			try {
 				rawinput=reader.readLine();
@@ -56,8 +56,8 @@ public class Menu {
 			}
 			switch (rawinput.charAt(0)) {
 			
-				case('0'):{
-					zeroth();
+				case('9'):{
+					ninth();
 					break;
 				}
 				case('1'):{
@@ -448,7 +448,7 @@ public class Menu {
 		System.out.println("!Test Done");
 	}
 	
-	private void zeroth() {
+	private void ninth() {
 		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
 		String rawinput=new String("");
 		while(rawinput.toLowerCase().charAt(0)!='1' ||
