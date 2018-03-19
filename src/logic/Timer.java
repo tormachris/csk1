@@ -9,14 +9,14 @@ public class Timer extends Thread{
 	
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
 	
-	private static final int MILISECSTOWAIT=100; //Modify interval here, pls.
+	private static final int TIMETOWAIT=10000; //Modify interval here, pls.
 	
 	private static Timer instance = null;
 	/**
-	 * @return the milisecstowait
+	 * @return the TIMETOWAIT
 	 */
 	public static int getMilisecstowait() {
-		return MILISECSTOWAIT;
+		return TIMETOWAIT;
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Timer extends Thread{
 		while(true) { //I don't know if this is how to do it, but this works!
 			this.tick(); //Let's Tick
 			try {
-				Thread.sleep(MILISECSTOWAIT);
+				Thread.sleep(TIMETOWAIT);
 			} catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
