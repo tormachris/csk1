@@ -1,6 +1,3 @@
-/**
- * This is our one and single package for this skeleton.
- */
 package logic;
 
 /**
@@ -18,10 +15,10 @@ public class Main {
 		//Some advice.
 		System.out.println("!During the setup of every test, "
 				+ "you will see a lot of printouts.\n"
-				+ "!They help you to identify problems, but are not part of the "
-				+ "sequence diagram you should construct from the test. "
-				+ "You might as well disregard them. \n"
-				+ "!PLEASE READ EVERYTHING CAREFULLY");
+				+ "!They help you to identify problems, but might not be part of the "
+				+ "sequence diagram you should construct from the test.\n"
+				+ "You might as well disregard them in most cases.\n"
+				+ "!PLEASE READ EVERYTHING CAREFULLY\n");
 		Timer.getInstance(); //Init Timer
 		Game.getInstance();	//Init Game
 		Menu.getInstance();	//Init Menu
