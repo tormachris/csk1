@@ -105,7 +105,7 @@ public class Tile {
 	public void setThing(Thing thing) {
 		System.out.println("#thing= thing");
 		this.thing = thing;
-		thing.setTile(this);
+		thing.setTile(this); //We need this for the inint, so the Thing will easily know his Tile.
 		System.out.println("<[:Tile].setThing(thing): void");
 	}
 
