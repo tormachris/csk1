@@ -491,7 +491,7 @@ public class Menu {
 	private void ninth() {
 		System.out.println("!9.Kilepes a jatekbol");
 		System.out.print("\t *9.1 A jatek valamelyik jatekos gyozelmevel, vagy felhasznalio megszakitassal zarult? 1/2/q \n ?");
-		String rawinput=new String("");					
+		String rawinput=new String("a");					
 		while(rawinput.toLowerCase().charAt(0)!='1' ||
 				rawinput.toLowerCase().charAt(0)!='2' ||		
 				rawinput.toLowerCase().charAt(0)!='q') {
