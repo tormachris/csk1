@@ -40,6 +40,7 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
+		System.out.println("#open=open");
 		this.open = open;
 		System.out.println("<[:Hole].setOpen(open):void");
 	}
