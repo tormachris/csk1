@@ -39,6 +39,7 @@ public class Menu {
 	public void show() {
 		String rawinput=new String("a");
 		while(rawinput.compareTo("")!=0) {
+			System.out.println("\n\n");
 			System.out.println("1. Worker Moves\n"
 					+ "2. Tile-re worker erkezne\n"
 					+ "3. A Tile-re dobozt tolnanak\n"
@@ -136,9 +137,12 @@ public class Menu {
 		}
 		m.addTile(t1);
 		m.addWorker(w);
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -193,9 +197,12 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 			t3.setThing(null);
 		}
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -252,9 +259,12 @@ public class Menu {
 		if(rawinput.toLowerCase().charAt(0)=='n') {
 			t3.setThing(null);
 		}
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -297,9 +307,12 @@ public class Menu {
 		m.addWorker(w0);
 		t0.setThing(w0);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w0.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -333,11 +346,15 @@ public class Menu {
 		t2.setNeighbour(Direction.NORTH, t);
 		t2.setThing(w);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
+		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
-		w.move(Direction.NORTH);
+		System.out.println("!Test Done");
 	}
 	
 	private void sixth() {
@@ -362,9 +379,12 @@ public class Menu {
 		m.addWorker(w);
 		t.setThing(w);
 		//Moving
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
@@ -416,9 +436,12 @@ public class Menu {
 		m.addTile(t2);
 		t2.setThing(w2);
 		t2.setNeighbour(Direction.NORTH, t1);
+		System.out.println("\n\n");
 		System.out.println("!Setup done, doing operation.");
 		System.out.println(">[:Worker].move(Direction.NORTH)");
 		w2.move(Direction.NORTH);
+		System.out.println("\n\n");
+		System.out.println("!Operation done, shutting down test env.");
 		Game.getInstance().removeMap(m);
 		m.endMap();
 		System.out.println("!Test Done");
