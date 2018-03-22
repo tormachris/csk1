@@ -8,6 +8,8 @@ public class Tile {
 	
 	private Thing thing;
 	private EnumMap<Direction, Tile> nexttiles;
+	private Double friction;
+	
 	
 	/**
 	 * Whenever a Thing tries to move onto the Tile this function is called. 
@@ -50,6 +52,7 @@ public class Tile {
 		thing=null;
 		System.out.println("#thing= null");
 		System.out.println("<[:Tile].Tile():void");
+		friction = 0.5;
 	}	
 	/**
 	 * Removes the Thing from the tile.
@@ -107,6 +110,18 @@ public class Tile {
 		this.thing = thing;
 		if (thing!=null)thing.setTile(this); //We need this for the init, so the Thing will easily know his Tile.
 		System.out.println("<[:Tile].setThing(thing): void");
+	}
+	/**
+	 * @return the friction
+	 */
+	public Double getFriction() {
+		return friction;
+	}
+	/**
+	 * @param friction the friction to set
+	 */
+	public void setFriction(Double friction) {
+		this.friction = friction;
 	}
 
 }

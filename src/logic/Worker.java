@@ -5,7 +5,9 @@ package logic;
  */
 public class Worker extends Thing{
 	
+	
 	private Integer points;
+	private Integer strength;
 	
 	/**
 	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
@@ -16,6 +18,14 @@ public class Worker extends Thing{
 	 * @param o The owner of the Thing
 	 * @return true as there should be movement
 	 */
+	
+	public Worker(Integer w,Integer s) {
+		super(w);
+		strength = s;
+		System.out.println("!New Worker created.");
+	}
+
+	
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
@@ -71,6 +81,29 @@ public class Worker extends Thing{
 		System.out.println("#points= points");
 		this.points = points;
 		System.out.println("<[:Worker].setPoints(points): void");
+	}
+	
+	public void dropOil() {
+		this.getTile().setFriction(0.3);
+	}
+	public void dropHoney() {
+		this.getTile().setFriction(0.7);
+	}
+
+
+	/**
+	 * @return the strength
+	 */
+	public Integer getStrength() {
+		return strength;
+	}
+
+
+	/**
+	 * @param strength the strength to set
+	 */
+	public void setStrength(Integer strength) {
+		this.strength = strength;
 	}
 	
 }

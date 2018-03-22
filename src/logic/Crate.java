@@ -11,8 +11,8 @@ public class Crate extends Thing{
 	/**
 	 * Constructor. Calls the super class' constructor.
 	*/
-	public Crate() {
-		super();
+	public Crate(Integer w) {
+		super(w);
 		System.out.println("!New Crate created.");
 	}
 	

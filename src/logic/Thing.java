@@ -9,18 +9,34 @@ public abstract class Thing {
 	private Thing owner; 
 	private Direction moving;
 	private Tile tile;
+	private Integer weight;
 	
 	/**
 	 * Default Constructor
 	 * @param None
 	 */
-	public Thing() {
+	public Thing(Integer w) {
 		System.out.println("!New instance of Thing created."); //LOLOLOL WILL NEVER HAPPEN
 		//Let this be a warning, if a thing's owner is null, it is brand new!
 		owner=null;
 		tile=null; //Hanging in the aether.
+		weight = w;
 	}
 	
+	/**
+	 * @return the weight
+	 */
+	public Integer getWeight() {
+		return weight;
+	}
+
+	/**
+	 * @param weight the weight to set
+	 */
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
+
 	/**
 	 * Collides the Thing with another Thing
 	 * @param t The other Thing

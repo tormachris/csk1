@@ -110,7 +110,7 @@ public class Menu {
 		Game.getInstance().addMap(m);			
 		m.startMap();							//Starting the test map
 		Tile t1 = new Tile();						
-		Worker w = new Worker();				//Worker added for tests
+		Worker w = new Worker(50,60);				//Worker added for tests
 		
 		t1.setThing(w);
 		
@@ -163,7 +163,7 @@ public class Menu {
 		m.addTile(t2);
 		Tile t3 = new Tile();
 		m.addTile(t3);									//Building the tiles of the map
-		Worker w = new Worker();
+		Worker w = new Worker(50,60);
 		m.addWorker(w);									//Worker added for tests
 
 		t1.setNeighbour(Direction.NORTH, t2);
@@ -188,12 +188,12 @@ public class Menu {
 				e.printStackTrace();
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
-				Crate c=new Crate();
+				Crate c=new Crate(10);
 				m.addCrate(c);				//Adding Crate to the test map.
 				t2.setThing(c);
 			}
 			else {
-				Worker w2=new Worker();
+				Worker w2=new Worker(50,60);
 				m.addWorker(w2);				//Adding Second Worker to the test map.
 				t2.setThing(w2);
 			}
@@ -225,9 +225,9 @@ public class Menu {
 		m.addTile(t3);
 		Tile t4 = new Tile();		//Building up the Tiles of the map.
 		m.addTile(t4);
-		Worker w = new Worker();
+		Worker w = new Worker(50,60);
 		m.addWorker(w);				//Worker added to the test.
-		Crate c=new Crate();											
+		Crate c=new Crate(10);											
 		m.addCrate(c);				//Crate added to the test.
 		
 		t1.setNeighbour(Direction.NORTH, t2);
@@ -255,12 +255,12 @@ public class Menu {
 				e.printStackTrace();
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
-				Crate c2=new Crate();		//Adding Crate to the test map.
+				Crate c2=new Crate(10);		//Adding Crate to the test map.
 				m.addCrate(c2);
 				t3.setThing(c2);
 			}
 			else {
-				Worker w2=new Worker();		//Addign Worker to the test map.
+				Worker w2=new Worker(50,60);		//Addign Worker to the test map.
 				m.addWorker(w2);									
 				t3.setThing(w2);
 			}
@@ -305,13 +305,13 @@ public class Menu {
 		else t2.setNeighbour(Direction.NORTH, w3);
 		t0.setNeighbour(Direction.NORTH, t1);
 		t1.setNeighbour(Direction.NORTH, t2);
-		Worker w2=new Worker();
+		Worker w2=new Worker(50,60);
 		m.addWorker(w2);
 		t2.setThing(w2);		//Adding Worker to the test.
-		Crate c1=new Crate();
+		Crate c1=new Crate(10);
 		m.addCrate(c1);			//Adding a Crate to the test.
 		t1.setThing(c1);
-		Worker w0=new Worker();
+		Worker w0=new Worker(50,60);
 		m.addWorker(w0);		//Adding second Worker to the test.
 		t0.setThing(w0);
 		System.out.println("\n\n");
@@ -342,9 +342,9 @@ public class Menu {
 		Tile t=new Tile();	//Building up the tiles of the map.
 		m.addTile(t);
 		t.setNeighbour(Direction.NORTH, h);
-		Worker w=new Worker();		//Adding a Worker to the test.
+		Worker w=new Worker(50,60);		//Adding a Worker to the test.
 		m.addWorker(w);
-		Crate c= new Crate();		//Adding a Crate to the test.
+		Crate c= new Crate(10);		//Adding a Crate to the test.
 		m.addCrate(c);
 		t.setThing(c);
 		Tile t2=new Tile();
@@ -380,7 +380,7 @@ public class Menu {
 		Tile t=new Tile();
 		m.addTile(t);							//Building up the tiles of the map.
 		t.setNeighbour(Direction.NORTH, h);
-		Worker w=new Worker();				//Adding a Worker to the test.
+		Worker w=new Worker(50,60);				//Adding a Worker to the test.
 		m.addWorker(w);
 		t.setThing(w);
 		System.out.println("\n\n");
@@ -418,19 +418,19 @@ public class Menu {
 				e.printStackTrace();
 			}
 			if(rawinput.toLowerCase().charAt(0)=='y') {
-				Crate c=new Crate();	//Adding a Crate to the test.
+				Crate c=new Crate(10);	//Adding a Crate to the test.
 				m.addCrate(c);
 				h.setThing(c);
 			}
 			else {
-				Worker w=new Worker();
+				Worker w=new Worker(50,60);
 				m.addWorker(w);		//Adding a Worker to the test.
 				h.setThing(w);
 			}
 		}
-		Crate c2=new Crate();	//Adding second Crate to the test.
+		Crate c2=new Crate(10);	//Adding second Crate to the test.
 		m.addCrate(c2);
-		Worker w2=new Worker();	//Adding second Worker to the test.
+		Worker w2=new Worker(50,60);	//Adding second Worker to the test.
 		m.addWorker(w2);
 		Tile t1=new Tile();
 		m.addTile(t1);		//Building up the tiles of the map.
@@ -455,7 +455,7 @@ public class Menu {
 		System.out.println("!8. Palya lep");	
 		Map m=new Map();				//Setting up the map for the test.
 		Game.getInstance().addMap(m);
-		Worker w=new Worker();		//Adding a Worker to the test.
+		Worker w=new Worker(50,60);		//Adding a Worker to the test.
 		m.addWorker(w);
 		String rawinput=new String("");
 		System.out.print("\t *8.1 Van eleg munkas? y/N \n ?");	//Choosing test coreography.
@@ -465,7 +465,7 @@ public class Menu {
 			e.printStackTrace();
 		}
 		if(rawinput.toLowerCase().charAt(0)=='y') {
-			Worker ww=new Worker();	//Adding second worker to the test.
+			Worker ww=new Worker(50,60);	//Adding second worker to the test.
 			m.addWorker(ww);
 		}
 		System.out.print("\t *8.2 Van doboz? y/N \n ?");	//Choosing test coreography.
@@ -475,7 +475,7 @@ public class Menu {
 			e.printStackTrace();
 		}
 		if(rawinput.toLowerCase().charAt(0)=='y') {
-			Crate c=new Crate();		//Adding a Crate to the test.
+			Crate c=new Crate(10);		//Adding a Crate to the test.
 			m.addCrate(c);
 		}
 		System.out.println("\n\n");
