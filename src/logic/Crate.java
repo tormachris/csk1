@@ -28,11 +28,18 @@ public class Crate extends Thing{
 	{
 		System.out.println(">[:Crate].updateOwner(o)");
 		this.updateOwner(o);// Updating the owner in case of scoring
-		
+		Worker w=(Worker)this.getOwner();
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
+		Double d2=0.0;
 		System.out.println(">[:Crate].move(d)");
+		if(w.getForce().compareTo(d2)>=0) 
+		{
 		Boolean moved=Boolean.valueOf(this.move(d));
 		System.out.println("<[:Crate].hitBy(t,d,o): " + moved.toString());
 		return moved.booleanValue();
+		}
+		else
+			return false;
 	}
 	
 	/**

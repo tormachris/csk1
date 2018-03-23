@@ -11,6 +11,7 @@ public abstract class Thing {
 	private Tile tile;
 	private Integer weight;
 	
+	
 	/**
 	 * Default Constructor
 	 * @param None
@@ -36,6 +37,7 @@ public abstract class Thing {
 	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
+
 
 	/**
 	 * Collides the Thing with another Thing
@@ -89,12 +91,22 @@ public abstract class Thing {
 	{
 		System.out.println("!Check what type of Thing this is!");
 		System.out.println(">[:Thing].updateOwner(o)");
-		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.
-		
+		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.												
+		Worker w=(Worker)this.getOwner();
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
+		Double d2=0.0;
+		if(w.getForce().compareTo(d2)>=0) 
+		{
 		System.out.println(">[:Thing].move(d)");
 		Boolean moved = Boolean.valueOf(this.move(d));		//The direction is set, and the Thing is pushed into this direction.
-		System.out.println("<[:Thing].hitBy(t,d,o): " + moved.toString());
+		System.out.println("<[:Thing].hitBy(,ft,d,o): " + moved.toString());
 		return moved;
+		}
+		else
+		{
+			System.out.println("!Will not move, im too heavy");
+			return false;
+		}
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package logic;
 
+
+
 /**
  * Represents a worker controlled by the player.
  */
@@ -7,7 +9,8 @@ public class Worker extends Thing{
 	
 	
 	private Integer points;
-	private Integer strength;
+	private Double force;
+	
 	
 	/**
 	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
@@ -19,9 +22,9 @@ public class Worker extends Thing{
 	 * @return true as there should be movement
 	 */
 	
-	public Worker(Integer w,Integer s) {
+	public Worker(Integer w) {
 		super(w);
-		strength = s;
+		force = 0.0;
 		System.out.println("!New Worker created.");
 	}
 
@@ -37,11 +40,13 @@ public class Worker extends Thing{
 		else {
 		System.out.println(">[:Worker].updateOwner(o)");
 		this.updateOwner(o); 	//updating the owner for the action
-		
+		Worker w=(Worker)this.getOwner();
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
 		System.out.println(">[:Worker].updateOwner(o)");
 		Boolean moved = Boolean.valueOf(this.move(d)); //trying to move..
 		System.out.println("#moved= "+ moved.toString());
-		if(moved.booleanValue()) {
+		Double d2=0.0;
+		if(w.getForce().compareTo(d2)>=0 && moved) {
 			System.out.println(">[:Worker].updateOwner(this)");
 			this.updateOwner(this);  //we need to reset the owner
 		}
@@ -92,18 +97,18 @@ public class Worker extends Thing{
 
 
 	/**
-	 * @return the strength
+	 * @return the force
 	 */
-	public Integer getStrength() {
-		return strength;
+	public Double getForce() {
+		return force;
 	}
 
 
 	/**
-	 * @param strength the strength to set
+	 * @param force the force to set
 	 */
-	public void setStrength(Integer strength) {
-		this.strength = strength;
+	public void setForce(Double f) {
+		this.force = f;
 	}
 	
 }
