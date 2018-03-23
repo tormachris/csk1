@@ -24,7 +24,8 @@ public class Worker extends Thing{
 	
 	public Worker(Integer w) {
 		super(w);
-		force = 0.0;
+		force = w*2.5;
+		this.updateOwner(this);
 		System.out.println("!New Worker created.");
 	}
 
@@ -40,6 +41,10 @@ public class Worker extends Thing{
 		else {
 		System.out.println(">[:Worker].updateOwner(o)");
 		this.updateOwner(o); 	//updating the owner for the action
+		if(this.getOwner()==null) 
+			throw new IllegalArgumentException("Null ptr in owner.");
+		else
+		{
 		Worker w=(Worker)this.getOwner();
 		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
 		System.out.println(">[:Worker].updateOwner(o)");
@@ -56,6 +61,7 @@ public class Worker extends Thing{
 		}
 		System.out.println("<[:Worker].hitBy(t,d,o): true");
 		return true; //gives space for the Crate incoming
+			}
 		}
 	}
 	

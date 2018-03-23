@@ -91,7 +91,11 @@ public abstract class Thing {
 	{
 		System.out.println("!Check what type of Thing this is!");
 		System.out.println(">[:Thing].updateOwner(o)");
-		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.												
+		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.	
+		if(this.getOwner()==null) 
+			throw new IllegalArgumentException("Null ptr in owner.");
+		else
+		{
 		Worker w=(Worker)this.getOwner();
 		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
 		Double d2=0.0;
@@ -106,6 +110,7 @@ public abstract class Thing {
 		{
 			System.out.println("!Will not move, im too heavy");
 			return false;
+		}
 		}
 	}
 	

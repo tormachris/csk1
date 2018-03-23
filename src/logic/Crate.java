@@ -25,9 +25,14 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
-	{
+	{	
+		
 		System.out.println(">[:Crate].updateOwner(o)");
 		this.updateOwner(o);// Updating the owner in case of scoring
+		if(this.getOwner()==null) 
+			throw new IllegalArgumentException("Null ptr in owner.");
+		else
+		{
 		Worker w=(Worker)this.getOwner();
 		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
 		Double d2=0.0;
@@ -39,7 +44,10 @@ public class Crate extends Thing{
 		return moved.booleanValue();
 		}
 		else
+			System.out.println("Dagadt vagyok");
 			return false;
+		}
+		
 	}
 	
 	/**
