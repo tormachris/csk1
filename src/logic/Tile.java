@@ -20,38 +20,28 @@ public class Tile {
 	{
 		Boolean accepted;
 		//if the Tile is empty it will accept
-		if(thing == null) {
+		if(thing == null)
 			accepted = Boolean.TRUE;
-			System.out.println("#accepted= "+ accepted.toString());
-		}
 		
 		//if it is not empty it will make the moving Thing collide with the Thing that is
 		//currently on the Tile 
 		else {
 			accepted = Boolean.valueOf(t.collideWith(thing));
-			System.out.println("#accepted= "+ accepted.toString());
 		}
 		
 		//if it has been accepted then it refreshes the thing attribute
-		if(accepted.booleanValue()) {
+		if(accepted.booleanValue())
 			thing = t;
-			System.out.println("#thing= t");
-		}
 		
 		//returns with the acceptance anyway
-		System.out.println("<[:Tile].accpet(t): " + accepted.toString());
 		return accepted.booleanValue();
 	}
 	/**
 	 * Default constructor, initialises the Map and the "thing" variable.
 	 */
 	public Tile() {
-		System.out.println("!New instance of Tile created.");
 		nexttiles=new EnumMap<>(Direction.class);
-		System.out.println("#nexttiles=new EnumMap<>(Direction.class)");
 		thing=null;
-		System.out.println("#thing= null");
-		System.out.println("<[:Tile].Tile():void");
 		friction = 0.5;
 	}	
 	/**
@@ -61,12 +51,9 @@ public class Tile {
 	public void remove(Thing t)
 	{
 		//checking if the Thing is on this Tile
-		if(t.equals(thing)) {
+		if(t.equals(thing)) 
 			//if that's true the Thing will be removed
 			thing = null;
-			System.out.println("#thing= null");
-		}
-		System.out.println(">[:Tile].remove(t):void");
 	}
 	
 	/**
@@ -76,8 +63,6 @@ public class Tile {
 	 */
 	public Tile getNeighbour(Direction d)
 	{
-		System.out.println(">[:Tile].nexttiles.get(d)");
-		System.out.println("<[:Tile].getNeighbour(d): tile");
 		return nexttiles.get(d);
 	}
 	
@@ -91,25 +76,20 @@ public class Tile {
 		//putting the tile in the "nexttiles" Map if there is a valid d passed.
 		if(d==null)
 			throw new NullPointerException("d cannot be null");
-		System.out.println(">[:Tile].nexttiles.put(d,t)");
 		nexttiles.put(d, t);
-		System.out.println("<[:Tile].setNeighbour(d,t): void");
 	}
 	/**
 	 * @return the thing
 	 */
 	public Thing getThing() {
-		System.out.println("<[:Tile].getThing(): thing");
 		return thing;
 	}
 	/**
 	 * @param thing the thing to set
 	 */
 	public void setThing(Thing thing) {
-		System.out.println("#thing= thing");
 		this.thing = thing;
 		if (thing!=null)thing.setTile(this); //We need this for the init, so the Thing will easily know his Tile.
-		System.out.println("<[:Tile].setThing(thing): void");
 	}
 	/**
 	 * @return the friction

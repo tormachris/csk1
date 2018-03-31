@@ -16,7 +16,6 @@ public class Hole extends Tile {
 	 * @param isOpen: default state
 	 */
 	public Hole(Boolean isOpen) {
-		System.out.println("!New Hole instance created");
 		this.setOpen(isOpen);
 	}
 	
@@ -24,7 +23,6 @@ public class Hole extends Tile {
 	 * Default constructor
 	 */
 	public Hole() {
-		System.out.println("!New Hole instance created");
 		this.setOpen(Boolean.valueOf(false));
 	}
 	
@@ -32,7 +30,6 @@ public class Hole extends Tile {
 	 * @return the open
 	 */
 	public Boolean getOpen() {
-		System.out.println("<[:Hole].getOpen(): " + open.toString());
 		return open;
 	}
 
@@ -40,9 +37,7 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
-		System.out.println("#open=open");
 		this.open = open;
-		System.out.println("<[:Hole].setOpen(open):void");
 	}
 
 	/**
@@ -52,22 +47,17 @@ public class Hole extends Tile {
 	 */
 	@Override
 	public  boolean accept(Thing t){
-		System.out.println("!This is a Hole");
 		Boolean accepted;
 		//if the hole is open it destroys every thing that moves onto it.
 		if(open.booleanValue())
 		{
-			System.out.println(">[:Thing].destroy()");
 			t.destroy();	//Destroying the Thing on the Hole.
-			accepted = Boolean.TRUE;	
-			System.out.println("#accepted= "+ accepted.toString());
+			accepted = Boolean.TRUE;
 		}
 		//if it is not open it will act just like a normal tile.
 		else {
 			accepted = Boolean.valueOf(super.accept(t));
-			System.out.println("#accepted= "+ accepted.toString());
 		}
-		System.out.println("<[:Hole].accept(t): " + accepted.toString());
 		return accepted;
 	}
 		
@@ -76,9 +66,7 @@ public class Hole extends Tile {
 	 */
 	public void toggleOpen()
 	{
-		System.out.println("#open=" + open.toString());
 		open = !open;	//Changing to the opposite state
-		System.out.println("<[:Hole].toggleOpen():void");
 		if(open.booleanValue() && this.getThing()!=null)
 		{
 			this.getThing().destroy();	//Destroying the Thing standing on the Hole when it is activated.

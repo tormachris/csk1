@@ -17,7 +17,6 @@ public abstract class Thing {
 	 * @param None
 	 */
 	public Thing(Integer w) {
-		System.out.println("!New instance of Thing created."); //LOLOLOL WILL NEVER HAPPEN
 		//Let this be a warning, if a thing's owner is null, it is brand new!
 		owner=null;
 		tile=null; //Hanging in the aether.
@@ -49,8 +48,6 @@ public abstract class Thing {
 		Boolean collided;
 		//Hitting the other Thing with this towards this one's moving direction
 		collided = Boolean.valueOf(t.hitBy(this, moving , this.owner));
-		System.out.println("<[:Thing].collideWith(t): "+ collided.toString());
-		System.out.println("!Check what type of Thing this is!");
 		return collided;
 		
 	}
@@ -62,12 +59,9 @@ public abstract class Thing {
 	 */
 	public boolean move(Direction d)
 	{	
-		System.out.println("!Check what type of Thing this is!");
 		//getting the neighbour of the current Tile and setting the moving attribute
 		Tile newTile;
-		System.out.println("#newTile= tile.getNeighbour(d)");
 		newTile = tile.getNeighbour(d);
-		System.out.println("#moving=d");
 		moving = d;
 		
 		//checking whether the new Tile accepts the Thing
@@ -75,22 +69,18 @@ public abstract class Thing {
 		if(moved)
 		{
 			//if the Thing was accepted by the new Tile the Thing moves to it.
-			System.out.println(">[:Tile].remove(this)");
 			tile.remove(this);
-			System.out.println("#tile=newTile");
 			tile = newTile;
 		}
 		
-		System.out.println("<[:Thing].move(d): " + moved.toString());
-		return moved;
+		return moved.booleanValue();
 	}
 	/**
 	 * Called when hit by another thing.
 	 */
 	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println(">[:Thing].updateOwner(o)");
+		Boolean hit;
 		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.	
 		if(this.getOwner()==null) 
 			throw new IllegalArgumentException("Null ptr in owner.");
@@ -101,17 +91,12 @@ public abstract class Thing {
 		Double d2=0.0;
 		if(w.getForce().compareTo(d2)>=0) 
 		{
-		System.out.println(">[:Thing].move(d)");
-		Boolean moved = Boolean.valueOf(this.move(d));		//The direction is set, and the Thing is pushed into this direction.
-		System.out.println("<[:Thing].hitBy(,ft,d,o): " + moved.toString());
-		return moved;
+			hit = Boolean.valueOf(this.move(d));		//The direction is set, and the Thing is pushed into this direction.
 		}
 		else
-		{
-			System.out.println("!Will not move, im too heavy");
-			return false;
+			hit=Boolean.FALSE;
 		}
-		}
+		return hit.booleanValue();
 	}
 	
 	/**
@@ -121,10 +106,7 @@ public abstract class Thing {
 	 */
 	public final boolean updateOwner(Thing t)
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("#owner=t");
 		this.owner = t;
-		System.out.println("<[:Thing].updateOwner(t): true");
 		return true;	
 	}
 	
@@ -133,10 +115,8 @@ public abstract class Thing {
 	 * @param s The Switch onto which the Thing has moved.
 	 */
 	public void onSwitch(Switch s)
-	{	
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("!I won't do anything, I am not heavy enough");
-		System.out.println("<[:Thing].onSwitch(t): void");
+	{
+		return;
 	}
 	
 	/**
@@ -145,9 +125,7 @@ public abstract class Thing {
 	 */
 	public void onEndTile(EndTile t)
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("!I refuse to do anything, I am not Kul enough.");
-		System.out.println("<[:Thing].onEndTile(t): void");
+		return;
 	}
 	
 	/**
@@ -156,8 +134,6 @@ public abstract class Thing {
 	 */
 	public final Thing getOwner()
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("<[:Thing].getOwner(t): owner");
 		return owner;
 	}
 	
@@ -167,8 +143,6 @@ public abstract class Thing {
 	 */
 	public final Tile getTile()
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("<[:Thing].getTile(t): tile");
 		return tile;
 	}
 	
@@ -182,7 +156,6 @@ public abstract class Thing {
 	
 	 public void destroy()
 	{
-		System.out.println("!Check what type of Thing this is!");
-		System.out.println("<[:Thing].destroy(t): void");
+		return;
 	}
 }

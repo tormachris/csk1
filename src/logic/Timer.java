@@ -23,7 +23,6 @@ public class Timer extends Thread{
 	 * Constructor. Initialises the set of steppables.
 	 */
 	public Timer() {
-		System.out.println("!New Timer created");
 		steppables = new HashSet<>();
 		this.start(); //Start itself automagically, so you don't have to!
 	}
@@ -32,11 +31,9 @@ public class Timer extends Thread{
 	 * This method realizes Timer being a singleton in Java.
 	 */
 	public static Timer getInstance() {
-		System.out.println("!Getting instance of Timer");
 		if(instance == null) {
 			instance = new Timer();
 		}
-		System.out.println("<[:Timer].getInstance(): instance");
 		return instance;
 	}
 	
@@ -77,11 +74,9 @@ public class Timer extends Thread{
 	 */
 	public void addSteppable(Steppable s)
 	{
-		System.out.println("!Adding a steppable to Timer's collection.");
 		if(s==null) throw new NullPointerException("Cannot add null to our set of Steppables."); //Checking for valid value.
 		if(this.steppables.contains(s)) throw new IllegalArgumentException("Item already in collection.");
 		this.steppables.add(s);
-		System.out.println("<[:Timer].addSteppable(s): void");
 	}
 	
 	/**
@@ -90,12 +85,10 @@ public class Timer extends Thread{
 	 */
 	public void removeSteppable(Steppable s)
 	{
-		System.out.println("!Removing a steppable from Timer's collection.");
 		if(s==null) throw new NullPointerException("Cannot remove null from our set of Steppables.");
 		if (this.steppables.isEmpty()) throw new IllegalArgumentException("This collection is empty.");
 		if (!(this.steppables.contains(s))) throw new IllegalArgumentException("Item not in collection.");
 		this.steppables.remove(s);
-		System.out.println("<[:Timer].removeSteppable(s): void");
 	}
 	
 

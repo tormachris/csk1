@@ -13,17 +13,12 @@ public class Switch extends Tile {
 	@Override
 	public boolean accept(Thing t)
 	{
-		System.out.println("!This is a Switch.");
 		//calls the same function of its superclass
 		Boolean accepted = Boolean.valueOf(super.accept(t));
 		//if the Thing is allowed to move onto the Tile the Switch will trigger its OnSwitch()
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
-		{
-			System.out.println(">[:Thing].onSwitch(this)");
 			t.onSwitch(this);
-		}
-		System.out.println("<[:Switch].accept(t): " + accepted.toString());
 		return accepted.booleanValue();
 	}
 	
@@ -34,9 +29,7 @@ public class Switch extends Tile {
 	 */
 	public void activate()
 	{
-		System.out.println(">[:Hole].toggleOpen()");
 		hole.toggleOpen();
-		System.out.println("<[:Hole].activate(c)");
 	}
 	
 	/**
@@ -46,7 +39,6 @@ public class Switch extends Tile {
 	public void setHole(Hole newvalue)
 	{
 		if(newvalue!=null) {		//Checking for valid value
-			System.out.println("#hole=newvalue");
 			hole=newvalue;	
 		}
 		else throw new NullPointerException("newvalue is null");
@@ -56,7 +48,6 @@ public class Switch extends Tile {
 	 * Gets the current hole.
 	 */
 	public Hole getHole() {
-		System.out.println("<[:Hole].getHole(): hole");
 		return hole;
 	}
 	
@@ -64,8 +55,6 @@ public class Switch extends Tile {
 	 * Constructor. Sets the hole.
 	 */
 	Switch(Hole h){
-		System.out.println("!New instance of Hole created.");
-		System.out.println(">[:Hole].setHole(h)");
 		this.setHole(h);
 	}
 }

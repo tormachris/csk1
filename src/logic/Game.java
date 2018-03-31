@@ -16,7 +16,6 @@ public class Game {
 	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
 	public Game() {
-		System.out.println("!New Game instance created");
 		this.setMaps(new HashSet<Map>());
 	}
 	
@@ -34,7 +33,6 @@ public class Game {
 			m.startMap();	//Chosen map being started
 		}
 		else throw new NullPointerException("m cannot be null"); 
-		System.out.println("<[:Game].start(m):void");
 	}
 	
 	/**
@@ -42,7 +40,6 @@ public class Game {
 	 */
 	public void end()
 	{
-		System.out.println("<[:Game].end():void");
 		return;
 	}
 
@@ -50,9 +47,7 @@ public class Game {
 	 * @param maps the maps to set
 	 */
 	private void setMaps(Set<Map> maps) {
-		System.out.println("#maps got a new value");
 		this.maps = maps;	
-		System.out.println("<[:Game].setMaps(maps): void");
 	}
 	
 	/**
@@ -61,7 +56,6 @@ public class Game {
 	public void addMap(Map m) {
 		if (m!=null) maps.add(m);
 		else throw new IllegalArgumentException("Cannot add null to maps collection.");
-		System.out.println("<[:Game].addMap(m):void");
 	}
 	
 	/**
@@ -70,18 +64,15 @@ public class Game {
 	public void removeMap(Map m) {
 		if (m==null) throw new IllegalArgumentException("Cannot remove null to maps collection.");
 		else if (maps.contains(m)) maps.remove(m);
-		System.out.println("<[:Game].addMap(m):void");
 	}
 	
 	/**
 	 * This method realizes Game being a singleton in Java.
 	 */
 	public static Game getInstance() {
-		System.out.println("!Getting instance of Game");
 		if(instance == null) {
 			instance = new Game();
 		}
-		System.out.println("<[:Game].getInstance(): instance");
 		return instance;
 	}
 
@@ -89,7 +80,6 @@ public class Game {
 	 * @return the currentmap
 	 */
 	public Map getCurrentmap() {
-		System.out.println("<[:Game].getCurrentmap(): currentmap");
 		return currentmap;
 	}
 
@@ -99,9 +89,7 @@ public class Game {
 	public void setCurrentmap(Map currentmap) {
 		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map"); //Checking that the map is in the collection
 		else {
-			System.out.println("#currentmap got a new value");
 			this.currentmap = currentmap;	
 		}
-		System.out.println("<[:Game].setCurrentmap(currentmap): void");
 	}
 }

@@ -14,7 +14,6 @@ public class Wall extends Tile {
 	@Override
 	public boolean accept(Thing t)
 	{
-		System.out.println("<[:Wall].accept(t): false");
 		return false;
 	}
 
