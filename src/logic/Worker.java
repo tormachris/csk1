@@ -36,7 +36,6 @@ public class Worker extends Thing{
 			return false;
 		}
 		else {
-		System.out.println(">[:Worker].updateOwner(o)");
 		this.updateOwner(o); 	//updating the owner for the action
 		if(this.getOwner()==null) 
 			throw new IllegalArgumentException("Null ptr in owner.");
