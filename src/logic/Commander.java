@@ -31,37 +31,43 @@ public final class Commander {
 		//First, we break up the raw input into command and arguments.
 		String rawin=scan();
 		String[] input=rawin.split(" ");
+		while (true) { //Let's process a bunch of inputs.
+			switch (input[0]) {
 		
-		switch (input[0]) {
-		
-		case "newmap":
+			case "newmap":
+				break;
+			case "newtile":
+				break;
+			case "connecttiles":
+				break;
+			case "newthing":
+				break;
+			case "toggletimer":
+				break;
+			case "gettimerstate":
+				break;
+			case "putfrictionmodifierontile":
 			break;
-		case "newtile":
+			case "gettilestate":
+				break;
+			case "moveworker":
+				break;
+			case "step":
 			break;
-		case "connecttiles":
-			break;
-		case "newthing":
-			break;
-		case "toggletimer":
-			break;
-		case "gettimerstate":
-			break;
-		case "putfrictionmodifierontile":
-			break;
-		case "gettilestate":
-			break;
-		case "moveworker":
-			break;
-		case "step":
-			break;
-		case "getgamestate":
-			break;
-		case "xmlprepare":
-			break;
-		case "xmlover"://This command is invalid in this state, but let's leave this here for accounting purposes.
-			break;
-		default:
-			break;
+			case "getgamestate":
+				break;
+			case "xmlprepare":
+				xmlinterpreter();	//Change to XML processer state.
+				break;
+			case "xmlover"://This command is invalid in this state, but let's leave this here for accounting purposes.
+				break;
+			default:
+				break;
+			}
 		}
+	}
+	
+	public void xmlinterpreter() {
+		
 	}
 }
