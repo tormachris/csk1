@@ -32,7 +32,7 @@ public class Crate extends Thing{
 		else
 		{
 		Worker w=(Worker)this.getOwner();
-		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
 		Double d2=Double.valueOf(0);
 		if(w.getForce().compareTo(d2)>=0) 
 		{

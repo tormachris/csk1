@@ -42,7 +42,7 @@ public class Worker extends Thing{
 		else
 		{
 		Worker w=(Worker)this.getOwner();
-		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFriction());
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
 		Boolean moved = Boolean.valueOf(this.move(d)); //trying to move..
 		Double d2=Double.valueOf(0);
 		if(w.getForce().compareTo(d2)>=0 && moved) {
@@ -80,10 +80,10 @@ public class Worker extends Thing{
 	}
 	
 	public void dropOil() {
-		this.getTile().setFriction(0.3);
+		this.getTile().setFrictionMod(new Oil());
 	}
 	public void dropHoney() {
-		this.getTile().setFriction(0.7);
+		this.getTile().setFrictionMod(new Honey());
 	}
 
 
