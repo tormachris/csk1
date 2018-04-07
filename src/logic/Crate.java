@@ -15,35 +15,6 @@ public class Crate extends Thing{
 		super(w);
 	}
 	
-	/**
-	 * Called when a Crate is hit by some thing.
-	 * @param t The Thing that hits the Crate.
-	 * @param d The Direction towards the Crate is hit
-	 * @param o The owner of the Thing
-	 * @return
-	*/
-	@Override
-	public boolean hitBy(Thing t,Direction d,Thing o)
-	{	
-		
-		this.updateOwner(o);// Updating the owner in case of scoring
-		if(this.getOwner()==null) 
-			throw new IllegalArgumentException("Null ptr in owner.");
-		else
-		{
-		Worker w=(Worker)this.getOwner();
-		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
-		Double d2=Double.valueOf(0);
-		if(w.getForce().compareTo(d2)>=0) 
-		{
-		Boolean moved=Boolean.valueOf(this.move(d));
-		return moved.booleanValue();
-		}
-		else
-			return false;
-		}
-		
-	}
 	
 	/**
 	 * Called by an EndTile, when a crate occupies it.
