@@ -8,7 +8,7 @@ public class Tile {
 	
 	private Thing thing;
 	private EnumMap<Direction, Tile> nexttiles;
-	private Double friction;
+	private FrictionModifier frictionmodifier;
 	
 	
 	/**
@@ -42,7 +42,7 @@ public class Tile {
 	public Tile() {
 		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
-		friction = 0.5;
+		frictionmodifier = new FrictionModifier();
 	}	
 	/**
 	 * Removes the Thing from the tile.
@@ -94,14 +94,14 @@ public class Tile {
 	/**
 	 * @return the friction
 	 */
-	public Double getFriction() {
-		return friction;
+	public FrictionModifier getFrictionMod() {
+		return frictionmodifier;
 	}
 	/**
 	 * @param friction the friction to set
 	 */
-	public void setFriction(Double friction) {
-		this.friction = friction;
+	public void setFrictionMod(FrictionModifier frictionmod) {
+		this.frictionmodifier = frictionmod;
 	}
 
 }
