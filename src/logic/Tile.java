@@ -37,7 +37,7 @@ public class Tile {
 		return accepted.booleanValue();
 	}
 	/**
-	 * Default constructor, initialises the Map and the "thing" variable.
+	 * Default constructor, initializes the Map and the "thing" variable.
 	 */
 	public Tile() {
 		nexttiles=new EnumMap<>(Direction.class);
@@ -92,13 +92,15 @@ public class Tile {
 		if (thing!=null)thing.setTile(this); //We need this for the init, so the Thing will easily know his Tile.
 	}
 	/**
-	 * @return the friction
+	 * Getter of the frictionmodifier
+	 * @return the frictionmodifier
 	 */
 	public FrictionModifier getFrictionMod() {
 		return frictionmodifier;
 	}
 	/**
-	 * @param friction the friction to set
+	 * Setter of the frictionmodifier
+	 * @param frictionmod the frictionmodifier to set
 	 */
 	public void setFrictionMod(FrictionModifier frictionmod) {
 		this.frictionmodifier = frictionmod;
