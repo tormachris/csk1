@@ -44,10 +44,10 @@ public final class Commander {
 				newTile(input[1].toLowerCase());
 				break;
 			case "connecttiles":
-				connectTiles(input[1], input[2], input[3]);
+				connectTiles(input[1], input[2].toLowerCase(), input[3]);
 				break;
 			case "newthing":
-				newThing(input[1], input[2]);
+				newThing(input[1].toLowerCase(), input[2]);
 				break;
 			case "toggletimer":
 				toggleTimer();
@@ -55,6 +55,7 @@ public final class Commander {
 			case "gettimerstate":
 				break;
 			case "putfrictionmodifierontile":
+				putFrictionModifieronTile(input[1].toLowerCase(), input[2]);
 			break;
 			case "gettilestate":
 				break;
@@ -75,9 +76,21 @@ public final class Commander {
 		}
 	}
 	
-	private void toggleTimer() {
-		// TODO Auto-generated method stub
+	private void putFrictionModifieronTile(String type, String tileid) {
+	if(tiles.get(Integer.valueOf(tileid)) != null)
+		if(type.equals("honey"))
+			tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Honey());
+		else
+			tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Oil());
 		
+	}
+
+	private void toggleTimer() {
+		//is this right?
+		if(Timer.getInstance().getState() == Thread.State.RUNNABLE)
+			Timer.getInstance().interrupt();
+		else 
+			Timer.getInstance().start();
 	}
 
 	private void newThing(String type, String force) {
