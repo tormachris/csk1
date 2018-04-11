@@ -4,6 +4,7 @@
 package logic;
 
 import java.io.*;
+import java.util.*;
 
 /** Interprets commands and executes them.
  * Just like a command line program :)
@@ -12,6 +13,9 @@ import java.io.*;
  * @since 1.0
 */
 public final class Commander {
+	
+	private HashMap<Integer, Tile> tiles = new HashMap<Integer, Tile>();
+	private HashMap<Integer, Thing> things = new HashMap<Integer, Thing>();
 
 	public String scan() {
 		String toreturn="";
@@ -37,12 +41,16 @@ public final class Commander {
 			case "newmap":
 				break;
 			case "newtile":
+				newTile(input[1].toLowerCase());
 				break;
 			case "connecttiles":
+				connectTiles(input[1], input[2], input[3]);
 				break;
 			case "newthing":
+				newThing(input[1]);
 				break;
 			case "toggletimer":
+				toggleTimer();
 				break;
 			case "gettimerstate":
 				break;
@@ -67,6 +75,39 @@ public final class Commander {
 		}
 	}
 	
+	private void toggleTimer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void newThing(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void connectTiles(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void newTile(String type) {
+		switch(type) {
+		case "endtile" : 
+			tiles.put(tiles.size(), new EndTile());
+			break;
+		case "wall" :
+			tiles.put(tiles.size(), new Wall());
+			break;
+		case "hole" :
+			tiles.put(tiles.size(), new Hole());
+			break;
+		default: 
+			System.out.println("Type does not exists");
+			return;
+		}
+		System.out.println(tiles.size() - 1);
+	}
+
 	public void xmlinterpreter() {
 		
 	}
