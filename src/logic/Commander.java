@@ -47,7 +47,7 @@ public final class Commander {
 				connectTiles(input[1], input[2].toLowerCase(), input[3]);
 				break;
 			case "newthing":
-				newThing(input[1].toLowerCase(), input[2]);
+				newThing(input[1].toLowerCase(), input[2], input[3]);
 				break;
 			case "toggletimer":
 				toggleTimer();
@@ -58,8 +58,10 @@ public final class Commander {
 				putFrictionModifieronTile(input[1].toLowerCase(), input[2]);
 			break;
 			case "gettilestate":
+				getTileState(input[1]);
 				break;
 			case "moveworker":
+				moveWorker(input[1], input[2].toLowerCase());
 				break;
 			case "step":
 			break;
@@ -76,6 +78,43 @@ public final class Commander {
 		}
 	}
 	
+	private void moveWorker(String workerid, String d) {
+	if(things.get(Integer.valueOf(workerid)) == null 
+			|| things.get(Integer.valueOf(workerid)).getClass() != Worker.class ) 
+	{
+		System.out.println("Worker does not exist");
+		return;
+	}
+	Boolean moved = false;
+	switch(d) 
+	{
+		case "north":
+			moved = things.get(Integer.valueOf(workerid)).move(Direction.NORTH);
+			break;
+		case "south":
+			moved = things.get(Integer.valueOf(workerid)).move(Direction.SOUTH);
+			break;
+		case "east":
+			moved = things.get(Integer.valueOf(workerid)).move(Direction.EAST);
+			break;
+		case "west":
+			moved = things.get(Integer.valueOf(workerid)).move(Direction.WEST);
+			break;
+		default: 
+			System.out.println("No such direction");
+			return;
+				
+	}	
+	System.out.println(Boolean.valueOf(moved));
+
+		
+	}
+
+	private void getTileState(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void putFrictionModifieronTile(String type, String tileid) {
 	if(tiles.get(Integer.valueOf(tileid)) != null)
 		if(type.equals("honey"))
@@ -93,7 +132,12 @@ public final class Commander {
 			Timer.getInstance().start();
 	}
 
-	private void newThing(String type, String force) {
+	private void newThing(String type, String tileid ,String force) {
+		if(!tiles.containsKey(Integer.valueOf(tileid)))
+		{
+			System.out.println("Tile does not exist");
+			return;
+		}
 		switch(type) {
 			case "worker" : 
 				if(force != null)
@@ -105,6 +149,8 @@ public final class Commander {
 				things.put(things.size(), new Crate(100));
 				break;
 		}
+		tiles.get(Integer.valueOf(tileid)).accept(things.get(things.size() - 1));
+		System.out.println(things.size() - 1);
 		
 	}
 
@@ -154,7 +200,7 @@ public final class Commander {
 				tiles.put(tiles.size(), new Hole());
 				break;
 			default: 
-				System.out.println("Type does not exists");
+				System.out.println("Type does not exist");
 				return;
 		}
 		System.out.println(tiles.size() - 1);
