@@ -47,7 +47,7 @@ public final class Commander {
 				connectTiles(input[1], input[2], input[3]);
 				break;
 			case "newthing":
-				newThing(input[1]);
+				newThing(input[1], input[2]);
 				break;
 			case "toggletimer":
 				toggleTimer();
@@ -80,30 +80,69 @@ public final class Commander {
 		
 	}
 
-	private void newThing(String string) {
-		// TODO Auto-generated method stub
+	private void newThing(String type, String force) {
+		switch(type) {
+			case "worker" : 
+				if(force != null)
+					things.put(things.size(), new Worker(Integer.valueOf(force)));
+				else
+					things.put(things.size(), new Worker(100)); //what's the default weight?
+				break;
+			default: 
+				things.put(things.size(), new Crate(100));
+				break;
+		}
 		
 	}
 
-	private void connectTiles(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
+	private void connectTiles(String t1, String d, String t2) {
+		Tile tile1 = tiles.get(Integer.valueOf(t1));
+		Tile tile2 = tiles.get(Integer.valueOf(t2));
+		if(tile1 == null || tile2 == null)
+		{
+			System.out.println("Tiles with the given IDs do not exist");
+			return;
+		}
+		else 
+			switch(d) 
+			{
+			case "north": 
+				tile1.setNeighbour(Direction.NORTH, tile2);
+				tile2.setNeighbour(Direction.SOUTH, tile1);
+				break;
+			case "south":
+				tile1.setNeighbour(Direction.SOUTH, tile2);
+				tile2.setNeighbour(Direction.NORTH, tile1);
+				break;
+			case "east": 
+				tile1.setNeighbour(Direction.EAST, tile2);
+				tile2.setNeighbour(Direction.WEST, tile1);
+				break;
+			case "west": 
+				tile1.setNeighbour(Direction.WEST, tile2);
+				tile2.setNeighbour(Direction.EAST, tile1);
+				break;
+			default:
+				System.out.println("No such direction");
+				break;
+			}
 		
 	}
 
 	private void newTile(String type) {
 		switch(type) {
-		case "endtile" : 
-			tiles.put(tiles.size(), new EndTile());
-			break;
-		case "wall" :
-			tiles.put(tiles.size(), new Wall());
-			break;
-		case "hole" :
-			tiles.put(tiles.size(), new Hole());
-			break;
-		default: 
-			System.out.println("Type does not exists");
-			return;
+			case "endtile": 
+				tiles.put(tiles.size(), new EndTile());
+				break;
+			case "wall":
+				tiles.put(tiles.size(), new Wall());
+				break;
+			case "hole":
+				tiles.put(tiles.size(), new Hole());
+				break;
+			default: 
+				System.out.println("Type does not exists");
+				return;
 		}
 		System.out.println(tiles.size() - 1);
 	}
