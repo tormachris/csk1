@@ -53,6 +53,7 @@ public final class Commander {
 				toggleTimer();
 				break;
 			case "gettimerstate":
+				getTimerState();
 				break;
 			case "putfrictionmodifierontile":
 				putFrictionModifieronTile(input[1].toLowerCase(), input[2]);
@@ -64,6 +65,7 @@ public final class Commander {
 				moveWorker(input[1], input[2].toLowerCase());
 				break;
 			case "step":
+				step();
 			break;
 			case "getgamestate":
 				break;
@@ -77,6 +79,19 @@ public final class Commander {
 			}
 		}
 	}
+	
+	private void step() {
+		Timer.getInstance().tick();
+	}
+
+	
+	private void getTimerState() {
+		if(Timer.getInstance().getState() == Thread.State.RUNNABLE)
+			System.out.println(true);
+		else 
+			System.out.println(false);			
+	}
+
 	
 	private void moveWorker(String workerid, String d) {
 	if(things.get(Integer.valueOf(workerid)) == null 
@@ -105,14 +120,18 @@ public final class Commander {
 			return;
 				
 	}	
-	System.out.println(Boolean.valueOf(moved));
-
-		
+	System.out.println(moved.toString());		
 	}
 
-	private void getTileState(String string) {
-		// TODO Auto-generated method stub
-		
+	
+	private void getTileState(String id) {
+		if(tiles.get(Integer.valueOf(id)) == null)
+		{
+			System.out.println("Tile does not exist.");
+			return;
+		}
+		System.out.println(id + " " + tiles.get(Integer.valueOf(id)).getClass().toString() + " "
+		+ tiles.get(Integer.valueOf(id)).getFrictionMod().getClass().toString());
 	}
 
 	private void putFrictionModifieronTile(String type, String tileid) {
