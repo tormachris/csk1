@@ -92,4 +92,11 @@ public class Game {
 			this.currentmap = currentmap;	
 		}
 	}
+	
+	/**
+	 * @return the number of maps
+	 */
+	public int getNumofMaps() {
+		return maps.size();
+	}
 }

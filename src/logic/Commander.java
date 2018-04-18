@@ -5,49 +5,66 @@ package logic;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
-/** Interprets commands and executes them.
- * Just like a command line program :)
+/**
+ * Interprets commands and executes them. Just like a command line program :)
+ * 
  * @author Kristof
  * @version 1.0
  * @since 1.0
-*/
+ */
 public final class Commander {
-	
-	private HashMap<Integer, Tile> tiles = new HashMap<Integer, Tile>();
-	private HashMap<Integer, Thing> things = new HashMap<Integer, Thing>();
 
-	public String scan() {
-		String toreturn="";
-		
+	private HashMap<Integer, Tile> tiles = new HashMap<>();
+	private HashMap<Integer, Thing> things = new HashMap<>();
+	private static Commander instance;
+	private Boolean verboseMode;
+
+	private Commander() {
+		verboseMode = Boolean.valueOf(false);
+	}
+
+	public static Commander getInstance() {
+		if (instance == null) {
+			instance = new Commander();
+		}
+		return instance;
+	}
+
+	private String scan() {
+		String toreturn = "";
 		BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-        try {
+		Logger log = Logger.getLogger("logic.Commander");
+		try {
 			toreturn = stdin.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, e.getMessage());
 		}
-		
-		return toreturn.toLowerCase();	//we are not case sensitive
+		return toreturn.toLowerCase(); // we are not case sensitive
 	}
-	
+
 	public void interpreter() {
-		//First, we break up the raw input into command and arguments.
-		String rawin=scan();
-		String[] input=rawin.split(" ");
-		while (true) { //Let's process a bunch of inputs.
+		// First, we break up the raw input into command and arguments.
+		String rawin = scan();
+		String[] input = rawin.split(" ");
+		while (input[0] != "ForceExit") { // Let's process a bunch of inputs.
 			switch (input[0]) {
-		
 			case "newmap":
 				break;
 			case "newtile":
 				newTile(input[1].toLowerCase());
 				break;
 			case "connecttiles":
-				connectTiles(input[1], input[2].toLowerCase(), input[3]);
+				if(input.length>=4)
+					connectTiles(input[1], input[2].toLowerCase(), input[3]);
 				break;
 			case "newthing":
-				newThing(input[1].toLowerCase(), input[2], input[3]);
+				if(input.length>=4)
+					newThing(input[1].toLowerCase(), input[2], input[3]);
 				break;
 			case "toggletimer":
 				toggleTimer();
@@ -56,176 +73,212 @@ public final class Commander {
 				getTimerState();
 				break;
 			case "putfrictionmodifierontile":
+				if(input.length>=3)
 				putFrictionModifieronTile(input[1].toLowerCase(), input[2]);
-			break;
+				break;
 			case "gettilestate":
+				if(input.length>=2)
 				getTileState(input[1]);
 				break;
 			case "moveworker":
+				if(input.length>=3)
 				moveWorker(input[1], input[2].toLowerCase());
 				break;
 			case "step":
 				step();
-			break;
+				break;
 			case "getgamestate":
+				getGameState();
 				break;
 			case "xmlprepare":
-				xmlinterpreter();	//Change to XML processer state.
+				xmlinterpreter(); // Change to XML processor state.
 				break;
-			case "xmlover"://This command is invalid in this state, but let's leave this here for accounting purposes.
+			case "xmlover":// This command is invalid in this state, but let's leave this here for
+							// accounting purposes.
+				break;
+			case "verbosemode":
+				verboseMode = Boolean.valueOf(true);
+				break;
+			case "setholestate":
+				if(input.length>=3)
+					setholestate(input[1],input[2]);
+				break;
+			case "connectswitchto":
+				if(input.length>=3)
+					connectSwitchTo(input[1],input[2]);
 				break;
 			default:
 				break;
 			}
 		}
 	}
-	
+
 	private void step() {
 		Timer.getInstance().tick();
 	}
 
-	
 	private void getTimerState() {
-		if(Timer.getInstance().getState() == Thread.State.RUNNABLE)
-			System.out.println(true);
-		else 
-			System.out.println(false);			
+		System.out.println(Timer.getInstance().getState() == Thread.State.RUNNABLE);
 	}
 
-	
+	public boolean getVerboseMode() {
+		return verboseMode.booleanValue();
+	}
+	private void getGameState() {
+		StringBuilder sb=new StringBuilder();
+		sb.append("Workers\n");
+		Thing t=null;
+		for(Integer i=0;i<things.size();i++) {
+			t=things.get(i);
+			if(t instanceof Worker) sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
+		}
+		sb.append("Crates\n");
+		for(Integer i=0;i<things.size();i++) {
+			t=things.get(i);
+			if(t instanceof Crate) sb.append(i.toString() + "\n");
+		}
+		sb.append("Maps\n");
+		sb.append(Game.getInstance().getNumofMaps() + "\n");
+		System.out.print(sb.toString());
+	}
+	private void setholestate(String id, String state) {
+		Tile tile=tiles.get(Integer.valueOf(id));
+		Boolean boolstate=Boolean.valueOf(state.compareTo("open")==0 || state.compareTo("1")==0 || state.compareTo("true")==0);
+		if(tile instanceof Hole){
+			Hole hTile=(Hole)tile;
+			hTile.setOpen(boolstate);
+		}
+	}
+	private void connectSwitchTo(String id, String id2) {
+		Tile tile=tiles.get(Integer.valueOf(id));
+		Tile tile2=tiles.get(Integer.valueOf(id2));
+		Hole hTile=null;
+		Switch sTile=null;
+		if(tile instanceof Switch)
+			sTile=(Switch)tile;
+		if(tile2 instanceof Hole)
+			hTile=(Hole)tile2;
+		if(hTile!=null && sTile!=null)
+			sTile.setHole(hTile);
+	}
 	private void moveWorker(String workerid, String d) {
-	if(things.get(Integer.valueOf(workerid)) == null 
-			|| things.get(Integer.valueOf(workerid)).getClass() != Worker.class ) 
-	{
-		System.out.println("Worker does not exist");
-		return;
-	}
-	Boolean moved = false;
-	switch(d) 
-	{
-		case "north":
-			moved = things.get(Integer.valueOf(workerid)).move(Direction.NORTH);
-			break;
-		case "south":
-			moved = things.get(Integer.valueOf(workerid)).move(Direction.SOUTH);
-			break;
-		case "east":
-			moved = things.get(Integer.valueOf(workerid)).move(Direction.EAST);
-			break;
-		case "west":
-			moved = things.get(Integer.valueOf(workerid)).move(Direction.WEST);
-			break;
-		default: 
-			System.out.println("No such direction");
+		if (things.get(Integer.valueOf(workerid)) == null
+				|| things.get(Integer.valueOf(workerid)).getClass() != Worker.class) {
 			return;
-				
-	}	
-	System.out.println(moved.toString());		
+		}
+		Boolean moved = false;
+		moved = things.get(Integer.valueOf(workerid)).move(Direction.valueOf(d.toUpperCase(Locale.ENGLISH)));
+		System.out.println(moved.toString());
 	}
 
-	
 	private void getTileState(String id) {
-		if(tiles.get(Integer.valueOf(id)) == null)
-		{
-			System.out.println("Tile does not exist.");
+		if (tiles.get(Integer.valueOf(id)) == null) {
 			return;
 		}
 		System.out.println(id + " " + tiles.get(Integer.valueOf(id)).getClass().toString() + " "
-		+ tiles.get(Integer.valueOf(id)).getFrictionMod().getClass().toString());
+				+ tiles.get(Integer.valueOf(id)).getFrictionMod().getClass().toString());
 	}
 
 	private void putFrictionModifieronTile(String type, String tileid) {
-	if(tiles.get(Integer.valueOf(tileid)) != null)
-		if(type.equals("honey"))
-			tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Honey());
-		else
-			tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Oil());
-		
+		if (tiles.get(Integer.valueOf(tileid)) != null)
+			if (type.equals("honey"))
+				tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Honey());
+			else
+				tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Oil());
+
 	}
 
 	private void toggleTimer() {
-		//is this right?
-		if(Timer.getInstance().getState() == Thread.State.RUNNABLE)
+		// is this right?
+		if (Timer.getInstance().getState().compareTo(Thread.State.RUNNABLE) == 0)
 			Timer.getInstance().interrupt();
-		else 
+		else
 			Timer.getInstance().start();
 	}
 
-	private void newThing(String type, String tileid ,String force) {
-		if(!tiles.containsKey(Integer.valueOf(tileid)))
-		{
-			System.out.println("Tile does not exist");
+	private void newThing(String type, String tileid, String force) {
+		if (!tiles.containsKey(Integer.valueOf(tileid))) {
 			return;
 		}
-		switch(type) {
-			case "worker" : 
-				if(force != null)
-					things.put(things.size(), new Worker(Integer.valueOf(force)));
-				else
-					things.put(things.size(), new Worker(100)); //what's the default weight?
-				break;
-			default: 
-				things.put(things.size(), new Crate(100));
-				break;
-		}
+		if (type.compareTo("worker")==0)
+			if (force != null)
+				things.put(things.size(), new Worker(Integer.valueOf(force)));
+			else
+				things.put(things.size(), new Worker(100)); // what's the default weight?
+		else
+			things.put(things.size(), new Crate(100));
 		tiles.get(Integer.valueOf(tileid)).accept(things.get(things.size() - 1));
 		System.out.println(things.size() - 1);
-		
+
 	}
 
 	private void connectTiles(String t1, String d, String t2) {
 		Tile tile1 = tiles.get(Integer.valueOf(t1));
 		Tile tile2 = tiles.get(Integer.valueOf(t2));
-		if(tile1 == null || tile2 == null)
-		{
-			System.out.println("Tiles with the given IDs do not exist");
+		if (tile1 == null || tile2 == null) {
 			return;
+		} else {
+			tile1.setNeighbour(Direction.valueOf(d.toUpperCase(Locale.ENGLISH)) ,tile2);
+			tile2.setNeighbour(Direction.getOpposite(Direction.valueOf(d.toUpperCase(Locale.ENGLISH))), tile1);
 		}
-		else 
-			switch(d) 
-			{
-			case "north": 
-				tile1.setNeighbour(Direction.NORTH, tile2);
-				tile2.setNeighbour(Direction.SOUTH, tile1);
-				break;
-			case "south":
-				tile1.setNeighbour(Direction.SOUTH, tile2);
-				tile2.setNeighbour(Direction.NORTH, tile1);
-				break;
-			case "east": 
-				tile1.setNeighbour(Direction.EAST, tile2);
-				tile2.setNeighbour(Direction.WEST, tile1);
-				break;
-			case "west": 
-				tile1.setNeighbour(Direction.WEST, tile2);
-				tile2.setNeighbour(Direction.EAST, tile1);
-				break;
-			default:
-				System.out.println("No such direction");
-				break;
-			}
-		
 	}
 
 	private void newTile(String type) {
-		switch(type) {
-			case "endtile": 
-				tiles.put(tiles.size(), new EndTile());
-				break;
-			case "wall":
-				tiles.put(tiles.size(), new Wall());
-				break;
-			case "hole":
-				tiles.put(tiles.size(), new Hole());
-				break;
-			default: 
-				System.out.println("Type does not exist");
-				return;
+		switch (type) {
+		case "endtile":
+			tiles.put(tiles.size(), new EndTile());
+			break;
+		case "wall":
+			tiles.put(tiles.size(), new Wall());
+			break;
+		case "hole":
+			tiles.put(tiles.size(), new Hole());
+			break;
+		default:
+			tiles.put(tiles.size(), new Tile());
+			return;
 		}
 		System.out.println(tiles.size() - 1);
 	}
 
 	public void xmlinterpreter() {
-		
+		  BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+		  StringBuilder sb = new StringBuilder();
+		  String inline = "";
+		  Logger log = Logger.getLogger("logic.Commander");  
+		  try {
+			  while ((inline = inputReader.readLine()) != null) {
+				  if (inline.compareTo("xmlover")==0) break;
+				  else sb.append(inline);
+			  }
+			} catch (IOException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		  DocumentBuilder dBuilder = null;
+		  Document doc=null;
+		  Element element=null;
+		  NodeList nodes=null;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e1) {
+			log.log(Level.SEVERE, e1.getMessage());
+		}
+		  try {
+			if(dBuilder!=null)doc = dBuilder.parse(sb.toString());
+			
+			if(doc!=null)
+				element = doc.getDocumentElement();
+
+	        if(element!=null)
+	        	nodes = element.getChildNodes();
+	        if(nodes!=null) { //Process the XML HERE
+	        	for (int i = 0; i < nodes.getLength(); i++) {
+	        		System.out.println("" + nodes.item(i).getTextContent());
+	        	}
+	        }
+		} catch ( SAXException | IOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		}
 	}
 }
