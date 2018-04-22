@@ -26,8 +26,8 @@ public class Timer extends Thread{
 	 */
 	public Timer() {
 		steppables = new HashSet<>();
-		this.start(); //Start itself automagically, so you don't have to!
 		running=true;
+		this.start(); //Start itself automagically, so you don't have to!
 	}
 	
 	/**
