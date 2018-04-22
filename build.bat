@@ -9,8 +9,8 @@ REM and jar file
 if exist KillerSokoban.jar (del KillerSokoban.jar)
 
 REM compile classes, and build jar file
-javac -verbose -d .\bin @options.txt @files.txt
-jar cvfm KillerSokoban.jar src\MANIFEST.MF -C .\bin .
+javac -verbose -d .\bin @options.txt @files.txt || exit /B 1
+jar cvfm KillerSokoban.jar src\MANIFEST.MF -C .\bin . || exit /B 2
 
 echo Building done!
 
