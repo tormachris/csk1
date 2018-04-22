@@ -23,9 +23,11 @@ public final class Commander {
 	private HashMap<Integer, Thing> things = new HashMap<>();
 	private static Commander instance;
 	private Boolean verboseMode;
+	private Boolean XMLMode;
 
 	private Commander() {
 		verboseMode = Boolean.valueOf(false);
+		XMLMode = Boolean.valueOf(false);
 	}
 
 	public static Commander getInstance() {
@@ -48,6 +50,10 @@ public final class Commander {
 	}
 
 	public void interpreter() {
+		XMLMode = Boolean.valueOf(true);
+		newMap();
+		newTile(" ");
+		XMLMode = Boolean.valueOf(false);
 		// First, we break up the raw input into command and arguments.
 		String rawin = scan();
 		String[] input = rawin.split(" ");
@@ -117,8 +123,9 @@ public final class Commander {
 	}
 
 	private void newMap() {
-		new Map();
-		
+		Map m = new Map();
+		Game.getInstance().addMap(m);
+		Game.getInstance().start(m);
 	}
 
 	private void step() {
@@ -210,14 +217,21 @@ public final class Commander {
 			return;
 		}
 		if (type.compareTo("worker")==0)
+		{
 			if (force != null)
 				things.put(things.size(), new Worker(Integer.valueOf(force)));
 			else
-				things.put(things.size(), new Worker(100)); // what's the default weight?
+				things.put(things.size(), new Worker(2)); // what's the default weight?
+			Game.getInstance().getCurrentmap().addWorker((Worker) things.get(things.size() - 1));
+		}
 		else
-			things.put(things.size(), new Crate(100));
+		{
+			things.put(things.size(), new Crate(1));
+			Game.getInstance().getCurrentmap().addCrate((Crate) things.get(things.size() - 1));
+		}
 		tiles.get(Integer.valueOf(tileid)).accept(things.get(things.size() - 1));
 		things.get(things.size() - 1).setTile(tiles.get(Integer.valueOf(tileid)));
+		if(!XMLMode)
 		System.out.println(things.size() - 1);
 
 	}
@@ -244,51 +258,69 @@ public final class Commander {
 		case "hole":
 			tiles.put(tiles.size(), new Hole());
 			break;
+		case "switch":
+			tiles.put(tiles.size(), new Switch(new Hole()));
 		default:
 			tiles.put(tiles.size(), new Tile());
 			break;
 		}
+		Game.getInstance().getCurrentmap().addTile(tiles.get(tiles.size() - 1));
+		if(!XMLMode)
 		System.out.println(tiles.size() - 1);
 	}
 
 	public void xmlinterpreter() {
+		  XMLMode = Boolean.valueOf(true);
 		  BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 		  StringBuilder sb = new StringBuilder();
 		  String inline = "";
+		  String[] params;
 		  Logger log = Logger.getLogger("logic.Commander");  
 		  try {
 			  while ((inline = inputReader.readLine()) != null) {
-				  if (inline.compareTo("xmlover")==0) break;
-				  else sb.append(inline);
+				  if (inline.compareTo("XMLOver")==0) 
+				  {
+					  XMLMode = Boolean.valueOf(false);
+					  break;
+				  }
+				  else  
+					  switch (inline) {
+					  case "<!ELEMENT map>": 
+						  newMap();
+						  break;
+					  case  "<!ELEMENT tile(id, type, connectsto)>":
+						  for(int i = 0; i < 3; ++i)
+						  {
+							  inline = inputReader.readLine();
+							  sb.append(inline);
+						  }
+						  params = sb.toString().split("[(]|[)]");
+						  newTile(params[3]);
+						  connectTiles(params[1], "south", params[5]);
+						  break;
+					  case "<!ELEMENT thing(type, tileid, force)>":
+						  for(int i = 0; i < 3; ++i)
+						  {
+							  inline = inputReader.readLine();
+							  sb.append(inline);
+						  }
+						  params = sb.toString().split("[(]|[)]");
+						  newThing(params[1], params[3], params[5]);
+						  break;
+					  case "<!ELEMENT frictionmoifier (tileid, type)>":
+						  for(int i = 0; i < 2; ++i)
+						  {
+							  inline = inputReader.readLine();
+							  sb.append(inline);
+						  }
+						  params = sb.toString().split("[(]|[)]");
+						  putFrictionModifieronTile(params[3],params[1]);
+						  break;
+					  }
+				  sb = new StringBuilder("");
 			  }
 			} catch (IOException e) {
 				log.log(Level.SEVERE, e.getMessage());
-			}
-		  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		  DocumentBuilder dBuilder = null;
-		  Document doc=null;
-		  Element element=null;
-		  NodeList nodes=null;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e1) {
-			log.log(Level.SEVERE, e1.getMessage());
-		}
-		  try {
-			if(dBuilder!=null)doc = dBuilder.parse(sb.toString());
-			
-			if(doc!=null)
-				element = doc.getDocumentElement();
-
-	        if(element!=null)
-	        	nodes = element.getChildNodes();
-	        if(nodes!=null) { //Process the XML HERE
-	        	for (int i = 0; i < nodes.getLength(); i++) {
-	        		System.out.println("" + nodes.item(i).getTextContent());
-	        	}
-	        }
-		} catch ( SAXException | IOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-		}
-	}
+			}	
+	} 
 }
