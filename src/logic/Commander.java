@@ -51,7 +51,7 @@ public final class Commander {
 		// First, we break up the raw input into command and arguments.
 		String rawin = scan();
 		String[] input = rawin.split(" ");
-		while (input[0] != "ForceExit") { // Let's process a bunch of inputs.
+		while (input[0] != "forceexit") { // Let's process a bunch of inputs.
 			switch (input[0]) {
 			case "newmap":
 				break;
@@ -110,6 +110,8 @@ public final class Commander {
 			default:
 				break;
 			}
+			rawin = scan();
+			input = rawin.split(" ");
 		}
 	}
 
@@ -118,7 +120,7 @@ public final class Commander {
 	}
 
 	private void getTimerState() {
-		System.out.println(Timer.getInstance().getState() == Thread.State.RUNNABLE);
+		System.out.println(Timer.getInstance().getState().equals(Thread.State.RUNNABLE));
 	}
 
 	public boolean getVerboseMode() {
@@ -208,6 +210,7 @@ public final class Commander {
 		else
 			things.put(things.size(), new Crate(100));
 		tiles.get(Integer.valueOf(tileid)).accept(things.get(things.size() - 1));
+		things.get(things.size() - 1).setTile(tiles.get(Integer.valueOf(tileid)));
 		System.out.println(things.size() - 1);
 
 	}
@@ -236,7 +239,7 @@ public final class Commander {
 			break;
 		default:
 			tiles.put(tiles.size(), new Tile());
-			return;
+			break;
 		}
 		System.out.println(tiles.size() - 1);
 	}
