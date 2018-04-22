@@ -1,0 +1,21 @@
+VerboseMode
+XMLPrepare
+<!DOCTYPE map
+[
+<!ELEMENT map>
+<!ELEMENT tile(id, type, connectsto)>
+<!ELEMENT id (1)
+<!ELEMENT type (0)
+<!ELEMENT connectsto (2)
+<!ELEMENT tile(id, type, connectsto)>
+<!ELEMENT id (2)
+<!ELEMENT type (hole)
+<!ELEMENT connectsto (1)
+<!ELEMENT thing(type, tileid, force)>
+<!ELEMENT type (worker)
+<!ELEMENT tileid (1)
+<!ELEMENT force (4)
+]>
+XMLOver
+moveWorker 0 NORTH
+getGameState
