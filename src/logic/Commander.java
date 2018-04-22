@@ -54,6 +54,7 @@ public final class Commander {
 		while (input[0] != "forceexit") { // Let's process a bunch of inputs.
 			switch (input[0]) {
 			case "newmap":
+				newMap();
 				break;
 			case "newtile":
 				newTile(input[1].toLowerCase());
@@ -113,6 +114,11 @@ public final class Commander {
 			rawin = scan();
 			input = rawin.split(" ");
 		}
+	}
+
+	private void newMap() {
+		new Map();
+		
 	}
 
 	private void step() {

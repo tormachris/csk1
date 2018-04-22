@@ -25,6 +25,7 @@ public class Worker extends Thing{
 	public Worker(Integer w) {
 		super(w);
 		force = w*2.5;
+		points = 0;
 		this.updateOwner(this);
 	}
 
