@@ -6,9 +6,6 @@ package logic;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 /**
  * Interprets commands and executes them. Just like a command line program :)
@@ -277,13 +274,7 @@ public final class Commander {
 		  String[] params;
 		  Logger log = Logger.getLogger("logic.Commander");  
 		  try {
-			  while ((inline = inputReader.readLine()) != null) {
-				  if (inline.compareTo("XMLOver")==0) 
-				  {
-					  XMLMode = Boolean.valueOf(false);
-					  break;
-				  }
-				  else  
+			  while ((inline = inputReader.readLine()) != null) {			  
 					  switch (inline) {
 					  case "<!ELEMENT map>": 
 						  newMap();
@@ -315,6 +306,11 @@ public final class Commander {
 						  }
 						  params = sb.toString().split("[(]|[)]");
 						  putFrictionModifieronTile(params[3],params[1]);
+						  break;
+					  case "XMLOver":	  
+						  XMLMode = Boolean.valueOf(false);
+						  return;
+					  default:
 						  break;
 					  }
 				  sb = new StringBuilder("");
