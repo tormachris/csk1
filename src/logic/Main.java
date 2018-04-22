@@ -15,6 +15,7 @@ public class Main {
 		Timer.getInstance(); //Init Timer
 		Game.getInstance();	//Init Game 
 		Commander.getInstance().interpreter();
+		Timer.getInstance().interrupt();
 	}
 
 }

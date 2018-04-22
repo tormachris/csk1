@@ -11,6 +11,8 @@ public class Timer extends Thread{
 	
 	private static final int TIMETOWAIT=1000000; //Modify interval here, pls.
 	
+	private Boolean running; //state of the timer.
+	
 	private static Timer instance = null;
 	/**
 	 * @return the TIMETOWAIT
@@ -25,6 +27,7 @@ public class Timer extends Thread{
 	public Timer() {
 		steppables = new HashSet<>();
 		this.start(); //Start itself automagically, so you don't have to!
+		running=true;
 	}
 	
 	/**
@@ -46,11 +49,13 @@ public class Timer extends Thread{
 	@Override
 	public void run() {
 		while(true) { //I don't know if this is how to do it, but this works!
-			this.tick(); //Let's Tick
+			if(running) {
+				this.tick(); //Let's Tick
 			try {
 				Thread.sleep(TIMETOWAIT);
 			} catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
+				}
 			}
 		}
 	}
@@ -90,6 +95,16 @@ public class Timer extends Thread{
 		if (!(this.steppables.contains(s))) throw new IllegalArgumentException("Item not in collection.");
 		this.steppables.remove(s);
 	}
-	
-
+	/**
+	 * This method gives back the state of the timer.
+	 */
+	public boolean GetRunning() {
+		return running;
+	}
+	/**
+	 * This method sets the state of the timer.
+	 */
+	public void SetRunning(boolean b) {
+		running=b;
+	}
 }

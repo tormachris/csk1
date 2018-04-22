@@ -126,7 +126,7 @@ public final class Commander {
 	}
 
 	private void getTimerState() {
-		System.out.println(Timer.getInstance().getState().equals(Thread.State.RUNNABLE));
+		System.out.println(Timer.getInstance().GetRunning());
 	}
 
 	public boolean getVerboseMode() {
@@ -198,10 +198,11 @@ public final class Commander {
 
 	private void toggleTimer() {
 		// is this right?
-		if (Timer.getInstance().getState().compareTo(Thread.State.RUNNABLE) == 0)
-			Timer.getInstance().interrupt();
+		if(Timer.getInstance().GetRunning()) {
+			Timer.getInstance().SetRunning(false);
+		}
 		else
-			Timer.getInstance().start();
+			Timer.getInstance().SetRunning(true);
 	}
 
 	private void newThing(String type, String tileid, String force) {
