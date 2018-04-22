@@ -117,8 +117,9 @@ public final class Commander {
 	}
 
 	private void newMap() {
-		new Map();
-		
+		Map m = new Map();
+		Game.getInstance().addMap(m);
+		Game.getInstance().start(m);
 	}
 
 	private void step() {
@@ -209,12 +210,18 @@ public final class Commander {
 			return;
 		}
 		if (type.compareTo("worker")==0)
+		{
 			if (force != null)
 				things.put(things.size(), new Worker(Integer.valueOf(force)));
 			else
 				things.put(things.size(), new Worker(100)); // what's the default weight?
+			Game.getInstance().getCurrentmap().addWorker((Worker) things.get(things.size() - 1));
+		}
 		else
+		{
 			things.put(things.size(), new Crate(100));
+			Game.getInstance().getCurrentmap().addCrate((Crate) things.get(things.size() - 1));
+		}
 		tiles.get(Integer.valueOf(tileid)).accept(things.get(things.size() - 1));
 		things.get(things.size() - 1).setTile(tiles.get(Integer.valueOf(tileid)));
 		System.out.println(things.size() - 1);
@@ -247,6 +254,7 @@ public final class Commander {
 			tiles.put(tiles.size(), new Tile());
 			break;
 		}
+		Game.getInstance().getCurrentmap().addTile(tiles.get(tiles.size() - 1));
 		System.out.println(tiles.size() - 1);
 	}
 
