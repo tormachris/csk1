@@ -27,6 +27,7 @@ for t in $TEST_DATA/*.testcase; do
 
 	echo -e "\n-----------------------"
 	echo "Running: $t..."
+	total=$(( $total + 1 ))
 
 	EXPECTED="$t.expected"
 
@@ -60,7 +61,6 @@ for t in $TEST_DATA/*.testcase; do
 
 	fi
 
-	total=$(( $total + 1 ))
 done
 
 
