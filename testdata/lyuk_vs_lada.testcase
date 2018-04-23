@@ -26,5 +26,4 @@ XMLPrepare
 ]>
 XMLOver
 SetHoleState 3 open
-connectTiles 2 3 NORTH
 moveWorker 0 NORTH

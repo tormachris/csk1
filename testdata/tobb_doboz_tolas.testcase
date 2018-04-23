@@ -41,7 +41,4 @@ XMLPrepare
 <!ELEMENT force (0)
 ]>
 XMLOver
-connectTiles 2 3 NORTH
-connectTiles 3 4 NORTH
-connectTiles 4 5 NORTH
 moveWorker 0 NORTH

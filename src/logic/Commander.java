@@ -201,7 +201,6 @@ public final class Commander {
 	}
 
 	private void toggleTimer() {
-		// is this right?
 		if(Timer.getInstance().GetRunning()) {
 			Timer.getInstance().SetRunning(false);
 		}

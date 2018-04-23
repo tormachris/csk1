@@ -33,7 +33,5 @@ XMLPrepare
 <!ELEMENT force (0)
 ]>
 XMLOver
-connectTiles 2 3 NORTH
-connectTiles 3 4 NORTH
 moveWorker 0 NORTH
 getGameState
