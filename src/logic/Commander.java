@@ -21,6 +21,8 @@ public final class Commander {
 	private static Commander instance;
 	private Boolean verboseMode;
 	private Boolean XMLMode;
+	
+	Scanner stdin = new Scanner(System.in);
 
 	private Commander() {
 		verboseMode = Boolean.valueOf(false);
@@ -52,14 +54,14 @@ public final class Commander {
 
 	private String scan() {
 		String toreturn = "";
-		BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-		Logger log = Logger.getLogger("logic.Commander");
-		try {
-			toreturn = stdin.readLine();
-		} catch (IOException e) {
-			log.log(Level.SEVERE, e.getMessage());
+		while(stdin.hasNext()) 
+		{
+			toreturn=stdin.nextLine().toLowerCase();
+			return toreturn;
 		}
-		return toreturn.toLowerCase(); // we are not case sensitive
+		stdin.close();
+		return " ";
+		 // we are not case sensitive
 	}
 
 	public void interpreter() {
@@ -281,58 +283,52 @@ public final class Commander {
 
 	public void xmlinterpreter() {
 		  XMLMode = Boolean.valueOf(true);
-		  BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 		  StringBuilder sb = new StringBuilder();
 		  String inline = "";
 		  String[] params;
-		  Logger log = Logger.getLogger("logic.Commander");  
-		  try {
-			  while ((inline = inputReader.readLine()) != null) {			  
-					  switch (inline) {
-					  case "<!ELEMENT map>": 
-						  this.tiles = new HashMap<>();
-						  this.things = new HashMap<>();
-						  newMap();
-						  newTile(" ");
-						  break;
-					  case  "<!ELEMENT tile(id, type, connectsto)>":
-						  for(int i = 0; i < 3; ++i)
-						  {
-							  inline = inputReader.readLine();
-							  sb.append(inline);
-						  }
-						  params = sb.toString().split("[(]|[)]");
-						  newTile(params[3]);
-						  connectTiles(params[1], "south", params[5]);
-						  break;
-					  case "<!ELEMENT thing(type, tileid, force)>":
-						  for(int i = 0; i < 3; ++i)
-						  {
-							  inline = inputReader.readLine();
-							  sb.append(inline);
-						  }
-						  params = sb.toString().split("[(]|[)]");
-						  newThing(params[1], params[3], params[5]);
-						  break;
-					  case "<!ELEMENT frictionmoifier (tileid, type)>":
-						  for(int i = 0; i < 2; ++i)
-						  {
-							  inline = inputReader.readLine();
-							  sb.append(inline);
-						  }
-						  params = sb.toString().split("[(]|[)]");
-						  putFrictionModifieronTile(params[3],params[1]);
-						  break;
-					  case "XMLOver":	  
-						  XMLMode = Boolean.valueOf(false);
-						  return;
-					  default:
-						  break;
+		  while ((inline = scan()) != null) {			  
+				  switch (inline) {
+				  case "<!ELEMENT map>": 
+					  this.tiles = new HashMap<>();
+					  this.things = new HashMap<>();
+					  newMap();
+					  newTile(" ");
+					  break;
+				  case  "<!ELEMENT tile(id, type, connectsto)>":
+					  for(int i = 0; i < 3; ++i)
+					  {
+						  inline = scan();
+						  sb.append(inline);
 					  }
-				  sb = new StringBuilder("");
-			  }
-			} catch (IOException e) {
-				log.log(Level.SEVERE, e.getMessage());
-			}	
+					  params = sb.toString().split("[(]|[)]");
+					  newTile(params[3]);
+					  connectTiles(params[1], "south", params[5]);
+					  break;
+				  case "<!ELEMENT thing(type, tileid, force)>":
+					  for(int i = 0; i < 3; ++i)
+					  {
+						  inline = scan();
+						  sb.append(inline);
+					  }
+					  params = sb.toString().split("[(]|[)]");
+					  newThing(params[1], params[3], params[5]);
+					  break;
+				  case "<!ELEMENT frictionmoifier (tileid, type)>":
+					  for(int i = 0; i < 2; ++i)
+					  {
+						  inline = scan();
+						  sb.append(inline);
+					  }
+					  params = sb.toString().split("[(]|[)]");
+					  putFrictionModifieronTile(params[3],params[1]);
+					  break;
+				  case "XMLOver":	  
+					  XMLMode = Boolean.valueOf(false);
+					  return;
+				  default:
+					  break;
+				  }
+			  sb = new StringBuilder("");
+		  }	
 	} 
 }
