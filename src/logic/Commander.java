@@ -33,6 +33,14 @@ public final class Commander {
 		}
 		return instance;
 	}
+	public int getID(Thing t) {
+		int i;
+		for(i=0; i<things.size();i++) {
+			if(t.equals(this.things.get(i)))
+				return i;
+		}
+		return -1;
+	}
 
 	private String scan() {
 		String toreturn = "";
