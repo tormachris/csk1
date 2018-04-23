@@ -48,6 +48,7 @@ public class Map implements Steppable {
 	 */
 	public void endMap()
 	{
+		System.out.println("GameOver");
 		Timer.getInstance().removeSteppable(this);
 	}
 	
