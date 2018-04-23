@@ -3,9 +3,8 @@
  */
 package logic;
 
-import java.io.*;
 import java.util.*;
-import java.util.logging.*;
+
 
 /**
  * Interprets commands and executes them. Just like a command line program :)
@@ -58,7 +57,6 @@ public final class Commander {
 	while(stdin.hasNextLine()) {
 		String rawin = stdin.nextLine().toLowerCase();
 		String[] input = rawin.split(" ");
-		if (input[0] != "forceexit") 
 			switch (input[0]) {
 			case "newmap":
 				newMap();
@@ -115,12 +113,15 @@ public final class Commander {
 				if(input.length>=3)
 					connectSwitchTo(input[1],input[2]);
 				break;
+			case "forceexit":
+				stdin.close();
+				return;
 			default:
 				break;
 			}
-		else
-			break;
+		
 		}
+	stdin.close();
 	}
 
 	private void newMap() {
@@ -156,7 +157,7 @@ public final class Commander {
 				sb.append(i.toString() + "\n");
 		}
 		sb.append("Maps\n");
-		sb.append(Game.getInstance().getNumofMaps() - 1 + "\n");
+		sb.append(Game.getInstance().getNumofMaps()  + "\n");
 		System.out.print(sb.toString());
 	}
 	private void setholestate(String id, String state) {
@@ -223,7 +224,7 @@ public final class Commander {
 			if (force != null)
 				things.put(things.size(), new Worker(Integer.valueOf(force)));
 			else
-				things.put(things.size(), new Worker(2)); // what's the default weight?
+				things.put(things.size(), new Worker(1)); // what's the default weight?
 			Game.getInstance().getCurrentmap().addWorker((Worker) things.get(things.size() - 1));
 		}
 		else
@@ -279,7 +280,6 @@ public final class Commander {
 		  while ( stdin.hasNext()) {			  
 				  switch (stdin.nextLine()) {
 				  case "<!ELEMENT map>": 
-					  System.out.println("mapot gyartok");
 					  this.tiles = new HashMap<>();
 					  this.things = new HashMap<>();
 					  newMap();

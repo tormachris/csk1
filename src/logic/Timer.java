@@ -13,6 +13,8 @@ public class Timer extends Thread{
 	
 	private Boolean running; //state of the timer.
 	
+	private volatile Boolean stopsign = Boolean.valueOf(false);
+	
 	private static Timer instance = null;
 	/**
 	 * @return the TIMETOWAIT
@@ -48,7 +50,7 @@ public class Timer extends Thread{
 	 */
 	@Override
 	public void run() {
-		while(true) { //I don't know if this is how to do it, but this works!
+		while(!stopsign) { //I don't know if this is how to do it, but this works!
 			if(running) {
 				this.tick(); //Let's Tick
 			try {
@@ -106,5 +108,10 @@ public class Timer extends Thread{
 	 */
 	public void SetRunning(boolean b) {
 		running=b;
+	}
+	
+	public void stopSign()
+	{
+		stopsign = true;
 	}
 }

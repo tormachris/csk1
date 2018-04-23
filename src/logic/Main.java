@@ -16,6 +16,7 @@ public class Main {
 		Game.getInstance();	//Init Game 
 		Commander.getInstance().interpreter();
 		Timer.getInstance().interrupt();
+		Timer.getInstance().stopSign();
 	}
 
 }
