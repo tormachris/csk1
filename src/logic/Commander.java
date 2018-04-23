@@ -282,13 +282,15 @@ public final class Commander {
 	}
 
 	public void xmlinterpreter() {
+		System.out.println("XMLInterpreterben vagyok");
 		  XMLMode = Boolean.valueOf(true);
 		  StringBuilder sb = new StringBuilder();
 		  String inline = "";
 		  String[] params;
-		  while ((inline = scan()) != null) {			  
-				  switch (inline) {
+		  while ( stdin.hasNext()) {			  
+				  switch (stdin.nextLine()) {
 				  case "<!ELEMENT map>": 
+					  System.out.println("mapot gyartok");
 					  this.tiles = new HashMap<>();
 					  this.things = new HashMap<>();
 					  newMap();
@@ -297,17 +299,18 @@ public final class Commander {
 				  case  "<!ELEMENT tile(id, type, connectsto)>":
 					  for(int i = 0; i < 3; ++i)
 					  {
-						  inline = scan();
+						  inline = stdin.nextLine();
 						  sb.append(inline);
 					  }
 					  params = sb.toString().split("[(]|[)]");
 					  newTile(params[3]);
+					  System.out.println("tileokat gyartok");
 					  connectTiles(params[1], "south", params[5]);
 					  break;
 				  case "<!ELEMENT thing(type, tileid, force)>":
 					  for(int i = 0; i < 3; ++i)
 					  {
-						  inline = scan();
+						  inline = stdin.nextLine();
 						  sb.append(inline);
 					  }
 					  params = sb.toString().split("[(]|[)]");
@@ -316,13 +319,14 @@ public final class Commander {
 				  case "<!ELEMENT frictionmoifier (tileid, type)>":
 					  for(int i = 0; i < 2; ++i)
 					  {
-						  inline = scan();
+						  inline = stdin.nextLine();
 						  sb.append(inline);
 					  }
 					  params = sb.toString().split("[(]|[)]");
 					  putFrictionModifieronTile(params[3],params[1]);
 					  break;
 				  case "XMLOver":	  
+					  System.out.println("XMlover vagyok");
 					  XMLMode = Boolean.valueOf(false);
 					  return;
 				  default:
