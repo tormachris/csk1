@@ -41,6 +41,14 @@ public final class Commander {
 		}
 		return -1;
 	}
+	public int getTileID(Tile t) {
+		int i;
+		for(i=0; i<tiles.size();i++) {
+			if(t.equals(this.tiles.get(i)))
+				return i;
+		}
+		return -1;
+	}
 
 	private String scan() {
 		String toreturn = "";
