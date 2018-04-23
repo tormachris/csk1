@@ -47,10 +47,6 @@ public final class Commander {
 	}
 
 	public void interpreter() {
-		XMLMode = Boolean.valueOf(true);
-		newMap();
-		newTile(" ");
-		XMLMode = Boolean.valueOf(false);
 		// First, we break up the raw input into command and arguments.
 		String rawin = scan();
 		String[] input = rawin.split(" ");
@@ -142,15 +138,17 @@ public final class Commander {
 		Thing t=null;
 		for(Integer i=0;i<things.size();i++) {
 			t=things.get(i);
-			if(t instanceof Worker) sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
+			if(t instanceof Worker && Game.getInstance().getCurrentmap().getWorkers().contains(t)) 
+				sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
 		}
 		sb.append("Crates\n");
 		for(Integer i=0;i<things.size();i++) {
 			t=things.get(i);
-			if(t instanceof Crate) sb.append(i.toString() + "\n");
+			if(t instanceof Crate && Game.getInstance().getCurrentmap().getCrates().contains(t)) 
+				sb.append(i.toString() + "\n");
 		}
 		sb.append("Maps\n");
-		sb.append(Game.getInstance().getNumofMaps() + "\n");
+		sb.append(Game.getInstance().getNumofMaps() - 1 + "\n");
 		System.out.print(sb.toString());
 	}
 	private void setholestate(String id, String state) {
@@ -276,7 +274,10 @@ public final class Commander {
 			  while ((inline = inputReader.readLine()) != null) {			  
 					  switch (inline) {
 					  case "<!ELEMENT map>": 
+						  this.tiles = new HashMap<>();
+						  this.things = new HashMap<>();
 						  newMap();
+						  newTile(" ");
 						  break;
 					  case  "<!ELEMENT tile(id, type, connectsto)>":
 						  for(int i = 0; i < 3; ++i)
