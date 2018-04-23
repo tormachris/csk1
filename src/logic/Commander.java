@@ -142,15 +142,17 @@ public final class Commander {
 		Thing t=null;
 		for(Integer i=0;i<things.size();i++) {
 			t=things.get(i);
-			if(t instanceof Worker) sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
+			if(t instanceof Worker && Game.getInstance().getCurrentmap().getWorkers().contains(t)) 
+				sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
 		}
 		sb.append("Crates\n");
 		for(Integer i=0;i<things.size();i++) {
 			t=things.get(i);
-			if(t instanceof Crate) sb.append(i.toString() + "\n");
+			if(t instanceof Crate && Game.getInstance().getCurrentmap().getCrates().contains(t)) 
+				sb.append(i.toString() + "\n");
 		}
 		sb.append("Maps\n");
-		sb.append(Game.getInstance().getNumofMaps() + "\n");
+		sb.append(Game.getInstance().getNumofMaps() - 1 + "\n");
 		System.out.print(sb.toString());
 	}
 	private void setholestate(String id, String state) {
