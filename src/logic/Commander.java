@@ -3,9 +3,9 @@
  */
 package logic;
 
-import java.io.*;
+
 import java.util.*;
-import java.util.logging.*;
+
 
 /**
  * Interprets commands and executes them. Just like a command line program :)
@@ -22,7 +22,7 @@ public final class Commander {
 	private Boolean verboseMode;
 	private Boolean XMLMode;
 	
-	Scanner stdin = new Scanner(System.in);
+	Scanner stdin = null;
 
 	private Commander() {
 		verboseMode = Boolean.valueOf(false);
@@ -54,6 +54,7 @@ public final class Commander {
 
 
 	public void interpreter() {
+		stdin=new Scanner(System.in);
 		// First, we break up the raw input into command and arguments.
 	while(stdin.hasNextLine()) {
 		String rawin = stdin.nextLine().toLowerCase();
@@ -120,7 +121,8 @@ public final class Commander {
 			}
 		else
 			break;
-		}
+		} stdin.close();
+		return;
 	}
 
 	private void newMap() {
@@ -146,8 +148,10 @@ public final class Commander {
 		Thing t=null;
 		for(Integer i=0;i<things.size();i++) {
 			t=things.get(i);
-			if(t instanceof Worker && Game.getInstance().getCurrentmap().getWorkers().contains(t)) 
-				sb.append(i.toString() + " " + ((Worker)t).getForce().toString() + "\n");
+			if(t instanceof Worker && Game.getInstance().getCurrentmap().getWorkers().contains(t)) {
+				Double d=((Worker)t).getForce();
+				int x= d.intValue();
+				sb.append(i.toString() + " " + x + "\n");}
 		}
 		sb.append("Crates\n");
 		for(Integer i=0;i<things.size();i++) {
@@ -156,7 +160,7 @@ public final class Commander {
 				sb.append(i.toString() + "\n");
 		}
 		sb.append("Maps\n");
-		sb.append(Game.getInstance().getNumofMaps() - 1 + "\n");
+		sb.append(Game.getInstance().getNumofMaps() + "\n");
 		System.out.print(sb.toString());
 	}
 	private void setholestate(String id, String state) {
