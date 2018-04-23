@@ -63,6 +63,9 @@ public class Worker extends Thing{
 	@Override
 	public void destroy()
 	{
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : died");
 		Game.getInstance().getCurrentmap().removeWorker(this);
 	}
 
@@ -81,9 +84,15 @@ public class Worker extends Thing{
 	}
 	
 	public void dropOil() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : fmput");
 		this.getTile().setFrictionMod(new Oil());
 	}
 	public void dropHoney() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : fmput");
 		this.getTile().setFrictionMod(new Honey());
 	}
 

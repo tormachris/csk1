@@ -71,6 +71,12 @@ public abstract class Thing {
 			//if the Thing was accepted by the new Tile the Thing moves to it.
 			tile.remove(this);
 			tile = newTile;
+			if(this.getClass().equals(Crate.class) && moved)
+			{
+				int id = Commander.getInstance().getID(this);
+				if(id != -1)
+					System.out.println("Crate " + id + " : moved");
+			}
 		}
 		
 		return moved.booleanValue();

@@ -37,6 +37,11 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
+		int id = Commander.getInstance().getTileID(this);
+		
+		if(id != -1)
+			if(open)
+				System.out.println("Hole " + id + " : open");
 		this.open = open;
 	}
 

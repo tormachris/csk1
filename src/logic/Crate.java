@@ -33,6 +33,9 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public void destroy() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Crate " + id + " : died");
 		Game.getInstance().getCurrentmap().removeCrate(this);
 	}
 	
