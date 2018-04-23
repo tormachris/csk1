@@ -47,10 +47,6 @@ public final class Commander {
 	}
 
 	public void interpreter() {
-		XMLMode = Boolean.valueOf(true);
-		newMap();
-		newTile(" ");
-		XMLMode = Boolean.valueOf(false);
 		// First, we break up the raw input into command and arguments.
 		String rawin = scan();
 		String[] input = rawin.split(" ");
@@ -279,7 +275,10 @@ public final class Commander {
 			  while ((inline = inputReader.readLine()) != null) {			  
 					  switch (inline) {
 					  case "<!ELEMENT map>": 
+						  this.tiles = new HashMap<>();
+						  this.things = new HashMap<>();
 						  newMap();
+						  newTile(" ");
 						  break;
 					  case  "<!ELEMENT tile(id, type, connectsto)>":
 						  for(int i = 0; i < 3; ++i)
