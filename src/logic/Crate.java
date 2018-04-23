@@ -25,6 +25,9 @@ public class Crate extends Thing{
 	{	
 		Worker w = (Worker)this.getOwner(); 
 		w.setPoints(w.getPoints() + 1); //Destroying the Crate
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Crate " + id + " : onendtile");
 		this.destroy();
 	}
 	

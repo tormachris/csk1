@@ -71,7 +71,7 @@ public class Hole extends Tile {
 	 */
 	public void toggleOpen()
 	{
-		open = !open;	//Changing to the opposite state
+		setOpen(!open);	//Changing to the opposite state
 		if(open.booleanValue() && this.getThing()!=null)
 		{
 			this.getThing().destroy();	//Destroying the Thing standing on the Hole when it is activated.

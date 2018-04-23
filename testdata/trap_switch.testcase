@@ -29,6 +29,6 @@ XMLPrepare
 <!ELEMENT force (0)
 ]>
 XMLOver
-ConnetSwitchTo 3 4
+ConnectSwitchTo 3 4
 moveWorker 0 NORTH
 getGameState
