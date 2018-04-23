@@ -205,11 +205,17 @@ public final class Commander {
 
 	private void putFrictionModifieronTile(String type, String tileid) {
 		if (tiles.get(Integer.valueOf(tileid)) != null)
+		{
 			if (type.equals("honey"))
 				tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Honey());
 			else
 				tiles.get(Integer.valueOf(tileid)).setFrictionMod(new Oil());
-
+			if(tiles.get(Integer.valueOf(tileid)).getThing() !=null && tiles.get(Integer.valueOf(tileid)).getThing() instanceof Worker )
+			{	int id;
+				id = this.getID(tiles.get(Integer.valueOf(tileid)).getThing());
+				System.out.println("Worker " + id +" : fmput");
+			}
+		}
 	}
 
 	private void toggleTimer() {
@@ -268,6 +274,7 @@ public final class Commander {
 			break;
 		case "switch":
 			tiles.put(tiles.size(), new Switch(new Hole()));
+			break;
 		default:
 			tiles.put(tiles.size(), new Tile());
 			break;
