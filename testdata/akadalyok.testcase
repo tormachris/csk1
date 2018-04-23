@@ -39,4 +39,8 @@ XMLPrepare
 XMLOver
 moveWorker 0 NORTH
 moveWorker 1 NORTH
+
 forceexit
+
+
+
