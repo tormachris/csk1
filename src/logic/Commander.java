@@ -121,8 +121,8 @@ public final class Commander {
 			default:
 				break;
 			}
-			break;
-		} stdin.close();
+		} 
+		stdin.close();
 		return;
 		}
 
