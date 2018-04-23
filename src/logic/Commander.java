@@ -52,23 +52,13 @@ public final class Commander {
 		return -1;
 	}
 
-	private String scan() {
-		String toreturn = "";
-		while(stdin.hasNext()) 
-		{
-			toreturn=stdin.nextLine().toLowerCase();
-			return toreturn;
-		}
-		stdin.close();
-		return " ";
-		 // we are not case sensitive
-	}
 
 	public void interpreter() {
 		// First, we break up the raw input into command and arguments.
-		String rawin = scan();
+	while(stdin.hasNextLine()) {
+		String rawin = stdin.nextLine().toLowerCase();
 		String[] input = rawin.split(" ");
-		while (input[0] != "forceexit") { // Let's process a bunch of inputs.
+		if (input[0] != "forceexit") 
 			switch (input[0]) {
 			case "newmap":
 				newMap();
@@ -128,8 +118,8 @@ public final class Commander {
 			default:
 				break;
 			}
-			rawin = scan();
-			input = rawin.split(" ");
+		else
+			break;
 		}
 	}
 
@@ -282,7 +272,6 @@ public final class Commander {
 	}
 
 	public void xmlinterpreter() {
-		System.out.println("XMLInterpreterben vagyok");
 		  XMLMode = Boolean.valueOf(true);
 		  StringBuilder sb = new StringBuilder();
 		  String inline = "";
@@ -304,7 +293,6 @@ public final class Commander {
 					  }
 					  params = sb.toString().split("[(]|[)]");
 					  newTile(params[3]);
-					  System.out.println("tileokat gyartok");
 					  connectTiles(params[1], "south", params[5]);
 					  break;
 				  case "<!ELEMENT thing(type, tileid, force)>":
@@ -326,7 +314,6 @@ public final class Commander {
 					  putFrictionModifieronTile(params[3],params[1]);
 					  break;
 				  case "XMLOver":	  
-					  System.out.println("XMlover vagyok");
 					  XMLMode = Boolean.valueOf(false);
 					  return;
 				  default:
