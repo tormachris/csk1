@@ -9,22 +9,28 @@ import java.util.*;
 public class Map implements Steppable {
 	
 	private Integer ticksRemain;
-	private Integer defaultTime;
-	private Set<Crate> crates;
-	private Set<Worker> workers;
-	private Set<Tile> tiles;
+	private Set<Crate> crates; 
+	private Set<Worker> workers; 
+	private Set<Tile> tiles; 
+
+	private static final int DEFAULTTICKSREMAIN=10;
 	
-	private static final int DEFAULTTICKSREMAIN=100000000;
-	
+	/**
+	 * @return the defaultticksremain
+	 */
+	public static int getDefaultticksremain() {
+		return DEFAULTTICKSREMAIN;
+	}
+
 	/**
 	 * Default constructor
 	 * Initialises the sets and Integers.
 	 */
 	public Map() {
-		setCrates(new HashSet<Crate>());
-		setWorkers(new HashSet<Worker>());
-		setTiles(new HashSet<Tile>());
-		ticksRemain=Integer.valueOf(DEFAULTTICKSREMAIN);
+		this.setCrates(new HashSet<Crate>());
+		this.setWorkers(new HashSet<Worker>());
+		this.setTiles(new HashSet<Tile>());
+		this.resetTimer();
 	}
 	
 	/**
@@ -32,7 +38,9 @@ public class Map implements Steppable {
 	 */
 	public void startMap()
 	{
-		//Please implement
+		this.resetTimer();
+		Timer.getInstance().addSteppable(this);
+		Game.getInstance().setCurrentmap(this);
 	}
 	
 	/**
@@ -40,7 +48,8 @@ public class Map implements Steppable {
 	 */
 	public void endMap()
 	{
-		//Please implement
+		System.out.println("GameOver");
+		Timer.getInstance().removeSteppable(this);
 	}
 	
 	/**
@@ -49,21 +58,22 @@ public class Map implements Steppable {
 	public void resetTimer()
 	{
 		//reseting the time
-		setTicksRemain(defaultTime);
-		return;
+		this.setTicksRemain(DEFAULTTICKSREMAIN);
 	}
 	
 	/**
 	 * Called by the Timer at every Tick. If there are no crates, only one worker or no more
 	 * time left it will end the map. Else it will shorten the remaining time by one second.
+	 * 
+	 * Not going to log Step() functions, to not spam the STDout.
 	 */
 	public void step()
 	{
 		//checking if there is any reason to end the map
-		if(crates.isEmpty() || workers.size() != 2 || ticksRemain == 0)
+		if(crates.isEmpty() || workers.size() <= 2 || ticksRemain.intValue()<=0)
 			endMap();
 		else
-			//shortening the remaining time by 1s
+			//shortening the remaining time by 1 tick
 			ticksRemain--;
 		
 		return;
@@ -93,21 +103,7 @@ public class Map implements Steppable {
 	 * @param ticksRemain the ticksRemain to set
 	 */
 	public void setTicksRemain(Integer ticksRemain) {
-		this.ticksRemain = ticksRemain;
-	}
-
-	/**
-	 * @return the defaultTime
-	 */
-	public Integer getDefaultTime() {
-		return defaultTime;
-	}
-
-	/**
-	 * @param defaultTime the defaultTime to set
-	 */
-	public void setDefaultTime(Integer defaultTime) {
-		this.defaultTime = defaultTime;
+		this.ticksRemain = ticksRemain;	
 	}
 
 	/**
@@ -136,5 +132,56 @@ public class Map implements Steppable {
 	 */
 	public void setWorkers(Set<Worker> workers) {
 		this.workers = workers;
+	}
+	
+	/**
+	 * @param w the worker to add
+	 */	
+		public void addWorker(Worker w) {
+		if(w==null)
+			throw new IllegalArgumentException("Cannot add null to workers collection.");	 //Checking for valid input 
+		else {
+			this.workers.add(w);
+		}
+	}
+	
+	/**
+	 * @param worker the Worker to remove
+	 */
+	public void removeWorker(Worker w) {
+		if(this.workers.contains(w))	//Checking that the worker is on the map.
+			this.workers.remove(w);
+	}
+	/**
+	 * @param c the Crate to add
+	 */
+	public void addCrate(Crate c) {
+		if(c==null)
+			throw new IllegalArgumentException("Cannot add null to crates collection.");	//Checking for valid input 
+		else
+			this.crates.add(c);
+	}	
+	/**
+	 * @param c the Crate to remove
+	 */
+	public void removeCrate(Crate c) {
+		if(this.crates.contains(c))	
+			this.crates.remove(c);			//Checking that the Crate is in the crates collection.
+	}
+	/**
+	 * @param t the Tile to add
+	 */
+	public void addTile(Tile t) {
+		if(t==null)
+			throw new IllegalArgumentException("Cannot add null to tiles collection.");	//Checking for valid input.
+		else
+			this.tiles.add(t);
+	}
+	/**
+	 * @param t the Tile to remove
+	 */
+	public void removeTile(Tile t) {
+		if(this.tiles.contains(t))	//Checking that the Tile is in the tiles collection.
+			this.tiles.remove(t);
 	}
 }

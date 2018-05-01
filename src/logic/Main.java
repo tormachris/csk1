@@ -1,6 +1,3 @@
-/**
- * 
- */
 package logic;
 
 /**
@@ -11,11 +8,16 @@ package logic;
 public class Main {
 
 	/**
+	 * Entry point of the program
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Auto-generated method stub
+		Timer.getInstance(); //Init Timer
+		Game.getInstance();	//Init Game 
+		Commander.getInstance().interpreter();
+
+		Timer.getInstance().interrupt();
+		Timer.getInstance().stopSign();
 
 	}
-
 }

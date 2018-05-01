@@ -14,22 +14,12 @@ public class Switch extends Tile {
 	public boolean accept(Thing t)
 	{
 		//calls the same function of its superclass
-		boolean accepted = super.accept(t);
+		Boolean accepted = Boolean.valueOf(super.accept(t));
 		//if the Thing is allowed to move onto the Tile the Switch will trigger its OnSwitch()
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
 			t.onSwitch(this);
-		return accepted;
-	}
-	
-	/**
-	 * 
-	 * Does not activate if a random Thing is on it.
-	 * @param t General Thing. (Like a Worker)
-	 */
-	public void activate(Thing t)
-	{
-		return;
+		return accepted.booleanValue();
 	}
 	
 	/**
@@ -37,11 +27,9 @@ public class Switch extends Tile {
 	 * Switch will toggle the state of the Hole linked to it.
 	 * @param c The Crate that has moved onto the Switch.
 	 */
-	public void activate(Crate c)
+	public void activate()
 	{
-		if(hole!=null)
-			hole.toggleOpen();
-		else throw new NullPointerException("hole is null");
+		hole.toggleOpen();
 	}
 	
 	/**
@@ -50,8 +38,23 @@ public class Switch extends Tile {
 	 */
 	public void setHole(Hole newvalue)
 	{
-		if(newvalue!=null)
-			hole=newvalue;
+		if(newvalue!=null) {		//Checking for valid value
+			hole=newvalue;	
+		}
 		else throw new NullPointerException("newvalue is null");
+	}
+	
+	/**
+	 * Gets the current hole.
+	 */
+	public Hole getHole() {
+		return hole;
+	}
+	
+	/**
+	 * Constructor. Sets the hole.
+	 */
+	Switch(Hole h){
+		this.setHole(h);
 	}
 }

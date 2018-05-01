@@ -37,6 +37,11 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
+		int id = Commander.getInstance().getTileID(this);
+		
+		if(id != -1)
+			if(open)
+				System.out.println("Hole " + id + " : open");
 		this.open = open;
 	}
 
@@ -46,18 +51,18 @@ public class Hole extends Tile {
 	 * @return Shows if the Thing has been accepted.
 	 */
 	@Override
-	public  boolean accept(Thing t)
-	{	boolean accepted;
-		//if the hole is open it destroys every thing that moves onto it
-		if(open)
+	public  boolean accept(Thing t){
+		Boolean accepted;
+		//if the hole is open it destroys every thing that moves onto it.
+		if(open.booleanValue())
 		{
-			t.destroy();
-			accepted = true;
+			t.destroy();	//Destroying the Thing on the Hole.
+			accepted = Boolean.TRUE;
 		}
-		//if it is not open it will act just like a normal tile
-		else
-			accepted = super.accept(t);
-		
+		//if it is not open it will act just like a normal tile.
+		else {
+			accepted = Boolean.valueOf(super.accept(t));
+		}
 		return accepted;
 	}
 		
@@ -66,8 +71,10 @@ public class Hole extends Tile {
 	 */
 	public void toggleOpen()
 	{
-		open = !open;
+		setOpen(!open);	//Changing to the opposite state
+		if(open.booleanValue() && this.getThing()!=null)
+		{
+			this.getThing().destroy();	//Destroying the Thing standing on the Hole when it is activated.
+		}
 	}
-	
-
 }

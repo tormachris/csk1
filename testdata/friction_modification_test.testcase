@@ -1,0 +1,16 @@
+VerboseMode
+XMLPrepare
+<!DOCTYPE map
+[
+<!ELEMENT map>
+<!ELEMENT tile(id, type, connectsto)>
+<!ELEMENT id (1)
+<!ELEMENT type (0)
+<!ELEMENT connectsto (0)
+<!ELEMENT thing(type, tileid, force)>
+<!ELEMENT type (worker)
+<!ELEMENT tileid (1)
+<!ELEMENT force (1)
+]>
+XMLOver
+putFrictionModifieronTile Oil 1

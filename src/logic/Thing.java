@@ -6,20 +6,38 @@ package logic;
  */
 public abstract class Thing {
 	
-	private Thing owner;
+	private Thing owner; 
 	private Direction moving;
 	private Tile tile;
+	private Integer weight;
+	
 	
 	/**
 	 * Default Constructor
 	 * @param None
 	 */
-	public Thing() {
+	public Thing(Integer w) {
 		//Let this be a warning, if a thing's owner is null, it is brand new!
 		owner=null;
 		tile=null; //Hanging in the aether.
+		weight = w;
 	}
 	
+	/**
+	 * @return the weight
+	 */
+	public Integer getWeight() {
+		return weight;
+	}
+
+	/**
+	 * @param weight the weight to set
+	 */
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
+
+
 	/**
 	 * Collides the Thing with another Thing
 	 * @param t The other Thing
@@ -27,9 +45,9 @@ public abstract class Thing {
 	 */
 	public boolean collideWith(Thing t)
 	{
-		boolean collided;
+		Boolean collided;
 		//Hitting the other Thing with this towards this one's moving direction
-		collided = t.hitBy(this, moving , this.owner);
+		collided = Boolean.valueOf(t.hitBy(this, moving , this.owner));
 		return collided;
 		
 	}
@@ -47,43 +65,64 @@ public abstract class Thing {
 		moving = d;
 		
 		//checking whether the new Tile accepts the Thing
-		boolean moved = newTile.accept(this);
+		Boolean moved = newTile.accept(this);
 		if(moved)
 		{
 			//if the Thing was accepted by the new Tile the Thing moves to it.
 			tile.remove(this);
 			tile = newTile;
+			if(this.getClass().equals(Crate.class) && moved)
+			{
+				int id = Commander.getInstance().getID(this);
+				if(id != -1)
+					System.out.println("Crate " + id + " : moved");
+			}
 		}
 		
-		return moved;
+		return moved.booleanValue();
 	}
 	/**
 	 * Called when hit by another thing.
 	 */
 	public boolean hitBy(Thing t,Direction d, Thing o)
 	{
-		return true;
+		Boolean hit;
+		this.updateOwner(o);								//While it is pushed by another Thing, it has to be the property of the Thing.	
+		if(this.getOwner()==null) 
+			throw new IllegalArgumentException("Null ptr in owner.");
+		else
+		{
+		Worker w=(Worker)this.getOwner();
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
+		Double d2=0.0;
+		if(w.getForce().compareTo(d2)>=0) 
+		{
+			hit = Boolean.valueOf(this.move(d));		//The direction is set, and the Thing is pushed into this direction.
+		}
+		else
+			hit=Boolean.FALSE;
+		}
+		return hit.booleanValue();
 	}
 	
 	/**
-	 * 
-	 * @param t
-	 * @return
+	 * Updates the owner of the Thing
+	 * @param t The new owner
+	 * @return if the update was successful
 	 */
 	public final boolean updateOwner(Thing t)
 	{
 		this.owner = t;
-		return true;	//valami ellenőrzés kéne ide hogy legyen értelme a visszatérési értéknek de nemtom
+		return true;	
 	}
 	
 	/**
-	 * This function should be called whenever a Thing moves onto a Switch.
+	 * This function is called by a switch this Thing is on.
 	 * @param s The Switch onto which the Thing has moved.
 	 */
 	public void onSwitch(Switch s)
-	{	
-		//tries to activate the switch
-		s.activate(this);
+	{
+		return;
 	}
 	
 	/**
@@ -113,8 +152,16 @@ public abstract class Thing {
 		return tile;
 	}
 	
-	public void destroy()
+	/**
+	 * Setter of the Tile the Thing is on.
+	 * @param t The tile
+	 */
+	public final void setTile(Tile t) {
+		if(t!=null) tile=t;
+	}
+	
+	 public void destroy()
 	{
-		
+		return;
 	}
 }

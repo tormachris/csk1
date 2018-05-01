@@ -8,6 +8,8 @@ public class Tile {
 	
 	private Thing thing;
 	private EnumMap<Direction, Tile> nexttiles;
+	private FrictionModifier frictionmodifier;
+	
 	
 	/**
 	 * Whenever a Thing tries to move onto the Tile this function is called. 
@@ -16,29 +18,31 @@ public class Tile {
 	 */
 	public boolean accept(Thing t)
 	{
-		boolean accepted;
+		Boolean accepted;
 		//if the Tile is empty it will accept
 		if(thing == null)
-			accepted = true;
+			accepted = Boolean.TRUE;
 		
 		//if it is not empty it will make the moving Thing collide with the Thing that is
 		//currently on the Tile 
-		else
-			accepted = t.collideWith(thing);
+		else {
+			accepted = Boolean.valueOf(t.collideWith(thing));
+		}
 		
 		//if it has been accepted then it refreshes the thing attribute
-		if(accepted)
+		if(accepted.booleanValue())
 			thing = t;
 		
 		//returns with the acceptance anyway
-		return accepted;
+		return accepted.booleanValue();
 	}
 	/**
-	 * Default constructor, initialises the Map and the "thing" variable.
+	 * Default constructor, initializes the Map and the "thing" variable.
 	 */
 	public Tile() {
 		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
+		frictionmodifier = new FrictionModifier();
 	}	
 	/**
 	 * Removes the Thing from the tile.
@@ -47,7 +51,7 @@ public class Tile {
 	public void remove(Thing t)
 	{
 		//checking if the Thing is on this Tile
-		if(t.equals(thing))
+		if(t.equals(thing)) 
 			//if that's true the Thing will be removed
 			thing = null;
 	}
@@ -73,6 +77,33 @@ public class Tile {
 		if(d==null)
 			throw new NullPointerException("d cannot be null");
 		nexttiles.put(d, t);
+	}
+	/**
+	 * @return the thing
+	 */
+	public Thing getThing() {
+		return thing;
+	}
+	/**
+	 * @param thing the thing to set
+	 */
+	public void setThing(Thing thing) {
+		this.thing = thing;
+		if (thing!=null)thing.setTile(this); //We need this for the init, so the Thing will easily know his Tile.
+	}
+	/**
+	 * Getter of the frictionmodifier
+	 * @return the frictionmodifier
+	 */
+	public FrictionModifier getFrictionMod() {
+		return frictionmodifier;
+	}
+	/**
+	 * Setter of the frictionmodifier
+	 * @param frictionmod the frictionmodifier to set
+	 */
+	public void setFrictionMod(FrictionModifier frictionmod) {
+		this.frictionmodifier = frictionmod;
 	}
 
 }

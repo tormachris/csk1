@@ -9,28 +9,47 @@ package logic;
 public class Crate extends Thing{
 	
 	/**
-	 * Constructor. Calles the super class' constructor.
+	 * Constructor. Calls the super class' constructor.
 	*/
-	public Crate() {
-		super();
+	public Crate(Integer w) {
+		super(w);
 	}
 	
-	/**
-	 * Called when a Crate is hit by some thing.
-	*/
-	@Override
-	public boolean hitBy(Thing t,Direction d,Thing o)
-	{
-		return true;
-	}
 	
 	/**
 	 * Called by an EndTile, when a crate occupies it.
+	 * @param t The EndTile the Crate moves onto.
 	*/
 	@Override
 	public void onEndTile(EndTile t)
+	{	
+		Worker w = (Worker)this.getOwner(); 
+		w.setPoints(w.getPoints() + 1); //Destroying the Crate
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Crate " + id + " : onendtile");
+		this.destroy();
+	}
+	
+	/**
+	 * Called when this object is destroyed. (NOT A DESTRUCTOR)
+	*/
+	@Override
+	public void destroy() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Crate " + id + " : died");
+		Game.getInstance().getCurrentmap().removeCrate(this);
+	}
+	
+	/**
+	 * This function is called by a switch this Thing is on.
+	 * @param s The Switch onto which the Thing has moved.
+	 */
+	@Override
+	public void onSwitch(Switch s)
 	{
-		//Please implement this
+		s.activate();	//Activate the switch tile that contains the Crate
 	}
 
 }

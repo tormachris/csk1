@@ -1,29 +1,72 @@
 package logic;
 
+
+
 /**
  * Represents a worker controlled by the player.
  */
 public class Worker extends Thing{
 	
+	
 	private Integer points;
+	private Double force;
+	
 	
 	/**
-	 * This function is called whenever a Worker gets hit by another Worker. As a worker can't 
-	 * move other workers by himself this Worker won't move.
-	 * @param w  The other worker
-	 * @param d  The direction towards the other worker is moving
-	 * @param o	 The owner of the other worker.
-	 * @return	 False because workers can't be moved by other workers.
+	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
+	 * worker's tile anyway so this will return true value however the worker might get 
+	 * squashed.
+	 * @param t The Thing that hits the Worker
+	 * @param d The Direction towards the Worker is hit
+	 * @param o The owner of the Thing
+	 * @return true as there should be movement
 	 */
-	public boolean hitBy(Worker w,Direction d,Worker o)
-	{
-		return false;
+	
+	public Worker(Integer w) {
+		super(w);
+		force = w*1.0;
+		points = 0;
+		this.updateOwner(this);
 	}
 
+	
+	@Override
+	public boolean hitBy(Thing t,Direction d,Thing o)
+	{
+		if(t.getClass()==Worker.class) {
+			return false;
+		}
+		else {
+		this.updateOwner(o); 	//updating the owner for the action
+		if(this.getOwner()==null) 
+			throw new IllegalArgumentException("Null ptr in owner.");
+		else
+		{
+		Worker w=(Worker)this.getOwner();
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
+		Boolean moved = Boolean.valueOf(this.move(d)); //trying to move..
+		Double d2=Double.valueOf(0);
+		if(w.getForce().compareTo(d2)>=0 && moved) {
+			this.updateOwner(this);  //we need to reset the owner
+		}
+		else {
+			this.destroy(); //if the Worker couldn't move he will get squashed
+		}
+		return true; //gives space for the Crate incoming
+			}
+		}
+	}
+	
+	/**
+	 * This function represents the death of a worker.
+	 */
 	@Override
 	public void destroy()
 	{
-		//Please implement
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : died");
+		Game.getInstance().getCurrentmap().removeWorker(this);
 	}
 
 	/**
@@ -38,6 +81,35 @@ public class Worker extends Thing{
 	 */
 	public void setPoints(Integer points) {
 		this.points = points;
+	}
+	
+	public void dropOil() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : fmput");
+		this.getTile().setFrictionMod(new Oil());
+	}
+	public void dropHoney() {
+		int id = Commander.getInstance().getID(this);
+		if(id != -1)
+			System.out.println("Worker " + id + " : fmput");
+		this.getTile().setFrictionMod(new Honey());
+	}
+
+
+	/**
+	 * @return the force
+	 */
+	public Double getForce() {
+		return force;
+	}
+
+
+	/**
+	 * @param force the force to set
+	 */
+	public void setForce(Double f) {
+		this.force = f;
 	}
 	
 }
