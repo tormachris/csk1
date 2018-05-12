@@ -2,10 +2,13 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.border.*;
 
 public class SokobanGui {
-
+	private static final Logger LOGGER = Logger.getLogger( SokobanGui.class.getName() );
 	private JFrame frmKillerSokoban;
 	private final int gridSize;
 
@@ -15,6 +18,7 @@ public class SokobanGui {
 	public SokobanGui(int _gridSize) {
 		gridSize = _gridSize;
 		initialize();
+		LOGGER.log( Level.FINE, "GUI Created");
 	}
 
 	/**
@@ -105,9 +109,11 @@ public class SokobanGui {
 			grey = !grey;
 			panelMain.add(p);
 		}
+		LOGGER.log( Level.FINE, "GUI Initialized");
 	}
 	
 	public void Show() {
+		LOGGER.log( Level.FINE, "Showing GUI");
 		frmKillerSokoban.setVisible(true);
 	}
 }
