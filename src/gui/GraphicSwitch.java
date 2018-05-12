@@ -4,31 +4,32 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
-import logic.Crate;
+import logic.*;
 
 /**
  * @author krist
  *
  */
 public class GraphicSwitch extends AbstractGraphic {
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicSwitch.class.getName() );
+	private Switch switch_;
 	/**
 	 * 
 	 */
 	public GraphicSwitch() {
-		// TODO Auto-generated constructor stub
+		super(IconCollection.getInstance().getButton());
+		LOGGER.log(Level.FINE,"GraphicSwitch created");
 	}
 
-	/**
-	 * @param _img
-	 */
-	public GraphicSwitch(ImageIcon _img) {
-		super(_img);
-		// TODO Auto-generated constructor stub
+	public GraphicSwitch(Switch _switch) {
+		super(IconCollection.getInstance().getButton());
+		LOGGER.log(Level.FINE,"GraphicSwitch created");
+		switch_=_switch; //SO FUNKY
 	}
 
 	/* (non-Javadoc)

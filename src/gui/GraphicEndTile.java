@@ -1,21 +1,23 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
-
-import logic.Crate;
+import logic.EndTile;
 
 public class GraphicEndTile extends AbstractGraphic {
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicEndTile.class.getName() );
+	private EndTile endtile;
 	public GraphicEndTile() {
-		// TODO Auto-generated constructor stub
+		super(IconCollection.getInstance().getTarget());
+		LOGGER.log(Level.FINE,"GraphicEndTle created");
 	}
 
-	public GraphicEndTile(ImageIcon _img) {
-		super(_img);
-		// TODO Auto-generated constructor stub
+	public GraphicEndTile(EndTile _endtile) {
+		super(IconCollection.getInstance().getTarget());
+		LOGGER.log(Level.FINE,"GraphicEndTle created");
+		endtile=_endtile;
 	}
 
 	@Override

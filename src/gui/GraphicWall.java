@@ -4,32 +4,35 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
-
-import logic.Crate;
+import logic.*;
 
 /**
  * @author krist
  *
  */
 public class GraphicWall extends AbstractGraphic {
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicWall.class.getName() );
+	private Wall wall;
 	/**
 	 * 
 	 */
 	public GraphicWall() {
-		// TODO Auto-generated constructor stub
+		super(IconCollection.getInstance().getWall());
+		LOGGER.log(Level.FINE,"GraphicWall created");
 	}
 
 	/**
-	 * @param _img
+	 * 
 	 */
-	public GraphicWall(ImageIcon _img) {
-		super(_img);
-		// TODO Auto-generated constructor stub
+	public GraphicWall(Wall _wall) {
+		super(IconCollection.getInstance().getWall());
+		LOGGER.log(Level.FINE,"GraphicWall created");
+		wall=_wall;
 	}
+
 
 	/* (non-Javadoc)
 	 * @see gui.Drawable#draw(java.awt.Graphics)

@@ -4,23 +4,26 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
-import logic.Crate;
+import logic.*;
 
 /**
  * @author krist
  *
  */
 public class GraphicWorker extends AbstractGraphic {
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicWorker.class.getName() );
+	private Worker worker;
 	/**
 	 * 
 	 */
 	public GraphicWorker() {
-		// TODO Auto-generated constructor stub
+		super(IconCollection.getInstance().getWorkerBlue());
+		LOGGER.log(Level.FINE,"GraphicWorker created");
 	}
 
 	/**
@@ -28,7 +31,25 @@ public class GraphicWorker extends AbstractGraphic {
 	 */
 	public GraphicWorker(ImageIcon _img) {
 		super(_img);
-		// TODO Auto-generated constructor stub
+		LOGGER.log(Level.FINE,"GraphicWorker created");
+	}
+	
+	/**
+	 * @param _img
+	 */
+	public GraphicWorker(ImageIcon _img, Worker _worker) {
+		super(_img);
+		LOGGER.log(Level.FINE,"GraphicWorker created");
+		worker=_worker;
+	}
+	
+	/**
+	 * @param _img
+	 */
+	public GraphicWorker(Worker _worker) {
+		super(IconCollection.getInstance().getWorkerBlue());
+		LOGGER.log(Level.FINE,"GraphicWorker created");
+		worker=_worker;
 	}
 
 	/* (non-Javadoc)

@@ -4,31 +4,31 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
-
-import logic.Crate;
+import logic.*;
 
 /**
  * @author krist
  *
  */
 public class GraphicTile extends AbstractGraphic {
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicTile.class.getName() );
+	private Tile tile;
 	/**
 	 * 
 	 */
 	public GraphicTile() {
-		// TODO Auto-generated constructor stub
+		super(IconCollection.getInstance().getFloor());
+		LOGGER.log(Level.FINE,"GraphicTile created");
 	}
 
-	/**
-	 * @param _img
-	 */
-	public GraphicTile(ImageIcon _img) {
-		super(_img);
-		// TODO Auto-generated constructor stub
+	
+	public GraphicTile(Tile _tile) {
+		super(IconCollection.getInstance().getFloor());
+		LOGGER.log(Level.FINE,"GraphicTile created");
+		tile=_tile;
 	}
 
 	/* (non-Javadoc)
