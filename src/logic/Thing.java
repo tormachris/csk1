@@ -1,11 +1,13 @@
 package logic;
 
+import java.util.logging.Logger;
+
 /**
  * Represents a general thing that moves on the map.
  * Abstract.
  */
 public abstract class Thing {
-	
+	private static final Logger LOGGER = Logger.getLogger( Thing.class.getName() );
 	private Thing owner; 
 	private Direction moving;
 	private Tile tile;

@@ -1,13 +1,14 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Represents a map that has things on it.
  * The Map can also step.
  */
 public class Map implements Steppable {
-	
+	private static final Logger LOGGER = Logger.getLogger( Map.class.getName() );
 	private Integer ticksRemain;
 	private Set<Crate> crates; 
 	private Set<Worker> workers; 

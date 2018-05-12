@@ -1,12 +1,13 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Represents Timer that tics every once in a while.
  */
 public class Timer extends Thread{
-	
+	private static final Logger LOGGER = Logger.getLogger( Timer.class.getName() );
 	private Set<Steppable> steppables; //We don't want to step something twice, do we?
 	
 	private static final int TIMETOWAIT=10000; //Modify interval here, pls.

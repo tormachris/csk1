@@ -1,12 +1,12 @@
 package logic;
 
-
+import java.util.logging.Logger;
 
 /**
  * Represents a worker controlled by the player.
  */
 public class Worker extends Thing{
-	
+	private static final Logger LOGGER = Logger.getLogger( Worker.class.getName() );
 	
 	private Integer points;
 	private Double force;

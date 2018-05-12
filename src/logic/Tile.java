@@ -1,11 +1,12 @@
 package logic;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Represents a general Tile that is on the Map.
  */
 public class Tile {
-	
+	private static final Logger LOGGER = Logger.getLogger( Tile.class.getName() );
 	private Thing thing;
 	private EnumMap<Direction, Tile> nexttiles;
 	private FrictionModifier frictionmodifier;

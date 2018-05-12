@@ -24,7 +24,7 @@ public class SokobanGui {
 		frmKillerSokoban = new JFrame();
 		frmKillerSokoban.setTitle("KILLER SOKOBAN!!");
 		frmKillerSokoban.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmKillerSokoban.setBounds(100, 100, 550, 75+550); // ¯\_(ツ)_/¯
+		frmKillerSokoban.setBounds(100, 100, 550, 75+550); //shrug
 		
 		
 		/* Felso menu geci*/
@@ -105,15 +105,9 @@ public class SokobanGui {
 			grey = !grey;
 			panelMain.add(p);
 		}
-		
-		
-		
-		
 	}
 	
 	public void Show() {
 		frmKillerSokoban.setVisible(true);
 	}
-	
-
 }

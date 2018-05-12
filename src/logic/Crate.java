@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.logging.Logger;
+
 /** Represents an Thing that cannot move on it's own and can activae switches.
  * They disappear on EndTiles.
  * @author Kristof
@@ -7,7 +9,7 @@ package logic;
  * @since 1.0
 */
 public class Crate extends Thing{
-	
+	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
 	/**
 	 * Constructor. Calls the super class' constructor.
 	*/

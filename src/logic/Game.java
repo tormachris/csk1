@@ -1,6 +1,7 @@
  package logic;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /** Represents the entire game logic.
  * @author Kristof
@@ -8,7 +9,7 @@ import java.util.*;
  * @since 1.0
 */
 public class Game {
-	
+	private static final Logger LOGGER = Logger.getLogger( Game.class.getName() );
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
 	private Map currentmap;	//We are playing on that map,that is the one stepping.
 	private static Game instance = null;

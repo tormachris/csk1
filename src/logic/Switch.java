@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.logging.Logger;
+
 public class Switch extends Tile {
-	
+	private static final Logger LOGGER = Logger.getLogger( Switch.class.getName() );
 	private Hole hole;
 	
 	/**

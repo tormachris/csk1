@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.logging.Logger;
+
 /** Represents a Tile, that (if active) will kill any Thing that is on it.
  * Activated by the Map (Static) or a Switch (Dynamic)
  * @author Kristof
@@ -7,7 +9,7 @@ package logic;
  * @since 1.0
 */
 public class Hole extends Tile {
-	
+	private static final Logger LOGGER = Logger.getLogger( Hole.class.getName() );
 	private Boolean open;
 	
 	/**
