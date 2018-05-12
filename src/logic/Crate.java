@@ -1,6 +1,6 @@
 package logic;
 
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 /** Represents an Thing that cannot move on it's own and can activae switches.
  * They disappear on EndTiles.
@@ -15,6 +15,7 @@ public class Crate extends Thing{
 	*/
 	public Crate(Integer w) {
 		super(w);
+		LOGGER.log(Level.FINE, "Crate created");
 	}
 	
 	
@@ -27,9 +28,7 @@ public class Crate extends Thing{
 	{	
 		Worker w = (Worker)this.getOwner(); 
 		w.setPoints(w.getPoints() + 1); //Destroying the Crate
-		int id = Commander.getInstance().getID(this);
-		if(id != -1)
-			System.out.println("Crate " + id + " : onendtile");
+		LOGGER.log(Level.FINE, "Crate is on end tile");
 		this.destroy();
 	}
 	
@@ -38,9 +37,7 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public void destroy() {
-		int id = Commander.getInstance().getID(this);
-		if(id != -1)
-			System.out.println("Crate " + id + " : died");
+		LOGGER.log(Level.FINE, "Crate is ded");
 		Game.getInstance().getCurrentmap().removeCrate(this);
 	}
 	
@@ -51,6 +48,7 @@ public class Crate extends Thing{
 	@Override
 	public void onSwitch(Switch s)
 	{
+		LOGGER.log(Level.FINE, "Crate is on switch");
 		s.activate();	//Activate the switch tile that contains the Crate
 	}
 

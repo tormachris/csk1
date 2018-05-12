@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -27,6 +28,7 @@ public class Worker extends Thing{
 		force = w*1.0;
 		points = 0;
 		this.updateOwner(this);
+		LOGGER.log( Level.FINE, "Worker created");
 	}
 
 	
@@ -52,6 +54,7 @@ public class Worker extends Thing{
 		else {
 			this.destroy(); //if the Worker couldn't move he will get squashed
 		}
+		LOGGER.log( Level.FINE, "Worker hitby another thing: true");
 		return true; //gives space for the Crate incoming
 			}
 		}
@@ -63,9 +66,7 @@ public class Worker extends Thing{
 	@Override
 	public void destroy()
 	{
-		int id = Commander.getInstance().getID(this);
-		if(id != -1)
-			System.out.println("Worker " + id + " : died");
+		LOGGER.log( Level.FINE, "Worker ded");
 		Game.getInstance().getCurrentmap().removeWorker(this);
 	}
 
@@ -84,15 +85,11 @@ public class Worker extends Thing{
 	}
 	
 	public void dropOil() {
-		int id = Commander.getInstance().getID(this);
-		if(id != -1)
-			System.out.println("Worker " + id + " : fmput");
+		LOGGER.log( Level.FINE, "Dropping oil");
 		this.getTile().setFrictionMod(new Oil());
 	}
 	public void dropHoney() {
-		int id = Commander.getInstance().getID(this);
-		if(id != -1)
-			System.out.println("Worker " + id + " : fmput");
+		LOGGER.log( Level.FINE, "Dropping honey");
 		this.getTile().setFrictionMod(new Honey());
 	}
 

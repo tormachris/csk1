@@ -1,6 +1,7 @@
  package logic;
 
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /** Represents the entire game logic.
@@ -18,6 +19,7 @@ public class Game {
 	 */
 	public Game() {
 		this.setMaps(new HashSet<Map>());
+		LOGGER.log( Level.FINE, "Game created");
 	}
 	
 	/**
@@ -32,6 +34,7 @@ public class Game {
 			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed"); 	//Checking that the map actually exists.
 			this.setCurrentmap(m); 
 			m.startMap();	//Chosen map being started
+			LOGGER.log( Level.FINE, "New map started");
 		}
 		else throw new NullPointerException("m cannot be null"); 
 	}
@@ -41,6 +44,7 @@ public class Game {
 	 */
 	public void end()
 	{
+		LOGGER.log( Level.FINE, "Game ended");
 		return;
 	}
 
@@ -90,6 +94,7 @@ public class Game {
 	public void setCurrentmap(Map currentmap) {
 		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map"); //Checking that the map is in the collection
 		else {
+			LOGGER.log( Level.FINE, "Setting current map");
 			this.currentmap = currentmap;	
 		}
 	}

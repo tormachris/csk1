@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Switch extends Tile {
@@ -21,6 +22,7 @@ public class Switch extends Tile {
 		//function in order to inform the Thing that it has moved onto a Switch
 		if(accepted)
 			t.onSwitch(this);
+		LOGGER.log( Level.FINE, "Switch accepted:{0}",accepted);
 		return accepted.booleanValue();
 	}
 	
@@ -31,6 +33,7 @@ public class Switch extends Tile {
 	 */
 	public void activate()
 	{
+		LOGGER.log( Level.FINE, "Switch toggling hole");
 		hole.toggleOpen();
 	}
 	
@@ -41,7 +44,8 @@ public class Switch extends Tile {
 	public void setHole(Hole newvalue)
 	{
 		if(newvalue!=null) {		//Checking for valid value
-			hole=newvalue;	
+			hole=newvalue;
+			LOGGER.log( Level.FINE, "New value for hole set");
 		}
 		else throw new NullPointerException("newvalue is null");
 	}

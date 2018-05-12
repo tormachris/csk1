@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -16,6 +17,7 @@ public class Wall extends Tile {
 	@Override
 	public boolean accept(Thing t)
 	{
+		LOGGER.log( Level.FINE, "Thing hit a wall");
 		return false;
 	}
 

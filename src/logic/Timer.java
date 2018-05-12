@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -31,6 +32,7 @@ public class Timer extends Thread{
 		steppables = new HashSet<>();
 		running = true;
 		this.start(); //Start itself automagically, so you don't have to!
+		LOGGER.log( Level.FINE, "Timer created");
 	}
 	
 	/**
@@ -51,16 +53,16 @@ public class Timer extends Thread{
 	 */
 	@Override
 	public void run() {
-		while(!stopsign) { //I don't know if this is how to do it, but this works!
+		if(!stopsign) return; //I don't know if this is how to do it, but this works!
 			if(running) {
 				this.tick(); //Let's Tick
 			try {
 				Thread.sleep(TIMETOWAIT);
 			} catch(InterruptedException ex) {
+				LOGGER.log( Level.FINE, ex.toString(),ex);
 				Thread.currentThread().interrupt();
 				}
 			}
-		}
 	}
 	
 	/**
@@ -71,9 +73,9 @@ public class Timer extends Thread{
 	 */
 	public void tick()
 	{
-	    for(Steppable s:steppables) {
+		LOGGER.log( Level.FINE, "Timer ticked");
+	    for(Steppable s:steppables)
 	    	s.step();
-	    }
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /** Represents a Tile, that (if active) will kill any Thing that is on it.
@@ -19,12 +20,14 @@ public class Hole extends Tile {
 	 */
 	public Hole(Boolean isOpen) {
 		this.setOpen(isOpen);
+		LOGGER.log( Level.FINE, "New Hole created with attribute:{0}",isOpen);
 	}
 	
 	/**
 	 * Default constructor
 	 */
 	public Hole() {
+		LOGGER.log( Level.FINE, "New Hole created");
 		this.setOpen(Boolean.valueOf(false));
 	}
 	
@@ -39,11 +42,7 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
-		int id = Commander.getInstance().getTileID(this);
-		
-		if(id != -1)
-			if(open)
-				System.out.println("Hole " + id + " : open");
+		LOGGER.log( Level.FINE, "Hole set to state:{0}",open);
 		this.open = open;
 	}
 
@@ -58,14 +57,17 @@ public class Hole extends Tile {
 		//if the hole is open it destroys every thing that moves onto it.
 		if(open.booleanValue())
 		{
+			LOGGER.log( Level.FINE, "Hole killed thing");
 			t.destroy();	//Destroying the Thing on the Hole.
 			accepted = Boolean.TRUE;
 		}
 		//if it is not open it will act just like a normal tile.
 		else {
+			LOGGER.log( Level.FINE, "Hole closed, accepting thing as if it was a regular tile");
 			accepted = Boolean.valueOf(super.accept(t));
 		}
-		return accepted;
+		LOGGER.log( Level.FINE, "Hole accepted:{0}",accepted);
+		return accepted.booleanValue();
 	}
 		
 	/**
@@ -76,6 +78,7 @@ public class Hole extends Tile {
 		setOpen(!open);	//Changing to the opposite state
 		if(open.booleanValue() && this.getThing()!=null)
 		{
+			LOGGER.log( Level.FINE, "Hole killed thing");
 			this.getThing().destroy();	//Destroying the Thing standing on the Hole when it is activated.
 		}
 	}

@@ -1,5 +1,6 @@
 package logic;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -21,20 +22,22 @@ public class Tile {
 	{
 		Boolean accepted;
 		//if the Tile is empty it will accept
-		if(thing == null)
+		if(thing == null) {
+			LOGGER.log(Level.FINEST, "Tile was empty, accepting automagically");
 			accepted = Boolean.TRUE;
-		
+		}
 		//if it is not empty it will make the moving Thing collide with the Thing that is
 		//currently on the Tile 
 		else {
+			LOGGER.log(Level.FINEST, "Tile was not empty, colliding it with the thing I contain.");
 			accepted = Boolean.valueOf(t.collideWith(thing));
 		}
 		
 		//if it has been accepted then it refreshes the thing attribute
 		if(accepted.booleanValue())
 			thing = t;
-		
 		//returns with the acceptance anyway
+		LOGGER.log(Level.FINE, "Tile accepted thing:{0}",accepted);
 		return accepted.booleanValue();
 	}
 	/**
@@ -44,6 +47,7 @@ public class Tile {
 		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
 		frictionmodifier = new FrictionModifier();
+		LOGGER.log(Level.FINEST, "New Tile created");
 	}	
 	/**
 	 * Removes the Thing from the tile.
@@ -55,6 +59,7 @@ public class Tile {
 		if(t.equals(thing)) 
 			//if that's true the Thing will be removed
 			thing = null;
+		LOGGER.log(Level.FINE, "Thing removed from tile");
 	}
 	
 	/**
@@ -75,8 +80,10 @@ public class Tile {
 	public void setNeighbour(Direction d, Tile t)
 	{
 		//putting the tile in the "nexttiles" Map if there is a valid d passed.
-		if(d==null)
+		if(d==null) {
+			LOGGER.log(Level.FINEST, "Passed direction to Tile is null");
 			throw new NullPointerException("d cannot be null");
+			}
 		nexttiles.put(d, t);
 	}
 	/**
@@ -91,6 +98,9 @@ public class Tile {
 	public void setThing(Thing thing) {
 		this.thing = thing;
 		if (thing!=null)thing.setTile(this); //We need this for the init, so the Thing will easily know his Tile.
+		else {
+			LOGGER.log(Level.FINEST, "Passed thing is null (logic.Tile)");
+		}
 	}
 	/**
 	 * Getter of the frictionmodifier

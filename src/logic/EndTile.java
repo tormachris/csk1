@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /** Represents an Tile that "Consumes" Crates.
@@ -23,6 +24,7 @@ public class EndTile extends Tile {
 		//function in order to inform the Thing that it has moved onto an EndTile.
 		if(accepted)
 			t.onEndTile(this);
+		LOGGER.log(Level.FINE, "Thing accepted by EndTile: {0}",accepted);
 		return accepted;
 	}
 

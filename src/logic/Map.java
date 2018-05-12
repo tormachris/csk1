@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -32,6 +33,7 @@ public class Map implements Steppable {
 		this.setWorkers(new HashSet<Worker>());
 		this.setTiles(new HashSet<Tile>());
 		this.resetTimer();
+		LOGGER.log( Level.FINE, "Map created");
 	}
 	
 	/**
@@ -39,6 +41,7 @@ public class Map implements Steppable {
 	 */
 	public void startMap()
 	{
+		LOGGER.log( Level.FINE, "Map started");
 		this.resetTimer();
 		Timer.getInstance().addSteppable(this);
 		Game.getInstance().setCurrentmap(this);
@@ -70,6 +73,10 @@ public class Map implements Steppable {
 	 */
 	public void step()
 	{
+		LOGGER.log( Level.FINE, "Map stepping");
+		LOGGER.log( Level.FINE, "Map: crates isempty:{0}",crates.isEmpty());
+		LOGGER.log( Level.FINE, "Map: workers size <=2 {0}", workers.size() <= 2);
+		LOGGER.log( Level.FINE, "Map: ticksremain <=0 {0}", ticksRemain.intValue()<=0);
 		//checking if there is any reason to end the map
 		if(crates.isEmpty() || workers.size() <= 2 || ticksRemain.intValue()<=0)
 			endMap();
@@ -138,7 +145,7 @@ public class Map implements Steppable {
 	/**
 	 * @param w the worker to add
 	 */	
-		public void addWorker(Worker w) {
+	public void addWorker(Worker w) {
 		if(w==null)
 			throw new IllegalArgumentException("Cannot add null to workers collection.");	 //Checking for valid input 
 		else {
