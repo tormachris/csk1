@@ -16,3 +16,4 @@ src/logic/Tile.java
 src/logic/Timer.java
 src/logic/Wall.java
 src/logic/Worker.java
+src/gui/SokobanGui.java
