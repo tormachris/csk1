@@ -1,27 +1,8 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JToolBar;
-import java.awt.BorderLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.GridLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.Box;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.border.*;
 
 public class SokobanGui {
 
