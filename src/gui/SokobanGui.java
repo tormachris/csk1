@@ -87,6 +87,7 @@ public class SokobanGui extends JFrame implements Steppable {
 
 	        if (returnVal == JFileChooser.APPROVE_OPTION) {
 	        	chosenFile = fc.getSelectedFile();
+	        	initializeLevel();
 	        }
 		});
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
