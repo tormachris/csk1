@@ -41,8 +41,8 @@ public class Worker extends Thing implements Serializable{
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 		
-		force = w*2.0;
-		initialforce=w*2.0;
+		force = w*2.3;
+		initialforce=w*2.3;
 		points = 0;
 		alive=true;
 		this.updateOwner(this);

@@ -9,6 +9,6 @@ public class Oil extends FrictionModifier{
 	@Override
 	public Double getFriction()
 	{
-		return 0.5*this.friction;
+		return 0.2*this.friction;
 	}
 }

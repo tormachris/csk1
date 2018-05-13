@@ -175,14 +175,14 @@ public class SokobanGui extends JFrame implements Steppable {
 				break;
 			case RED:
 				drawables.add(new GraphicTile(new Tile()));
-				redWorker = new GraphicWorker(new Worker(4));
+				redWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				m.addWorker(redWorker.getWorker());
 				break;
 			case BLUE:
 				drawables.add(new GraphicTile(new Tile()));
-				blueWorker = new GraphicWorker(new Worker(4));
+				blueWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				m.addWorker(blueWorker.getWorker());
