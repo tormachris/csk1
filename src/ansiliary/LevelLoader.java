@@ -13,7 +13,7 @@ import java.util.logging.*;
 public class LevelLoader {
 	private static final Logger LOGGER = Logger.getLogger(LevelLoader.class.getName());
 
-	private LevelLoader() {
+	public LevelLoader() {
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -28,7 +28,7 @@ public class LevelLoader {
 	 * 
 	 * EVERY MAP HAS TO BE 11X11
 	 */
-	private static String loadLevel(File candidate) {
+	private String loadLevel(File candidate) {
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = new BufferedReader(new FileReader(candidate))) { // Try-with-resource
 			String line = "";
@@ -62,7 +62,7 @@ public class LevelLoader {
 		}
 	}
 
-	public static Queue<LevelElements> getLevel(String candidate) {
+	public Queue<LevelElements> getLevel(String candidate) {
 		LinkedList<LevelElements> toReturn = new LinkedList<>();
 		if (candidate.equals("")) {
 			LOGGER.log(Level.FINE, "String was wrong size, ignoring");
@@ -112,7 +112,7 @@ public class LevelLoader {
 		}
 	}
 
-	public static Queue<LevelElements> getLevelFromFile(File candidate) {
+	public Queue<LevelElements> getLevelFromFile(File candidate) {
 		LOGGER.log(Level.FINE,"Attempting to parse file into processable list");
 		return getLevel(loadLevel(candidate));
 	}

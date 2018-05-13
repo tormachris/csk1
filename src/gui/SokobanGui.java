@@ -147,38 +147,46 @@ public class SokobanGui extends JFrame implements KeyListener {
 			gameGrid.add(p);
 			panelMain.add(p);
 		}
-		Queue<LevelElements> map = LevelLoader.getLevel(LevelStorage.DEMOLEVEL);
+		LevelLoader ll=new LevelLoader();
+		Queue<LevelElements> map = ll.getLevel(LevelStorage.DEMOLEVEL);
 		Map m = new Map();
 		Game.getInstance().addMap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
-		for (int j = 0; j < map.size(); ++j)
+		for (int j = 0; j < map.size(); ++j) {
 			switch (map.remove()) {
 			case WALL:
+				LOGGER.log(Level.FINE, "WALL Detected");
 				drawables.add(new GraphicWall(new Wall()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TILE:
+				LOGGER.log(Level.FINE, "TILE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case ENDTILE:
+				LOGGER.log(Level.FINE, "ENDTILE Detected");
 				drawables.add(new GraphicEndTile(new EndTile()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TRAP:
+				LOGGER.log(Level.FINE, "TRAP Detected");
 				lastholes.add(new GraphicHole(new Hole()));
 				drawables.add(lastholes.element());
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case HOLE:
+				LOGGER.log(Level.FINE, "HOLE Detected");
 				drawables.add(new GraphicHole(new Hole()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case SWITCH:
+				LOGGER.log(Level.FINE, "SWITCH Detected");
 				drawables.add(new GraphicSwitch(new Switch(lastholes.remove().getHole())));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case RED:
+				LOGGER.log(Level.FINE, "RED Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				redWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
@@ -186,6 +194,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 				m.addWorker(redWorker.getWorker());
 				break;
 			case BLUE:
+				LOGGER.log(Level.FINE, "BLUE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				blueWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
@@ -193,14 +202,17 @@ public class SokobanGui extends JFrame implements KeyListener {
 				m.addWorker(blueWorker.getWorker());
 				break;
 			case CRATE:
+				LOGGER.log(Level.FINE, "CRATE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(new Crate(1));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				m.addCrate((Crate) ((GraphicTile) drawables.get(drawables.size() - 1)).getTile().getThing());
 				break;
 			default:
+				LOGGER.log(Level.FINE, "DEFAULT Detected");
 				break;
 			}
+		}
 		setUpNeighbors();
 
 		LOGGER.log(Level.FINE, "GUI Initialized");
