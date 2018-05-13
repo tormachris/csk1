@@ -196,7 +196,7 @@ public class SokobanGui extends JFrame implements Steppable {
 	private void initializeLevel() {
 		LevelLoader ll = new LevelLoader();
 		Queue<LevelElements> map;
-		if(chosenFile==null)map=ll.getLevel(LevelStorage.DEMOLEVEL);
+		if(chosenFile==null)map=ll.getLevel(LevelStorage.PRESENTLEVEL);
 		else map=ll.getLevelFromFile(chosenFile);
 		chosenFile=null;
 		if(map.size()<GRIDSIZE*GRIDSIZE) return;
