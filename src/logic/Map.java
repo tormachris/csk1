@@ -108,7 +108,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param w the worker to add
 	 */	
-	public void addWorker(Worker w) {
+	public synchronized void addWorker(Worker w) {
 		if(w==null)
 			throw new IllegalArgumentException("Cannot add null to workers collection.");	 //Checking for valid input 
 		else {
@@ -119,14 +119,14 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param worker the Worker to remove
 	 */
-	public void removeWorker(Worker w) {
+	public synchronized void removeWorker(Worker w) {
 		if(this.workers.contains(w))	//Checking that the worker is on the map.
 			this.workers.remove(w);
 	}
 	/**
 	 * @param c the Crate to add
 	 */
-	public void addCrate(Crate c) {
+	public synchronized void addCrate(Crate c) {
 		if(c==null)
 			throw new IllegalArgumentException("Cannot add null to crates collection.");	//Checking for valid input 
 		else
@@ -135,14 +135,14 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param c the Crate to remove
 	 */
-	public void removeCrate(Crate c) {
+	public synchronized void removeCrate(Crate c) {
 		if(this.crates.contains(c))	
 			this.crates.remove(c);			//Checking that the Crate is in the crates collection.
 	}
 	/**
 	 * @param t the Tile to add
 	 */
-	public void addTile(Tile t) {
+	public synchronized void addTile(Tile t) {
 		if(t==null)
 			throw new IllegalArgumentException("Cannot add null to tiles collection.");	//Checking for valid input.
 		else
@@ -151,7 +151,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param t the Tile to remove
 	 */
-	public void removeTile(Tile t) {
+	public synchronized void removeTile(Tile t) {
 		if(this.tiles.contains(t))	//Checking that the Tile is in the tiles collection.
 			this.tiles.remove(t);
 	}
