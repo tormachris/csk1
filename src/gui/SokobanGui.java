@@ -191,34 +191,34 @@ public class SokobanGui extends JFrame implements KeyListener {
 		case (KeyEvent.VK_LEFT):
 			dir = Direction.EAST;
 			break;
-		case(KeyEvent.VK_Q):
+		case (KeyEvent.VK_Q):
 			if (!keydownBlue) {
 				LOGGER.fine("Blue Worker put down honey");
 				keydownBlue = true;
 				blueWorker.getWorker().dropHoney();
 			}
-		return;
-		case(KeyEvent.VK_E):
+			return;
+		case (KeyEvent.VK_E):
 			if (!keydownBlue) {
 				LOGGER.fine("Blue Worker put down oil");
 				keydownBlue = true;
 				blueWorker.getWorker().dropOil();
 			}
-		return;
-		case(KeyEvent.VK_NUMPAD1):
+			return;
+		case (KeyEvent.VK_NUMPAD1):
 			if (!keydownRed) {
 				LOGGER.fine("Red Worker put down honey");
 				keydownBlue = true;
 				redWorker.getWorker().dropHoney();
 			}
-		return;
-		case(KeyEvent.VK_NUMPAD2):
+			return;
+		case (KeyEvent.VK_NUMPAD2):
 			if (!keydownRed) {
-				LOGGER.fine("Red Worker put down honey");
+				LOGGER.fine("Red Worker put down oil");
 				keydownBlue = true;
 				redWorker.getWorker().dropOil();
 			}
-		return;
+			return;
 		default:
 			break;
 		}
@@ -243,12 +243,14 @@ public class SokobanGui extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S
-				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() ==KeyEvent.VK_Q || e.getKeyCode() ==KeyEvent.VK_E) {
+				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_Q
+				|| e.getKeyCode() == KeyEvent.VK_E) {
 			keydownBlue = false;
 			return;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
-				|| e.getKeyCode() == KeyEvent.VK_RIGHT ||e.getKeyCode() == KeyEvent.VK_NUMPAD1 || e.getKeyCode() == KeyEvent.VK_NUMPAD2)
+				|| e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_NUMPAD1
+				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			keydownRed = false;
 	}
 
