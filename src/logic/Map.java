@@ -60,7 +60,7 @@ public class Map implements Steppable {
 	 */
 	public void endMap()
 	{
-		System.out.println("GameOver");
+		LOGGER.log( Level.FINE, "Map ended");
 		Timer.getInstance().removeSteppable(this);
 	}
 	

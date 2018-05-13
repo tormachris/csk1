@@ -1,9 +1,6 @@
 package logic;
 
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 /**
  * Represents a general thing that moves on the map. Abstract.
@@ -26,7 +23,7 @@ public abstract class Thing {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
+
 		// Let this be a warning, if a thing's owner is null, it is brand new!
 		owner = null;
 		tile = null; // Hanging in the aether.
@@ -38,7 +35,7 @@ public abstract class Thing {
 	 * @return the weight
 	 */
 	public Integer getWeight() {
-		LOGGER.log(Level.FINE, "Thing's weight gotten, it was: {0}", weight);
+		LOGGER.fine(() -> "Thing's weight gotten, it was: {}" + weight);
 		return weight;
 	}
 
@@ -48,7 +45,7 @@ public abstract class Thing {
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
-		LOGGER.log(Level.FINE, "Thing's weight set to {0}", weight);
+		LOGGER.fine(() -> "Thing's weight set to {}" + weight);
 	}
 
 	/**
@@ -89,7 +86,7 @@ public abstract class Thing {
 			// if the Thing was accepted by the new Tile the Thing moves to it.
 			tile.remove(this);
 			tile = newTile;
-			if (this.getClass().equals(Crate.class) && moved) {
+			if (this.getClass().equals(Crate.class)) {
 				LOGGER.log(Level.FINE, "Thing pushed crate");
 			}
 		}
@@ -101,15 +98,19 @@ public abstract class Thing {
 	 * Called when hit by another thing.
 	 */
 	public boolean hitBy(Thing t, Direction d, Thing o) {
+		if (t.equals(this)) {
+			LOGGER.log(Level.SEVERE, "Somebody wants a Thing to hit itself");
+			throw new IllegalArgumentException("Thing cannot hit itself");
+		}
 		Boolean hit;
 		this.updateOwner(o); // While it is pushed by another Thing, it has to be the property of the Thing.
 		if (this.getOwner() == null) {
-			LOGGER.log( Level.FINE, "Owner of this thing is nullpointer! WUT?");
+			LOGGER.log(Level.FINE, "Owner of this thing is nullpointer! WUT?");
 			throw new IllegalArgumentException("Null ptr in owner.");
 		} else {
 			Worker w = (Worker) this.getOwner();
 			w.setForce(w.getForce() - this.getWeight() * this.getTile().getFrictionMod().getFriction());
-			LOGGER.log( Level.FINE, "Owner's new force value:{0}",w.getForce());
+			LOGGER.fine(() -> "Owner's new force value:{}" + w.getForce());
 			Double d2 = 0.0;
 			if (w.getForce().compareTo(d2) >= 0) {
 				LOGGER.log(Level.FINE, "Owned has enough force to move this thing");
