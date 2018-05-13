@@ -14,14 +14,15 @@ public class SokobanGui extends JFrame implements KeyListener {
 	 * Generated serialization UID
 	 */
 	private static final long serialVersionUID = 2897342800007758713L;
-	private static final Logger LOGGER = Logger.getLogger( SokobanGui.class.getName() );
-	private static final int GRIDSIZE=11;
+	private static final Logger LOGGER = Logger.getLogger(SokobanGui.class.getName());
+	private static final int GRIDSIZE = 11;
 	private static SokobanGui instance = null;
 	private ArrayList<JPanel> gameGrid;
 	private GraphicWorker blueWorker;
 	private GraphicWorker redWorker;
 	private Boolean keydownBlue;
 	private Boolean keydownRed;
+
 	/**
 	 * Create the application.
 	 */
@@ -32,185 +33,177 @@ public class SokobanGui extends JFrame implements KeyListener {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		blueWorker=new GraphicWorker(IconCollection.getInstance().getWorkerBlue());
-		redWorker=new GraphicWorker(IconCollection.getInstance().getWorkerRed());
-		
-		gameGrid=new ArrayList<>();
-		
+
+		blueWorker = new GraphicWorker(IconCollection.getInstance().getWorkerBlue());
+		redWorker = new GraphicWorker(IconCollection.getInstance().getWorkerRed());
+
+		gameGrid = new ArrayList<>();
+
 		initialize();
-		
+
 		this.addKeyListener(this);
-		
-		keydownRed=false;
-		keydownBlue=false;
-		LOGGER.log( Level.FINE, "GUI Created with default constructor");
+
+		keydownRed = false;
+		keydownBlue = false;
+		LOGGER.log(Level.FINE, "GUI Created with default constructor");
 	}
-	
+
 	/**
 	 * This method realizes SokobanGui being a singleton in Java.
 	 */
 	public static SokobanGui getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new SokobanGui();
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		this.setTitle("KILLER SOKOBAN!!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 550, 75+550); //shrug
-		
-		
-		/* Felso menu geci*/
-		
+		this.setBounds(100, 100, 550, 75 + 550); // shrug
+
+		/* Felso menu geci */
+
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
-		
+
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
-		
+
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mnFile.add(mntmNewGame);
-		
+
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
 		mnFile.add(mntmSaveGame);
-		
+
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		
-		
+
 		/* Felso panel (ido es pontok) */
-		
-		Font scoreFont =  new Font("Tahoma", Font.PLAIN, 20);
-		
+
+		Font scoreFont = new Font("Tahoma", Font.PLAIN, 20);
+
 		JPanel panelTop = new JPanel();
 		this.getContentPane().add(panelTop, BorderLayout.NORTH);
 		panelTop.setLayout(new BorderLayout(0, 0));
-		panelTop.setPreferredSize(new Dimension(550,75));
-		
+		panelTop.setPreferredSize(new Dimension(550, 75));
+
 		JPanel panelScoreBlue = new JPanel();
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
-		panelScoreBlue.setBorder(new EmptyBorder(0,5,10,5));
-		
+		panelScoreBlue.setBorder(new EmptyBorder(0, 5, 10, 5));
+
 		JLabel lblScoreBlue = new JLabel("---");
 		panelScoreBlue.add(lblScoreBlue);
 		lblScoreBlue.setFont(scoreFont);
 		lblScoreBlue.setForeground(Color.BLUE);
 		lblScoreBlue.setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		JPanel panelScoreRed = new JPanel();
 		panelTop.add(panelScoreRed, BorderLayout.EAST);
-		panelScoreRed.setBorder(new EmptyBorder(0,5,10,5));
-		
+		panelScoreRed.setBorder(new EmptyBorder(0, 5, 10, 5));
+
 		JLabel lblScoreRed = new JLabel("---");
 		panelScoreRed.add(lblScoreRed);
 		lblScoreRed.setFont(scoreFont);
 		lblScoreRed.setForeground(Color.RED);
 		lblScoreRed.setHorizontalAlignment(SwingConstants.RIGHT);
-		
+
 		JPanel panelTimerContainer = new JPanel();
 		panelTop.add(panelTimerContainer, BorderLayout.NORTH);
-		
+
 		JLabel lblTimer = new JLabel("--:--");
 		panelTimerContainer.add(lblTimer);
 		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimer.setFont(new Font("Tahoma", Font.BOLD, 28));
-		
-		
+
 		/* Also panel (maga a game) */
-		
+
 		JPanel panelMain = new JPanel();
 		this.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(new GridLayout(GRIDSIZE, GRIDSIZE, 0, 0));
-		panelMain.setPreferredSize(new Dimension(550,550));
-		
+		panelMain.setPreferredSize(new Dimension(550, 550));
+
 		int i;
 		boolean grey = false;
-		for(i = 0; i < (GRIDSIZE*GRIDSIZE); i++) {
+		for (i = 0; i < (GRIDSIZE * GRIDSIZE); i++) {
 			JPanel p = new JPanel();
-			
+
 			if (grey)
 				p.setBackground(Color.LIGHT_GRAY);
 			else
 				p.setBackground(Color.WHITE);
-			
+
 			grey = !grey;
 			gameGrid.add(p);
 			panelMain.add(p);
 		}
-		LOGGER.log( Level.FINE, "GUI Initialized");
+		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
+
 	@Deprecated
 	public void keyTyped(KeyEvent e) {
 		// Auto-generated method stub
-		//We don't want to use this, since this only fires for characters that can be typed. (No arrow keys)
-		//And it fires every time the character is typed, not pressed physically.
+		// We don't want to use this, since this only fires for characters that can be
+		// typed. (No arrow keys)
+		// And it fires every time the character is typed, not pressed physically.
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		LOGGER.fine(() -> "Key pressed, key is {}" +e.getKeyCode());
-		Direction dir=null;
+		LOGGER.fine(() -> "Key pressed, key is {}" + e.getKeyCode());
+		Direction dir = null;
 		// Processing keyboard input for BLUE Worker
-		if(e.getKeyCode()==KeyEvent.VK_W)dir=Direction.NORTH;
-		if(e.getKeyCode()==KeyEvent.VK_A)dir=Direction.WEST;
-		if(e.getKeyCode()==KeyEvent.VK_S)dir=Direction.SOUTH;
-		if(e.getKeyCode()==KeyEvent.VK_D)dir=Direction.EAST;
+		if (e.getKeyCode() == KeyEvent.VK_W)
+			dir = Direction.NORTH;
+		if (e.getKeyCode() == KeyEvent.VK_A)
+			dir = Direction.WEST;
+		if (e.getKeyCode() == KeyEvent.VK_S)
+			dir = Direction.SOUTH;
+		if (e.getKeyCode() == KeyEvent.VK_D)
+			dir = Direction.EAST;
 
-		if(dir!=null) {
+		if (dir != null) {
 			LOGGER.fine("Blue Worker is going to move");
-			try {
-				if(!keydownBlue) {
-					LOGGER.fine("Blue Worker is about to move");
-					keydownBlue=true;
-					blueWorker.getWorker().move(dir);//Make blue worker move
-				}
+			if (!keydownBlue) {
+				LOGGER.fine("Blue Worker is about to move");
+				keydownBlue = true;
+				blueWorker.getWorker().move(dir);// Make blue worker move
 			}
-			catch(Exception ex) {
-				LOGGER.log(Level.SEVERE,ex.getMessage(),ex);
-			}
-			return; //Exit, so we don't move the other worker
+			return; // Exit, so we don't move the other worker
 		}
 		LOGGER.fine(() -> "Blue worker did not move");
 		// Processing keyboard input for RED Worker
-		if(e.getKeyCode()==KeyEvent.VK_UP)dir=Direction.NORTH;
-		if(e.getKeyCode()==KeyEvent.VK_LEFT)dir=Direction.WEST;
-		if(e.getKeyCode()==KeyEvent.VK_DOWN)dir=Direction.SOUTH;
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT)dir=Direction.EAST;
-		try {
-			if(!keydownRed) {
-				LOGGER.fine("Red Worker is going to move");
-				keydownRed=true;
-				redWorker.getWorker().move(dir);//Make red worker move
-			}
-		}
-		catch(Exception ex) {
-			LOGGER.log(Level.SEVERE,ex.getMessage(),ex);
+		if (e.getKeyCode() == KeyEvent.VK_UP)
+			dir = Direction.NORTH;
+		if (e.getKeyCode() == KeyEvent.VK_LEFT)
+			dir = Direction.WEST;
+		if (e.getKeyCode() == KeyEvent.VK_DOWN)
+			dir = Direction.SOUTH;
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+			dir = Direction.EAST;
+		if (!keydownRed) {
+			LOGGER.fine("Red Worker is going to move");
+			keydownRed = true;
+			redWorker.getWorker().move(dir);// Make red worker move
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// Auto-generated method stub
-		if(e.getKeyCode()==KeyEvent.VK_W
-		|| e.getKeyCode()==KeyEvent.VK_A
-		|| e.getKeyCode()==KeyEvent.VK_S
-		|| e.getKeyCode()==KeyEvent.VK_D) {
-			keydownBlue=false;
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S
+				|| e.getKeyCode() == KeyEvent.VK_D) {
+			keydownBlue = false;
 			return;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_UP
-		|| e.getKeyCode()==KeyEvent.VK_DOWN
-		|| e.getKeyCode()==KeyEvent.VK_LEFT
-		|| e.getKeyCode()==KeyEvent.VK_RIGHT)
-			keydownRed=false;
+		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
+				|| e.getKeyCode() == KeyEvent.VK_RIGHT)
+			keydownRed = false;
 	}
 
 }
