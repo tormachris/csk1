@@ -116,11 +116,11 @@ public class Worker extends Thing implements Serializable{
 	
 	public void dropOil() {
 		LOGGER.log( Level.FINE, "Dropping oil");
-		this.getTile().setFrictionMod(new Oil());
+		if(alive)this.getTile().setFrictionMod(new Oil());
 	}
 	public void dropHoney() {
 		LOGGER.log( Level.FINE, "Dropping honey");
-		this.getTile().setFrictionMod(new Honey());
+		if(alive)this.getTile().setFrictionMod(new Honey());
 	}
 
 

@@ -20,14 +20,15 @@ public class GraphicSwitch extends AbstractGraphic {
 	 * 
 	 */
 	private static final long serialVersionUID = -5925419797962477106L;
-	private static final Logger LOGGER = Logger.getLogger( GraphicSwitch.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger(GraphicSwitch.class.getName());
 	private Switch switcho;
+
 	/**
 	 * 
 	 */
 	public GraphicSwitch() {
 		super(IconCollection.getInstance().getButton());
-		
+
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -37,44 +38,46 @@ public class GraphicSwitch extends AbstractGraphic {
 
 	public GraphicSwitch(Switch oswitch) {
 		super(IconCollection.getInstance().getButton());
-		
+
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		setSwitcho(oswitch); //SO FUNKY
+		setSwitcho(oswitch); // SO FUNKY
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public ImageIcon draw() { 
+	public ImageIcon draw() {
 
-		if(switcho.getThing() != null)
-		{
-			if(switcho.getThing().getClass().equals(Crate.class))
-				return IconCollection.getInstance().getBox();
-			if(switcho.getThing().getClass().equals(Worker.class))
-				if(SokobanGui.getWorker(true).equals(switcho.getThing()))
-					return IconCollection.getInstance().getRedontile();
-				else
-					return IconCollection.getInstance().getBlueontile();
-				
-		}
-		else
-		{
-			if(switcho.getFrictionMod().getClass().equals(Oil.class))
+		if (switcho.getThing() != null) {
+			return drawWithThing();
+		} else {
+			if (switcho.getFrictionMod().getClass().equals(Oil.class))
 				return IconCollection.getInstance().getButtonoil();
-			if(switcho.getFrictionMod().getClass().equals(Honey.class))
+			if (switcho.getFrictionMod().getClass().equals(Honey.class))
 				return IconCollection.getInstance().getButtonhoney();
-			if(switcho.getFrictionMod().getClass().equals(FrictionModifier.class))
+			if (switcho.getFrictionMod().getClass().equals(FrictionModifier.class))
 				return IconCollection.getInstance().getButton();
-		}	
+		}
 		return null;
-	
 
+	}
+
+	private ImageIcon drawWithThing() {
+		if (switcho.getThing().getClass().equals(Crate.class))
+			return IconCollection.getInstance().getBox();
+		if (switcho.getThing().getClass().equals(Worker.class))
+			if (SokobanGui.getWorker(true).equals(switcho.getThing()))
+				return IconCollection.getInstance().getRedontile();
+			else
+				return IconCollection.getInstance().getBlueontile();
+		return null;
 	}
 
 	/**
@@ -85,7 +88,8 @@ public class GraphicSwitch extends AbstractGraphic {
 	}
 
 	/**
-	 * @param switcho the switcho to set
+	 * @param switcho
+	 *            the switcho to set
 	 */
 	public void setSwitcho(Switch switcho) {
 		this.switcho = switcho;
