@@ -17,22 +17,24 @@ public class IconCollection implements Serializable{
 	 */
 	private static final long serialVersionUID = -6379120099609785077L;
 	private static IconCollection instance = null;
-	private ImageIcon button;
-	private ImageIcon demo;
-	private ImageIcon box;
-	private ImageIcon floor;
-	private ImageIcon hole;
-	private ImageIcon target;
-	private ImageIcon wall;
-	private ImageIcon honey;
-	private ImageIcon oil;
-	private ImageIcon blueontile;
-	private ImageIcon redontile;
-	private ImageIcon endoil;
-	private ImageIcon endhoney;
-	private ImageIcon buttonhoney;
-	private ImageIcon buttonoil;
-	private ImageIcon csupor;
+	private ImageIcon button; 		//The Image of a Switch.
+	private ImageIcon demo;			//The Image of a Switch.
+	private ImageIcon box;			//The Image of a Crate.
+	private ImageIcon floor;		//The Image of a Tile.
+	private ImageIcon hole;			//The Image of a hole.
+	private ImageIcon target;		//The Image of an EndTile.
+	private ImageIcon wall;			//The Image of a Wall.
+	private ImageIcon honey;		//The Image of the Honey.
+private ImageIcon oil;				//The Image of the Oil.
+	private ImageIcon blueontile;	//The Image of a blue Worker.
+	private ImageIcon redontile;	//The Image of a red Worker.
+	private ImageIcon endoil;		//The Image of an EndTile with Oil.
+	private ImageIcon endhoney;		//The Image of an EndTile with Honey.
+	private ImageIcon buttonhoney;	//The Image of a switch with Honey.
+	private ImageIcon buttonoil;	//The Image of a switch with Oil.
+	private ImageIcon csupor;		//The Icon for the game.
+	
+	//Setting the icons in the constructor.
 	private IconCollection() {
 		button=new ImageIcon("assets/csk1_graf/Floor_with_Button.png");
 		demo=new ImageIcon("assets/csk1_graf/demo.png");
