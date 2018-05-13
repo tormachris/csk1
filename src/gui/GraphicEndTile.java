@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.*;
 import java.util.logging.*;
 
 import javax.swing.*;
@@ -58,5 +57,6 @@ public class GraphicEndTile extends AbstractGraphic {
 	public void setEndtile(EndTile endtile) {
 		this.endtile = endtile;
 	}
+
 
 }

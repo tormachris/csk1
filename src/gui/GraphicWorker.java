@@ -3,7 +3,6 @@
  */
 package gui;
 
-import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
