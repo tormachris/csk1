@@ -152,7 +152,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 		Map m = new Map();
 		Game.getInstance().addMap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
-		for (int j = 0; j < map.size(); ++j) {
+		for (int j = 0; j < GRIDSIZE*GRIDSIZE; ++j) {
 			switch (map.remove()) {
 			case WALL:
 				LOGGER.log(Level.FINE, "WALL Detected");
@@ -213,6 +213,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 				break;
 			}
 		}
+		
 		setUpNeighbors();
 
 		LOGGER.log(Level.FINE, "GUI Initialized");
@@ -221,16 +222,16 @@ public class SokobanGui extends JFrame implements KeyListener {
 	private void setUpNeighbors() {
 		LOGGER.log(Level.FINE, "Setting up neighbors");
 		Tile t = null;
-		for (int i = 0; i < drawables.size(); ++i) {
+		for (int i = 0; i < GRIDSIZE*GRIDSIZE; ++i) {
 			t = cast(drawables.get(i));
-			if (i > 10 && t!=null)
-				t.setNeighbour(Direction.NORTH, cast(drawables.get(i - 11)));
-			if (i % 11 != 10 && t!=null)
+			if (i > GRIDSIZE-1 && t!=null)
+				t.setNeighbour(Direction.NORTH, cast(drawables.get(i - GRIDSIZE)));
+			if (i % GRIDSIZE != GRIDSIZE-1 && t!=null)
 				t.setNeighbour(Direction.EAST, cast(drawables.get(i + 1)));
-			if (i % 11 != 0 && t!=null)
+			if (i % GRIDSIZE != 0 && t!=null)
 				t.setNeighbour(Direction.WEST, cast(drawables.get(i - 1)));
-			if (i < 110 && t!=null)
-				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + 11)));
+			if (i < GRIDSIZE*GRIDSIZE-GRIDSIZE && t!=null)
+				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + GRIDSIZE)));
 
 		}
 
