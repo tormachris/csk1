@@ -27,5 +27,5 @@ public static final String DEMOLEVEL=
 "#TTETTT#T##\n" + 
 "#TTRTTTT#E#\n" + 
 "#TT########\n" + 
-"###########F";
+"###########";
 }
