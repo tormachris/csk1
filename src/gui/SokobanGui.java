@@ -73,7 +73,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		setResizable(false);
 		this.setTitle("KILLER SOKOBAN!!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 550, 75 + 550); // shrug
+		this.setBounds(100, 100, 792, 75 + 792); // shrug
 
 		/* Felso menu geci */
 
@@ -100,7 +100,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		JPanel panelTop = new JPanel();
 		this.getContentPane().add(panelTop, BorderLayout.NORTH);
 		panelTop.setLayout(new BorderLayout(0, 0));
-		panelTop.setPreferredSize(new Dimension(550, 75));
+		panelTop.setPreferredSize(new Dimension(792, 75));
 
 		JPanel panelScoreBlue = new JPanel();
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
@@ -135,7 +135,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		JPanel panelMain = new JPanel();
 		this.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(new GridLayout(GRIDSIZE, GRIDSIZE, 0, 0));
-		panelMain.setPreferredSize(new Dimension(550, 550));
+		panelMain.setPreferredSize(new Dimension(792, 792));
 
 		int i;
 		boolean grey = false;
