@@ -29,7 +29,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	 * 
 	 */
 	public GraphicWorker() {
-		super(IconCollection.getInstance().getWorkerBlue());
+		super(IconCollection.getInstance().getBlueontile());
 		
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
@@ -71,7 +71,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	 * @param _img
 	 */
 	public GraphicWorker(Worker oworker) {
-		super(IconCollection.getInstance().getWorkerBlue());
+		super(IconCollection.getInstance().getBlueontile());
 		
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();

@@ -24,8 +24,6 @@ public class IconCollection implements Serializable{
 	private ImageIcon hole;
 	private ImageIcon target;
 	private ImageIcon wall;
-	private ImageIcon workerblue;
-	private ImageIcon workerred;
 	private ImageIcon honey;
 	private ImageIcon oil;
 	private ImageIcon blueontile;
@@ -43,8 +41,6 @@ public class IconCollection implements Serializable{
 		hole=new ImageIcon("assets/csk1_graf/Floor_with_HoleOpen.png");
 		target=new ImageIcon("assets/csk1_graf/Floor_with_Target.png");
 		wall=new ImageIcon("assets/csk1_graf/wall.png");
-		workerblue=new ImageIcon("assets/csk1_graf/worker_blue.png");
-		workerred=new ImageIcon("assets/csk1_graf/worker_red.png");
 		blueontile=new ImageIcon("assets/csk1_graf/EasterEggBlue.png");
 		redontile=new ImageIcon("assets/csk1_graf/EasterEggRed.png");
 		honey=new ImageIcon("assets/csk1_graf/Floor_with_Honey.png");
@@ -71,8 +67,6 @@ public class IconCollection implements Serializable{
 	public ImageIcon getHole() {return hole;}
 	public ImageIcon getTarget() {return target;}
 	public ImageIcon getWall() {return wall;}
-	public ImageIcon getWorkerBlue() {return workerblue;}
-	public ImageIcon getWorkerRed() {return workerred;}
 	/**
 	 * @return the honey
 	 */
