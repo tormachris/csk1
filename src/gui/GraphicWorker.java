@@ -17,7 +17,7 @@ import logic.*;
  * @author krist
  *
  */
-public class GraphicWorker extends AbstractGraphic {
+public class GraphicWorker extends AbstractGraphic implements Disappearable {
 	private static final Logger LOGGER = Logger.getLogger( GraphicWorker.class.getName() );
 	private Worker worker;
 	/**
@@ -103,6 +103,12 @@ public class GraphicWorker extends AbstractGraphic {
 	 */
 	public void setWorker(Worker worker) {
 		this.worker = worker;
+	}
+
+	@Override
+	public void disappear() {
+		// Auto-generated method stub
+		
 	}
 
 }

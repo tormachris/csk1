@@ -8,7 +8,7 @@ import java.util.logging.SimpleFormatter;
 
 import logic.Crate;
 
-public class GraphicCrate extends AbstractGraphic {
+public class GraphicCrate extends AbstractGraphic implements Disappearable{
 	private static final Logger LOGGER = Logger.getLogger( GraphicCrate.class.getName() );
 	private Crate crate;
 	
@@ -55,6 +55,12 @@ public class GraphicCrate extends AbstractGraphic {
 	 */
 	public void setCrate(Crate crate) {
 		this.crate = crate;
+	}
+
+	@Override
+	public void disappear() {
+		// Auto-generated method stub
+		
 	}
 
 }

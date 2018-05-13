@@ -74,7 +74,7 @@ public abstract class Thing {
 	 */
 	public boolean move(Direction d) {
 		LOGGER.log(Level.FINE, "Thing starting to move");
-		// getting the neighbour of the current Tile and setting the moving attribute
+		// getting the neighbor of the current Tile and setting the moving attribute
 		Tile newTile;
 		newTile = tile.getNeighbour(d);
 		moving = d;
@@ -87,7 +87,7 @@ public abstract class Thing {
 			tile.remove(this);
 			tile = newTile;
 			if (this.getClass().equals(Crate.class)) {
-				LOGGER.log(Level.FINE, "Thing pushed crate");
+				LOGGER.log(Level.FINE, "Thing is a crate!");
 			}
 		}
 		LOGGER.log(Level.FINE, "Thing moved:{0}", moved);
