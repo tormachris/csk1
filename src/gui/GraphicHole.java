@@ -6,6 +6,8 @@ package gui;
 import java.awt.*;
 import java.util.logging.*;
 
+import javax.swing.*;
+
 import logic.*;
 
 /**
@@ -51,7 +53,7 @@ public class GraphicHole extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(Graphics g) {
+	public void draw(JLabel label) {
 		// Auto-generated method stub
 
 	}

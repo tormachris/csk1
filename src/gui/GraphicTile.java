@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.*;
+
 import logic.*;
 
 /**
@@ -55,7 +57,7 @@ public class GraphicTile extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(Graphics g) {
+	public void draw(JLabel label) {
 		// Auto-generated method stub
 
 	}

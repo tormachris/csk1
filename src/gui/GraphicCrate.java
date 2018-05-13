@@ -6,6 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.*;
+
 import logic.Crate;
 
 public class GraphicCrate extends AbstractGraphic implements Disappearable{
@@ -42,7 +44,7 @@ public class GraphicCrate extends AbstractGraphic implements Disappearable{
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void draw(JLabel label) {
 		// Auto-generated method stub
 
 	}

@@ -3,6 +3,8 @@ package gui;
 import java.awt.*;
 import java.util.logging.*;
 
+import javax.swing.*;
+
 import logic.EndTile;
 
 public class GraphicEndTile extends AbstractGraphic {
@@ -38,7 +40,7 @@ public class GraphicEndTile extends AbstractGraphic {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void draw(JLabel label) {
 		// Auto-generated method stub
 
 	}
