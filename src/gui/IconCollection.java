@@ -26,16 +26,32 @@ public class IconCollection implements Serializable{
 	private StretchIcon wall;
 	private StretchIcon workerblue;
 	private StretchIcon workerred;
+	private StretchIcon honey;
+	private StretchIcon oil;
+	private StretchIcon blueontile;
+	private StretchIcon redontile;
+	private StretchIcon endoil;
+	private StretchIcon endhoney;
+	private StretchIcon buttonhoney;
+	private StretchIcon buttonoil;
 	private IconCollection() {
-		button=new StretchIcon("https://tormakristof.eu/files/csk1_graf/button.png");
+		button=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Button.png");
 		demo=new StretchIcon("https://tormakristof.eu/files/csk1_graf/demo.png");
 		box=new StretchIcon("https://tormakristof.eu/files/csk1_graf/doboz.png");
 		floor=new StretchIcon("https://tormakristof.eu/files/csk1_graf/floor.png");
-		hole=new StretchIcon("https://tormakristof.eu/files/csk1_graf/hole.png");
-		target=new StretchIcon("https://tormakristof.eu/files/csk1_graf/target.png");
+		hole=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_HoleOpen.png");
+		target=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Target.png");
 		wall=new StretchIcon("https://tormakristof.eu/files/csk1_graf/wall.png");
 		workerblue=new StretchIcon("https://tormakristof.eu/files/csk1_graf/worker_blue.png");
 		workerred=new StretchIcon("https://tormakristof.eu/files/csk1_graf/worker_red.png");
+		blueontile=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_BlueWorker.png");
+		redontile=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_RedWorker.png");
+		honey=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Honey.png");
+		oil=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Oil.png");
+		endoil=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Target_with_Oil.png");
+		endhoney=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Target_with_Honey.png");
+		buttonhoney=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Button_with_Honey.png");
+		buttonoil=new StretchIcon("https://tormakristof.eu/files/csk1_graf/Floor_with_Button_with_Oil.png");
 	}
 	/**
 	 * This method realizes IconCollection being a singleton in Java.
@@ -55,4 +71,52 @@ public class IconCollection implements Serializable{
 	public StretchIcon getWall() {return wall;}
 	public StretchIcon getWorkerBlue() {return workerblue;}
 	public StretchIcon getWorkerRed() {return workerred;}
+	/**
+	 * @return the honey
+	 */
+	public StretchIcon getHoney() {
+		return honey;
+	}
+	/**
+	 * @return the oil
+	 */
+	public StretchIcon getOil() {
+		return oil;
+	}
+	/**
+	 * @return the blueontile
+	 */
+	public StretchIcon getBlueontile() {
+		return blueontile;
+	}
+	/**
+	 * @return the redontile
+	 */
+	public StretchIcon getRedontile() {
+		return redontile;
+	}
+	/**
+	 * @return the endoil
+	 */
+	public StretchIcon getEndoil() {
+		return endoil;
+	}
+	/**
+	 * @return the endhoney
+	 */
+	public StretchIcon getEndhoney() {
+		return endhoney;
+	}
+	/**
+	 * @return the buttonhoney
+	 */
+	public StretchIcon getButtonhoney() {
+		return buttonhoney;
+	}
+	/**
+	 * @return the buttonoil
+	 */
+	public StretchIcon getButtonoil() {
+		return buttonoil;
+	}
 }
