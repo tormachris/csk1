@@ -54,28 +54,30 @@ public class GraphicHole extends AbstractGraphic {
 			return IconCollection.getInstance().getHole();
 			
 		}
-
-		if(hole.getThing() == null)
-		{
-			if(hole.getFrictionMod() == null)
-			{
-				return IconCollection.getInstance().getFloor();
-				
-			}
-			if(hole.getFrictionMod().getClass().equals(Oil.class))
-				return IconCollection.getInstance().getOil();
-			if(hole.getFrictionMod().getClass().equals(Honey.class))
-				return IconCollection.getInstance().getHoney();
 		
+		if(hole.getThing() != null)
+		{
+			if(hole.getThing().getClass().equals(Crate.class))
+				return IconCollection.getInstance().getBox();
+			if(hole.getThing().getClass().equals(Worker.class))
+				if(SokobanGui.getInstance().getWorker(true).equals(hole.getThing()))
+					return IconCollection.getInstance().getRedontile();
+				else
+					return IconCollection.getInstance().getBlueontile();
+				
 		}
-		if(hole.getThing().getClass().equals(Crate.class))
-			return IconCollection.getInstance().getBox();
-		if(hole.getThing().getClass().equals(Worker.class))
-			if(SokobanGui.getInstance().getWorker(true).equals(hole.getThing()))
-				return IconCollection.getInstance().getRedontile();
-			else
-				return IconCollection.getInstance().getBlueontile();
-		return null; 
+		else
+		{
+			if(hole.getFrictionMod() != null)
+			{
+				if(hole.getFrictionMod().getFriction() < 1)
+					return IconCollection.getInstance().getOil();
+				else
+					return IconCollection.getInstance().getHoney();
+			}
+			return IconCollection.getInstance().getFloor();
+		}	
+		return null;
 	
 	}
 

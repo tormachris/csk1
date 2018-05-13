@@ -36,26 +36,28 @@ public class GraphicEndTile extends AbstractGraphic {
 
 	@Override
 	public ImageIcon draw() { 
-		if(endtile.getThing() == null)
+		if(endtile.getThing() != null)
 		{
-			if(endtile.getFrictionMod() == null)
-			{
-				return IconCollection.getInstance().getTarget();
+			if(endtile.getThing().getClass().equals(Crate.class))
+				return IconCollection.getInstance().getBox();
+			if(endtile.getThing().getClass().equals(Worker.class))
+				if(SokobanGui.getInstance().getWorker(true).equals(endtile.getThing()))
+					return IconCollection.getInstance().getRedontile();
+				else
+					return IconCollection.getInstance().getBlueontile();
 				
-			}
-			if(endtile.getFrictionMod().getClass().equals(Oil.class))
-				return IconCollection.getInstance().getEndoil();
-			if(endtile.getFrictionMod().getClass().equals(Honey.class))
-				return IconCollection.getInstance().getEndhoney();
-		
 		}
-		if(endtile.getThing().getClass().equals(Crate.class))
-			return IconCollection.getInstance().getBox();
-		if(endtile.getThing().getClass().equals(Worker.class))
-			if(SokobanGui.getInstance().getWorker(true).equals(endtile.getThing()))
-				return IconCollection.getInstance().getRedontile();
-			else
-				return IconCollection.getInstance().getBlueontile();
+		else
+		{
+			if(endtile.getFrictionMod() != null)
+			{
+				if(endtile.getFrictionMod().getFriction() < 1)
+					return IconCollection.getInstance().getEndoil();
+				else
+					return IconCollection.getInstance().getEndhoney();
+			}
+			return IconCollection.getInstance().getTarget();
+		}	
 		return null;
 	}
 

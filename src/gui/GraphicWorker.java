@@ -12,8 +12,6 @@ import java.util.logging.SimpleFormatter;
 import javax.swing.ImageIcon;
 
 
-import javax.swing.*;
-
 import logic.*;
 
 /**
