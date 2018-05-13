@@ -25,10 +25,10 @@ public class GraphicTile extends AbstractGraphic {
 	}
 
 	
-	public GraphicTile(Tile _tile) {
+	public GraphicTile(Tile otile) {
 		super(IconCollection.getInstance().getFloor());
 		LOGGER.log(Level.FINE,"GraphicTile created");
-		tile=_tile;
+		setTile(otile);
 	}
 
 	/* (non-Javadoc)
@@ -36,8 +36,24 @@ public class GraphicTile extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+
+	/**
+	 * @return the tile
+	 */
+	public Tile getTile() {
+		return tile;
+	}
+
+
+	/**
+	 * @param tile the tile to set
+	 */
+	public void setTile(Tile tile) {
+		this.tile = tile;
 	}
 
 }

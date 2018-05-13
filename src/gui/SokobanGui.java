@@ -15,8 +15,8 @@ public class SokobanGui {
 	/**
 	 * Create the application.
 	 */
-	public SokobanGui(int _gridSize) {
-		gridSize = _gridSize;
+	public SokobanGui(int ogridSize) {
+		gridSize = ogridSize;
 		initialize();
 		LOGGER.log( Level.FINE, "GUI Created");
 	}
@@ -112,7 +112,7 @@ public class SokobanGui {
 		LOGGER.log( Level.FINE, "GUI Initialized");
 	}
 	
-	public void Show() {
+	public void show() {
 		LOGGER.log( Level.FINE, "Showing GUI");
 		frmKillerSokoban.setVisible(true);
 	}

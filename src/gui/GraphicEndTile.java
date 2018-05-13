@@ -1,8 +1,7 @@
 package gui;
 
-import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.*;
+import java.util.logging.*;
 
 import logic.EndTile;
 
@@ -14,16 +13,30 @@ public class GraphicEndTile extends AbstractGraphic {
 		LOGGER.log(Level.FINE,"GraphicEndTle created");
 	}
 
-	public GraphicEndTile(EndTile _endtile) {
+	public GraphicEndTile(EndTile oendtile) {
 		super(IconCollection.getInstance().getTarget());
 		LOGGER.log(Level.FINE,"GraphicEndTle created");
-		endtile=_endtile;
+		setEndtile(oendtile);
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the endtile
+	 */
+	public EndTile getEndtile() {
+		return endtile;
+	}
+
+	/**
+	 * @param endtile the endtile to set
+	 */
+	public void setEndtile(EndTile endtile) {
+		this.endtile = endtile;
 	}
 
 }

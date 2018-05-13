@@ -15,7 +15,7 @@ import logic.*;
  */
 public class GraphicSwitch extends AbstractGraphic {
 	private static final Logger LOGGER = Logger.getLogger( GraphicSwitch.class.getName() );
-	private Switch switch_;
+	private Switch switcho;
 	/**
 	 * 
 	 */
@@ -24,10 +24,10 @@ public class GraphicSwitch extends AbstractGraphic {
 		LOGGER.log(Level.FINE,"GraphicSwitch created");
 	}
 
-	public GraphicSwitch(Switch _switch) {
+	public GraphicSwitch(Switch oswitch) {
 		super(IconCollection.getInstance().getButton());
 		LOGGER.log(Level.FINE,"GraphicSwitch created");
-		switch_=_switch; //SO FUNKY
+		setSwitcho(oswitch); //SO FUNKY
 	}
 
 	/* (non-Javadoc)
@@ -35,8 +35,22 @@ public class GraphicSwitch extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the switcho
+	 */
+	public Switch getSwitcho() {
+		return switcho;
+	}
+
+	/**
+	 * @param switcho the switcho to set
+	 */
+	public void setSwitcho(Switch switcho) {
+		this.switcho = switcho;
 	}
 
 }

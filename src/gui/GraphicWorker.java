@@ -23,33 +23,33 @@ public class GraphicWorker extends AbstractGraphic {
 	 */
 	public GraphicWorker() {
 		super(IconCollection.getInstance().getWorkerBlue());
-		LOGGER.log(Level.FINE,"GraphicWorker created");
+		LOGGER.log(Level.FINE,"GraphicWorker created with default constructor");
 	}
 
 	/**
 	 * @param _img
 	 */
-	public GraphicWorker(ImageIcon _img) {
-		super(_img);
-		LOGGER.log(Level.FINE,"GraphicWorker created");
+	public GraphicWorker(ImageIcon oimg) {
+		super(oimg);
+		LOGGER.log(Level.FINE,"GraphicWorker created with oimg constructor");
 	}
 	
 	/**
 	 * @param _img
 	 */
-	public GraphicWorker(ImageIcon _img, Worker _worker) {
-		super(_img);
-		LOGGER.log(Level.FINE,"GraphicWorker created");
-		worker=_worker;
+	public GraphicWorker(ImageIcon oimg, Worker oworker) {
+		super(oimg);
+		LOGGER.log(Level.FINE,"GraphicWorker created with all parameters");
+		setWorker(oworker);
 	}
 	
 	/**
 	 * @param _img
 	 */
-	public GraphicWorker(Worker _worker) {
+	public GraphicWorker(Worker oworker) {
 		super(IconCollection.getInstance().getWorkerBlue());
 		LOGGER.log(Level.FINE,"GraphicWorker created");
-		worker=_worker;
+		setWorker(oworker);
 	}
 
 	/* (non-Javadoc)
@@ -57,8 +57,22 @@ public class GraphicWorker extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the worker
+	 */
+	public Worker getWorker() {
+		return worker;
+	}
+
+	/**
+	 * @param worker the worker to set
+	 */
+	public void setWorker(Worker worker) {
+		this.worker = worker;
 	}
 
 }

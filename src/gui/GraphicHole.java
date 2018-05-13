@@ -3,7 +3,7 @@
  */
 package gui;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.logging.*;
 
 import logic.*;
@@ -23,10 +23,10 @@ public class GraphicHole extends AbstractGraphic {
 		LOGGER.log(Level.FINE,"GraphicHole created");
 	}
 
-	public GraphicHole(Hole _hole) {
+	public GraphicHole(Hole ohole) {
 		super(IconCollection.getInstance().getHole());
 		LOGGER.log(Level.FINE,"GraphicHole created");
-		hole=_hole;
+		setHole(ohole);
 	}
 
 	/* (non-Javadoc)
@@ -34,8 +34,22 @@ public class GraphicHole extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the hole
+	 */
+	public Hole getHole() {
+		return hole;
+	}
+
+	/**
+	 * @param hole the hole to set
+	 */
+	public void setHole(Hole hole) {
+		this.hole = hole;
 	}
 
 }

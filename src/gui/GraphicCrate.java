@@ -16,16 +16,30 @@ public class GraphicCrate extends AbstractGraphic {
 		LOGGER.log(Level.FINE,"GraphicCrate created");
 	}
 	
-	public GraphicCrate(Crate _crate) {
+	public GraphicCrate(Crate ocrate) {
 		super(IconCollection.getInstance().getBox());
 		LOGGER.log(Level.FINE,"GraphicCrate created");
-		crate=_crate;
+		setCrate(ocrate);
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the crate
+	 */
+	public Crate getCrate() {
+		return crate;
+	}
+
+	/**
+	 * @param crate the crate to set
+	 */
+	public void setCrate(Crate crate) {
+		this.crate = crate;
 	}
 
 }

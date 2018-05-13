@@ -18,8 +18,8 @@ public class IconCollection {
 	private ImageIcon hole;
 	private ImageIcon target;
 	private ImageIcon wall;
-	private ImageIcon worker_blue;
-	private ImageIcon worker_red;
+	private ImageIcon workerblue;
+	private ImageIcon workerred;
 	private IconCollection() {
 		button=new ImageIcon("https://tormakristof.eu/files/csk1_graf/button.png");
 		demo=new ImageIcon("https://tormakristof.eu/files/csk1_graf/demo.png");
@@ -28,8 +28,8 @@ public class IconCollection {
 		hole=new ImageIcon("https://tormakristof.eu/files/csk1_graf/hole.png");
 		target=new ImageIcon("https://tormakristof.eu/files/csk1_graf/target.png");
 		wall=new ImageIcon("https://tormakristof.eu/files/csk1_graf/wall.png");
-		worker_blue=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_blue.png");
-		worker_red=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_red.png");
+		workerblue=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_blue.png");
+		workerred=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_red.png");
 	}
 	/**
 	 * This method realizes IconCollection being a singleton in Java.
@@ -47,6 +47,6 @@ public class IconCollection {
 	public ImageIcon getHole() {return hole;}
 	public ImageIcon getTarget() {return target;}
 	public ImageIcon getWall() {return wall;}
-	public ImageIcon getWorkerBlue() {return worker_blue;}
-	public ImageIcon getWorkerRed() {return worker_red;}
+	public ImageIcon getWorkerBlue() {return workerblue;}
+	public ImageIcon getWorkerRed() {return workerred;}
 }

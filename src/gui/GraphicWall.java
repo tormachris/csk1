@@ -27,10 +27,10 @@ public class GraphicWall extends AbstractGraphic {
 	/**
 	 * 
 	 */
-	public GraphicWall(Wall _wall) {
+	public GraphicWall(Wall owall) {
 		super(IconCollection.getInstance().getWall());
 		LOGGER.log(Level.FINE,"GraphicWall created");
-		wall=_wall;
+		setWall(owall);
 	}
 
 
@@ -39,8 +39,22 @@ public class GraphicWall extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
+	}
+
+	/**
+	 * @return the wall
+	 */
+	public Wall getWall() {
+		return wall;
+	}
+
+	/**
+	 * @param wall the wall to set
+	 */
+	public void setWall(Wall wall) {
+		this.wall = wall;
 	}
 
 }
