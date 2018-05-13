@@ -211,8 +211,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 
 		for(int j=0;j<gameGrid.size();j++) {
 			JPanel panel=gameGrid.get(j);
-			JLabel label=new JLabel("BASZAS");
-			//drawables.get(j).draw(label);
+			JLabel label=new JLabel(drawables.get(j).draw());
 			panel.add(label);
 		}
 		

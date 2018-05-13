@@ -10,6 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.*;
 
+import ansiliary.StretchIcon;
 import logic.*;
 
 /**
@@ -57,8 +58,8 @@ public class GraphicWall extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(JLabel label) {
-		label.setIcon(IconCollection.getInstance().getWall());
+	public StretchIcon draw() {
+		return IconCollection.getInstance().getWall(); 
 	}
 
 	/**

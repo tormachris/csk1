@@ -10,6 +10,9 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import javax.swing.ImageIcon;
+
+import ansiliary.StretchIcon;
+
 import javax.swing.*;
 
 import logic.*;
@@ -85,8 +88,8 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(JLabel label) {
-		// Auto-generated method stub
+	public StretchIcon draw() {
+		return null;
 
 	}
 

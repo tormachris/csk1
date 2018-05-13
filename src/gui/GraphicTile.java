@@ -10,6 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.*;
 
+import ansiliary.StretchIcon;
 import logic.*;
 
 /**
@@ -52,29 +53,28 @@ public class GraphicTile extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(JLabel label) {
+	public StretchIcon draw() { 
 
 		if(tile.getThing() == null)
 		{
 			if(tile.getFrictionMod() == null)
 			{
-				label.setIcon(IconCollection.getInstance().getFloor());
-				return;
+				return IconCollection.getInstance().getFloor();
 			}
 			if(tile.getFrictionMod().getClass().equals(Oil.class))
-				label.setIcon(IconCollection.getInstance().getOil());
+				return IconCollection.getInstance().getOil();
 			if(tile.getFrictionMod().getClass().equals(Honey.class))
-				label.setIcon(IconCollection.getInstance().getHoney());
-		return;
+				return IconCollection.getInstance().getHoney();
 		
 		}
 		if(tile.getThing().getClass().equals(Crate.class))
-			label.setIcon(IconCollection.getInstance().getBox());
+			return IconCollection.getInstance().getBox();
 		if(tile.getThing().getClass().equals(Worker.class))
 			if(SokobanGui.getInstance().getWorker(true).equals(tile.getThing()))
-				label.setIcon(IconCollection.getInstance().getRedontile());
+				return IconCollection.getInstance().getRedontile();
 			else
-				label.setIcon(IconCollection.getInstance().getBlueontile());
+				return IconCollection.getInstance().getBlueontile();
+		return null;
 	
 
 	}

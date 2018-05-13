@@ -10,6 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.*;
 
+import ansiliary.StretchIcon;
 import logic.*;
 
 /**
@@ -51,29 +52,28 @@ public class GraphicSwitch extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(JLabel label) {
+	public StretchIcon draw() { 
 
 		if(switcho.getThing() == null)
 		{
 			if(switcho.getFrictionMod() == null)
 			{
-				label.setIcon(IconCollection.getInstance().getButton());
-				return;
+				return IconCollection.getInstance().getButton();
 			}
 			if(switcho.getFrictionMod().getClass().equals(Oil.class))
-				label.setIcon(IconCollection.getInstance().getButtonoil());
+				return IconCollection.getInstance().getButtonoil();
 			if(switcho.getFrictionMod().getClass().equals(Honey.class))
-				label.setIcon(IconCollection.getInstance().getButtonhoney());
-		return;
+				return IconCollection.getInstance().getButtonhoney();
 		
 		}
 		if(switcho.getThing().getClass().equals(Crate.class))
-			label.setIcon(IconCollection.getInstance().getBox());
+			return IconCollection.getInstance().getBox();
 		if(switcho.getThing().getClass().equals(Worker.class))
 			if(SokobanGui.getInstance().getWorker(true).equals(switcho.getThing()))
-				label.setIcon(IconCollection.getInstance().getRedontile());
+				return IconCollection.getInstance().getRedontile();
 			else
-				label.setIcon(IconCollection.getInstance().getBlueontile());
+				return IconCollection.getInstance().getBlueontile();
+		return null;
 	
 
 	}

@@ -7,6 +7,7 @@ import java.util.logging.*;
 
 import javax.swing.*;
 
+import ansiliary.StretchIcon;
 import logic.*;
 
 /**
@@ -48,34 +49,34 @@ public class GraphicHole extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public void draw(JLabel label) {
+	public StretchIcon draw() {
 		if(hole.getOpen())
 		{
-			label.setIcon(IconCollection.getInstance().getHole());
-			return;
+			return IconCollection.getInstance().getHole();
+			
 		}
 
 		if(hole.getThing() == null)
 		{
 			if(hole.getFrictionMod() == null)
 			{
-				label.setIcon(IconCollection.getInstance().getFloor());
-				return;
+				return IconCollection.getInstance().getFloor();
+				
 			}
 			if(hole.getFrictionMod().getClass().equals(Oil.class))
-				label.setIcon(IconCollection.getInstance().getOil());
+				return IconCollection.getInstance().getOil();
 			if(hole.getFrictionMod().getClass().equals(Honey.class))
-				label.setIcon(IconCollection.getInstance().getHoney());
-		return;
+				return IconCollection.getInstance().getHoney();
 		
 		}
 		if(hole.getThing().getClass().equals(Crate.class))
-			label.setIcon(IconCollection.getInstance().getBox());
+			return IconCollection.getInstance().getBox();
 		if(hole.getThing().getClass().equals(Worker.class))
 			if(SokobanGui.getInstance().getWorker(true).equals(hole.getThing()))
-				label.setIcon(IconCollection.getInstance().getRedontile());
+				return IconCollection.getInstance().getRedontile();
 			else
-				label.setIcon(IconCollection.getInstance().getBlueontile());
+				return IconCollection.getInstance().getBlueontile();
+		return null; 
 	
 	}
 

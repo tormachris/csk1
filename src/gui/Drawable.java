@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 
+import ansiliary.StretchIcon;
+
 public interface Drawable {
-	public void draw(JLabel label);
+	public StretchIcon draw();
 }
