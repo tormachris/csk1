@@ -102,7 +102,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		JPanel panelScoreBlue = new JPanel();
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
 		panelScoreBlue.setBorder(new EmptyBorder(0, 5, 10, 5));
-
+		lblScoreBlue = new JLabel("---");
 		panelScoreBlue.add(lblScoreBlue);
 		lblScoreBlue.setFont(scoreFont);
 		lblScoreBlue.setForeground(Color.BLUE);
