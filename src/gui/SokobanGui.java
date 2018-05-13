@@ -10,8 +10,9 @@ import javax.swing.border.*;
 import ansiliary.*;
 import logic.*;
 import logic.Map;
+import logic.Timer;
 
-public class SokobanGui extends JFrame implements KeyListener {
+public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	/**
 	 * Generated serialization UID
 	 */
@@ -25,6 +26,9 @@ public class SokobanGui extends JFrame implements KeyListener {
 	private GraphicWorker redWorker;
 	private Boolean keydownBlue;
 	private Boolean keydownRed;
+	JLabel lblScoreBlue = new JLabel("---");
+	JLabel lblScoreRed = new JLabel("---");
+	JLabel lblTimer = new JLabel("--:--");
 
 	/**
 	 * Create the application.
@@ -101,7 +105,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
 		panelScoreBlue.setBorder(new EmptyBorder(0, 5, 10, 5));
 
-		JLabel lblScoreBlue = new JLabel("---");
+		
 		panelScoreBlue.add(lblScoreBlue);
 		lblScoreBlue.setFont(scoreFont);
 		lblScoreBlue.setForeground(Color.BLUE);
@@ -363,6 +367,21 @@ public class SokobanGui extends JFrame implements KeyListener {
 		if(red)
 			return redWorker.getWorker();
 		return blueWorker.getWorker();
+		
+	}
+
+	@Override
+	public void step() {
+		if(Game.getInstance().getCurrentmap() != null)
+		{
+			int timeinticks = Game.getInstance().getCurrentmap().getTicksRemain();
+			Timer.getInstance();
+			int timeinsecs = timeinticks/(1000/Timer.getMilisecstowait());
+			int mins = timeinsecs / 60;
+			int secs = timeinsecs % 60;
+			lblTimer.setText(mins + ":" + secs);
+			System.out.println(mins + ":" + secs);
+		}
 		
 	}
 }
