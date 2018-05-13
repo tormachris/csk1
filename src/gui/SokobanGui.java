@@ -223,6 +223,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			
 			panel.removeAll();
 			panel.add(label);
+			panel.revalidate();
 		}
 	}
 	
@@ -241,7 +242,6 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + GRIDSIZE)));
 
 		}
-		System.out.print("  ");
 	}
 
 	private Tile cast(Drawable d) {
