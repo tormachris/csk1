@@ -42,16 +42,16 @@ public class Map implements Steppable, Serializable {
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 		
-		this.setCrates(new HashSet<Crate>());
-		this.setWorkers(new HashSet<Worker>());
-		this.setTiles(new HashSet<Tile>());
+		crates=new HashSet<>();
+		workers=new HashSet<>();
+		tiles=new HashSet<>();
 		this.resetTimer();
 	}
 	
 	/**
 	 * Starts the map.
 	 */
-	public synchronized void startMap()
+	public void startMap()
 	{
 		LOGGER.log( Level.FINE, "Map started");
 		this.resetTimer();
@@ -62,7 +62,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * Called when the map ends.
 	 */
-	public synchronized void endMap()
+	public void endMap()
 	{
 		LOGGER.log( Level.FINE, "Map ended");
 		ticksRemain=-1;
@@ -72,7 +72,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * Resets the remaining time to the default time of a game.
 	 */
-	public synchronized void resetTimer()
+	public void resetTimer()
 	{
 		//reseting the time
 		this.setTicksRemain(DEFAULTTICKSREMAIN);
@@ -94,65 +94,21 @@ public class Map implements Steppable, Serializable {
 			ticksRemain--;
 	}
 
-	/**
-	 * @return the tiles
-	 */
-	public synchronized Set<Tile> getTiles() {
-		return tiles;
-	}
-
-	/**
-	 * @param tiles the tiles to set
-	 */
-	public synchronized void setTiles(Set<Tile> tiles) {
-		this.tiles = tiles;
-	}
-	/**
-	 * @return the ticksRemain
-	 */
-	public synchronized Integer getTicksRemain() {
+	public Integer getTicksRemain() {
 		return ticksRemain;
 	}
 
 	/**
 	 * @param ticksRemain the ticksRemain to set
 	 */
-	public synchronized void setTicksRemain(Integer ticksRemain) {
+	public void setTicksRemain(Integer ticksRemain) {
 		this.ticksRemain = ticksRemain;	
 	}
 
 	/**
-	 * @return the crates
-	 */
-	public synchronized Set<Crate> getCrates() {
-		return crates;
-	}
-
-	/**
-	 * @param crates the crates to set
-	 */
-	public synchronized void setCrates(Set<Crate> crates) {
-		this.crates = crates;
-	}
-
-	/**
-	 * @return the workers
-	 */
-	public synchronized Set<Worker> getWorkers() {
-		return workers;
-	}
-
-	/**
-	 * @param workers the workers to set
-	 */
-	public synchronized void setWorkers(Set<Worker> workers) {
-		this.workers = workers;
-	}
-	
-	/**
 	 * @param w the worker to add
 	 */	
-	public synchronized void addWorker(Worker w) {
+	public void addWorker(Worker w) {
 		if(w==null)
 			throw new IllegalArgumentException("Cannot add null to workers collection.");	 //Checking for valid input 
 		else {
@@ -163,14 +119,14 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param worker the Worker to remove
 	 */
-	public synchronized void removeWorker(Worker w) {
+	public void removeWorker(Worker w) {
 		if(this.workers.contains(w))	//Checking that the worker is on the map.
 			this.workers.remove(w);
 	}
 	/**
 	 * @param c the Crate to add
 	 */
-	public synchronized void addCrate(Crate c) {
+	public void addCrate(Crate c) {
 		if(c==null)
 			throw new IllegalArgumentException("Cannot add null to crates collection.");	//Checking for valid input 
 		else
@@ -179,14 +135,14 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param c the Crate to remove
 	 */
-	public synchronized void removeCrate(Crate c) {
+	public void removeCrate(Crate c) {
 		if(this.crates.contains(c))	
 			this.crates.remove(c);			//Checking that the Crate is in the crates collection.
 	}
 	/**
 	 * @param t the Tile to add
 	 */
-	public synchronized void addTile(Tile t) {
+	public void addTile(Tile t) {
 		if(t==null)
 			throw new IllegalArgumentException("Cannot add null to tiles collection.");	//Checking for valid input.
 		else
@@ -195,7 +151,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * @param t the Tile to remove
 	 */
-	public synchronized void removeTile(Tile t) {
+	public void removeTile(Tile t) {
 		if(this.tiles.contains(t))	//Checking that the Tile is in the tiles collection.
 			this.tiles.remove(t);
 	}
