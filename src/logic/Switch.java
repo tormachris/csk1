@@ -73,7 +73,7 @@ public class Switch extends Tile {
 	/**
 	 * Constructor. Sets the hole.
 	 */
-	Switch(Hole h){
+	public Switch(Hole h){
 		this.setHole(h);
 	}
 }
