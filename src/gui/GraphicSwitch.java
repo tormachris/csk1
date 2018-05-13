@@ -58,7 +58,7 @@ public class GraphicSwitch extends AbstractGraphic {
 				return IconCollection.getInstance().getBox();
 			if(switcho.getThing().getClass().equals(Worker.class))
 				if(SokobanGui.getWorker(true).equals(switcho.getThing()))
-					return IconCollection.getInstance().getBlueontile();
+					return IconCollection.getInstance().getRedontile();
 				else
 					return IconCollection.getInstance().getBlueontile();
 				
