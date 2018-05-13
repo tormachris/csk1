@@ -23,9 +23,9 @@ public class SokobanGui extends JFrame implements Steppable {
 	private ArrayList<Drawable> drawables;
 	private static GraphicWorker blueWorker;
 	private static GraphicWorker redWorker;
-	private JLabel lblScoreBlue =  new JLabel("---");
+	private JLabel lblScoreBlue = new JLabel("---");
 	private JLabel lblScoreRed = new JLabel("---");
-	private JLabel lblTimer =  new JLabel("--:--");
+	private JLabel lblTimer = new JLabel("--:--");
 
 	/**
 	 * Create the application.
@@ -43,7 +43,7 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		initialize();
 
-		this.addKeyListener(new Controller(blueWorker,redWorker));
+		this.addKeyListener(new Controller(blueWorker, redWorker));
 
 		LOGGER.log(Level.FINE, "GUI Created with default constructor");
 	}
@@ -95,7 +95,6 @@ public class SokobanGui extends JFrame implements Steppable {
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
 		panelScoreBlue.setBorder(new EmptyBorder(0, 5, 10, 5));
 
-		
 		panelScoreBlue.add(lblScoreBlue);
 		lblScoreBlue.setFont(scoreFont);
 		lblScoreBlue.setForeground(Color.BLUE);
@@ -140,13 +139,13 @@ public class SokobanGui extends JFrame implements Steppable {
 			gameGrid.add(p);
 			panelMain.add(p);
 		}
-		LevelLoader ll=new LevelLoader();
+		LevelLoader ll = new LevelLoader();
 		Queue<LevelElements> map = ll.getLevel(LevelStorage.DEMOLEVEL);
 		Map m = new Map();
 		Game.getInstance().addMap(m);
 		Game.getInstance().setCurrentmap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
-		for (int j = 0; j < GRIDSIZE*GRIDSIZE; ++j) {
+		for (int j = 0; j < GRIDSIZE * GRIDSIZE; ++j) {
 			switch (map.remove()) {
 			case WALL:
 				drawables.add(new GraphicWall(new Wall()));
@@ -197,11 +196,14 @@ public class SokobanGui extends JFrame implements Steppable {
 				break;
 			}
 		}
-		
+
 		setUpNeighbors();
 
+		Timer.getInstance().setRunning(true);
+		Timer.getInstance().addSteppable(this);
+
 		drawAll();
-		
+
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
 
@@ -210,29 +212,29 @@ public class SokobanGui extends JFrame implements Steppable {
 		lblScoreRed.revalidate();
 		lblScoreBlue.setText(blueWorker.getWorker().getPoints().toString());
 		lblScoreBlue.revalidate();
-		for(int j=0;j<gameGrid.size();j++) {
-			JPanel panel=gameGrid.get(j);
-			panel.setLayout(new GridLayout(1,1));
-			JLabel label=new JLabel(drawables.get(j).draw());
-			
+		for (int j = 0; j < gameGrid.size(); j++) {
+			JPanel panel = gameGrid.get(j);
+			panel.setLayout(new GridLayout(1, 1));
+			JLabel label = new JLabel(drawables.get(j).draw());
+
 			panel.removeAll();
 			panel.add(label);
 			panel.revalidate();
 		}
 	}
-	
+
 	private void setUpNeighbors() {
 		LOGGER.log(Level.FINE, "Setting up neighbors");
 		Tile t = null;
-		for (int i = 0; i < GRIDSIZE*GRIDSIZE; ++i) {
+		for (int i = 0; i < GRIDSIZE * GRIDSIZE; ++i) {
 			t = cast(drawables.get(i));
-			if (i > GRIDSIZE-1 && t!=null)
+			if (i > GRIDSIZE - 1 && t != null)
 				t.setNeighbour(Direction.NORTH, cast(drawables.get(i - GRIDSIZE)));
-			if (i % GRIDSIZE != GRIDSIZE-1 && t!=null)
+			if (i % GRIDSIZE != GRIDSIZE - 1 && t != null)
 				t.setNeighbour(Direction.EAST, cast(drawables.get(i + 1)));
-			if (i % GRIDSIZE != 0 && t!=null)
+			if (i % GRIDSIZE != 0 && t != null)
 				t.setNeighbour(Direction.WEST, cast(drawables.get(i - 1)));
-			if (i < GRIDSIZE*GRIDSIZE-GRIDSIZE && t!=null)
+			if (i < GRIDSIZE * GRIDSIZE - GRIDSIZE && t != null)
 				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + GRIDSIZE)));
 
 		}
@@ -253,24 +255,26 @@ public class SokobanGui extends JFrame implements Steppable {
 	}
 
 	public static Worker getWorker(boolean red) {
-		if(red)
+		if (red)
 			return redWorker.getWorker();
-		return blueWorker.getWorker();
-		
+		else
+			return blueWorker.getWorker();
 	}
 
 	@Override
 	public void step() {
-		if(Game.getInstance().getCurrentmap() != null)
-		{
+		if (Game.getInstance().getCurrentmap() != null) {
 			int timeinticks = Game.getInstance().getCurrentmap().getTicksRemain();
-			Timer.getInstance();
-			int timeinsecs = timeinticks/(1000/Timer.getMilisecstowait());
-			int mins = timeinsecs / 60;
-			int secs = timeinsecs % 60;
-			lblTimer.setText(mins + ":" + secs);
-			LOGGER.fine(()->mins + ":" + secs);
+			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0) {
+				Timer.getInstance().removeSteppable(this);
+				Controller.acceptinput = false;
+			}
+			int timeinsecs = timeinticks / (1000 / Timer.getMilisecstowait());
+			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0)
+				lblTimer.setText("GAME OVER");
+			else
+				lblTimer.setText(timeinsecs / 60 + ":" + timeinsecs % 60);
 		}
-		
+
 	}
 }

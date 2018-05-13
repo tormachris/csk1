@@ -90,7 +90,7 @@ public class Timer extends Thread implements Serializable {
 	 * 
 	 * Not going to log this either.
 	 */
-	public void tick() {
+	public synchronized void tick() {
 		for (Steppable s : steppables)
 			s.step();
 	}
@@ -101,7 +101,7 @@ public class Timer extends Thread implements Serializable {
 	 * @param s:
 	 *            Steppable to register.
 	 */
-	public void addSteppable(Steppable s) {
+	public synchronized void addSteppable(Steppable s) {
 		if (s == null)
 			throw new NullPointerException("Cannot add null to our set of Steppables."); // Checking for valid value.
 		if (this.steppables.contains(s))
@@ -115,7 +115,7 @@ public class Timer extends Thread implements Serializable {
 	 * @param s:
 	 *            Steppable to de-register.
 	 */
-	public void removeSteppable(Steppable s) {
+	public synchronized void removeSteppable(Steppable s) {
 		if (s == null)
 			throw new NullPointerException("Cannot remove null from our set of Steppables.");
 		if (this.steppables.isEmpty())

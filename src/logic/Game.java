@@ -109,6 +109,7 @@ public class Game implements Serializable{
 		else {
 			LOGGER.log( Level.FINE, "Setting current map");
 			this.currentmap = currentmap;	
+			Timer.getInstance().addSteppable(currentmap);
 		}
 	}
 	
