@@ -34,8 +34,6 @@ public class GraphicTile extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicTile created");
 	}
 
 	
@@ -47,8 +45,6 @@ public class GraphicTile extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicTile created");
 		setTile(otile);
 	}
 

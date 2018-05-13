@@ -31,8 +31,6 @@ public class GraphicHole extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicHole created");
 	}
 
 	public GraphicHole(Hole ohole) {
@@ -43,8 +41,6 @@ public class GraphicHole extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicHole created");
 		setHole(ohole);
 	}
 

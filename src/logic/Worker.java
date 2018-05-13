@@ -42,7 +42,6 @@ public class Worker extends Thing implements Serializable{
 		force = w*1.0;
 		points = 0;
 		this.updateOwner(this);
-		LOGGER.log( Level.FINE, "Worker created");
 	}
 
 	

@@ -34,8 +34,6 @@ public class GraphicSwitch extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicSwitch created");
 	}
 
 	public GraphicSwitch(Switch oswitch) {
@@ -46,8 +44,6 @@ public class GraphicSwitch extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicSwitch created");
 		setSwitcho(oswitch); //SO FUNKY
 	}
 

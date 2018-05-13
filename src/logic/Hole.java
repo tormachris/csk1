@@ -32,7 +32,6 @@ public class Hole extends Tile {
 		handler.setLevel(Level.ALL);
 		
 		this.setOpen(isOpen);
-		LOGGER.log( Level.FINE, "New Hole created with attribute:{0}",isOpen);
 	}
 	
 	/**
@@ -44,8 +43,6 @@ public class Hole extends Tile {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log( Level.FINE, "New Hole created");
 		this.setOpen(Boolean.valueOf(false));
 	}
 	
@@ -60,7 +57,6 @@ public class Hole extends Tile {
 	 * @param open the open to set
 	 */
 	public void setOpen(Boolean open) {
-		LOGGER.log( Level.FINE, "Hole set to state:{0}",open);
 		this.open = open;
 	}
 
