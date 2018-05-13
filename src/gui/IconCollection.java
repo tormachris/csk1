@@ -41,8 +41,8 @@ public class IconCollection implements Serializable{
 		hole=new ImageIcon("assets/csk1_graf/Floor_with_HoleOpen.png");
 		target=new ImageIcon("assets/csk1_graf/Floor_with_Target.png");
 		wall=new ImageIcon("assets/csk1_graf/wall.png");
-		blueontile=new ImageIcon("assets/csk1_graf/EasterEggBlue.png");
-		redontile=new ImageIcon("assets/csk1_graf/EasterEggRed.png");
+		blueontile=new ImageIcon("assets/csk1_graf/EasterEggBlueLeft.png");
+		redontile=new ImageIcon("assets/csk1_graf/EasterEggRedLeft.png");
 		honey=new ImageIcon("assets/csk1_graf/Floor_with_Honey.png");
 		oil=new ImageIcon("assets/csk1_graf/Floor_with_Oil.png");
 		endoil=new ImageIcon("assets/csk1_graf/Floor_with_Target_with_Oil.png");
@@ -51,6 +51,7 @@ public class IconCollection implements Serializable{
 		buttonoil=new ImageIcon("assets/csk1_graf/Floor_with_Button_with_Oil.png");
 		csupor=new ImageIcon("assets/csk1_graf/HoneyJar.png");
 	}
+	
 	/**
 	 * This method realizes IconCollection being a singleton in Java.
 	 */
@@ -120,5 +121,17 @@ public class IconCollection implements Serializable{
 	 */
 	public ImageIcon getCsupor() {
 		return csupor;
+	}
+	/**
+	 * @param blueontile the blueontile to set
+	 */
+	public void setBlueontile(ImageIcon blueontile) {
+		this.blueontile = blueontile;
+	}
+	/**
+	 * @param redontile the redontile to set
+	 */
+	public void setRedontile(ImageIcon redontile) {
+		this.redontile = redontile;
 	}
 }
