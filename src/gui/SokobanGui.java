@@ -215,6 +215,10 @@ public class SokobanGui extends JFrame implements KeyListener {
 		return null;
 	}
 
+
+	/**
+	 * @deprecated (since="1.0", forRemoval=false)
+	 */
 	@Deprecated
 	public void keyTyped(KeyEvent e) {
 		// Auto-generated method stub
@@ -228,39 +232,81 @@ public class SokobanGui extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		LOGGER.fine(() -> "Key pressed, key is {}" + e.getKeyCode());
 		Direction dir = null;
-		// Processing keyboard input for BLUE Worker
-		if (e.getKeyCode() == KeyEvent.VK_W)
+		Boolean blue = false;
+		switch (e.getKeyCode()) {
+		case (KeyEvent.VK_W):
 			dir = Direction.NORTH;
-		if (e.getKeyCode() == KeyEvent.VK_A)
+			blue = true;
+			break;
+		case (KeyEvent.VK_A):
 			dir = Direction.WEST;
-		if (e.getKeyCode() == KeyEvent.VK_S)
+			blue = true;
+			break;
+		case (KeyEvent.VK_S):
 			dir = Direction.SOUTH;
-		if (e.getKeyCode() == KeyEvent.VK_D)
+			blue = true;
+			break;
+		case (KeyEvent.VK_D):
 			dir = Direction.EAST;
-
-		if (dir != null) {
+			blue = true;
+			break;
+		case (KeyEvent.VK_UP):
+			dir = Direction.NORTH;
+			break;
+		case (KeyEvent.VK_RIGHT):
+			dir = Direction.WEST;
+			break;
+		case (KeyEvent.VK_DOWN):
+			dir = Direction.SOUTH;
+			break;
+		case (KeyEvent.VK_LEFT):
+			dir = Direction.EAST;
+			break;
+		case (KeyEvent.VK_Q):
+			if (!keydownBlue) {
+				LOGGER.fine("Blue Worker put down honey");
+				keydownBlue = true;
+				blueWorker.getWorker().dropHoney();
+			}
+			return;
+		case (KeyEvent.VK_E):
+			if (!keydownBlue) {
+				LOGGER.fine("Blue Worker put down oil");
+				keydownBlue = true;
+				blueWorker.getWorker().dropOil();
+			}
+			return;
+		case (KeyEvent.VK_NUMPAD1):
+			if (!keydownRed) {
+				LOGGER.fine("Red Worker put down honey");
+				keydownBlue = true;
+				redWorker.getWorker().dropHoney();
+			}
+			return;
+		case (KeyEvent.VK_NUMPAD2):
+			if (!keydownRed) {
+				LOGGER.fine("Red Worker put down oil");
+				keydownBlue = true;
+				redWorker.getWorker().dropOil();
+			}
+			return;
+		default:
+			break;
+		}
+		if (blue) {
 			LOGGER.fine("Blue Worker is going to move");
 			if (!keydownBlue) {
 				LOGGER.fine("Blue Worker is about to move");
 				keydownBlue = true;
 				blueWorker.getWorker().move(dir);// Make blue worker move
 			}
-			return; // Exit, so we don't move the other worker
-		}
-		LOGGER.fine(() -> "Blue worker did not move");
-		// Processing keyboard input for RED Worker
-		if (e.getKeyCode() == KeyEvent.VK_UP)
-			dir = Direction.NORTH;
-		if (e.getKeyCode() == KeyEvent.VK_LEFT)
-			dir = Direction.WEST;
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
-			dir = Direction.SOUTH;
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-			dir = Direction.EAST;
-		if (!keydownRed) {
-			LOGGER.fine("Red Worker is going to move");
-			keydownRed = true;
-			redWorker.getWorker().move(dir);// Make red worker move
+		} else {
+			LOGGER.fine(() -> "Blue worker did not move");
+			if (!keydownRed) {
+				LOGGER.fine("Red Worker is going to move");
+				keydownRed = true;
+				redWorker.getWorker().move(dir);// Make red worker move
+			}
 		}
 	}
 
@@ -268,12 +314,14 @@ public class SokobanGui extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S
-				|| e.getKeyCode() == KeyEvent.VK_D) {
+				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_Q
+				|| e.getKeyCode() == KeyEvent.VK_E) {
 			keydownBlue = false;
 			return;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
-				|| e.getKeyCode() == KeyEvent.VK_RIGHT)
+				|| e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_NUMPAD1
+				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			keydownRed = false;
 	}
 

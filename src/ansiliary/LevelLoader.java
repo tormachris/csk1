@@ -81,7 +81,7 @@ public class LevelLoader {
 				toReturn.add(LevelElements.CRATE);
 				break;
 			case ('H'):
-				toReturn.add(LevelElements.HOLE);
+				toReturn.add(LevelElements.TRAP);
 				break;
 			case ('E'):
 				toReturn.add(LevelElements.ENDTILE);
@@ -96,7 +96,7 @@ public class LevelLoader {
 				toReturn.add(LevelElements.RED);
 				break;
 			case ('O'):
-				toReturn.add(LevelElements.TRAP);
+				toReturn.add(LevelElements.HOLE);
 				break;
 			default:
 				break;

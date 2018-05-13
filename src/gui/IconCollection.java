@@ -3,7 +3,7 @@
  */
 package gui;
 
-import javax.swing.*;
+import ansiliary.*;
 
 import java.io.Serializable;
 
@@ -17,25 +17,25 @@ public class IconCollection implements Serializable{
 	 */
 	private static final long serialVersionUID = -6379120099609785077L;
 	private static IconCollection instance = null;
-	private ImageIcon button;
-	private ImageIcon demo;
-	private ImageIcon box;
-	private ImageIcon floor;
-	private ImageIcon hole;
-	private ImageIcon target;
-	private ImageIcon wall;
-	private ImageIcon workerblue;
-	private ImageIcon workerred;
+	private StretchIcon button;
+	private StretchIcon demo;
+	private StretchIcon box;
+	private StretchIcon floor;
+	private StretchIcon hole;
+	private StretchIcon target;
+	private StretchIcon wall;
+	private StretchIcon workerblue;
+	private StretchIcon workerred;
 	private IconCollection() {
-		button=new ImageIcon("https://tormakristof.eu/files/csk1_graf/button.png");
-		demo=new ImageIcon("https://tormakristof.eu/files/csk1_graf/demo.png");
-		box=new ImageIcon("https://tormakristof.eu/files/csk1_graf/doboz.png");
-		floor=new ImageIcon("https://tormakristof.eu/files/csk1_graf/floor.png");
-		hole=new ImageIcon("https://tormakristof.eu/files/csk1_graf/hole.png");
-		target=new ImageIcon("https://tormakristof.eu/files/csk1_graf/target.png");
-		wall=new ImageIcon("https://tormakristof.eu/files/csk1_graf/wall.png");
-		workerblue=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_blue.png");
-		workerred=new ImageIcon("https://tormakristof.eu/files/csk1_graf/worker_red.png");
+		button=new StretchIcon("https://tormakristof.eu/files/csk1_graf/button.png");
+		demo=new StretchIcon("https://tormakristof.eu/files/csk1_graf/demo.png");
+		box=new StretchIcon("https://tormakristof.eu/files/csk1_graf/doboz.png");
+		floor=new StretchIcon("https://tormakristof.eu/files/csk1_graf/floor.png");
+		hole=new StretchIcon("https://tormakristof.eu/files/csk1_graf/hole.png");
+		target=new StretchIcon("https://tormakristof.eu/files/csk1_graf/target.png");
+		wall=new StretchIcon("https://tormakristof.eu/files/csk1_graf/wall.png");
+		workerblue=new StretchIcon("https://tormakristof.eu/files/csk1_graf/worker_blue.png");
+		workerred=new StretchIcon("https://tormakristof.eu/files/csk1_graf/worker_red.png");
 	}
 	/**
 	 * This method realizes IconCollection being a singleton in Java.
@@ -46,13 +46,13 @@ public class IconCollection implements Serializable{
 		}
 		return instance;
 	}
-	public ImageIcon getButton() {return button;}
-	public ImageIcon getDemo() {return demo;}
-	public ImageIcon getBox() {return box;}
-	public ImageIcon getFloor() {return floor;}
-	public ImageIcon getHole() {return hole;}
-	public ImageIcon getTarget() {return target;}
-	public ImageIcon getWall() {return wall;}
-	public ImageIcon getWorkerBlue() {return workerblue;}
-	public ImageIcon getWorkerRed() {return workerred;}
+	public StretchIcon getButton() {return button;}
+	public StretchIcon getDemo() {return demo;}
+	public StretchIcon getBox() {return box;}
+	public StretchIcon getFloor() {return floor;}
+	public StretchIcon getHole() {return hole;}
+	public StretchIcon getTarget() {return target;}
+	public StretchIcon getWall() {return wall;}
+	public StretchIcon getWorkerBlue() {return workerblue;}
+	public StretchIcon getWorkerRed() {return workerred;}
 }

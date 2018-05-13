@@ -38,7 +38,6 @@ public class Main implements Serializable{
 		
 		//Disable the timer
 		LOGGER.log(Level.FINE, "Disabling the timer");
-		Timer.getInstance().interrupt();
-		Timer.getInstance().stopSign();
+		Timer.getInstance().setRunning(false);
 	}
 }

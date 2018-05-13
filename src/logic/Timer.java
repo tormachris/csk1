@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter;
 /**
  * Represents Timer that tics every once in a while.
  */
-public class Timer extends Thread implements Serializable{
+public class Timer extends Thread implements Serializable {
 	/**
 	 * 
 	 */
@@ -18,11 +18,9 @@ public class Timer extends Thread implements Serializable{
 	private static final Logger LOGGER = Logger.getLogger(Timer.class.getName());
 	private transient Set<Steppable> steppables; // We don't want to step something twice, do we?
 
-	private static final int TIMETOWAIT = 10000; // Modify interval here, pls.
+	private static final int TIMETOWAIT = 100; // Modify interval here, pls.
 
 	private Boolean running; // state of the timer.
-
-	private volatile Boolean stopsign = Boolean.valueOf(false);
 
 	private static Timer instance = null;
 
@@ -67,13 +65,15 @@ public class Timer extends Thread implements Serializable{
 	 */
 	@Override
 	public void run() {
-		if (running && stopsign) {
-			this.tick(); // Let's Tick
-			try {
-				Thread.sleep(TIMETOWAIT);
-			} catch (InterruptedException ex) {
-				LOGGER.log(Level.FINE, ex.toString(), ex);
-				Thread.currentThread().interrupt();
+		while (true) {
+			if (running) {
+				this.tick(); // Let's Tick
+				try {
+					Thread.sleep(TIMETOWAIT);
+				} catch (InterruptedException ex) {
+					LOGGER.log(Level.FINE, ex.toString(), ex);
+					Thread.currentThread().interrupt();
+				}
 			}
 		}
 	}
@@ -132,9 +132,5 @@ public class Timer extends Thread implements Serializable{
 	 */
 	public void setRunning(boolean b) {
 		running = b;
-	}
-
-	public void stopSign() {
-		stopsign = true;
 	}
 }
