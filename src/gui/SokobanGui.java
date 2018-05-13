@@ -163,6 +163,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		if(chosenFile==null)map=ll.getLevel(LevelStorage.DEMOLEVEL);
 		else map=ll.getLevelFromFile(chosenFile);
 		chosenFile=null;
+		if(map.size()<GRIDSIZE*GRIDSIZE) return;
 		Map m = new Map();
 		Game.getInstance().clearMaps();
 		Game.getInstance().addMap(m);
