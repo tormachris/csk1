@@ -9,6 +9,8 @@ import javax.swing.border.*;
 
 import ansiliary.*;
 import logic.*;
+import logic.Map;
+import logic.Timer;
 
 public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	/**
