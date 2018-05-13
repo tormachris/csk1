@@ -32,6 +32,7 @@ public class Worker extends Thing implements Serializable{
 	 * @return true as there should be movement
 	 */
 	
+
 	public Worker(Integer w) {
 		super(w);
 		
