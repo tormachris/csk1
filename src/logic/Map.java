@@ -22,7 +22,7 @@ public class Map implements Steppable, Serializable {
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
 
-	private static final int DEFAULTTICKSREMAIN=100000;
+	private static final int DEFAULTTICKSREMAIN=1000;
 	
 	/**
 	 * @return the defaultticksremain
@@ -85,12 +85,8 @@ public class Map implements Steppable, Serializable {
 	 */
 	public void step()
 	{
-		LOGGER.log( Level.FINE, "Map stepping");
-		LOGGER.log( Level.FINE, "Map: crates isempty:{0}",crates.isEmpty());
-		LOGGER.log( Level.FINE, "Map: workers size <=2 {0}", workers.size() <= 2);
-		LOGGER.log( Level.FINE, "Map: ticksremain <=0 {0}", ticksRemain.intValue()<=0);
 		//checking if there is any reason to end the map
-		if(crates.isEmpty() || workers.size() <= 2 || ticksRemain.intValue()<=0)
+		if(crates.isEmpty() || workers.size() < 2 || ticksRemain.intValue()<=0)
 			endMap();
 		else
 			//shortening the remaining time by 1 tick

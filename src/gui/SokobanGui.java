@@ -200,6 +200,9 @@ public class SokobanGui extends JFrame implements Steppable {
 		
 		setUpNeighbors();
 
+		Timer.getInstance().setRunning(true);
+		Timer.getInstance().addSteppable(this);
+		
 		drawAll();
 		
 		LOGGER.log(Level.FINE, "GUI Initialized");
