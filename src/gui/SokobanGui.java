@@ -23,9 +23,9 @@ public class SokobanGui extends JFrame implements Steppable {
 	private ArrayList<Drawable> drawables;
 	private static GraphicWorker blueWorker;
 	private static GraphicWorker redWorker;
-	JLabel lblScoreBlue = new JLabel("---");
-	JLabel lblScoreRed = new JLabel("---");
-	JLabel lblTimer = new JLabel("--:--");
+	private JLabel lblScoreBlue;
+	private JLabel lblScoreRed;
+	private JLabel lblTimer;
 
 	/**
 	 * Create the application.
@@ -37,9 +37,6 @@ public class SokobanGui extends JFrame implements Steppable {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-
-		blueWorker = new GraphicWorker(IconCollection.getInstance().getWorkerBlue());
-		redWorker = new GraphicWorker(IconCollection.getInstance().getWorkerRed());
 
 		gameGrid = new ArrayList<>();
 		drawables = new ArrayList<>();
@@ -80,9 +77,6 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mnFile.add(mntmNewGame);
-
-		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
-		mnFile.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
