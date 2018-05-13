@@ -17,7 +17,7 @@ public class Game {
 	/**
 	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
-	public Game() {
+	private Game() {
 		this.setMaps(new HashSet<Map>());
 		LOGGER.log( Level.FINE, "Game created");
 	}

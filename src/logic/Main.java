@@ -14,10 +14,11 @@ public class Main {
 	public static void main(String[] args) {
 		Timer.getInstance(); //Init Timer
 		Game.getInstance();	//Init Game 
-		Commander.getInstance().interpreter();
-
+		
+		gui.SokobanGui.getInstance().setVisible(true); //Show the GUI
+		
+		//Disable the timer
 		Timer.getInstance().interrupt();
 		Timer.getInstance().stopSign();
-
 	}
 }

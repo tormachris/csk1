@@ -2,39 +2,49 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.logging.Level;
+import java.util.logging.*;
 import java.util.logging.Logger;
-
 import javax.swing.border.*;
 
-public class SokobanGui {
+public class SokobanGui extends JFrame {
+	/**
+	 * Generated serialization UID
+	 */
+	private static final long serialVersionUID = 2897342800007758713L;
 	private static final Logger LOGGER = Logger.getLogger( SokobanGui.class.getName() );
-	private JFrame frmKillerSokoban;
-	private final int gridSize;
-
+	private static final int GRIDSIZE=11;
+	private static SokobanGui instance = null;
 	/**
 	 * Create the application.
 	 */
-	public SokobanGui(int ogridSize) {
-		gridSize = ogridSize;
+	private SokobanGui() {
 		initialize();
-		LOGGER.log( Level.FINE, "GUI Created");
+		LOGGER.log( Level.FINE, "GUI Created with default constructor");
 	}
-
+	
+	/**
+	 * This method realizes SokobanGui being a singleton in Java.
+	 */
+	public static SokobanGui getInstance() {
+		if(instance == null) {
+			instance = new SokobanGui();
+		}
+		return instance;
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmKillerSokoban = new JFrame();
-		frmKillerSokoban.setTitle("KILLER SOKOBAN!!");
-		frmKillerSokoban.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmKillerSokoban.setBounds(100, 100, 550, 75+550); //shrug
+		this.setTitle("KILLER SOKOBAN!!");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 550, 75+550); //shrug
 		
 		
 		/* Felso menu geci*/
 		
 		JMenuBar menuBar = new JMenuBar();
-		frmKillerSokoban.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -47,7 +57,7 @@ public class SokobanGui {
 		
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
-		frmKillerSokoban.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		
 		
@@ -56,7 +66,7 @@ public class SokobanGui {
 		Font scoreFont =  new Font("Tahoma", Font.PLAIN, 20);
 		
 		JPanel panelTop = new JPanel();
-		frmKillerSokoban.getContentPane().add(panelTop, BorderLayout.NORTH);
+		this.getContentPane().add(panelTop, BorderLayout.NORTH);
 		panelTop.setLayout(new BorderLayout(0, 0));
 		panelTop.setPreferredSize(new Dimension(550,75));
 		
@@ -92,13 +102,13 @@ public class SokobanGui {
 		/* Also panel (maga a game) */
 		
 		JPanel panelMain = new JPanel();
-		frmKillerSokoban.getContentPane().add(panelMain, BorderLayout.CENTER);
-		panelMain.setLayout(new GridLayout(gridSize, gridSize, 0, 0));
+		this.getContentPane().add(panelMain, BorderLayout.CENTER);
+		panelMain.setLayout(new GridLayout(GRIDSIZE, GRIDSIZE, 0, 0));
 		panelMain.setPreferredSize(new Dimension(550,550));
 		
 		int i;
 		boolean grey = false;
-		for(i = 0; i < (gridSize*gridSize); i++) {
+		for(i = 0; i < (GRIDSIZE*GRIDSIZE); i++) {
 			JPanel p = new JPanel();
 			
 			if (grey)
@@ -110,10 +120,5 @@ public class SokobanGui {
 			panelMain.add(p);
 		}
 		LOGGER.log( Level.FINE, "GUI Initialized");
-	}
-	
-	public void show() {
-		LOGGER.log( Level.FINE, "Showing GUI");
-		frmKillerSokoban.setVisible(true);
 	}
 }
