@@ -43,8 +43,6 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		initialize();
 
-		this.addKeyListener(new Controller(blueWorker, redWorker));
-
 		LOGGER.log(Level.FINE, "GUI Created with default constructor");
 	}
 
@@ -81,6 +79,7 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
+		mntmLoadGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		/* Felso panel (ido es pontok) */
@@ -207,7 +206,9 @@ public class SokobanGui extends JFrame implements Steppable {
 				break;
 			}
 		}
-
+		
+		this.addKeyListener(new Controller(blueWorker, redWorker));
+		
 		setUpNeighbors();
 
 		drawAll();
