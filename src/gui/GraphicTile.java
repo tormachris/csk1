@@ -56,14 +56,7 @@ public class GraphicTile extends AbstractGraphic {
 	@Override
 	public ImageIcon draw() {
 		if (tile.getThing() != null) {
-			if (tile.getThing().getClass().equals(Crate.class))
-				return IconCollection.getInstance().getBox();
-			if (tile.getThing().getClass().equals(Worker.class))
-				if (SokobanGui.getWorker(true).equals(tile.getThing()))
-					return IconCollection.getInstance().getRedontile();
-				else {
-					return IconCollection.getInstance().getBlueontile();
-				}
+			return drawWithThing();
 
 		} else {
 
@@ -74,6 +67,18 @@ public class GraphicTile extends AbstractGraphic {
 			if (tile.getFrictionMod().getClass().equals(FrictionModifier.class))
 				return IconCollection.getInstance().getFloor();
 		}
+		return null;
+	}
+
+	private ImageIcon drawWithThing() {
+		if (tile.getThing().getClass().equals(Crate.class))
+			return IconCollection.getInstance().getBox();
+		if (tile.getThing().getClass().equals(Worker.class))
+			if (SokobanGui.getWorker(true).equals(tile.getThing()))
+				return IconCollection.getInstance().getRedontile();
+			else {
+				return IconCollection.getInstance().getBlueontile();
+			}
 		return null;
 	}
 
