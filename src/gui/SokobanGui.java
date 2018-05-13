@@ -212,6 +212,10 @@ public class SokobanGui extends JFrame implements Steppable {
 	}
 
 	public void drawAll() {
+		lblScoreRed.setText(redWorker.getWorker().getPoints().toString());
+		lblScoreRed.revalidate();
+		lblScoreBlue.setText(blueWorker.getWorker().getPoints().toString());
+		lblScoreBlue.revalidate();
 		for(int j=0;j<gameGrid.size();j++) {
 			JPanel panel=gameGrid.get(j);
 			panel.setLayout(new GridLayout(1,1));
