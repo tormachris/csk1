@@ -41,8 +41,8 @@ public class Worker extends Thing implements Serializable{
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 		
-		force = w*2.3;
-		initialforce=w*2.3;
+		force = w*2.0;
+		initialforce=w*2.0;
 		points = 0;
 		alive=true;
 		this.updateOwner(this);
@@ -74,14 +74,14 @@ public class Worker extends Thing implements Serializable{
 		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
 		Boolean moved = Boolean.valueOf(this.move(d)); //trying to move..
 		Double d2=Double.valueOf(0);
-		if(w.getForce().compareTo(d2) < 0)
-			return false;
-		if(moved) {
-			this.updateOwner(this);  //we need to reset the owner
-		}
-		else {
-			this.destroy(); //if the Worker couldn't move he will get squashed
-		}
+		if(w.getForce().compareTo(d2) > 0)
+
+			if(moved) {
+				this.updateOwner(this);  //we need to reset the owner			
+				}
+			else {
+				this.destroy(); //if the Worker couldn't move he will get squashed
+				}
 		LOGGER.log( Level.FINE, "Worker hitby another thing: true");
 		return true; //gives space for the Crate incoming
 			}
