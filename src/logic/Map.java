@@ -22,7 +22,7 @@ public class Map implements Steppable, Serializable {
 	private Set<Worker> workers; 
 	private Set<Tile> tiles; 
 
-	private static final int DEFAULTTICKSREMAIN=10;
+	private static final int DEFAULTTICKSREMAIN=100000;
 	
 	/**
 	 * @return the defaultticksremain
@@ -96,8 +96,6 @@ public class Map implements Steppable, Serializable {
 		else
 			//shortening the remaining time by 1 tick
 			ticksRemain--;
-		
-		return;
 	}
 
 	/**
