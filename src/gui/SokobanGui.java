@@ -347,4 +347,10 @@ public class SokobanGui extends JFrame implements KeyListener {
 			keydownRed = false;
 	}
 
+	public Worker getWorker(boolean red) {
+		if(red)
+			return redWorker.getWorker();
+		return blueWorker.getWorker();
+		
+	}
 }

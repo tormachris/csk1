@@ -4,7 +4,9 @@ import java.util.logging.*;
 
 import javax.swing.*;
 
+import logic.Crate;
 import logic.EndTile;
+import logic.Worker;
 
 public class GraphicEndTile extends AbstractGraphic {
 	/**
@@ -40,8 +42,18 @@ public class GraphicEndTile extends AbstractGraphic {
 
 	@Override
 	public void draw(JLabel label) {
-		// Auto-generated method stub
-
+		if(endtile.getThing() == null)
+		{
+			label.setIcon(IconCollection.getInstance().getTarget());
+			return;
+		}
+		if(endtile.getThing().getClass().equals(Crate.class))
+			label.setIcon(IconCollection.getInstance().getBox());
+		if(endtile.getThing().getClass().equals(Worker.class))
+			if(SokobanGui.getInstance().getWorker(true).equals(endtile.getThing()))
+				label.setIcon(IconCollection.getInstance().getRedontile());
+			else
+				label.setIcon(IconCollection.getInstance().getBlueontile());
 	}
 
 	/**
