@@ -102,11 +102,8 @@ public class Timer extends Thread implements Serializable {
 	 *            Steppable to register.
 	 */
 	public synchronized void addSteppable(Steppable s) {
-		if (s == null)
-			throw new NullPointerException("Cannot add null to our set of Steppables."); // Checking for valid value.
-		if (this.steppables.contains(s))
-			throw new IllegalArgumentException("Item already in collection.");
-		this.steppables.add(s);
+		if (s != null && !this.steppables.contains(s))
+			this.steppables.add(s);
 	}
 
 	/**

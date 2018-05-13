@@ -154,6 +154,8 @@ public class SokobanGui extends JFrame implements Steppable {
 		Game.getInstance().addMap(m);
 		Game.getInstance().setCurrentmap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
+		drawables.clear();
+		Controller.setAcceptinput(true);
 		for (int j = 0; j < GRIDSIZE * GRIDSIZE; ++j) {
 			switch (map.remove()) {
 			case WALL:
@@ -208,10 +210,14 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		setUpNeighbors();
 
-		Timer.getInstance().setRunning(true);
-		Timer.getInstance().addSteppable(this);
-
 		drawAll();
+		
+		Timer.getInstance().setRunning(true);
+		try{
+			Timer.getInstance().addSteppable(this);
+		}catch(Exception ex) {
+			LOGGER.log(Level.FINE, ex.getMessage(), ex);
+		}
 	}
 	
 	public void drawAll() {
@@ -228,6 +234,7 @@ public class SokobanGui extends JFrame implements Steppable {
 			panel.add(label);
 			panel.revalidate();
 		}
+		this.revalidate();
 	}
 
 	private void setUpNeighbors() {
