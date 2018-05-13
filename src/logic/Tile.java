@@ -60,7 +60,6 @@ public class Tile implements Serializable{
 		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
 		frictionmodifier = new FrictionModifier();
-		LOGGER.log(Level.FINEST, "New Tile created");
 	}	
 	/**
 	 * Removes the Thing from the tile.

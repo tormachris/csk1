@@ -49,8 +49,6 @@ public class GraphicWall extends AbstractGraphic {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicWall created");
 		setWall(owall);
 	}
 
@@ -61,7 +59,6 @@ public class GraphicWall extends AbstractGraphic {
 	@Override
 	public void draw(JLabel label) {
 		label.setIcon(IconCollection.getInstance().getWall());
-
 	}
 
 	/**

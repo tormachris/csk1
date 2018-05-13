@@ -25,8 +25,6 @@ public class Crate extends Thing{
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE, "Crate created");
 	}
 	
 	

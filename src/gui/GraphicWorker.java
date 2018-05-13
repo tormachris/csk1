@@ -36,8 +36,6 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicWorker created with default constructor");
 		worker=new Worker(100);
 	}
 
@@ -52,8 +50,6 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicWorker created with oimg constructor");
 		worker=new Worker(100);
 	}
 	
@@ -68,8 +64,6 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicWorker created with all parameters");
 		setWorker(oworker);
 	}
 	
@@ -84,8 +78,6 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicWorker created");
 		setWorker(oworker);
 	}
 

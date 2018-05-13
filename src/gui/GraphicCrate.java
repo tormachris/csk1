@@ -25,8 +25,6 @@ public class GraphicCrate extends AbstractGraphic implements Disappearable{
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicCrate created");
 	}
 	
 	public GraphicCrate(Crate ocrate) {
@@ -37,8 +35,6 @@ public class GraphicCrate extends AbstractGraphic implements Disappearable{
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
-		LOGGER.log(Level.FINE,"GraphicCrate created");
 		setCrate(ocrate);
 	}
 

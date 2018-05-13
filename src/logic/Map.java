@@ -46,7 +46,6 @@ public class Map implements Steppable, Serializable {
 		this.setWorkers(new HashSet<Worker>());
 		this.setTiles(new HashSet<Tile>());
 		this.resetTimer();
-		LOGGER.log( Level.FINE, "Map created");
 	}
 	
 	/**

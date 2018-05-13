@@ -33,7 +33,6 @@ public abstract class Thing implements Serializable {
 		owner = null;
 		tile = null; // Hanging in the aether.
 		weight = w;
-		LOGGER.log(Level.FINE, "Thing created");
 	}
 	
 	/**
@@ -53,7 +52,6 @@ public abstract class Thing implements Serializable {
 		// Let this be a warning, if a thing's owner is null, it is brand new!
 		owner = null;
 		tile = null; // Hanging in the aether.
-		LOGGER.log(Level.FINE, "Thing created with no-arg constructor");
 	}
 
 	/**
@@ -159,7 +157,6 @@ public abstract class Thing implements Serializable {
 	 */
 	public final boolean updateOwner(Thing t) {
 		this.owner = t;
-		LOGGER.log(Level.FINER, "Thing got new owner");
 		return true;
 	}
 

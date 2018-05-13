@@ -18,7 +18,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	 */
 	private static final long serialVersionUID = 2897342800007758713L;
 	private static final Logger LOGGER = Logger.getLogger(SokobanGui.class.getName());
-	private static final int GRIDSIZE = 11;
+	private static final short GRIDSIZE = 11;
 	private static SokobanGui instance = null;
 	private ArrayList<JPanel> gameGrid;
 	private ArrayList<Drawable> drawables;
@@ -158,38 +158,31 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		for (int j = 0; j < GRIDSIZE*GRIDSIZE; ++j) {
 			switch (map.remove()) {
 			case WALL:
-				LOGGER.log(Level.FINE, "WALL Detected");
 				drawables.add(new GraphicWall(new Wall()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TILE:
-				LOGGER.log(Level.FINE, "TILE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case ENDTILE:
-				LOGGER.log(Level.FINE, "ENDTILE Detected");
 				drawables.add(new GraphicEndTile(new EndTile()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TRAP:
-				LOGGER.log(Level.FINE, "TRAP Detected");
 				lastholes.add(new GraphicHole(new Hole()));
 				drawables.add(lastholes.element());
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case HOLE:
-				LOGGER.log(Level.FINE, "HOLE Detected");
 				drawables.add(new GraphicHole(new Hole()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case SWITCH:
-				LOGGER.log(Level.FINE, "SWITCH Detected");
 				drawables.add(new GraphicSwitch(new Switch(lastholes.remove().getHole())));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case RED:
-				LOGGER.log(Level.FINE, "RED Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				redWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
@@ -197,7 +190,6 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 				m.addWorker(redWorker.getWorker());
 				break;
 			case BLUE:
-				LOGGER.log(Level.FINE, "BLUE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				blueWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
@@ -205,20 +197,25 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 				m.addWorker(blueWorker.getWorker());
 				break;
 			case CRATE:
-				LOGGER.log(Level.FINE, "CRATE Detected");
 				drawables.add(new GraphicTile(new Tile()));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(new Crate(1));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				m.addCrate((Crate) ((GraphicTile) drawables.get(drawables.size() - 1)).getTile().getThing());
 				break;
 			default:
-				LOGGER.log(Level.FINE, "DEFAULT Detected");
 				break;
 			}
 		}
 		
 		setUpNeighbors();
 
+		for(int j=0;j<gameGrid.size();j++) {
+			JPanel panel=gameGrid.get(j);
+			JLabel label=new JLabel("BASZAS");
+			//drawables.get(j).draw(label);
+			panel.add(label);
+		}
+		
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
 
@@ -302,28 +299,24 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			break;
 		case (KeyEvent.VK_Q):
 			if (!keydownBlue) {
-				LOGGER.fine("Blue Worker put down honey");
 				keydownBlue = true;
 				blueWorker.getWorker().dropHoney();
 			}
 			return;
 		case (KeyEvent.VK_E):
 			if (!keydownBlue) {
-				LOGGER.fine("Blue Worker put down oil");
 				keydownBlue = true;
 				blueWorker.getWorker().dropOil();
 			}
 			return;
 		case (KeyEvent.VK_NUMPAD1):
 			if (!keydownRed) {
-				LOGGER.fine("Red Worker put down honey");
 				keydownBlue = true;
 				redWorker.getWorker().dropHoney();
 			}
 			return;
 		case (KeyEvent.VK_NUMPAD2):
 			if (!keydownRed) {
-				LOGGER.fine("Red Worker put down oil");
 				keydownBlue = true;
 				redWorker.getWorker().dropOil();
 			}
@@ -332,16 +325,12 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			break;
 		}
 		if (blue) {
-			LOGGER.fine("Blue Worker is going to move");
 			if (!keydownBlue) {
-				LOGGER.fine("Blue Worker is about to move");
 				keydownBlue = true;
 				blueWorker.getWorker().move(dir);// Make blue worker move
 			}
 		} else {
-			LOGGER.fine(() -> "Blue worker did not move");
 			if (!keydownRed) {
-				LOGGER.fine("Red Worker is going to move");
 				keydownRed = true;
 				redWorker.getWorker().move(dir);// Make red worker move
 			}
