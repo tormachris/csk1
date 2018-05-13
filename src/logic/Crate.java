@@ -37,6 +37,7 @@ public class Crate extends Thing{
 	{	
 		Worker w = (Worker)this.getOwner(); 
 		w.setPoints(w.getPoints() + 1); //Destroying the Crate
+		t.remove(this);
 		LOGGER.log(Level.FINE, "Crate is on end tile");
 		this.destroy();
 	}
@@ -47,7 +48,7 @@ public class Crate extends Thing{
 	@Override
 	public void destroy() {
 		LOGGER.log(Level.FINE, "Crate is ded");
-		super.getTile().remove(this);
+		getTile().remove(this);
 		Game.getInstance().getCurrentmap().removeCrate(this);
 	}
 	
