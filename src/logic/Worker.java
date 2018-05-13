@@ -44,7 +44,14 @@ public class Worker extends Thing implements Serializable{
 		this.updateOwner(this);
 	}
 
-	
+	@Override
+	public boolean move(Direction d) {
+		Double temp = this.getForce();
+		boolean toReturn = super.move(d);
+		this.setForce(temp);
+		return toReturn;
+		
+	}
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
