@@ -150,6 +150,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		Queue<LevelElements> map = ll.getLevel(LevelStorage.DEMOLEVEL);
 		Map m = new Map();
 		Game.getInstance().addMap(m);
+		Game.getInstance().setCurrentmap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
 		for (int j = 0; j < GRIDSIZE*GRIDSIZE; ++j) {
 			switch (map.remove()) {
