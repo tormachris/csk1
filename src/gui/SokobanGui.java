@@ -23,9 +23,9 @@ public class SokobanGui extends JFrame implements Steppable {
 	private ArrayList<Drawable> drawables;
 	private static GraphicWorker blueWorker;
 	private static GraphicWorker redWorker;
-	private JLabel lblScoreBlue = new JLabel("---");
-	private JLabel lblScoreRed = new JLabel("---");
-	private JLabel lblTimer = new JLabel("--:--");
+	private JLabel lblScoreBlue;
+	private JLabel lblScoreRed;
+	private JLabel lblTimer;
 
 	/**
 	 * Create the application.
