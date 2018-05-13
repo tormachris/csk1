@@ -9,8 +9,6 @@ import javax.swing.border.*;
 
 import ansiliary.*;
 import logic.*;
-import logic.Map;
-import logic.Timer;
 
 public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	/**
@@ -213,6 +211,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			JPanel panel=gameGrid.get(j);
 			panel.setLayout(new GridLayout(1,1));
 			JLabel label=new JLabel(IconCollection.getInstance().getBox());
+			//label.setIcon(IconCollection.getInstance().getBox());
 			//drawables.get(j).draw(label);
 			panel.add(label);
 		}
