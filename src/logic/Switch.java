@@ -5,14 +5,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * Represents the Switch which can toggle a Hole linked to it. 
+ * @author tdani
+ *
+ */
 public class Switch extends Tile {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 8468456817549292315L;
 	private static final Logger LOGGER = Logger.getLogger(Switch.class.getName());
 	private Hole hole;
 
+	/**
+	 * Default constructor
+	 */
 	public Switch() {
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
@@ -22,6 +28,10 @@ public class Switch extends Tile {
 
 	}
 
+	/**
+	 * removes the thing from the switch, toggles if it was open before
+	 * @param t the thing
+	 */
 	@Override
 	public void remove(Thing t) {
 		// checking if the Thing is on this Tile

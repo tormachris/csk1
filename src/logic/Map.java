@@ -94,6 +94,10 @@ public class Map implements Steppable, Serializable {
 			ticksRemain--;
 	}
 
+	/**
+	 * 
+	 * @return the ticks remaining
+	 */
 	public Integer getTicksRemain() {
 		return ticksRemain;
 	}

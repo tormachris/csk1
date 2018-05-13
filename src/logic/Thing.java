@@ -20,7 +20,7 @@ public abstract class Thing implements Serializable {
 	/**
 	 * Default Constructor
 	 * 
-	 * @param None
+	 * @param w The weight of the Thing
 	 */
 	public Thing(Integer w) {
 		LOGGER.setLevel(Level.ALL);
@@ -63,8 +63,7 @@ public abstract class Thing implements Serializable {
 	}
 
 	/**
-	 * @param weight
-	 *            the weight to set
+	 * @param weight the weight to set
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
@@ -135,6 +134,7 @@ public abstract class Thing implements Serializable {
 			w.setForce(w.getForce() - this.getWeight() * this.getTile().getFrictionMod().getFriction());
 			LOGGER.fine(() -> "Owner's new force value:{}" + w.getForce());
 			Double d2 = 0.0;
+			//checking if the worker has enough force
 			if (w.getForce().compareTo(d2) >= 0) {
 				LOGGER.log(Level.FINE, "Owned has enough force to move this thing");
 				hit = Boolean.valueOf(this.move(d)); // The direction is set, and the Thing is pushed into this
@@ -211,6 +211,9 @@ public abstract class Thing implements Serializable {
 			tile = t;
 	}
 
+	/**
+	 * Destroys the thing
+	 */
 	public void destroy() {
 		LOGGER.log(Level.FINE, "Thing ded");
 		return;
