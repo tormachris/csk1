@@ -19,55 +19,55 @@ public class LevelLoader {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
 	}
 
 	/**
-	 * Mapping characters to level elements:
-	 * Hash: Wall
-	 * T:Tile
-	 * B:Box
-	 * H:Trap (hole linked to switch)
-	 * E:EndTile
-	 * W:Blue Worker
-	 * S:Switch linked to the hole that came before it
-	 * R:Red Worker
-	 * O:Unlinked Hole (constantly open)
-	 * F:map is over
+	 * Mapping characters to level elements: Hash: Wall T:Tile B:Box H:Trap (hole
+	 * linked to switch) E:EndTile W:Blue Worker S:Switch linked to the hole that
+	 * came before it R:Red Worker O:Unlinked Hole (constantly open) F:map is over
 	 * 
 	 * EVERY MAP HAS TO BE 11X11
 	 */
 	private static String loadLevel(File candidate) {
 		StringBuilder sb = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(candidate))) { //Try-with-resource
+		try (BufferedReader br = new BufferedReader(new FileReader(candidate))) { // Try-with-resource
 			String line = "";
 			while ((line = br.readLine()) != null) {
+				LOGGER.log(Level.FINE, "Read line was {0}" , line);
 				if (line.equals(""))
 					break;
 				line = line.toUpperCase();
 				for (Integer i = 0; i < line.length(); i++) {
 					char c = Character.toUpperCase(line.charAt(i));
 					if (c == '#' || c == 'T' || c == 'B' || c == 'H' || c == 'E' || c == 'W' || c == 'S' || c == 'R'
-							|| c == 'O')
+							|| c == 'O') {
 						sb.append(c);
-					else if (c == 'F')
+						LOGGER.fine(() -> "Character was " + c);
+					} else if (c == 'F') {
+						LOGGER.log(Level.FINE,"Character was F, file is over, breaking");
 						break;
+					}
 				}
 				sb.append('\n');
 			}
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
-		if (sb.toString().length() == 11 * 11)
+		if (sb.toString().length() == 11 * 11) {
+			LOGGER.log(Level.FINE, "File was right size");
 			return sb.toString();
-		else
+		} else {
+			LOGGER.log(Level.FINE, "File was wrong size, ignoring");
 			return "";
+		}
 	}
 
 	public static Queue<LevelElements> getLevel(String candidate) {
 		LinkedList<LevelElements> toReturn = new LinkedList<>();
-		if (candidate.equals(""))
+		if (candidate.equals("")) {
+			LOGGER.log(Level.FINE, "String was wrong size, ignoring");
 			return toReturn;
+		}
 		for (Integer i = 0; i < candidate.length(); i++) {
 			Character c = Character.toUpperCase(candidate.charAt(i));
 			switch (c) {
@@ -102,13 +102,18 @@ public class LevelLoader {
 				break;
 			}
 		}
-		if (toReturn.size() == 11 * 11)
+		if (toReturn.size() == 11 * 11) {
+			LOGGER.log(Level.FINE,"String was right size, returning list");
 			return toReturn;
-		else
+		}
+		else {
+			LOGGER.log(Level.FINE,"String was wrong size, passing empty list");
 			return new LinkedList<>();
+		}
 	}
-	
-	public static Queue<LevelElements> getLevelFromFile(File candidate){
+
+	public static Queue<LevelElements> getLevelFromFile(File candidate) {
+		LOGGER.log(Level.FINE,"Attempting to parse file into processable list");
 		return getLevel(loadLevel(candidate));
 	}
 }
