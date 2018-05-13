@@ -53,7 +53,7 @@ public class LevelLoader {
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
-		if (sb.toString().length() == 11 * 11) {
+		if (sb.toString().length() >= 11 * 11) {
 			LOGGER.log(Level.FINE, "File was right size");
 			return sb.toString();
 		} else {
