@@ -87,6 +87,7 @@ public class Worker extends Thing implements Serializable{
 	public void destroy()
 	{
 		LOGGER.log( Level.FINE, "Worker ded");
+		super.getTile().remove(this);
 		Game.getInstance().getCurrentmap().removeWorker(this);
 	}
 

@@ -47,6 +47,7 @@ public class Crate extends Thing{
 	@Override
 	public void destroy() {
 		LOGGER.log(Level.FINE, "Crate is ded");
+		super.getTile().remove(this);
 		Game.getInstance().getCurrentmap().removeCrate(this);
 	}
 	
