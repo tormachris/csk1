@@ -3,8 +3,6 @@
  */
 package gui;
 
-import javax.swing.*;
-
 import ansiliary.*;
 
 import java.io.Serializable;
