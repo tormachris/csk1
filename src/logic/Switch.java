@@ -6,6 +6,10 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Switch extends Tile {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8468456817549292315L;
 	private static final Logger LOGGER = Logger.getLogger( Switch.class.getName() );
 	private Hole hole;
 	public Switch() {

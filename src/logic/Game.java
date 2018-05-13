@@ -1,5 +1,6 @@
  package logic;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -11,7 +12,11 @@ import java.util.logging.SimpleFormatter;
  * @version 1.0
  * @since 1.0
 */
-public class Game {
+public class Game implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5999992904426996002L;
 	private static final Logger LOGGER = Logger.getLogger( Game.class.getName() );
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
 	private Map currentmap;	//We are playing on that map,that is the one stepping.

@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +11,11 @@ import java.util.logging.SimpleFormatter;
  * @author kristof
  *
  */
-public class Main {
+public class Main implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1942436123313288694L;
 	private static final Logger LOGGER = Logger.getLogger( Map.class.getName() );
 	/**
 	 * Entry point of the program

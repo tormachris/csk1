@@ -5,11 +5,17 @@ package gui;
 
 import javax.swing.*;
 
+import java.io.Serializable;
+
 /**
  * @author krist
  *
  */
-public class IconCollection {
+public class IconCollection implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6379120099609785077L;
 	private static IconCollection instance = null;
 	private ImageIcon button;
 	private ImageIcon demo;

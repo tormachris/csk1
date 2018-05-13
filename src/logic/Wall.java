@@ -9,6 +9,10 @@ import java.util.logging.SimpleFormatter;
  * Represents a wall on the map that will never be occupied.
  */
 public class Wall extends Tile {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5984263799272258139L;
 	private static final Logger LOGGER = Logger.getLogger( Wall.class.getName() );
 	public Wall() {
 		LOGGER.setLevel(Level.ALL);

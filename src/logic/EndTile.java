@@ -11,6 +11,10 @@ import java.util.logging.SimpleFormatter;
  * @since 1.0
 */
 public class EndTile extends Tile {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2560652795235672539L;
 	private static final Logger LOGGER = Logger.getLogger( EndTile.class.getName() );
 	public EndTile() {
 		LOGGER.setLevel(Level.ALL);

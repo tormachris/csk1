@@ -16,6 +16,10 @@ import logic.*;
  *
  */
 public class GraphicWall extends AbstractGraphic {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5452874926648909735L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicWall.class.getName() );
 	private Wall wall;
 	/**

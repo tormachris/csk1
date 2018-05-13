@@ -1,4 +1,5 @@
 package logic;
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -8,7 +9,11 @@ import java.util.logging.SimpleFormatter;
 /**
  * Represents a general Tile that is on the Map.
  */
-public class Tile {
+public class Tile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -604892624799118263L;
 	private static final Logger LOGGER = Logger.getLogger( Tile.class.getName() );
 	private Thing thing;
 	private EnumMap<Direction, Tile> nexttiles;

@@ -6,6 +6,10 @@ import java.util.logging.*;
 import logic.EndTile;
 
 public class GraphicEndTile extends AbstractGraphic {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1454880402469371046L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicEndTile.class.getName() );
 	private EndTile endtile;
 	public GraphicEndTile() {

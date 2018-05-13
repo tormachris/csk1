@@ -9,6 +9,10 @@ import java.util.logging.SimpleFormatter;
 import logic.Crate;
 
 public class GraphicCrate extends AbstractGraphic implements Disappearable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2521107572210618401L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicCrate.class.getName() );
 	private Crate crate;
 	

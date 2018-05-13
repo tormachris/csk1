@@ -4,6 +4,7 @@
 package gui;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,11 @@ import logic.*;
  * @author krist
  *
  */
-public class GraphicWorker extends AbstractGraphic implements Disappearable {
+public class GraphicWorker extends AbstractGraphic implements Disappearable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3588418911330272336L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicWorker.class.getName() );
 	private Worker worker;
 	/**
@@ -33,6 +38,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable {
 		handler.setLevel(Level.ALL);
 		
 		LOGGER.log(Level.FINE,"GraphicWorker created with default constructor");
+		worker=new Worker(100);
 	}
 
 	/**
@@ -48,6 +54,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable {
 		handler.setLevel(Level.ALL);
 		
 		LOGGER.log(Level.FINE,"GraphicWorker created with oimg constructor");
+		worker=new Worker(100);
 	}
 	
 	/**

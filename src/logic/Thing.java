@@ -1,11 +1,16 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.logging.*;
 
 /**
  * Represents a general thing that moves on the map. Abstract.
  */
-public abstract class Thing {
+public abstract class Thing implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1413701008051400873L;
 	private static final Logger LOGGER = Logger.getLogger(Thing.class.getName());
 	private Thing owner;
 	private Direction moving;
@@ -29,6 +34,26 @@ public abstract class Thing {
 		tile = null; // Hanging in the aether.
 		weight = w;
 		LOGGER.log(Level.FINE, "Thing created");
+	}
+	
+	/**
+	 * Default Constructor
+	 * 
+	 * @param None
+	 */
+	public Thing() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+
+		weight=100;
+		
+		// Let this be a warning, if a thing's owner is null, it is brand new!
+		owner = null;
+		tile = null; // Hanging in the aether.
+		LOGGER.log(Level.FINE, "Thing created with no-arg constructor");
 	}
 
 	/**

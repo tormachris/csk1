@@ -16,6 +16,10 @@ import logic.*;
  *
  */
 public class GraphicTile extends AbstractGraphic {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2696615332414413283L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicTile.class.getName() );
 	private Tile tile;
 	/**

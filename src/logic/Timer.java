@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -9,9 +10,13 @@ import java.util.logging.SimpleFormatter;
 /**
  * Represents Timer that tics every once in a while.
  */
-public class Timer extends Thread {
+public class Timer extends Thread implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -777532793085920701L;
 	private static final Logger LOGGER = Logger.getLogger(Timer.class.getName());
-	private Set<Steppable> steppables; // We don't want to step something twice, do we?
+	private transient Set<Steppable> steppables; // We don't want to step something twice, do we?
 
 	private static final int TIMETOWAIT = 10000; // Modify interval here, pls.
 

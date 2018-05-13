@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +9,12 @@ import java.util.logging.SimpleFormatter;
 /**
  * Represents a worker controlled by the player.
  */
-public class Worker extends Thing{
+public class Worker extends Thing implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6880043466619175109L;
+
 	private static final Logger LOGGER = Logger.getLogger( Worker.class.getName() );
 	
 	private Integer points;

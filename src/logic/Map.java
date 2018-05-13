@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -10,7 +11,11 @@ import java.util.logging.SimpleFormatter;
  * Represents a map that has things on it.
  * The Map can also step.
  */
-public class Map implements Steppable {
+public class Map implements Steppable, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6905345017425347502L;
 	private static final Logger LOGGER = Logger.getLogger( Map.class.getName() );
 	private Integer ticksRemain;
 	private Set<Crate> crates; 

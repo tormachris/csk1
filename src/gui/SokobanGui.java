@@ -2,11 +2,13 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.border.*;
+import logic.*;
 
-public class SokobanGui extends JFrame {
+public class SokobanGui extends JFrame implements KeyListener {
 	/**
 	 * Generated serialization UID
 	 */
@@ -15,6 +17,8 @@ public class SokobanGui extends JFrame {
 	private static final int GRIDSIZE=11;
 	private static SokobanGui instance = null;
 	private ArrayList<JPanel> gameGrid;
+	private GraphicWorker blueWorker;
+	private GraphicWorker redWorker;
 	/**
 	 * Create the application.
 	 */
@@ -24,6 +28,9 @@ public class SokobanGui extends JFrame {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
+		
+		blueWorker=new GraphicWorker(IconCollection.getInstance().getWorkerBlue());
+		redWorker=new GraphicWorker(IconCollection.getInstance().getWorkerRed());
 		
 		gameGrid=new ArrayList<>();
 		initialize();
@@ -129,5 +136,38 @@ public class SokobanGui extends JFrame {
 			panelMain.add(p);
 		}
 		LOGGER.log( Level.FINE, "GUI Initialized");
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// Auto-generated method stub
+		//We don't want to use this, since this only fires for characters that can be typed. (No arrow keys)
+		//And it fires every time the character is typed, not pressed physically.
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		Direction dir=null;
+		// Processing keyboard input for BLUE Worker
+		if(e.getKeyCode()==KeyEvent.VK_W)dir=Direction.NORTH;
+		if(e.getKeyCode()==KeyEvent.VK_A)dir=Direction.WEST;
+		if(e.getKeyCode()==KeyEvent.VK_S)dir=Direction.SOUTH;
+		if(e.getKeyCode()==KeyEvent.VK_D)dir=Direction.EAST;
+		if(dir!=null) {
+			blueWorker.getWorker().move(dir);//Make blue worker move
+			return; //Exit, so we don't move the other worker
+		} 
+		// Processing keyboard input for RED Worker
+		if(e.getKeyCode()==KeyEvent.VK_UP)dir=Direction.NORTH;
+		if(e.getKeyCode()==KeyEvent.VK_LEFT)dir=Direction.WEST;
+		if(e.getKeyCode()==KeyEvent.VK_DOWN)dir=Direction.SOUTH;
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT)dir=Direction.EAST;
+		redWorker.getWorker().move(dir);//Make red worker move here
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// Auto-generated method stub
+		//We don't need this
 	}
 }

@@ -12,6 +12,10 @@ import java.util.logging.SimpleFormatter;
  * @since 1.0
 */
 public class Hole extends Tile {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2827463022119141447L;
 	private static final Logger LOGGER = Logger.getLogger( Hole.class.getName() );
 	private Boolean open;
 	

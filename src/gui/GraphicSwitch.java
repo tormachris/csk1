@@ -16,6 +16,10 @@ import logic.*;
  *
  */
 public class GraphicSwitch extends AbstractGraphic {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5925419797962477106L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicSwitch.class.getName() );
 	private Switch switcho;
 	/**

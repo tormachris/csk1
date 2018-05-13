@@ -13,6 +13,10 @@ import logic.*;
  *
  */
 public class GraphicHole extends AbstractGraphic {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2218415094782645305L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicHole.class.getName() );
 	private Hole hole;
 	/**

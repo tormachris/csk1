@@ -9,6 +9,10 @@ import java.util.logging.*;
  * @since 1.0
 */
 public class Crate extends Thing{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3311379866858796414L;
 	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
 	/**
 	 * Constructor. Calls the super class' constructor.
