@@ -1,8 +1,10 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents a map that has things on it.
@@ -29,6 +31,12 @@ public class Map implements Steppable {
 	 * Initialises the sets and Integers.
 	 */
 	public Map() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		this.setCrates(new HashSet<Crate>());
 		this.setWorkers(new HashSet<Worker>());
 		this.setTiles(new HashSet<Tile>());

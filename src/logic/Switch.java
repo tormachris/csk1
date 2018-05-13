@@ -1,12 +1,21 @@
 package logic;
 
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Switch extends Tile {
 	private static final Logger LOGGER = Logger.getLogger( Switch.class.getName() );
 	private Hole hole;
-	
+	public Switch() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
+	}
 	/**
 	 * Acts like a normal Tile, however if the Thing gets accepted it will call the OnSwitch 
 	 * function of the Thing 

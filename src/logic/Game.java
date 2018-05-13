@@ -1,8 +1,10 @@
  package logic;
 
 import java.util.*;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /** Represents the entire game logic.
  * @author Kristof
@@ -18,6 +20,12 @@ public class Game {
 	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
 	private Game() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		this.setMaps(new HashSet<Map>());
 		LOGGER.log( Level.FINE, "Game created");
 	}

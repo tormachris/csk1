@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents a general thing that moves on the map. Abstract.
@@ -19,6 +21,12 @@ public abstract class Thing {
 	 * @param None
 	 */
 	public Thing(Integer w) {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		// Let this be a warning, if a thing's owner is null, it is brand new!
 		owner = null;
 		tile = null; // Hanging in the aether.

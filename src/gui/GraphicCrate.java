@@ -1,9 +1,10 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.util.logging.SimpleFormatter;
 
 import logic.Crate;
 
@@ -13,11 +14,25 @@ public class GraphicCrate extends AbstractGraphic {
 	
 	public GraphicCrate() {
 		super(IconCollection.getInstance().getBox());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicCrate created");
 	}
 	
 	public GraphicCrate(Crate ocrate) {
 		super(IconCollection.getInstance().getBox());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicCrate created");
 		setCrate(ocrate);
 	}

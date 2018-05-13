@@ -10,11 +10,25 @@ public class GraphicEndTile extends AbstractGraphic {
 	private EndTile endtile;
 	public GraphicEndTile() {
 		super(IconCollection.getInstance().getTarget());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicEndTle created");
 	}
 
 	public GraphicEndTile(EndTile oendtile) {
 		super(IconCollection.getInstance().getTarget());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicEndTle created");
 		setEndtile(oendtile);
 	}

@@ -11,9 +11,9 @@ import javax.swing.*;
  */
 public abstract class AbstractGraphic implements Drawable {
 	private ImageIcon img;
-	protected void setIcon(ImageIcon _img) {img=_img;}
+	protected void setIcon(ImageIcon oimg) {img=oimg;}
 	protected ImageIcon getIcon() {return img;}
 	protected AbstractGraphic() {img=IconCollection.getInstance().getDemo();}
-	protected AbstractGraphic(ImageIcon _img) {img=_img;}
+	protected AbstractGraphic(ImageIcon oimg) {img=oimg;}
 
 }

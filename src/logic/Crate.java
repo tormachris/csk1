@@ -15,6 +15,13 @@ public class Crate extends Thing{
 	*/
 	public Crate(Integer w) {
 		super(w);
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE, "Crate created");
 	}
 	

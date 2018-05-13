@@ -1,7 +1,9 @@
 package logic;
 import java.util.*;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents a general Tile that is on the Map.
@@ -44,6 +46,12 @@ public class Tile {
 	 * Default constructor, initializes the Map and the "thing" variable.
 	 */
 	public Tile() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		nexttiles=new EnumMap<>(Direction.class);
 		thing=null;
 		frictionmodifier = new FrictionModifier();

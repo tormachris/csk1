@@ -2,8 +2,8 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 import java.util.logging.*;
-import java.util.logging.Logger;
 import javax.swing.border.*;
 
 public class SokobanGui extends JFrame {
@@ -14,10 +14,18 @@ public class SokobanGui extends JFrame {
 	private static final Logger LOGGER = Logger.getLogger( SokobanGui.class.getName() );
 	private static final int GRIDSIZE=11;
 	private static SokobanGui instance = null;
+	private ArrayList<JPanel> gameGrid;
 	/**
 	 * Create the application.
 	 */
 	private SokobanGui() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
+		gameGrid=new ArrayList<>();
 		initialize();
 		LOGGER.log( Level.FINE, "GUI Created with default constructor");
 	}
@@ -117,6 +125,7 @@ public class SokobanGui extends JFrame {
 				p.setBackground(Color.WHITE);
 			
 			grey = !grey;
+			gameGrid.add(p);
 			panelMain.add(p);
 		}
 		LOGGER.log( Level.FINE, "GUI Initialized");

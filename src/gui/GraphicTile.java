@@ -4,8 +4,10 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import logic.*;
 
@@ -21,12 +23,26 @@ public class GraphicTile extends AbstractGraphic {
 	 */
 	public GraphicTile() {
 		super(IconCollection.getInstance().getFloor());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicTile created");
 	}
 
 	
 	public GraphicTile(Tile otile) {
 		super(IconCollection.getInstance().getFloor());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicTile created");
 		setTile(otile);
 	}

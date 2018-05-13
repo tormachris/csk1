@@ -1,8 +1,10 @@
 package logic;
 
 import java.util.*;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents Timer that tics every once in a while.
@@ -28,7 +30,13 @@ public class Timer extends Thread{
 	/**
 	 * Constructor. Initialises the set of steppables.
 	 */
-	public Timer() {
+	private Timer() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		steppables = new HashSet<>();
 		running = true;
 		this.start(); //Start itself automagically, so you don't have to!

@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /** Represents a Tile, that (if active) will kill any Thing that is on it.
  * Activated by the Map (Static) or a Switch (Dynamic)
@@ -19,6 +21,12 @@ public class Hole extends Tile {
 	 * @param isOpen: default state
 	 */
 	public Hole(Boolean isOpen) {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		this.setOpen(isOpen);
 		LOGGER.log( Level.FINE, "New Hole created with attribute:{0}",isOpen);
 	}
@@ -27,6 +35,12 @@ public class Hole extends Tile {
 	 * Default constructor
 	 */
 	public Hole() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log( Level.FINE, "New Hole created");
 		this.setOpen(Boolean.valueOf(false));
 	}

@@ -14,6 +14,12 @@ public class LevelLoader {
 	private static final Logger LOGGER = Logger.getLogger(LevelLoader.class.getName());
 
 	private LevelLoader() {
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 	}
 
 	/**

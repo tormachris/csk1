@@ -4,8 +4,10 @@
 package gui;
 
 import java.awt.Graphics;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import logic.*;
 
@@ -21,6 +23,13 @@ public class GraphicWall extends AbstractGraphic {
 	 */
 	public GraphicWall() {
 		super(IconCollection.getInstance().getWall());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicWall created");
 	}
 
@@ -29,6 +38,13 @@ public class GraphicWall extends AbstractGraphic {
 	 */
 	public GraphicWall(Wall owall) {
 		super(IconCollection.getInstance().getWall());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicWall created");
 		setWall(owall);
 	}

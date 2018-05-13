@@ -20,11 +20,25 @@ public class GraphicHole extends AbstractGraphic {
 	 */
 	public GraphicHole() {
 		super(IconCollection.getInstance().getHole());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicHole created");
 	}
 
 	public GraphicHole(Hole ohole) {
 		super(IconCollection.getInstance().getHole());
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		LOGGER.log(Level.FINE,"GraphicHole created");
 		setHole(ohole);
 	}

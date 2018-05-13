@@ -1,7 +1,9 @@
 package logic;
 
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Represents a worker controlled by the player.
@@ -11,7 +13,6 @@ public class Worker extends Thing{
 	
 	private Integer points;
 	private Double force;
-	
 	
 	/**
 	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
@@ -25,6 +26,13 @@ public class Worker extends Thing{
 	
 	public Worker(Integer w) {
 		super(w);
+		
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		
 		force = w*1.0;
 		points = 0;
 		this.updateOwner(this);
