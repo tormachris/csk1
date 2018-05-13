@@ -26,10 +26,7 @@ public class Controller implements KeyListener {
 		keydownBlue=false;
 		keydownRed=false;
 	}
-	/**
-	 * @deprecated (since="1.0", forRemoval=false)
-	 */
-	@Deprecated
+	@Override
 	public void keyTyped(KeyEvent e) {
 		// Auto-generated method stub
 		// We don't want to use this, since this only fires for characters that can be
