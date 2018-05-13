@@ -115,7 +115,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		panelTop.add(panelScoreRed, BorderLayout.EAST);
 		panelScoreRed.setBorder(new EmptyBorder(0, 5, 10, 5));
 
-		JLabel lblScoreRed = new JLabel("---");
+		lblScoreRed = new JLabel("---");
 		panelScoreRed.add(lblScoreRed);
 		lblScoreRed.setFont(scoreFont);
 		lblScoreRed.setForeground(Color.RED);
@@ -124,7 +124,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		JPanel panelTimerContainer = new JPanel();
 		panelTop.add(panelTimerContainer, BorderLayout.NORTH);
 
-		JLabel lblTimer = new JLabel("--:--");
+		lblTimer = new JLabel("--:--");
 		panelTimerContainer.add(lblTimer);
 		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimer.setFont(new Font("Tahoma", Font.BOLD, 28));
@@ -211,7 +211,9 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 
 		for(int j=0;j<gameGrid.size();j++) {
 			JPanel panel=gameGrid.get(j);
+
 			JLabel label=new JLabel(drawables.get(j).draw());
+
 			panel.add(label);
 		}
 		

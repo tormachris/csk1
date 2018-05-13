@@ -4,7 +4,6 @@ import java.util.logging.*;
 
 import javax.swing.*;
 
-import ansiliary.StretchIcon;
 import logic.*;
 
 public class GraphicEndTile extends AbstractGraphic {
@@ -36,7 +35,7 @@ public class GraphicEndTile extends AbstractGraphic {
 	}
 
 	@Override
-	public StretchIcon draw() { 
+	public ImageIcon draw() { 
 		if(endtile.getThing() == null)
 		{
 			if(endtile.getFrictionMod() == null)

@@ -7,7 +7,6 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.*;
 
-import ansiliary.StretchIcon;
 import logic.Crate;
 
 public class GraphicCrate extends AbstractGraphic implements Disappearable{
@@ -40,7 +39,7 @@ public class GraphicCrate extends AbstractGraphic implements Disappearable{
 	}
 
 	@Override
-	public StretchIcon draw() {
+	public ImageIcon draw() {
 		return IconCollection.getInstance().getBox();
 
 	}

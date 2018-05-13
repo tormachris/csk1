@@ -91,7 +91,6 @@ public class Timer extends Thread implements Serializable {
 	 * Not going to log this either.
 	 */
 	public void tick() {
-		LOGGER.log(Level.FINE, "Timer ticked");
 		for (Steppable s : steppables)
 			s.step();
 	}

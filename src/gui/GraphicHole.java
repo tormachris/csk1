@@ -7,7 +7,6 @@ import java.util.logging.*;
 
 import javax.swing.*;
 
-import ansiliary.StretchIcon;
 import logic.*;
 
 /**
@@ -49,7 +48,7 @@ public class GraphicHole extends AbstractGraphic {
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public StretchIcon draw() {
+	public ImageIcon draw() {
 		if(hole.getOpen())
 		{
 			return IconCollection.getInstance().getHole();

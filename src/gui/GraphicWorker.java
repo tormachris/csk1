@@ -11,7 +11,6 @@ import java.util.logging.SimpleFormatter;
 
 import javax.swing.ImageIcon;
 
-import ansiliary.StretchIcon;
 
 import javax.swing.*;
 
@@ -88,7 +87,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
 	@Override
-	public StretchIcon draw() {
+	public ImageIcon draw() {
 		return null;
 
 	}
