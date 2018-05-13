@@ -27,6 +27,7 @@ public class SokobanGui extends JFrame implements Steppable {
 	private JLabel lblScoreBlue;
 	private JLabel lblScoreRed;
 	private JLabel lblTimer;
+	private File chosenFile;
 
 	/**
 	 * Create the application.
@@ -85,7 +86,7 @@ public class SokobanGui extends JFrame implements Steppable {
 			int returnVal = fc.showOpenDialog(this);
 
 	        if (returnVal == JFileChooser.APPROVE_OPTION) {
-	        	File file = fc.getSelectedFile();
+	        	chosenFile = fc.getSelectedFile();
 	        }
 		});
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -155,7 +156,10 @@ public class SokobanGui extends JFrame implements Steppable {
 
 	private void initializeLevel() {
 		LevelLoader ll = new LevelLoader();
-		Queue<LevelElements> map = ll.getLevel(LevelStorage.DEMOLEVEL);
+		Queue<LevelElements> map;
+		if(chosenFile==null)map=ll.getLevel(LevelStorage.DEMOLEVEL);
+		else map=ll.getLevelFromFile(chosenFile);
+		chosenFile=null;
 		Map m = new Map();
 		Game.getInstance().clearMaps();
 		Game.getInstance().addMap(m);
