@@ -26,7 +26,7 @@ public class Main implements Serializable{
 		handler.setLevel(Level.ALL);
 		
 		LOGGER.log(Level.FINE, "Initialising timer");
-		Timer.getInstance().setRunning(false);
+		Timer.getInstance().setRunning(true);
 		LOGGER.log(Level.FINE, "Initialising Game");
 		Game.getInstance();	//Init Game 
 		
