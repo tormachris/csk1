@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.border.*;
@@ -79,7 +80,14 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
-		mntmLoadGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
+		mntmLoadGame.addActionListener((java.awt.event.ActionEvent evt) -> {
+			JFileChooser fc=new JFileChooser();
+			int returnVal = fc.showOpenDialog(this);
+
+	        if (returnVal == JFileChooser.APPROVE_OPTION) {
+	        	File file = fc.getSelectedFile();
+	        }
+		});
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		/* Felso panel (ido es pontok) */
