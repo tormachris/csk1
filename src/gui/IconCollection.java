@@ -33,8 +33,9 @@ public class IconCollection implements Serializable{
 	private ImageIcon buttonoil;	//The Image of a switch with Oil.
 	private ImageIcon csupor;		//The Icon for the game.
 	
-	//Setting the icons in the constructor.
-	
+	/**
+	 * Setting the icons in the constructor.
+	 */
 	private IconCollection() {
 		button=new ImageIcon("assets/csk1_graf/Floor_with_Button.png");
 		box=new ImageIcon("assets/csk1_graf/doboz.png");
@@ -62,11 +63,29 @@ public class IconCollection implements Serializable{
 		}
 		return instance;
 	}
+	/**
+	 * @return the button
+	 */
 	public ImageIcon getButton() {return button;}
+	/**
+	 * @return the box
+	 */
 	public ImageIcon getBox() {return box;}
+	/**
+	 * @return the floor
+	 */
 	public ImageIcon getFloor() {return floor;}
+	/**
+	 * @return the hole
+	 */
 	public ImageIcon getHole() {return hole;}
+	/**
+	 * @return the target
+	 */
 	public ImageIcon getTarget() {return target;}
+	/**
+	 * @return the wall
+	 */
 	public ImageIcon getWall() {return wall;}
 	/**
 	 * @return the honey
