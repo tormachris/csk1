@@ -29,15 +29,11 @@ public class Main implements Serializable{
 		handler.setLevel(Level.ALL);
 		
 		LOGGER.log(Level.FINE, "Initialising timer");
-		Timer.getInstance(); //Init Timer
+		Timer.getInstance().setRunning(false);
 		LOGGER.log(Level.FINE, "Initialising Game");
 		Game.getInstance();	//Init Game 
 		
 		LOGGER.log(Level.FINE, "Initialising GUI and making is visible");
 		gui.SokobanGui.getInstance().setVisible(true); //Show the GUI
-		
-		//Disable the timer
-		LOGGER.log(Level.FINE, "Disabling the timer");
-		Timer.getInstance().setRunning(false);
 	}
 }
