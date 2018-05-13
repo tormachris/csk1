@@ -45,8 +45,8 @@ public class IconCollection implements Serializable{
 		wall=new ImageIcon("assets/csk1_graf/wall.png");
 		workerblue=new ImageIcon("assets/csk1_graf/worker_blue.png");
 		workerred=new ImageIcon("assets/csk1_graf/worker_red.png");
-		blueontile=new ImageIcon("assets/csk1_graf/Floor_with_BlueWorker.png");
-		redontile=new ImageIcon("assets/csk1_graf/Floor_with_RedWorker.png");
+		blueontile=new ImageIcon("assets/csk1_graf/EasterEggBlue.png");
+		redontile=new ImageIcon("assets/csk1_graf/EasterEggRed.png");
 		honey=new ImageIcon("assets/csk1_graf/Floor_with_Honey.png");
 		oil=new ImageIcon("assets/csk1_graf/Floor_with_Oil.png");
 		endoil=new ImageIcon("assets/csk1_graf/Floor_with_Target_with_Oil.png");
