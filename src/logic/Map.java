@@ -42,16 +42,16 @@ public class Map implements Steppable, Serializable {
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 		
-		this.setCrates(new HashSet<Crate>());
-		this.setWorkers(new HashSet<Worker>());
-		this.setTiles(new HashSet<Tile>());
+		crates=new HashSet<>();
+		workers=new HashSet<>();
+		tiles=new HashSet<>();
 		this.resetTimer();
 	}
 	
 	/**
 	 * Starts the map.
 	 */
-	public synchronized void startMap()
+	public void startMap()
 	{
 		LOGGER.log( Level.FINE, "Map started");
 		this.resetTimer();
@@ -62,7 +62,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * Called when the map ends.
 	 */
-	public synchronized void endMap()
+	public void endMap()
 	{
 		LOGGER.log( Level.FINE, "Map ended");
 		ticksRemain=-1;
@@ -72,7 +72,7 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * Resets the remaining time to the default time of a game.
 	 */
-	public synchronized void resetTimer()
+	public void resetTimer()
 	{
 		//reseting the time
 		this.setTicksRemain(DEFAULTTICKSREMAIN);
@@ -94,61 +94,17 @@ public class Map implements Steppable, Serializable {
 			ticksRemain--;
 	}
 
-	/**
-	 * @return the tiles
-	 */
-	public synchronized Set<Tile> getTiles() {
-		return tiles;
-	}
-
-	/**
-	 * @param tiles the tiles to set
-	 */
-	public synchronized void setTiles(Set<Tile> tiles) {
-		this.tiles = tiles;
-	}
-	/**
-	 * @return the ticksRemain
-	 */
-	public synchronized Integer getTicksRemain() {
+	public Integer getTicksRemain() {
 		return ticksRemain;
 	}
 
 	/**
 	 * @param ticksRemain the ticksRemain to set
 	 */
-	public synchronized void setTicksRemain(Integer ticksRemain) {
+	public void setTicksRemain(Integer ticksRemain) {
 		this.ticksRemain = ticksRemain;	
 	}
 
-	/**
-	 * @return the crates
-	 */
-	public synchronized Set<Crate> getCrates() {
-		return crates;
-	}
-
-	/**
-	 * @param crates the crates to set
-	 */
-	public synchronized void setCrates(Set<Crate> crates) {
-		this.crates = crates;
-	}
-
-	/**
-	 * @return the workers
-	 */
-	public synchronized Set<Worker> getWorkers() {
-		return workers;
-	}
-
-	/**
-	 * @param workers the workers to set
-	 */
-	public synchronized void setWorkers(Set<Worker> workers) {
-		this.workers = workers;
-	}
-	
 	/**
 	 * @param w the worker to add
 	 */	
