@@ -40,7 +40,11 @@ public class Controller implements KeyListener {
 		// And it fires every time the character is typed, not pressed physically.
 		return;
 	}
-
+	
+	/**
+	 * Overwriting the keyPressed method to manage user inputs.
+	 * @param  e the keyEvent used to determine the input.
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (acceptinput) {
