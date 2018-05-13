@@ -308,29 +308,29 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().dropHoney();
-				drawAll();
 			}
+			drawAll();
 			return;
 		case (KeyEvent.VK_E):
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().dropOil();
-				drawAll();
 			}
+			drawAll();
 			return;
 		case (KeyEvent.VK_NUMPAD1):
 			if (!keydownRed) {
 				keydownBlue = true;
 				redWorker.getWorker().dropHoney();
-				drawAll();
 			}
+			drawAll();
 			return;
 		case (KeyEvent.VK_NUMPAD2):
 			if (!keydownRed) {
 				keydownBlue = true;
 				redWorker.getWorker().dropOil();
-				drawAll();
 			}
+			drawAll();
 			return;
 		default:
 			break;
@@ -339,15 +339,14 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().move(dir);// Make blue worker move
-				drawAll();
 			}
 		} else {
 			if (!keydownRed) {
 				keydownRed = true;
 				redWorker.getWorker().move(dir);// Make red worker move
-				drawAll();
 			}
 		}
+		drawAll();
 	}
 
 	@Override
@@ -357,12 +356,14 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_Q
 				|| e.getKeyCode() == KeyEvent.VK_E) {
 			keydownBlue = false;
+			drawAll();
 			return;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
 				|| e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_NUMPAD1
 				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			keydownRed = false;
+		drawAll();
 	}
 
 	public static Worker getWorker(boolean red) {
