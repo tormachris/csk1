@@ -56,7 +56,29 @@ public class GraphicSwitch extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(JLabel label) {
-		// Auto-generated method stub
+
+		if(switcho.getThing() == null)
+		{
+			if(switcho.getFrictionMod() == null)
+			{
+				label.setIcon(IconCollection.getInstance().getButton());
+				return;
+			}
+			if(switcho.getFrictionMod().getClass().equals(Oil.class))
+				label.setIcon(IconCollection.getInstance().getButtonoil());
+			if(switcho.getFrictionMod().getClass().equals(Honey.class))
+				label.setIcon(IconCollection.getInstance().getButtonhoney());
+		return;
+		
+		}
+		if(switcho.getThing().getClass().equals(Crate.class))
+			label.setIcon(IconCollection.getInstance().getBox());
+		if(switcho.getThing().getClass().equals(Worker.class))
+			if(SokobanGui.getInstance().getWorker(true).equals(switcho.getThing()))
+				label.setIcon(IconCollection.getInstance().getRedontile());
+			else
+				label.setIcon(IconCollection.getInstance().getBlueontile());
+	
 
 	}
 
