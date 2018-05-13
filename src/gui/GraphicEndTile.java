@@ -42,6 +42,10 @@ public class GraphicEndTile extends AbstractGraphic {
 			return drawWithoutThing();
 	}
 
+	/**
+	 * Draws the EndTile with a Thing on it
+	 * @return the ImageIcon to draw
+	 */
 	private ImageIcon drawWithThing() {
 		if(endtile.getThing().getClass().equals(Crate.class))
 			return IconCollection.getInstance().getBox();
@@ -52,6 +56,10 @@ public class GraphicEndTile extends AbstractGraphic {
 				return IconCollection.getInstance().getBlueontile();
 		return null;
 	}
+	/**
+	 * Draws the EndTile without any Thing on it
+	 * @return the ImageIcon to draw
+	 */
 	private ImageIcon drawWithoutThing() {
 		if(endtile.getFrictionMod().getClass().equals(Oil.class))
 			return IconCollection.getInstance().getEndoil();
