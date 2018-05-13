@@ -28,6 +28,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	/**
 	 * 
 	 */
+	
 	public GraphicWorker() {
 		super(IconCollection.getInstance().getBlueontile());
 		
@@ -81,9 +82,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		setWorker(oworker);
 	}
 
-	/* (non-Javadoc)
-	 * @see gui.Drawable#draw(java.awt.Graphics)
-	 */
+	//Drawing the worker
 	@Override
 	public ImageIcon draw() {
 		return null;

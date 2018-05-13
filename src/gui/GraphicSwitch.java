@@ -47,16 +47,14 @@ public class GraphicSwitch extends AbstractGraphic {
 		setSwitcho(oswitch); // SO FUNKY
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see gui.Drawable#draw(java.awt.Graphics)
-	 */
+	
+	//Drawing the Switch.
 	@Override
 	public ImageIcon draw() {
-
+		//Checks if the Thing on the Switch is null or not, if not it draws it.
 		if (switcho.getThing() != null) {
 			return drawWithThing();
+		//Draws the FrictionModifiers on the Switch.
 		} else {
 			if (switcho.getFrictionMod().getClass().equals(Oil.class))
 				return IconCollection.getInstance().getButtonoil();
@@ -68,7 +66,7 @@ public class GraphicSwitch extends AbstractGraphic {
 		return null;
 
 	}
-
+	//Draws a worker or crate depending on the Thing's class.
 	private ImageIcon drawWithThing() {
 		if (switcho.getThing().getClass().equals(Crate.class))
 			return IconCollection.getInstance().getBox();

@@ -51,10 +51,8 @@ public class GraphicWall extends AbstractGraphic {
 		setWall(owall);
 	}
 
-
-	/* (non-Javadoc)
-	 * @see gui.Drawable#draw(java.awt.Graphics)
-	 */
+	
+	// Drawing the wall.
 	@Override
 	public ImageIcon draw() {
 		return IconCollection.getInstance().getWall(); 

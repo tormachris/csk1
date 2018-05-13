@@ -56,7 +56,7 @@ public class GraphicHole extends AbstractGraphic {
 		//Checking if there is any Thing on the Hole.
 		if (hole.getThing() != null) {
 			return drawWithThing();
-		//Drawing out the FrictionModifiers on the closed Hole.
+		//Draws the FrictionModifiers on the closed Hole.
 		} else {
 			if (hole.getFrictionMod().getClass().equals(Oil.class))
 				return IconCollection.getInstance().getOil();
