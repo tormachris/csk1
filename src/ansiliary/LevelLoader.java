@@ -62,6 +62,11 @@ public class LevelLoader {
 		}
 	}
 
+	/**
+	 * Making a Queue of LevelElements by extracting information from a string.
+	 * @param  candidate a string that contains the elements of the map. 
+	 * @return the Queue that has the elements of the map.
+	 */
 	public Queue<LevelElements> getLevel(String candidate) {
 		LinkedList<LevelElements> toReturn = new LinkedList<>();
 		if (candidate.equals("")) {
