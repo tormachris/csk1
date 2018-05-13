@@ -156,7 +156,9 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
-
+	/**
+	 * Initializing the level based on the level loader
+	 */
 	private void initializeLevel() {
 		LevelLoader ll = new LevelLoader();
 		Queue<LevelElements> map;
