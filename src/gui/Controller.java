@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import javax.swing.ImageIcon;
+
 import logic.Direction;
 
 public class Controller implements KeyListener {
@@ -53,6 +55,7 @@ public class Controller implements KeyListener {
 			case (KeyEvent.VK_A):
 				dir = Direction.WEST;
 				blue = true;
+				IconCollection.getInstance().setBlueontile(new ImageIcon("assets/csk1_graf/EasterEggBlueLeft.png"));
 				break;
 			case (KeyEvent.VK_S):
 				dir = Direction.SOUTH;
@@ -61,18 +64,21 @@ public class Controller implements KeyListener {
 			case (KeyEvent.VK_D):
 				dir = Direction.EAST;
 				blue = true;
+				IconCollection.getInstance().setBlueontile(new ImageIcon("assets/csk1_graf/EasterEggBlueRight.png"));
 				break;
 			case (KeyEvent.VK_UP):
 				dir = Direction.NORTH;
 				break;
 			case (KeyEvent.VK_RIGHT):
 				dir = Direction.EAST;
+				IconCollection.getInstance().setRedontile(new ImageIcon("assets/csk1_graf/EasterEggRedRight.png"));
 				break;
 			case (KeyEvent.VK_DOWN):
 				dir = Direction.SOUTH;
 				break;
 			case (KeyEvent.VK_LEFT):
 				dir = Direction.WEST;
+				IconCollection.getInstance().setRedontile(new ImageIcon("assets/csk1_graf/EasterEggRedLeft.png"));
 				break;
 			case (KeyEvent.VK_Q):
 				if (!keydownBlue) {
