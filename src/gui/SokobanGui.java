@@ -81,9 +81,6 @@ public class SokobanGui extends JFrame implements Steppable {
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mnFile.add(mntmNewGame);
 
-		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
-		mnFile.add(mntmSaveGame);
-
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnFile.add(mntmLoadGame);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
