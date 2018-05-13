@@ -65,6 +65,7 @@ public class Map implements Steppable, Serializable {
 	public void endMap()
 	{
 		LOGGER.log( Level.FINE, "Map ended");
+		ticksRemain=-1;
 		Timer.getInstance().removeSteppable(this);
 	}
 	
