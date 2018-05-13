@@ -41,7 +41,7 @@ public class Game implements Serializable{
 	 * (The first being its constructor)
 	 * @param m: Map to start
 	 */
-	public void start(Map m)
+	public synchronized void start(Map m)
 	{
 		if(m!=null) {
 			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed"); 	//Checking that the map actually exists.
@@ -55,7 +55,7 @@ public class Game implements Serializable{
 	/**
 	 * Called when the game is over.
 	 */
-	public void end()
+	public synchronized void end()
 	{
 		LOGGER.log( Level.FINE, "Game ended");
 		return;
@@ -64,14 +64,14 @@ public class Game implements Serializable{
 	/**
 	 * @param maps the maps to set
 	 */
-	private void setMaps(Set<Map> maps) {
+	private synchronized void setMaps(Set<Map> maps) {
 		this.maps = maps;	
 	}
 	
 	/**
 	 * @param m the map to add
 	 */
-	public void addMap(Map m) {
+	public synchronized void addMap(Map m) {
 		if (m!=null) maps.add(m);
 		else throw new IllegalArgumentException("Cannot add null to maps collection.");
 	}
@@ -79,7 +79,7 @@ public class Game implements Serializable{
 	/**
 	 * @param m the map to remove
 	 */
-	public void removeMap(Map m) {
+	public synchronized void removeMap(Map m) {
 		if (m==null) throw new IllegalArgumentException("Cannot remove null to maps collection.");
 		else if (maps.contains(m)) maps.remove(m);
 	}
@@ -97,14 +97,14 @@ public class Game implements Serializable{
 	/**
 	 * @return the currentmap
 	 */
-	public Map getCurrentmap() {
+	public synchronized Map getCurrentmap() {
 		return currentmap;
 	}
 
 	/**
 	 * @param currentmap the currentmap to set
 	 */
-	public void setCurrentmap(Map currentmap) {
+	public synchronized void setCurrentmap(Map currentmap) {
 		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map"); //Checking that the map is in the collection
 		else {
 			LOGGER.log( Level.FINE, "Setting current map");
@@ -116,14 +116,14 @@ public class Game implements Serializable{
 	/**
 	 * @return the number of maps
 	 */
-	public int getNumofMaps() {
+	public synchronized int getNumofMaps() {
 		return maps.size();
 	}
 	
 	/**
 	 * Clears the maps Set
 	 */
-	public void clearMaps() {
+	public synchronized void clearMaps() {
 		maps.clear();
 	}
 }
