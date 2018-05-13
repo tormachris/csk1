@@ -14,14 +14,48 @@ public class Worker extends Thing implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6880043466619175109L;
-
+	//Logger of this class
 	private static final Logger LOGGER = Logger.getLogger( Worker.class.getName() );
 	
-	private Integer points;
-	private Double force;
-	private Double initialforce;
-	private Boolean alive;
+	private Integer points;//Points of the worker
+	private Double force;//The sum force of the worker
+	private Double initialforce;//This remains constant throughout the worker's life.
+	private Boolean alive;//Indicates whether the worker can perform actions.
 	
+	/**
+	 * The Constructor.
+	 * Sets up the logger of this class and it's parameters.
+	 */
+	public Worker(Integer w) {
+		super(w);//SUPA CALL
+		//Logger setup
+		LOGGER.setLevel(Level.ALL);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(handler);
+		handler.setLevel(Level.ALL);
+		//Modify this part
+		force = w*2.5;
+		initialforce=w*2.5;
+		points = 0;
+		alive=true;
+		this.updateOwner(this);
+	}
+	/**
+	 * This function realizes the specialties of the Worker's movements.
+	 * @param d The Direction where the worker is going
+	 * @return true as there should be movement
+	 */
+	@Override
+	public boolean move(Direction d) {
+		if (alive) {//A dead worker cannot move, obviously
+			force=initialforce;//We reset it's force, so it does creep down
+			Double temp = this.getForce();//Calculate the force
+			boolean toReturn = super.move(d);
+			this.setForce(temp);
+			return toReturn;//Return boi
+		}else return false;
+	}
 	/**
 	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
 	 * worker's tile anyway so this will return true value however the worker might get 
@@ -31,48 +65,20 @@ public class Worker extends Thing implements Serializable{
 	 * @param o The owner of the Thing
 	 * @return true as there should be movement
 	 */
-	
-
-	public Worker(Integer w) {
-		super(w);
-		
-		LOGGER.setLevel(Level.ALL);
-		ConsoleHandler handler = new ConsoleHandler();
-		handler.setFormatter(new SimpleFormatter());
-		LOGGER.addHandler(handler);
-		handler.setLevel(Level.ALL);
-		
-		force = w*2.5;
-		initialforce=w*2.5;
-		points = 0;
-		alive=true;
-		this.updateOwner(this);
-	}
-
-	@Override
-	public boolean move(Direction d) {
-		if (alive) {
-			force=initialforce;
-			Double temp = this.getForce();
-			boolean toReturn = super.move(d);
-			this.setForce(temp);
-			return toReturn;
-		}else return false;
-	}
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
 	{
 		if(t.getClass()==Worker.class) {
-			return false;
+			return false;//Workers cannot hit each other
 		}
 		else {
 		this.updateOwner(o); 	//updating the owner for the action
-		if(this.getOwner()==null) 
+		if(this.getOwner()==null) //Null guard
 			throw new IllegalArgumentException("Null ptr in owner.");
 		else
 		{
-		Worker w=(Worker)this.getOwner();
-		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());
+		Worker w=(Worker)this.getOwner();//Only workers can be owners, so this is safe
+		w.setForce(w.getForce()-this.getWeight()*this.getTile().getFrictionMod().getFriction());//We calculate the new force of the owner.
 		Double d2=Double.valueOf(0);
 		if(w.getForce().compareTo(d2) > 0) {
 
@@ -97,9 +103,9 @@ public class Worker extends Thing implements Serializable{
 	public void destroy()
 	{
 		LOGGER.log( Level.FINE, "Worker ded");
-		super.getTile().remove(this);
-		alive=false;
-		Game.getInstance().getCurrentmap().removeWorker(this);
+		super.getTile().remove(this);//We remove the worker from the tile
+		alive=false;//It is dead. Duh
+		Game.getInstance().getCurrentmap().removeWorker(this);//We tell the map that this worker is no longer in play
 	}
 
 	/**
@@ -118,7 +124,7 @@ public class Worker extends Thing implements Serializable{
 	
 	public void dropOil() {
 		LOGGER.log( Level.FINE, "Dropping oil");
-		if(alive)this.getTile().setFrictionMod(new Oil());
+		if(alive)this.getTile().setFrictionMod(new Oil());//drop the base
 	}
 	public void dropHoney() {
 		LOGGER.log( Level.FINE, "Dropping honey");

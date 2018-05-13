@@ -15,6 +15,7 @@ public class Wall extends Tile {
 	private static final long serialVersionUID = 5984263799272258139L;
 	private static final Logger LOGGER = Logger.getLogger( Wall.class.getName() );
 	public Wall() {
+		//Setting up the logger
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
