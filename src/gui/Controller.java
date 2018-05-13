@@ -15,7 +15,7 @@ public class Controller implements KeyListener {
 	private Boolean keydownRed;
 	private GraphicWorker blueWorker;
 	private GraphicWorker redWorker;
-	public static boolean acceptinput;
+	private static boolean acceptinput;
 
 	public Controller(GraphicWorker bw, GraphicWorker rw) {
 		LOGGER.setLevel(Level.ALL);
@@ -135,6 +135,20 @@ public class Controller implements KeyListener {
 				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			keydownRed = false;
 		SokobanGui.getInstance().drawAll();
+	}
+
+	/**
+	 * @return the acceptinput
+	 */
+	public static boolean isAcceptinput() {
+		return acceptinput;
+	}
+
+	/**
+	 * @param acceptinput the acceptinput to set
+	 */
+	public static void setAcceptinput(boolean acceptinput) {
+		Controller.acceptinput = acceptinput;
 	}
 
 }

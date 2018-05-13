@@ -119,4 +119,11 @@ public class Game implements Serializable{
 	public int getNumofMaps() {
 		return maps.size();
 	}
+	
+	/**
+	 * Clears the maps Set
+	 */
+	public void clearMaps() {
+		maps.clear();
+	}
 }

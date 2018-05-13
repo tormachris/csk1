@@ -76,6 +76,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		menuBar.add(mnFile);
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
+		mntmNewGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
 		mnFile.add(mntmNewGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
@@ -139,9 +140,17 @@ public class SokobanGui extends JFrame implements Steppable {
 			gameGrid.add(p);
 			panelMain.add(p);
 		}
+		
+		initializeLevel();
+
+		LOGGER.log(Level.FINE, "GUI Initialized");
+	}
+
+	private void initializeLevel() {
 		LevelLoader ll = new LevelLoader();
 		Queue<LevelElements> map = ll.getLevel(LevelStorage.DEMOLEVEL);
 		Map m = new Map();
+		Game.getInstance().clearMaps();
 		Game.getInstance().addMap(m);
 		Game.getInstance().setCurrentmap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
@@ -203,10 +212,8 @@ public class SokobanGui extends JFrame implements Steppable {
 		Timer.getInstance().addSteppable(this);
 
 		drawAll();
-
-		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
-
+	
 	public void drawAll() {
 		lblScoreRed.setText(redWorker.getWorker().getPoints().toString());
 		lblScoreRed.revalidate();
@@ -267,7 +274,7 @@ public class SokobanGui extends JFrame implements Steppable {
 			int timeinticks = Game.getInstance().getCurrentmap().getTicksRemain();
 			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0) {
 				Timer.getInstance().removeSteppable(this);
-				Controller.acceptinput = false;
+				Controller.setAcceptinput(false);
 			}
 			int timeinsecs = timeinticks / (1000 / Timer.getMilisecstowait());
 			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0)
