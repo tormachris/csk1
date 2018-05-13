@@ -219,7 +219,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 	}
 
 	private void setUpNeighbors() {
-
+		LOGGER.log(Level.FINE, "Setting up neighbors");
 		Tile t = null;
 		for (int i = 0; i < drawables.size(); ++i) {
 			t = cast(drawables.get(i));

@@ -74,7 +74,13 @@ public class Timer extends Thread implements Serializable {
 					LOGGER.log(Level.FINE, ex.toString(), ex);
 					Thread.currentThread().interrupt();
 				}
-			}
+			} else
+				try {
+					Thread.sleep(TIMETOWAIT*(long)2);
+				} catch (InterruptedException ex) {
+					LOGGER.log(Level.FINE, ex.toString(), ex);
+					Thread.currentThread().interrupt();
+				}
 		}
 	}
 
