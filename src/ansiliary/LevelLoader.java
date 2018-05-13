@@ -37,7 +37,7 @@ public class LevelLoader {
 	 * 
 	 * EVERY MAP HAS TO BE 11X11
 	 */
-	public static String loadLevel(File candidate) {
+	private static String loadLevel(File candidate) {
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = new BufferedReader(new FileReader(candidate))) { //Try-with-resource
 			String line = "";
@@ -106,5 +106,9 @@ public class LevelLoader {
 			return toReturn;
 		else
 			return new LinkedList<>();
+	}
+	
+	public static Queue<LevelElements> getLevelFromFile(File candidate){
+		return getLevel(loadLevel(candidate));
 	}
 }

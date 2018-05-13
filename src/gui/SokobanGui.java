@@ -151,6 +151,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 		// We don't want to use this, since this only fires for characters that can be
 		// typed. (No arrow keys)
 		// And it fires every time the character is typed, not pressed physically.
+		return;
 	}
 
 	@Override
