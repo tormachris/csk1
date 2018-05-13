@@ -34,6 +34,7 @@ public class IconCollection implements Serializable{
 	private ImageIcon endhoney;
 	private ImageIcon buttonhoney;
 	private ImageIcon buttonoil;
+	private ImageIcon csupor;
 	private IconCollection() {
 		button=new ImageIcon("assets/csk1_graf/Floor_with_Button.png");
 		demo=new ImageIcon("assets/csk1_graf/demo.png");
@@ -52,6 +53,7 @@ public class IconCollection implements Serializable{
 		endhoney=new ImageIcon("assets/csk1_graf/Floor_with_Target_with_Honey.png");
 		buttonhoney=new ImageIcon("assets/csk1_graf/Floor_with_Button_with_Honey.png");
 		buttonoil=new ImageIcon("assets/csk1_graf/Floor_with_Button_with_Oil.png");
+		csupor=new ImageIcon("assets/csk1_graf/HoneyJar.png");
 	}
 	/**
 	 * This method realizes IconCollection being a singleton in Java.
@@ -118,5 +120,11 @@ public class IconCollection implements Serializable{
 	 */
 	public ImageIcon getButtonoil() {
 		return buttonoil;
+	}
+	/**
+	 * @return the csupor
+	 */
+	public ImageIcon getCsupor() {
+		return csupor;
 	}
 }

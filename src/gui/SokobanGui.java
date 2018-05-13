@@ -69,7 +69,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		this.setTitle("KILLER SOKOBAN!!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 792, 75 + 792); // shrug
-
+		this.setIconImage(IconCollection.getInstance().getCsupor().getImage());
 		/* Felso menu geci */
 
 		JMenuBar menuBar = new JMenuBar();
