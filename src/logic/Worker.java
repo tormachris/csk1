@@ -19,6 +19,8 @@ public class Worker extends Thing implements Serializable{
 	
 	private Integer points;
 	private Double force;
+	private Double initialforce;
+	private Boolean alive;
 	
 	/**
 	 * This function is called whenever a Worker gets hit by a Crate. The Crate will take the
@@ -40,17 +42,21 @@ public class Worker extends Thing implements Serializable{
 		handler.setLevel(Level.ALL);
 		
 		force = w*1.0;
+		initialforce=w*1.0;
 		points = 0;
+		alive=true;
 		this.updateOwner(this);
 	}
 
 	@Override
 	public boolean move(Direction d) {
-		Double temp = this.getForce();
-		boolean toReturn = super.move(d);
-		this.setForce(temp);
-		return toReturn;
-		
+		if (alive) {
+			force=initialforce;
+			Double temp = this.getForce();
+			boolean toReturn = super.move(d);
+			this.setForce(temp);
+			return toReturn;
+		}else return false;
 	}
 	@Override
 	public boolean hitBy(Thing t,Direction d,Thing o)
@@ -88,6 +94,7 @@ public class Worker extends Thing implements Serializable{
 	{
 		LOGGER.log( Level.FINE, "Worker ded");
 		super.getTile().remove(this);
+		alive=false;
 		Game.getInstance().getCurrentmap().removeWorker(this);
 	}
 
