@@ -75,7 +75,7 @@ public class Worker extends Thing implements Serializable{
 		Double d2=Double.valueOf(0);
 		if(w.getForce().compareTo(d2) > 0) {
 
-			if(Boolean.valueOf(this.move(d))) //trying to move..) {
+			if(Boolean.valueOf(this.move(d))) //trying to move..)
 				this.updateOwner(this);  //we need to reset the owner			
 				
 			else {
