@@ -17,7 +17,7 @@ public final class LevelStorage {
 	 * 
 	 * EVERY MAP HAS TO BE 11X11
 	 */
-public static final String DEMOLEVEL= /*
+public static final String PRESENTLEVEL=
 "###########\n" + 
 "######BTH##\n" + 
 "#EE#TTT####\n" + 
@@ -28,7 +28,8 @@ public static final String DEMOLEVEL= /*
 "###B###TTT#\n" + 
 "#TTRTTTT#E#\n" + 
 "#TT########\n" + 
-"###########"; */
+"###########";
+public static final String DEMOLEVEL=
 "###########\n" + 
 "#TTTTTTTTT#\n" + 
 "#TTTTRTTTT#\n" + 
