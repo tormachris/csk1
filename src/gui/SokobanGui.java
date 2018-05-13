@@ -10,6 +10,7 @@ import javax.swing.border.*;
 
 import ansiliary.*;
 import logic.*;
+import logic.Map;
 
 public class SokobanGui extends JFrame implements KeyListener {
 	/**
@@ -147,41 +148,55 @@ public class SokobanGui extends JFrame implements KeyListener {
 			panelMain.add(p);
 		}
 		Queue<LevelElements> map = LevelLoader.getLevel(LevelStorage.DEMOLEVEL);
+		Map m = new Map();
+		Game.getInstance().addMap(m);
 		LinkedList<GraphicHole> lastholes = new LinkedList<>();
 		for (int j = 0; j < map.size(); ++j)
 			switch (map.remove()) {
 			case WALL:
 				drawables.add(new GraphicWall(new Wall()));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TILE:
 				drawables.add(new GraphicTile(new Tile()));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case ENDTILE:
 				drawables.add(new GraphicEndTile(new EndTile()));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case TRAP:
 				lastholes.add(new GraphicHole(new Hole()));
 				drawables.add(lastholes.element());
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case HOLE:
 				drawables.add(new GraphicHole(new Hole()));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case SWITCH:
 				drawables.add(new GraphicSwitch(new Switch(lastholes.remove().getHole())));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
 				break;
 			case RED:
 				drawables.add(new GraphicTile(new Tile()));
 				redWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
+				m.addWorker(redWorker.getWorker());
 				break;
 			case BLUE:
 				drawables.add(new GraphicTile(new Tile()));
 				blueWorker = new GraphicWorker(new Worker(1));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
+				m.addWorker(blueWorker.getWorker());
 				break;
 			case CRATE:
 				drawables.add(new GraphicTile(new Tile()));
 				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(new Crate(1));
+				m.addTile(cast(drawables.get(drawables.size() - 1)));
+				m.addCrate((Crate) ((GraphicTile) drawables.get(drawables.size() - 1)).getTile().getThing());
 				break;
 			default:
 				break;
