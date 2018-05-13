@@ -62,19 +62,20 @@ public class SokobanGui extends JFrame implements Steppable {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		/* Initializing Frame */
 		setResizable(false);
 		this.setTitle("KILLER SOKOBAN!!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 792, 75 + 792); // shrug
 		this.setIconImage(IconCollection.getInstance().getCsupor().getImage());
-		/* Felso menu geci */
+		/* Upper menu and menu items  */
 
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
-
+		
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mntmNewGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
 		mnFile.add(mntmNewGame);
@@ -92,7 +93,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		});
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 
-		/* Felso panel (ido es pontok) */
+		/* Upper Panel (Time and points) */
 
 		Font scoreFont = new Font("Tahoma", Font.PLAIN, 20);
 
@@ -135,6 +136,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		panelMain.setLayout(new GridLayout(GRIDSIZE, GRIDSIZE, 0, 0));
 		panelMain.setPreferredSize(new Dimension(792, 792));
 
+		/*Creating the grid for the map */
 		int i;
 		boolean grey = false;
 		for (i = 0; i < (GRIDSIZE * GRIDSIZE); i++) {
@@ -234,11 +236,15 @@ public class SokobanGui extends JFrame implements Steppable {
 		}
 	}
 	
+	/**
+	 * Draws every drawable on the map
+	 */
 	public void drawAll() {
 		lblScoreRed.setText(redWorker.getWorker().getPoints().toString());
 		lblScoreRed.revalidate();
 		lblScoreBlue.setText(blueWorker.getWorker().getPoints().toString());
 		lblScoreBlue.revalidate();
+		/* Putting labels on the grid on which the icons for the drawables are drawed */
 		for (int j = 0; j < gameGrid.size(); j++) {
 			JPanel panel = gameGrid.get(j);
 			panel.setLayout(new GridLayout(1, 1));
@@ -251,6 +257,9 @@ public class SokobanGui extends JFrame implements Steppable {
 		this.revalidate();
 	}
 
+	/**
+	 * Setting up the neighbors of the tiles on the grid
+	 */
 	private void setUpNeighbors() {
 		LOGGER.log(Level.FINE, "Setting up neighbors");
 		Tile t = null;
@@ -268,6 +277,11 @@ public class SokobanGui extends JFrame implements Steppable {
 		}
 	}
 
+	/**
+	 * Getting the represented tile of a drawabletile
+	 * @param d the drawable	
+	 * @return the tile
+	 */
 	private Tile cast(Drawable d) {
 		if (d.getClass().equals(GraphicTile.class))
 			return ((GraphicTile) d).getTile();
@@ -282,6 +296,11 @@ public class SokobanGui extends JFrame implements Steppable {
 		return null;
 	}
 
+	/**
+	 * getter of the workers
+	 * @param red true if the red worker is asked for
+	 * @return the worker
+	 */
 	public static Worker getWorker(boolean red) {
 		if (red)
 			return redWorker.getWorker();
@@ -289,6 +308,9 @@ public class SokobanGui extends JFrame implements Steppable {
 			return blueWorker.getWorker();
 	}
 
+	/**
+	 * this method is needed so that the gui implements the steppable interface
+	 */
 	@Override
 	public void step() {
 		if (Game.getInstance().getCurrentmap() != null) {
