@@ -147,74 +147,81 @@ public class SokobanGui extends JFrame implements KeyListener {
 			panelMain.add(p);
 		}
 		Queue<LevelElements> map = LevelLoader.getLevel(LevelStorage.DEMOLEVEL);
-		LinkedList<GraphicHole> lastholes = new LinkedList<GraphicHole>();
-		for(int j = 0; j < map.size(); ++j)
-			switch(map.remove()) {
-				case WALL : drawables.add(new GraphicWall(new Wall()));
-							break;
-				case TILE : drawables.add(new GraphicTile(new Tile()));
-							break;
-				case ENDTILE : drawables.add(new GraphicEndTile(new EndTile()));
-							break;
-				case TRAP : lastholes.add(new GraphicHole(new Hole()));
-							drawables.add(lastholes.element());
-							break;
-				case HOLE : drawables.add(new GraphicHole(new Hole()));
-							break;
-				case SWITCH : drawables.add(new GraphicSwitch(new Switch(lastholes.remove().getHole())));
-								break;
-				case RED : drawables.add(new GraphicTile(new Tile()));
-							redWorker = new GraphicWorker(new Worker(1));
-							((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
-							break;
-				case BLUE : drawables.add(new GraphicTile(new Tile()));
-							blueWorker = new GraphicWorker(new Worker(1));
-							((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
-							break;
-				case CRATE : drawables.add(new GraphicTile(new Tile()));
-							((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(new Crate(1));
-							break;
-				default: break;
-				}			
+		LinkedList<GraphicHole> lastholes = new LinkedList<>();
+		for (int j = 0; j < map.size(); ++j)
+			switch (map.remove()) {
+			case WALL:
+				drawables.add(new GraphicWall(new Wall()));
+				break;
+			case TILE:
+				drawables.add(new GraphicTile(new Tile()));
+				break;
+			case ENDTILE:
+				drawables.add(new GraphicEndTile(new EndTile()));
+				break;
+			case TRAP:
+				lastholes.add(new GraphicHole(new Hole()));
+				drawables.add(lastholes.element());
+				break;
+			case HOLE:
+				drawables.add(new GraphicHole(new Hole()));
+				break;
+			case SWITCH:
+				drawables.add(new GraphicSwitch(new Switch(lastholes.remove().getHole())));
+				break;
+			case RED:
+				drawables.add(new GraphicTile(new Tile()));
+				redWorker = new GraphicWorker(new Worker(1));
+				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(redWorker.getWorker());
+				break;
+			case BLUE:
+				drawables.add(new GraphicTile(new Tile()));
+				blueWorker = new GraphicWorker(new Worker(1));
+				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(blueWorker.getWorker());
+				break;
+			case CRATE:
+				drawables.add(new GraphicTile(new Tile()));
+				((GraphicTile) drawables.get(drawables.size() - 1)).getTile().setThing(new Crate(1));
+				break;
+			default:
+				break;
+			}
 		setUpNeighbors();
-		
+
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
 
 	private void setUpNeighbors() {
-		
+
 		Tile t = null;
-		for(int i = 0; i < drawables.size(); ++i)
-		{
+		for (int i = 0; i < drawables.size(); ++i) {
 			t = cast(drawables.get(i));
-			if(i > 10)
+			if (i > 10 && t!=null)
 				t.setNeighbour(Direction.NORTH, cast(drawables.get(i - 11)));
-			if(i % 11 != 10)
+			if (i % 11 != 10 && t!=null)
 				t.setNeighbour(Direction.EAST, cast(drawables.get(i + 1)));
-			if(i % 11 != 0)
+			if (i % 11 != 0 && t!=null)
 				t.setNeighbour(Direction.WEST, cast(drawables.get(i - 1)));
-			if(i < 110)
+			if (i < 110 && t!=null)
 				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + 11)));
-			
-			
-			}
-			
+
 		}
-	
-	private Tile cast(Drawable d) {
-		if(d.getClass().equals(GraphicTile.class))
-			return ((GraphicTile)d).getTile();
-		if(d.getClass().equals(GraphicEndTile.class))
-			return ((GraphicEndTile)d).getEndtile();
-		if(d.getClass().equals(GraphicHole.class))
-			return ((GraphicHole)d).getHole();
-		if(d.getClass().equals(GraphicSwitch.class))
-			return ((GraphicSwitch)d).getSwitcho();	
-		if(d.getClass().equals(GraphicWall.class))
-			return ((GraphicWall)d).getWall();	
-		return null;
+
 	}
 
+	private Tile cast(Drawable d) {
+		if (d.getClass().equals(GraphicTile.class))
+			return ((GraphicTile) d).getTile();
+		if (d.getClass().equals(GraphicEndTile.class))
+			return ((GraphicEndTile) d).getEndtile();
+		if (d.getClass().equals(GraphicHole.class))
+			return ((GraphicHole) d).getHole();
+		if (d.getClass().equals(GraphicSwitch.class))
+			return ((GraphicSwitch) d).getSwitcho();
+		if (d.getClass().equals(GraphicWall.class))
+			return ((GraphicWall) d).getWall();
+		return null;
+	}
 
 	/**
 	 * @deprecated (since="1.0", forRemoval=false)
