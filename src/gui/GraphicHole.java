@@ -45,21 +45,18 @@ public class GraphicHole extends AbstractGraphic {
 		setHole(ohole);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see gui.Drawable#draw(java.awt.Graphics)
-	 */
+	//Drawing the Hole.
 	@Override
 	public ImageIcon draw() {
+		//Checking if the Hole is open, if it is, it draws the Hole.
 		if (hole.getOpen()) {
 			return IconCollection.getInstance().getHole();
 
 		}
-
+		//Checking if there is any Thing on the Hole.
 		if (hole.getThing() != null) {
 			return drawWithThing();
-
+		//Drawing out the FrictionModifiers on the closed Hole.
 		} else {
 			if (hole.getFrictionMod().getClass().equals(Oil.class))
 				return IconCollection.getInstance().getOil();
@@ -72,7 +69,7 @@ public class GraphicHole extends AbstractGraphic {
 		return null;
 
 	}
-
+	//Draws a worker or crate depending on the Thing's class.
 	private ImageIcon drawWithThing() {
 		if (hole.getThing().getClass().equals(Crate.class))
 			return IconCollection.getInstance().getBox();
