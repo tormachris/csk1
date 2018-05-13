@@ -70,6 +70,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		setResizable(false);
 		this.setTitle("KILLER SOKOBAN!!");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(100, 100, 550, 75 + 550); // shrug
@@ -209,17 +210,22 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		
 		setUpNeighbors();
 
-		for(int j=0;j<gameGrid.size();j++) {
-			JPanel panel=gameGrid.get(j);
-
-			JLabel label=new JLabel(drawables.get(j).draw());
-
-			panel.add(label);
-		}
+		drawAll();
 		
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
 
+	private void drawAll() {
+		for(int j=0;j<gameGrid.size();j++) {
+			JPanel panel=gameGrid.get(j);
+			panel.setLayout(new GridLayout(1,1));
+			JLabel label=new JLabel(drawables.get(j).draw());
+			
+			panel.removeAll();
+			panel.add(label);
+		}
+	}
+	
 	private void setUpNeighbors() {
 		LOGGER.log(Level.FINE, "Setting up neighbors");
 		Tile t = null;
@@ -302,24 +308,28 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().dropHoney();
+				drawAll();
 			}
 			return;
 		case (KeyEvent.VK_E):
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().dropOil();
+				drawAll();
 			}
 			return;
 		case (KeyEvent.VK_NUMPAD1):
 			if (!keydownRed) {
 				keydownBlue = true;
 				redWorker.getWorker().dropHoney();
+				drawAll();
 			}
 			return;
 		case (KeyEvent.VK_NUMPAD2):
 			if (!keydownRed) {
 				keydownBlue = true;
 				redWorker.getWorker().dropOil();
+				drawAll();
 			}
 			return;
 		default:
@@ -329,11 +339,13 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			if (!keydownBlue) {
 				keydownBlue = true;
 				blueWorker.getWorker().move(dir);// Make blue worker move
+				drawAll();
 			}
 		} else {
 			if (!keydownRed) {
 				keydownRed = true;
 				redWorker.getWorker().move(dir);// Make red worker move
+				drawAll();
 			}
 		}
 	}
