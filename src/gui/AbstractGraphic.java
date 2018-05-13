@@ -19,7 +19,7 @@ public abstract class AbstractGraphic implements Drawable,Serializable {
 	private ImageIcon img;
 	protected void setIcon(ImageIcon oimg) {img=oimg;}
 	protected ImageIcon getIcon() {return img;}
-	protected AbstractGraphic() {img=IconCollection.getInstance().getDemo();}
+	protected AbstractGraphic() {img=IconCollection.getInstance().getCsupor();}
 	protected AbstractGraphic(ImageIcon oimg) {img=oimg;}
 
 }
