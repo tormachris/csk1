@@ -76,6 +76,36 @@ public class SokobanGui extends JFrame implements Steppable {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
+		JMenu mnHELP = new JMenu("Help");
+		menuBar.add(mnHELP);
+		mnHELP.addActionListener((java.awt.event.ActionEvent evt) -> {
+			String infoMessage=
+					"Moving the Batman:\n" +
+					"WASD\n" +
+					"Dropping Oil and Honey with Batman:\n" +
+					"Q and E\n" +
+					"Moving Joker:\n" +
+					"Arrow keys\n" +
+					"Dropping Oil and Honey with Joker:\n" +
+					"NUMPAD 1 and NUMPAD 2";
+			JOptionPane.showMessageDialog(null, infoMessage, "Controls", JOptionPane.INFORMATION_MESSAGE);
+		});
+		
+		JMenu mnAbout = new JMenu("About");
+		menuBar.add(mnAbout);
+		mnAbout.addActionListener((java.awt.event.ActionEvent evt) -> {
+			String infoMessage=
+					"CSK-1 Szoftver Projekt Labor\n" +
+					"Konzulens: Rácz Gergely\n" +
+					"Csapattagok\n" +
+					"Torma Kristóf\n" +
+					"Tóth Vince\n" +
+					"Tóth Dániel Péter\n" +
+					"Pünkösd Marcell\n" +
+					"Veres Csaba Miklós";
+			JOptionPane.showMessageDialog(null, infoMessage, "About KILLER SOKOBAN", JOptionPane.INFORMATION_MESSAGE);
+		});
+		
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mntmNewGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
 		mnFile.add(mntmNewGame);
