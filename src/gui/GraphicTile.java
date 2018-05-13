@@ -57,7 +57,29 @@ public class GraphicTile extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(JLabel label) {
-		// Auto-generated method stub
+
+		if(tile.getThing() == null)
+		{
+			if(tile.getFrictionMod() == null)
+			{
+				label.setIcon(IconCollection.getInstance().getFloor());
+				return;
+			}
+			if(tile.getFrictionMod().getClass().equals(Oil.class))
+				label.setIcon(IconCollection.getInstance().getOil());
+			if(tile.getFrictionMod().getClass().equals(Honey.class))
+				label.setIcon(IconCollection.getInstance().getHoney());
+		return;
+		
+		}
+		if(tile.getThing().getClass().equals(Crate.class))
+			label.setIcon(IconCollection.getInstance().getBox());
+		if(tile.getThing().getClass().equals(Worker.class))
+			if(SokobanGui.getInstance().getWorker(true).equals(tile.getThing()))
+				label.setIcon(IconCollection.getInstance().getRedontile());
+			else
+				label.setIcon(IconCollection.getInstance().getBlueontile());
+	
 
 	}
 

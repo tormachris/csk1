@@ -53,8 +53,34 @@ public class GraphicHole extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(JLabel label) {
-		// Auto-generated method stub
+		if(hole.getOpen())
+		{
+			label.setIcon(IconCollection.getInstance().getHole());
+			return;
+		}
 
+		if(hole.getThing() == null)
+		{
+			if(hole.getFrictionMod() == null)
+			{
+				label.setIcon(IconCollection.getInstance().getFloor());
+				return;
+			}
+			if(hole.getFrictionMod().getClass().equals(Oil.class))
+				label.setIcon(IconCollection.getInstance().getOil());
+			if(hole.getFrictionMod().getClass().equals(Honey.class))
+				label.setIcon(IconCollection.getInstance().getHoney());
+		return;
+		
+		}
+		if(hole.getThing().getClass().equals(Crate.class))
+			label.setIcon(IconCollection.getInstance().getBox());
+		if(hole.getThing().getClass().equals(Worker.class))
+			if(SokobanGui.getInstance().getWorker(true).equals(hole.getThing()))
+				label.setIcon(IconCollection.getInstance().getRedontile());
+			else
+				label.setIcon(IconCollection.getInstance().getBlueontile());
+	
 	}
 
 	/**

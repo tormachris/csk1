@@ -4,9 +4,7 @@ import java.util.logging.*;
 
 import javax.swing.*;
 
-import logic.Crate;
-import logic.EndTile;
-import logic.Worker;
+import logic.*;
 
 public class GraphicEndTile extends AbstractGraphic {
 	/**
@@ -44,8 +42,17 @@ public class GraphicEndTile extends AbstractGraphic {
 	public void draw(JLabel label) {
 		if(endtile.getThing() == null)
 		{
-			label.setIcon(IconCollection.getInstance().getTarget());
-			return;
+			if(endtile.getFrictionMod() == null)
+			{
+				label.setIcon(IconCollection.getInstance().getTarget());
+				return;
+			}
+			if(endtile.getFrictionMod().getClass().equals(Oil.class))
+				label.setIcon(IconCollection.getInstance().getEndoil());
+			if(endtile.getFrictionMod().getClass().equals(Honey.class))
+				label.setIcon(IconCollection.getInstance().getEndhoney());
+		return;
+		
 		}
 		if(endtile.getThing().getClass().equals(Crate.class))
 			label.setIcon(IconCollection.getInstance().getBox());

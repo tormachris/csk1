@@ -60,7 +60,7 @@ public class GraphicWall extends AbstractGraphic {
 	 */
 	@Override
 	public void draw(JLabel label) {
-		// Auto-generated method stub
+		label.setIcon(IconCollection.getInstance().getWall());
 
 	}
 
