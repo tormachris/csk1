@@ -370,7 +370,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			int mins = timeinsecs / 60;
 			int secs = timeinsecs % 60;
 			lblTimer.setText(mins + ":" + secs);
-			System.out.println(mins + ":" + secs);
+			LOGGER.fine(()->mins + ":" + secs);
 		}
 		
 	}
