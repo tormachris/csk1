@@ -76,9 +76,11 @@ public class SokobanGui extends JFrame implements Steppable {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
-		JMenu mnHELP = new JMenu("Help");
-		menuBar.add(mnHELP);
-		mnHELP.addActionListener((java.awt.event.ActionEvent evt) -> {
+		JMenu mnInfo = new JMenu("Info");
+		menuBar.add(mnInfo);
+		
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		mntmHelp.addActionListener((java.awt.event.ActionEvent evt) -> {
 			String infoMessage=
 					"Moving the Batman:\n" +
 					"WASD\n" +
@@ -90,10 +92,10 @@ public class SokobanGui extends JFrame implements Steppable {
 					"NUMPAD 1 and NUMPAD 2";
 			JOptionPane.showMessageDialog(null, infoMessage, "Controls", JOptionPane.INFORMATION_MESSAGE);
 		});
+		mnInfo.add(mntmHelp);
 		
-		JMenu mnAbout = new JMenu("About");
-		menuBar.add(mnAbout);
-		mnAbout.addActionListener((java.awt.event.ActionEvent evt) -> {
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addActionListener((java.awt.event.ActionEvent evt) -> {
 			String infoMessage=
 					"CSK-1 Szoftver Projekt Labor\n" +
 					"Konzulens: Rácz Gergely\n" +
@@ -105,6 +107,7 @@ public class SokobanGui extends JFrame implements Steppable {
 					"Veres Csaba Miklós";
 			JOptionPane.showMessageDialog(null, infoMessage, "About KILLER SOKOBAN", JOptionPane.INFORMATION_MESSAGE);
 		});
+		mnInfo.add(mntmAbout);
 		
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mntmNewGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
