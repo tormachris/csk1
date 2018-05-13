@@ -23,6 +23,8 @@ public class Controller implements KeyListener {
 		handler.setLevel(Level.ALL);
 		blueWorker=bw;
 		redWorker=rw;
+		keydownBlue=false;
+		keydownRed=false;
 	}
 	/**
 	 * @deprecated (since="1.0", forRemoval=false)
