@@ -38,9 +38,6 @@ public class SokobanGui extends JFrame implements Steppable {
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 
-		blueWorker = new GraphicWorker(IconCollection.getInstance().getWorkerBlue());
-		redWorker = new GraphicWorker(IconCollection.getInstance().getWorkerRed());
-
 		gameGrid = new ArrayList<>();
 		drawables = new ArrayList<>();
 
