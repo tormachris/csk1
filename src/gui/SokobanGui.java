@@ -207,7 +207,8 @@ public class SokobanGui extends JFrame implements KeyListener {
 
 		for(int j=0;j<gameGrid.size();j++) {
 			JPanel panel=gameGrid.get(j);
-			JLabel label=new JLabel("BASZAS");
+			panel.setLayout(new GridLayout(1,1));
+			JLabel label=new JLabel(IconCollection.getInstance().getBox());
 			//drawables.get(j).draw(label);
 			panel.add(label);
 		}
