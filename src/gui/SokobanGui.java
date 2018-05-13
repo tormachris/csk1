@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.border.*;
@@ -12,7 +11,7 @@ import logic.*;
 import logic.Map;
 import logic.Timer;
 
-public class SokobanGui extends JFrame implements KeyListener, Steppable {
+public class SokobanGui extends JFrame implements Steppable {
 	/**
 	 * Generated serialization UID
 	 */
@@ -24,8 +23,6 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	private ArrayList<Drawable> drawables;
 	private static GraphicWorker blueWorker;
 	private static GraphicWorker redWorker;
-	private Boolean keydownBlue;
-	private Boolean keydownRed;
 	JLabel lblScoreBlue = new JLabel("---");
 	JLabel lblScoreRed = new JLabel("---");
 	JLabel lblTimer = new JLabel("--:--");
@@ -49,10 +46,8 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 
 		initialize();
 
-		this.addKeyListener(this);
+		this.addKeyListener(new Controller(blueWorker,redWorker));
 
-		keydownRed = false;
-		keydownBlue = false;
 		LOGGER.log(Level.FINE, "GUI Created with default constructor");
 	}
 
@@ -215,7 +210,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
 
-	private void drawAll() {
+	public void drawAll() {
 		for(int j=0;j<gameGrid.size();j++) {
 			JPanel panel=gameGrid.get(j);
 			panel.setLayout(new GridLayout(1,1));
@@ -256,114 +251,6 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 		if (d.getClass().equals(GraphicWall.class))
 			return ((GraphicWall) d).getWall();
 		return null;
-	}
-
-	/**
-	 * @deprecated (since="1.0", forRemoval=false)
-	 */
-	@Deprecated
-	public void keyTyped(KeyEvent e) {
-		// Auto-generated method stub
-		// We don't want to use this, since this only fires for characters that can be
-		// typed. (No arrow keys)
-		// And it fires every time the character is typed, not pressed physically.
-		return;
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		LOGGER.fine(() -> "Key pressed, key is {}" + e.getKeyCode());
-		Direction dir = null;
-		Boolean blue = false;
-		switch (e.getKeyCode()) {
-		case (KeyEvent.VK_W):
-			dir = Direction.NORTH;
-			blue = true;
-			break;
-		case (KeyEvent.VK_A):
-			dir = Direction.WEST;
-			blue = true;
-			break;
-		case (KeyEvent.VK_S):
-			dir = Direction.SOUTH;
-			blue = true;
-			break;
-		case (KeyEvent.VK_D):
-			dir = Direction.EAST;
-			blue = true;
-			break;
-		case (KeyEvent.VK_UP):
-			dir = Direction.NORTH;
-			break;
-		case (KeyEvent.VK_RIGHT):
-			dir = Direction.WEST;
-			break;
-		case (KeyEvent.VK_DOWN):
-			dir = Direction.SOUTH;
-			break;
-		case (KeyEvent.VK_LEFT):
-			dir = Direction.EAST;
-			break;
-		case (KeyEvent.VK_Q):
-			if (!keydownBlue) {
-				keydownBlue = true;
-				blueWorker.getWorker().dropHoney();
-			}
-			drawAll();
-			return;
-		case (KeyEvent.VK_E):
-			if (!keydownBlue) {
-				keydownBlue = true;
-				blueWorker.getWorker().dropOil();
-			}
-			drawAll();
-			return;
-		case (KeyEvent.VK_NUMPAD1):
-			if (!keydownRed) {
-				keydownBlue = true;
-				redWorker.getWorker().dropHoney();
-			}
-			drawAll();
-			return;
-		case (KeyEvent.VK_NUMPAD2):
-			if (!keydownRed) {
-				keydownBlue = true;
-				redWorker.getWorker().dropOil();
-			}
-			drawAll();
-			return;
-		default:
-			break;
-		}
-		if (blue) {
-			if (!keydownBlue) {
-				keydownBlue = true;
-				blueWorker.getWorker().move(dir);// Make blue worker move
-			}
-		} else {
-			if (!keydownRed) {
-				keydownRed = true;
-				redWorker.getWorker().move(dir);// Make red worker move
-			}
-		}
-		drawAll();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S
-				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_Q
-				|| e.getKeyCode() == KeyEvent.VK_E) {
-			keydownBlue = false;
-			drawAll();
-			return;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
-				|| e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_NUMPAD1
-				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
-			keydownRed = false;
-		drawAll();
 	}
 
 	public static Worker getWorker(boolean red) {
