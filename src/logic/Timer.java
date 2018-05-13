@@ -91,8 +91,10 @@ public class Timer extends Thread implements Serializable {
 	 * Not going to log this either.
 	 */
 	public synchronized void tick() {
-		for (Steppable s : steppables)
-			s.step();
+		Steppable[] array = steppables.toArray(new Steppable[0]);
+
+		for(int i=0; i<array.length; i++)
+			array[i].step();
 	}
 
 	/**
