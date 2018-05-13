@@ -41,7 +41,7 @@ public class SokobanGui extends JFrame implements KeyListener {
 		redWorker = new GraphicWorker(IconCollection.getInstance().getWorkerRed());
 
 		gameGrid = new ArrayList<>();
-		drawables = new ArrayList<Drawable>();
+		drawables = new ArrayList<>();
 
 		initialize();
 
