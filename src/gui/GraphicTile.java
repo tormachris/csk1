@@ -84,7 +84,9 @@ public class GraphicTile extends AbstractGraphic {
 				if(SokobanGui.getWorker(true).equals(tile.getThing()))
 					return IconCollection.getInstance().getRedontile();
 				else
+				{
 					return IconCollection.getInstance().getBlueontile();
+				}
 				
 		}
 		else

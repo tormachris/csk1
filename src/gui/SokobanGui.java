@@ -223,6 +223,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			
 			panel.removeAll();
 			panel.add(label);
+			panel.revalidate();
 		}
 	}
 	
