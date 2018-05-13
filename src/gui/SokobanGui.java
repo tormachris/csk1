@@ -22,8 +22,8 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 	private static SokobanGui instance = null;
 	private ArrayList<JPanel> gameGrid;
 	private ArrayList<Drawable> drawables;
-	private GraphicWorker blueWorker;
-	private GraphicWorker redWorker;
+	private static GraphicWorker blueWorker;
+	private static GraphicWorker redWorker;
 	private Boolean keydownBlue;
 	private Boolean keydownRed;
 	JLabel lblScoreBlue = new JLabel("---");
@@ -235,7 +235,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 				t.setNeighbour(Direction.SOUTH, cast(drawables.get(i + GRIDSIZE)));
 
 		}
-
+		System.out.print("  ");
 	}
 
 	private Tile cast(Drawable d) {
@@ -353,7 +353,7 @@ public class SokobanGui extends JFrame implements KeyListener, Steppable {
 			keydownRed = false;
 	}
 
-	public Worker getWorker(boolean red) {
+	public static Worker getWorker(boolean red) {
 		if(red)
 			return redWorker.getWorker();
 		return blueWorker.getWorker();

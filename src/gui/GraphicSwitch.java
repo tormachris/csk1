@@ -57,7 +57,7 @@ public class GraphicSwitch extends AbstractGraphic {
 			if(switcho.getThing().getClass().equals(Crate.class))
 				return IconCollection.getInstance().getBox();
 			if(switcho.getThing().getClass().equals(Worker.class))
-				if(SokobanGui.getInstance().getWorker(true).equals(switcho.getThing()))
+				if(SokobanGui.getWorker(true).equals(switcho.getThing()))
 					return IconCollection.getInstance().getBlueontile();
 				else
 					return IconCollection.getInstance().getBlueontile();
@@ -65,14 +65,12 @@ public class GraphicSwitch extends AbstractGraphic {
 		}
 		else
 		{
-			if(switcho.getFrictionMod() != null)
-			{
-				if(switcho.getFrictionMod().getFriction() < 1)
-					return IconCollection.getInstance().getButtonoil();
-				else
-					return IconCollection.getInstance().getButtonhoney();
-			}
-			return IconCollection.getInstance().getButton();
+			if(switcho.getFrictionMod().getClass().equals(Oil.class))
+				return IconCollection.getInstance().getButtonoil();
+			if(switcho.getFrictionMod().getClass().equals(Honey.class))
+				return IconCollection.getInstance().getButtonhoney();
+			if(switcho.getFrictionMod().getClass().equals(FrictionModifier.class))
+				return IconCollection.getInstance().getButton();
 		}	
 		return null;
 	
