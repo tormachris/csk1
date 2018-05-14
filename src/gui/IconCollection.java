@@ -9,11 +9,11 @@ import javax.swing.ImageIcon;
 
 /**
  * @author krist
- *
+ * This is a collection that represents all icons in the GUI
  */
 public class IconCollection implements Serializable{
 	/**
-	 * 
+	 * UID
 	 */
 	private static final long serialVersionUID = -6379120099609785077L;
 	private static IconCollection instance = null;

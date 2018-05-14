@@ -16,19 +16,18 @@ import logic.*;
 
 /**
  * @author krist
- *
+ *The most useless class in this project. This does nothing
  */
 public class GraphicWorker extends AbstractGraphic implements Disappearable, Serializable {
 	/**
-	 * 
+	 * UID
 	 */
 	private static final long serialVersionUID = -3588418911330272336L;
-	private static final Logger LOGGER = Logger.getLogger( GraphicWorker.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( GraphicWorker.class.getName() );//Logger
 	private Worker worker;
 	/**
-	 * 
+	 * Constructor
 	 */
-	
 	public GraphicWorker() {
 		super(IconCollection.getInstance().getBlueontile());
 		
@@ -41,6 +40,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	}
 
 	/**
+	 * Other constructor
 	 * @param _img
 	 */
 	public GraphicWorker(ImageIcon oimg) {
@@ -55,6 +55,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	}
 	
 	/**
+	 * Yet another constructor
 	 * @param _img
 	 */
 	public GraphicWorker(ImageIcon oimg, Worker oworker) {
@@ -69,6 +70,7 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 	}
 	
 	/**
+	 * Last constructor
 	 * @param _img
 	 */
 	public GraphicWorker(Worker oworker) {
@@ -82,7 +84,10 @@ public class GraphicWorker extends AbstractGraphic implements Disappearable, Ser
 		setWorker(oworker);
 	}
 
-	//Drawing the worker
+	/**
+	 * Drawing the worker
+	 * We have nothing to do, the tile takes care of this
+	 */
 	@Override
 	public ImageIcon draw() {
 		return null;
