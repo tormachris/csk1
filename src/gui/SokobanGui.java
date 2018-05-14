@@ -198,21 +198,22 @@ public class SokobanGui extends JFrame implements Steppable {
 	 * Initializing the level based on the level loader
 	 */
 	private void initializeLevel() {
-		LevelLoader ll = new LevelLoader();
-		Queue<LevelElements> map;
-		if(chosenFile==null)map=ll.getLevel(LevelStorage.PRESENTLEVEL);
-		else map=ll.getLevelFromFile(chosenFile);
-		chosenFile=null;
+		LevelLoader ll = new LevelLoader();//Initializing my level loader
+		Queue<LevelElements> map;//This is where our map will be
+		if(chosenFile==null)map=ll.getLevel(LevelStorage.PRESENTLEVEL);//Load the default level
+		else map=ll.getLevelFromFile(chosenFile);//If we load from file, load it from a file
+		chosenFile=null;//Next time, we will not be loading from a file. Unless we will be.
 		if(map.size()<GRIDSIZE*GRIDSIZE) return;
-		Map m = new Map();
-		Game.getInstance().clearMaps();
-		Game.getInstance().addMap(m);
-		Game.getInstance().setCurrentmap(m);
-		LinkedList<GraphicHole> lastholes = new LinkedList<>();
-		drawables.clear();
-		Controller.setAcceptinput(true);
+		Map m = new Map();//Do all this on a new map.
+		Game.getInstance().clearMaps();//With a blank slate.
+		Game.getInstance().addMap(m);//Add it to the game
+		Game.getInstance().setCurrentmap(m);//Start it up.
+		LinkedList<GraphicHole> lastholes = new LinkedList<>();//Consumer
+		drawables.clear();//Clear it, just in case
+		Controller.setAcceptinput(true);//Reset the controller
 		for (int j = 0; j < GRIDSIZE * GRIDSIZE; ++j) {
 			switch (map.remove()) {
+			//Iterate through the map and process the items
 			case WALL:
 				drawables.add(new GraphicWall(new Wall()));
 				m.addTile(cast(drawables.get(drawables.size() - 1)));
@@ -263,15 +264,17 @@ public class SokobanGui extends JFrame implements Steppable {
 			}
 		}
 		
+		//New workers, new controller
 		this.addKeyListener(new Controller(blueWorker, redWorker));
 		
-		setUpNeighbors();
+		setUpNeighbors(); //MAGIC OF BASIC MATHS
 
-		drawAll();
+		drawAll();//Draw all this crazyness
 		
+		//Reset the timer and start it
 		Timer.getInstance().setRunning(true);
 		try{
-			Timer.getInstance().addSteppable(this);
+			Timer.getInstance().addSteppable(this);//Register our map as a steppable
 		}catch(Exception ex) {
 			LOGGER.log(Level.FINE, ex.getMessage(), ex);
 		}
@@ -281,6 +284,7 @@ public class SokobanGui extends JFrame implements Steppable {
 	 * Draws every drawable on the map
 	 */
 	public void drawAll() {
+		//Write the scores to screen
 		lblScoreRed.setText(redWorker.getWorker().getPoints().toString());
 		lblScoreRed.revalidate();
 		lblScoreBlue.setText(blueWorker.getWorker().getPoints().toString());
@@ -290,11 +294,13 @@ public class SokobanGui extends JFrame implements Steppable {
 			JPanel panel = gameGrid.get(j);
 			panel.setLayout(new GridLayout(1, 1));
 			JLabel label = new JLabel(drawables.get(j).draw());
-
+			//We clear each panel and then put the new "picture" on it.
+			//Cool, ha?
 			panel.removeAll();
 			panel.add(label);
 			panel.revalidate();
 		}
+		//Invalidate it, so it gets redrawn
 		this.revalidate();
 	}
 
@@ -306,6 +312,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		Tile t = null;
 		for (int i = 0; i < GRIDSIZE * GRIDSIZE; ++i) {
 			t = cast(drawables.get(i));
+			//This is who our neighbors are if we know how big the playingfield is
 			if (i > GRIDSIZE - 1 && t != null)
 				t.setNeighbour(Direction.NORTH, cast(drawables.get(i - GRIDSIZE)));
 			if (i % GRIDSIZE != GRIDSIZE - 1 && t != null)
@@ -324,6 +331,8 @@ public class SokobanGui extends JFrame implements Steppable {
 	 * @return the tile
 	 */
 	private Tile cast(Drawable d) {
+		//Some casting memes
+		//NOT a casting couch
 		if (d.getClass().equals(GraphicTile.class))
 			return ((GraphicTile) d).getTile();
 		if (d.getClass().equals(GraphicEndTile.class))
@@ -354,17 +363,17 @@ public class SokobanGui extends JFrame implements Steppable {
 	 */
 	@Override
 	public void step() {
-		if (Game.getInstance().getCurrentmap() != null) {
-			int timeinticks = Game.getInstance().getCurrentmap().getTicksRemain();
-			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0) {
-				Timer.getInstance().removeSteppable(this);
-				Controller.setAcceptinput(false);
+		if (Game.getInstance().getCurrentmap() != null) {//If there is no current map, this would be bad
+			int timeinticks = Game.getInstance().getCurrentmap().getTicksRemain();//How much time is left
+			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0) {//If it's all over
+				Timer.getInstance().removeSteppable(this);//We remove us from steppiness
+				Controller.setAcceptinput(false);//And stop accepting input from the keyboard, since the game is over
 			}
-			int timeinsecs = timeinticks / (1000 / Timer.getMilisecstowait());
-			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0)
+			int timeinsecs = timeinticks / (1000 / Timer.getMilisecstowait());//How much time is left, in seconds
+			if (Game.getInstance().getCurrentmap().getTicksRemain().compareTo(-1) == 0)//Print game over
 				lblTimer.setText("GAME OVER");
 			else
-				lblTimer.setText(timeinsecs / 60 + ":" + timeinsecs % 60);
+				lblTimer.setText(timeinsecs / 60 + ":" + timeinsecs % 60);//Format it and print it.
 		}
 
 	}
