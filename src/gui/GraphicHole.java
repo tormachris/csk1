@@ -10,6 +10,7 @@ import javax.swing.*;
 import logic.*;
 
 /**
+ * Hole to screen class
  * @author krist
  *
  */

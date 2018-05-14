@@ -11,9 +11,10 @@ import java.util.logging.*;
  *
  */
 public class LevelLoader {
-	private static final Logger LOGGER = Logger.getLogger(LevelLoader.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(LevelLoader.class.getName());//Logger
 
 	public LevelLoader() {
+		//Logger stuff
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -29,21 +30,21 @@ public class LevelLoader {
 	 * EVERY MAP HAS TO BE 11X11
 	 */
 	private String loadLevel(File candidate) {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();//We will build a string
 		try (BufferedReader br = new BufferedReader(new FileReader(candidate))) { // Try-with-resource
 			String line = "";
-			while ((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null) {//Read the file line-by-line
 				LOGGER.log(Level.FINE, "Read line was {0}" , line);
-				if (line.equals(""))
+				if (line.equals(""))//If a line is empty, we skip it
 					break;
-				line = line.toUpperCase();
-				for (Integer i = 0; i < line.length(); i++) {
+				line = line.toUpperCase();//We only deal with uppercase stuff
+				for (Integer i = 0; i < line.length(); i++) {//Go through the line, char-by-char
 					char c = Character.toUpperCase(line.charAt(i));
 					if (c == '#' || c == 'T' || c == 'B' || c == 'H' || c == 'E' || c == 'W' || c == 'S' || c == 'R'
-							|| c == 'O') {
-						sb.append(c);
+							|| c == 'O') {//These are the chars that mean anything to us
+						sb.append(c);//Add it to the end of our string
 						LOGGER.fine(() -> "Character was " + c);
-					} else if (c == 'F') {
+					} else if (c == 'F') {//F is the end
 						LOGGER.log(Level.FINE,"Character was F, file is over, breaking");
 						break;
 					}
@@ -53,7 +54,7 @@ public class LevelLoader {
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
-		if (sb.toString().length() >= 11 * 11) {
+		if (sb.toString().length() >= 11 * 11) {//11*11 plus the 11*\n
 			LOGGER.log(Level.FINE, "File was right size");
 			return sb.toString();
 		} else {
@@ -69,11 +70,11 @@ public class LevelLoader {
 	 */
 	public Queue<LevelElements> getLevel(String candidate) {
 		LinkedList<LevelElements> toReturn = new LinkedList<>();
-		if (candidate.equals("")) {
+		if (candidate.equals("")) {//We ignore empty string
 			LOGGER.log(Level.FINE, "String was wrong size, ignoring");
 			return toReturn;
 		}
-		for (Integer i = 0; i < candidate.length(); i++) {
+		for (Integer i = 0; i < candidate.length(); i++) {//Let's go through the string
 			Character c = Character.toUpperCase(candidate.charAt(i));
 			switch (c) {
 			case ('#'):
@@ -107,7 +108,7 @@ public class LevelLoader {
 				break;
 			}
 		}
-		if (toReturn.size() == 11 * 11) {
+		if (toReturn.size() == 11 * 11) {//Our maps are 11*11 ONLY
 			LOGGER.log(Level.FINE,"String was right size, returning list");
 			return toReturn;
 		}
