@@ -15,9 +15,9 @@ public class Hole extends Tile {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2827463022119141447L;
-	private static final Logger LOGGER = Logger.getLogger( Hole.class.getName() );
-	private Boolean open;
+	private static final long serialVersionUID = -2827463022119141447L;//UID
+	private static final Logger LOGGER = Logger.getLogger( Hole.class.getName() );//Logger
+	private Boolean open;//State of the hole
 	
 	/**
 	 * With this constructor one can make a permanently open Hole.
@@ -25,12 +25,13 @@ public class Hole extends Tile {
 	 * @param isOpen: default state
 	 */
 	public Hole(Boolean isOpen) {
+		//Logger stuff
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
+		//Variable init
 		this.setOpen(isOpen);
 	}
 	
@@ -38,11 +39,13 @@ public class Hole extends Tile {
 	 * Default constructor
 	 */
 	public Hole() {
+		//Logging is fun
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
+		//It is not open by default
 		this.setOpen(Boolean.valueOf(false));
 	}
 	

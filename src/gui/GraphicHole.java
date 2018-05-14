@@ -10,19 +10,20 @@ import javax.swing.*;
 import logic.*;
 
 /**
+ * Hole to screen class
  * @author krist
  *
  */
 public class GraphicHole extends AbstractGraphic {
 	/**
-	 * 
+	 * UID
 	 */
 	private static final long serialVersionUID = 2218415094782645305L;
 	private static final Logger LOGGER = Logger.getLogger(GraphicHole.class.getName());
 	private Hole hole;
 
 	/**
-	 * 
+	 * A constructor
 	 */
 	public GraphicHole() {
 		super(IconCollection.getInstance().getHole());
@@ -33,7 +34,9 @@ public class GraphicHole extends AbstractGraphic {
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 	}
-
+	/**
+	 * A constructor
+	 */
 	public GraphicHole(Hole ohole) {
 		super(IconCollection.getInstance().getHole());
 
@@ -45,17 +48,19 @@ public class GraphicHole extends AbstractGraphic {
 		setHole(ohole);
 	}
 
-	//Drawing the Hole.
+	/**
+	 * A constructor
+	 */
 	@Override
 	public ImageIcon draw() {
 		//Checking if the Hole is open, if it is, it draws the Hole.
 		if (hole.getOpen()) {
-			return IconCollection.getInstance().getHole();
+			return IconCollection.getInstance().getHole();//If a hole is open, it can only be a hole
 
 		}
 		//Checking if there is any Thing on the Hole.
 		if (hole.getThing() != null) {
-			return drawWithThing();
+			return drawWithThing();//If it is closed, it acts as a regular tile
 		//Draws the FrictionModifiers on the closed Hole.
 		} else {
 			if (hole.getFrictionMod().getClass().equals(Oil.class))
@@ -69,11 +74,13 @@ public class GraphicHole extends AbstractGraphic {
 		return null;
 
 	}
-	//Draws a worker or crate depending on the Thing's class.
+	/**
+	 * Draws a worker or crate depending on the Thing's class.
+	 */
 	private ImageIcon drawWithThing() {
-		if (hole.getThing().getClass().equals(Crate.class))
-			return IconCollection.getInstance().getBox();
-		if (hole.getThing().getClass().equals(Worker.class))
+		if (hole.getThing().getClass().equals(Crate.class))//Draw different
+			return IconCollection.getInstance().getBox();//Types of
+		if (hole.getThing().getClass().equals(Worker.class))//Things
 			if (SokobanGui.getWorker(true).equals(hole.getThing()))
 				return IconCollection.getInstance().getRedontile();
 			else

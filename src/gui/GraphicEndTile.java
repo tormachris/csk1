@@ -5,17 +5,20 @@ import java.util.logging.*;
 import javax.swing.*;
 
 import logic.*;
-
+/**
+ * EndTile on the screen
+ */
 public class GraphicEndTile extends AbstractGraphic {
 	/**
-	 * 
+	 * UID
 	 */
-	private static final long serialVersionUID = 1454880402469371046L;
-	private static final Logger LOGGER = Logger.getLogger( GraphicEndTile.class.getName() );
-	private EndTile endtile;
+	private static final long serialVersionUID = 1454880402469371046L;//UID
+	private static final Logger LOGGER = Logger.getLogger( GraphicEndTile.class.getName() );//Logger
+	private EndTile endtile;//The endtile we want to display
 	public GraphicEndTile() {
+		//Setup the superclass
 		super(IconCollection.getInstance().getTarget());
-		
+		//Setup the logger to log to console
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -25,7 +28,7 @@ public class GraphicEndTile extends AbstractGraphic {
 
 	public GraphicEndTile(EndTile oendtile) {
 		super(IconCollection.getInstance().getTarget());
-		
+		//Log to console
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -37,9 +40,9 @@ public class GraphicEndTile extends AbstractGraphic {
 	@Override
 	public ImageIcon draw() { 
 		if(endtile.getThing() != null)
-			return drawWithThing();
+			return drawWithThing();//If it has a thing on it, we draw that
 		else
-			return drawWithoutThing();
+			return drawWithoutThing(); //If it does not, we still have some work left
 	}
 
 	/**
@@ -47,9 +50,9 @@ public class GraphicEndTile extends AbstractGraphic {
 	 * @return the ImageIcon to draw
 	 */
 	private ImageIcon drawWithThing() {
-		if(endtile.getThing().getClass().equals(Crate.class))
+		if(endtile.getThing().getClass().equals(Crate.class))//A crate covers the entire thing
 			return IconCollection.getInstance().getBox();
-		else if(endtile.getThing().getClass().equals(Worker.class))
+		else if(endtile.getThing().getClass().equals(Worker.class))//We have two types of workers
 			if(SokobanGui.getWorker(true).equals(endtile.getThing()))
 				return IconCollection.getInstance().getRedontile();
 			else
@@ -61,7 +64,7 @@ public class GraphicEndTile extends AbstractGraphic {
 	 * @return the ImageIcon to draw
 	 */
 	private ImageIcon drawWithoutThing() {
-		if(endtile.getFrictionMod().getClass().equals(Oil.class))
+		if(endtile.getFrictionMod().getClass().equals(Oil.class))//We can put frictionmodifiers on the thing
 			return IconCollection.getInstance().getEndoil();
 		else if(endtile.getFrictionMod().getClass().equals(Honey.class))
 			return IconCollection.getInstance().getEndhoney();

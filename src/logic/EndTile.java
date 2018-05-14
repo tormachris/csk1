@@ -11,13 +11,14 @@ import java.util.logging.SimpleFormatter;
  * @since 1.0
 */
 public class EndTile extends Tile {
-	private static final long serialVersionUID = 2560652795235672539L;
-	private static final Logger LOGGER = Logger.getLogger( EndTile.class.getName() );
+	private static final long serialVersionUID = 2560652795235672539L;//Serialization UID
+	private static final Logger LOGGER = Logger.getLogger( EndTile.class.getName() );//Logger to log stuff
 	
 	/**
 	 * Constructor of the EndTile
 	 */
 	public EndTile() {
+		//Logger stuff
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -33,7 +34,7 @@ public class EndTile extends Tile {
 	@Override
 	public boolean accept(Thing t)
 	{
-		boolean accepted = super.accept(t);
+		boolean accepted = super.accept(t);//We call onto the supa to accept the thing
 		//if the Thing is allowed to move onto the Tile the EndTile will trigger its OnEndTile()
 		//function in order to inform the Thing that it has moved onto an EndTile.
 		if(accepted)

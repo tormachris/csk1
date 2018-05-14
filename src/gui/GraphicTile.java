@@ -13,33 +13,36 @@ import javax.swing.*;
 import logic.*;
 
 /**
+ * A general tile on the screen. So boring.
  * @author krist
  *
  */
 public class GraphicTile extends AbstractGraphic {
 	/**
-	 * 
+	 * UID
 	 */
 	private static final long serialVersionUID = 2696615332414413283L;
 	private static final Logger LOGGER = Logger.getLogger(GraphicTile.class.getName());
 	private Tile tile;
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public GraphicTile() {
 		super(IconCollection.getInstance().getFloor());
-
+		//The meme
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
 	}
-
+	/**
+	 * Constructor
+	 */
 	public GraphicTile(Tile otile) {
 		super(IconCollection.getInstance().getFloor());
-
+		//Real deal
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -49,7 +52,7 @@ public class GraphicTile extends AbstractGraphic {
 	}
 
 	/*
-	 * (non-Javadoc)
+	 *
 	 * 
 	 * @see gui.Drawable#draw(java.awt.Graphics)
 	 */
@@ -59,7 +62,10 @@ public class GraphicTile extends AbstractGraphic {
 			return drawWithThing();
 
 		} else {
-
+			//Just to put things into perspective:
+			//It is now half pas two in the morning
+			//And I am commenting this god forsaken project all alone
+			//If you are reading this, have mercy on my soul and be kind
 			if (tile.getFrictionMod().getClass().equals(Oil.class))
 				return IconCollection.getInstance().getOil();
 			if (tile.getFrictionMod().getClass().equals(Honey.class))
@@ -69,8 +75,13 @@ public class GraphicTile extends AbstractGraphic {
 		}
 		return null;
 	}
-
+	/*
+	 *Drawing a thing that is on this tile
+	 */
 	private ImageIcon drawWithThing() {
+		//Things on tiles are generally regarded as dangerous animals
+		//I have lost the plot so fast
+		//I am amazed
 		if (tile.getThing().getClass().equals(Crate.class))
 			return IconCollection.getInstance().getBox();
 		if (tile.getThing().getClass().equals(Worker.class))

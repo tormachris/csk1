@@ -10,9 +10,12 @@ import java.util.logging.SimpleFormatter;
 import javax.swing.ImageIcon;
 
 import logic.Direction;
-
+/**
+ * The literal controller of the program
+ */
 public class Controller implements KeyListener {
-	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());//Logger
+	//States
 	private Boolean keydownBlue;
 	private Boolean keydownRed;
 	private GraphicWorker blueWorker;
@@ -20,13 +23,16 @@ public class Controller implements KeyListener {
 	private static boolean acceptinput;
 
 	public Controller(GraphicWorker bw, GraphicWorker rw) {
+		//Logger setup
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
+		//Class seup
 		blueWorker = bw;
 		redWorker = rw;
+		//States
 		acceptinput = true;
 		keydownBlue = false;
 		keydownRed = false;
@@ -47,18 +53,18 @@ public class Controller implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (acceptinput) {
+		if (acceptinput) {//If the game is over, we don't care about the keyboard
 			LOGGER.fine(() -> "Key pressed, key is {}" + e.getKeyCode());
 			Direction dir = null;
 			Boolean blue = false;
-			switch (e.getKeyCode()) {
+			switch (e.getKeyCode()) {//Process the key
 			case (KeyEvent.VK_W):
 				dir = Direction.NORTH;
 				blue = true;
 				break;
 			case (KeyEvent.VK_A):
 				dir = Direction.WEST;
-				blue = true;
+				blue = true;//This makes our guys look in the direction they are heading
 				IconCollection.getInstance().setBlueontile(new ImageIcon("assets/csk1_graf/EasterEggBlueLeft.png"));
 				break;
 			case (KeyEvent.VK_S):
@@ -126,13 +132,13 @@ public class Controller implements KeyListener {
 					redWorker.getWorker().move(dir);// Make red worker move
 				}
 			}
-			SokobanGui.getInstance().drawAll();
+			SokobanGui.getInstance().drawAll();//Invalidate the screen
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// Auto-generated method stub
+		// We don't want to process keys being held down
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S
 				|| e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_Q
 				|| e.getKeyCode() == KeyEvent.VK_E) {
@@ -140,11 +146,12 @@ public class Controller implements KeyListener {
 			SokobanGui.getInstance().drawAll();
 			return;
 		}
+		//So we throw that input away by setting these states
 		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT
 				|| e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_NUMPAD1
 				|| e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			keydownRed = false;
-		SokobanGui.getInstance().drawAll();
+		SokobanGui.getInstance().drawAll();//Invalidate the screen
 	}
 
 	/**

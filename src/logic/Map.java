@@ -15,8 +15,8 @@ public class Map implements Steppable, Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6905345017425347502L;
-	private static final Logger LOGGER = Logger.getLogger( Map.class.getName() );
+	private static final long serialVersionUID = 6905345017425347502L;//UID
+	private static final Logger LOGGER = Logger.getLogger( Map.class.getName() );//Logger
 	private Integer ticksRemain;
 	private Set<Crate> crates; 
 	private Set<Worker> workers; 
@@ -36,12 +36,13 @@ public class Map implements Steppable, Serializable {
 	 * Initialises the sets and Integers.
 	 */
 	public Map() {
+		//Logger setuf
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
+		//Colecting the collections
 		crates=new HashSet<>();
 		workers=new HashSet<>();
 		tiles=new HashSet<>();
@@ -54,6 +55,7 @@ public class Map implements Steppable, Serializable {
 	public void startMap()
 	{
 		LOGGER.log( Level.FINE, "Map started");
+		//Reset everything
 		this.resetTimer();
 		Timer.getInstance().addSteppable(this);
 		Game.getInstance().setCurrentmap(this);

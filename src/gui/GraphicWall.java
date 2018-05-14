@@ -13,21 +13,21 @@ import logic.*;
 
 /**
  * @author krist
- *
+ *Wall to be drawn to the viewers eyes
  */
 public class GraphicWall extends AbstractGraphic {
 	/**
-	 * 
+	 * UID
 	 */
 	private static final long serialVersionUID = 5452874926648909735L;
 	private static final Logger LOGGER = Logger.getLogger( GraphicWall.class.getName() );
 	private Wall wall;
 	/**
-	 * 
+	 * Constructor
 	 */
 	public GraphicWall() {
 		super(IconCollection.getInstance().getWall());
-		
+		//Logger
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -38,24 +38,25 @@ public class GraphicWall extends AbstractGraphic {
 	}
 
 	/**
-	 * 
+	 * Other constructor
 	 */
 	public GraphicWall(Wall owall) {
 		super(IconCollection.getInstance().getWall());
-		
+		//Logger
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		setWall(owall);
+		setWall(owall);//Wall
 	}
 
-	
-	// Drawing the wall.
+	/**
+	 * Drawing the wall.
+	 */
 	@Override
 	public ImageIcon draw() {
-		return IconCollection.getInstance().getWall(); 
+		return IconCollection.getInstance().getWall(); //It's a wall. What can I say?
 	}
 
 	/**
