@@ -16,8 +16,8 @@ public class Game implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5999992904426996002L;
-	private static final Logger LOGGER = Logger.getLogger( Game.class.getName() );
+	private static final long serialVersionUID = -5999992904426996002L;//UID
+	private static final Logger LOGGER = Logger.getLogger( Game.class.getName() );//Logger
 	private Set<Map> maps; //We don't want to accidentally store the same map twice, do we?
 	private Map currentmap;	//We are playing on that map,that is the one stepping.
 	private static Game instance = null;
@@ -25,12 +25,13 @@ public class Game implements Serializable{
 	 * Default constructor, initialises the maps Set with a super-duper fast HashSet <3
 	 */
 	private Game() {
+		//Logger setup
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-		
+		//Init our set
 		this.setMaps(new HashSet<Map>());
 		LOGGER.log( Level.FINE, "Game created");
 	}
@@ -43,9 +44,9 @@ public class Game implements Serializable{
 	 */
 	public synchronized void start(Map m)
 	{
-		if(m!=null) {
+		if(m!=null) {//We don't want java.lang.NullPointerException
 			if(!(maps.contains(m))) throw new IllegalArgumentException("Invalid Map Passed"); 	//Checking that the map actually exists.
-			this.setCurrentmap(m); 
+			this.setCurrentmap(m); //we can safely set it
 			m.startMap();	//Chosen map being started
 			LOGGER.log( Level.FINE, "New map started");
 		}
@@ -57,6 +58,7 @@ public class Game implements Serializable{
 	 */
 	public synchronized void end()
 	{
+		//Game end signal
 		LOGGER.log( Level.FINE, "Game ended");
 		return;
 	}
@@ -81,7 +83,7 @@ public class Game implements Serializable{
 	 */
 	public synchronized void removeMap(Map m) {
 		if (m==null) throw new IllegalArgumentException("Cannot remove null to maps collection.");
-		else if (maps.contains(m)) maps.remove(m);
+		else if (maps.contains(m)) maps.remove(m);//Safely remove a map
 	}
 	
 	/**
@@ -108,8 +110,8 @@ public class Game implements Serializable{
 		if(!(maps.contains(currentmap))) throw new IllegalArgumentException("Invalid Current map"); //Checking that the map is in the collection
 		else {
 			LOGGER.log( Level.FINE, "Setting current map");
-			this.currentmap = currentmap;	
-			Timer.getInstance().addSteppable(currentmap);
+			this.currentmap = currentmap;	//Safely change currently running map.
+			Timer.getInstance().addSteppable(currentmap);//And register it as a steppable
 		}
 	}
 	

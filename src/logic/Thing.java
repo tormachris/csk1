@@ -23,6 +23,7 @@ public abstract class Thing implements Serializable {
 	 * @param w The weight of the Thing
 	 */
 	public Thing(Integer w) {
+		//Logger stuff
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());

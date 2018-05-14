@@ -2,7 +2,7 @@ package logic;
 
 import java.util.logging.*;
 
-/** Represents an Thing that cannot move on it's own and can activae switches.
+/** Represents an Thing that cannot move on it's own and can activate switches.
  * They disappear on EndTiles.
  * @author Kristof
  * @version 1.0
@@ -10,16 +10,16 @@ import java.util.logging.*;
 */
 public class Crate extends Thing{
 	/**
-	 * 
+	 * Serial UID of this class
 	 */
 	private static final long serialVersionUID = -3311379866858796414L;
-	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( Crate.class.getName() );//Logger of this class
 	/**
 	 * Constructor. Calls the super class' constructor.
 	*/
 	public Crate(Integer w) {
-		super(w);
-		
+		super(w);//Calling the supa
+		//Logger setup
 		LOGGER.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();
 		handler.setFormatter(new SimpleFormatter());
@@ -34,12 +34,12 @@ public class Crate extends Thing{
 	*/
 	@Override
 	public void onEndTile(EndTile t)
-	{	
-		Worker w = (Worker)this.getOwner(); 
+	{	//We are on endtile
+		Worker w = (Worker)this.getOwner(); //We want to talk to the owner
 		w.setPoints(w.getPoints() + 1); //Destroying the Crate
-		t.remove(this);
+		t.remove(this);//We disappear
 		LOGGER.log(Level.FINE, "Crate is on end tile");
-		this.destroy();
+		this.destroy();//And then we die
 	}
 	
 	/**
@@ -48,8 +48,8 @@ public class Crate extends Thing{
 	@Override
 	public void destroy() {
 		LOGGER.log(Level.FINE, "Crate is ded");
-		getTile().remove(this);
-		Game.getInstance().getCurrentmap().removeCrate(this);
+		getTile().remove(this);//Just to make sure, we disappear again
+		Game.getInstance().getCurrentmap().removeCrate(this);//We tell the map the we are history
 	}
 	
 	/**
