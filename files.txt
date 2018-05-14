@@ -1,4 +1,3 @@
-src/logic/Commander.java
 src/logic/Crate.java
 src/logic/Direction.java
 src/logic/EndTile.java
@@ -16,4 +15,19 @@ src/logic/Tile.java
 src/logic/Timer.java
 src/logic/Wall.java
 src/logic/Worker.java
+src/gui/AbstractGraphic.java
+src/gui/Controller.java
+src/gui/Disappearable.java
+src/gui/Drawable.java
+src/gui/GraphicCrate.java
+src/gui/GraphicEndTile.java
+src/gui/GraphicHole.java
+src/gui/GraphicSwitch.java
+src/gui/GraphicTile.java
+src/gui/GraphicWall.java
+src/gui/GraphicWorker.java
+src/gui/IconCollection.java
 src/gui/SokobanGui.java
+src/ansiliary/LevelElements.java
+src/ansiliary/LevelLoader.java
+src/ansiliary/LevelStorage.java
