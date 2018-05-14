@@ -11,23 +11,25 @@ import ansiliary.*;
 import logic.*;
 import logic.Map;
 import logic.Timer;
-
+/**
+ * Our window into the world of the Killer Sokoban
+ */
 public class SokobanGui extends JFrame implements Steppable {
 	/**
 	 * Generated serialization UID
 	 */
 	private static final long serialVersionUID = 2897342800007758713L;
-	private static final Logger LOGGER = Logger.getLogger(SokobanGui.class.getName());
-	private static final short GRIDSIZE = 11;
-	private static SokobanGui instance = null;
-	private ArrayList<JPanel> gameGrid;
-	private ArrayList<Drawable> drawables;
-	private static GraphicWorker blueWorker;
-	private static GraphicWorker redWorker;
-	private JLabel lblScoreBlue;
-	private JLabel lblScoreRed;
-	private JLabel lblTimer;
-	private File chosenFile;
+	private static final Logger LOGGER = Logger.getLogger(SokobanGui.class.getName());//Logger
+	private static final short GRIDSIZE = 11;//Constant size of the grid
+	private static SokobanGui instance = null;//Instance, since this is a singleton
+	private ArrayList<JPanel> gameGrid;//GameGrid in gui elements
+	private ArrayList<Drawable> drawables;//GameGrid in gui-to-model elements
+	private static GraphicWorker blueWorker;//BATMAN
+	private static GraphicWorker redWorker;//Joker
+	private JLabel lblScoreBlue;//Score of batman
+	private JLabel lblScoreRed;//Score of joker
+	private JLabel lblTimer;//TIME
+	private File chosenFile;//A file. Spoilers.
 
 	/**
 	 * Create the application.
@@ -39,10 +41,11 @@ public class SokobanGui extends JFrame implements Steppable {
 		handler.setFormatter(new SimpleFormatter());
 		LOGGER.addHandler(handler);
 		handler.setLevel(Level.ALL);
-
+		//Init the collections
 		gameGrid = new ArrayList<>();
 		drawables = new ArrayList<>();
 
+		//Init the GUI
 		initialize();
 
 		LOGGER.log(Level.FINE, "GUI Created with default constructor");
@@ -63,23 +66,23 @@ public class SokobanGui extends JFrame implements Steppable {
 	 */
 	private void initialize() {
 		/* Initializing Frame */
-		setResizable(false);
+		setResizable(false);//MAGIC
 		this.setTitle("KILLER SOKOBAN!!");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//We will have a single frame
 		this.setBounds(100, 100, 792, 75 + 792); // shrug
-		this.setIconImage(IconCollection.getInstance().getCsupor().getImage());
+		this.setIconImage(IconCollection.getInstance().getCsupor().getImage());//Favicon.ico
 		/* Upper menu and menu items  */
 
-		JMenuBar menuBar = new JMenuBar();
-		this.setJMenuBar(menuBar);
+		JMenuBar menuBar = new JMenuBar();//The menubar on top
+		this.setJMenuBar(menuBar);//Setting the menubar
 
-		JMenu mnFile = new JMenu("File");
+		JMenu mnFile = new JMenu("File");//File menu
 		menuBar.add(mnFile);
 		
-		JMenu mnInfo = new JMenu("Info");
+		JMenu mnInfo = new JMenu("Info");//Info menu
 		menuBar.add(mnInfo);
 		
-		JMenuItem mntmHelp = new JMenuItem("Help");
+		JMenuItem mntmHelp = new JMenuItem("Help");//Some help with the controls
 		mntmHelp.addActionListener((java.awt.event.ActionEvent evt) -> {
 			String infoMessage=
 					"Moving the Batman:\n" +
@@ -94,7 +97,7 @@ public class SokobanGui extends JFrame implements Steppable {
 		});
 		mnInfo.add(mntmHelp);
 		
-		JMenuItem mntmAbout = new JMenuItem("About");
+		JMenuItem mntmAbout = new JMenuItem("About");//About Us
 		mntmAbout.addActionListener((java.awt.event.ActionEvent evt) -> {
 			String infoMessage=
 					"CSK-1 Szoftver Projekt Labor\n" +
@@ -109,11 +112,11 @@ public class SokobanGui extends JFrame implements Steppable {
 		});
 		mnInfo.add(mntmAbout);
 		
-		JMenuItem mntmNewGame = new JMenuItem("New Game");
+		JMenuItem mntmNewGame = new JMenuItem("New Game");//New game. Resets everything
 		mntmNewGame.addActionListener((java.awt.event.ActionEvent evt) -> initializeLevel());
 		mnFile.add(mntmNewGame);
 
-		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		JMenuItem mntmLoadGame = new JMenuItem("Load Game");//Load a map from file
 		mnFile.add(mntmLoadGame);
 		mntmLoadGame.addActionListener((java.awt.event.ActionEvent evt) -> {
 			JFileChooser fc=new JFileChooser();
@@ -125,39 +128,40 @@ public class SokobanGui extends JFrame implements Steppable {
 	        	initializeLevel();
 	        }
 		});
-		this.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.getContentPane().setLayout(new BorderLayout(0, 0));//BorderLayout with 0,0 parameters
 
 		/* Upper Panel (Time and points) */
 
-		Font scoreFont = new Font("Tahoma", Font.PLAIN, 20);
+		Font scoreFont = new Font("Tahoma", Font.PLAIN, 20);//Font used to display scores
 
-		JPanel panelTop = new JPanel();
+		JPanel panelTop = new JPanel();//The top half of the screen with the scores and all that
 		this.getContentPane().add(panelTop, BorderLayout.NORTH);
 		panelTop.setLayout(new BorderLayout(0, 0));
 		panelTop.setPreferredSize(new Dimension(792, 75));
 
-		JPanel panelScoreBlue = new JPanel();
+		JPanel panelScoreBlue = new JPanel(); //BATMAN
 		panelTop.add(panelScoreBlue, BorderLayout.WEST);
 		panelScoreBlue.setBorder(new EmptyBorder(0, 5, 10, 5));
 		lblScoreBlue = new JLabel("---");
 		panelScoreBlue.add(lblScoreBlue);
+		//Grafx
 		lblScoreBlue.setFont(scoreFont);
 		lblScoreBlue.setForeground(Color.BLUE);
 		lblScoreBlue.setHorizontalAlignment(SwingConstants.LEFT);
 
-		JPanel panelScoreRed = new JPanel();
+		JPanel panelScoreRed = new JPanel();//Joker
 		panelTop.add(panelScoreRed, BorderLayout.EAST);
 		panelScoreRed.setBorder(new EmptyBorder(0, 5, 10, 5));
-
+		//Grafx
 		lblScoreRed = new JLabel("---");
 		panelScoreRed.add(lblScoreRed);
 		lblScoreRed.setFont(scoreFont);
 		lblScoreRed.setForeground(Color.RED);
 		lblScoreRed.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		JPanel panelTimerContainer = new JPanel();
+		JPanel panelTimerContainer = new JPanel();//Middle section
 		panelTop.add(panelTimerContainer, BorderLayout.NORTH);
-
+		//Grafx
 		lblTimer = new JLabel("--:--");
 		panelTimerContainer.add(lblTimer);
 		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -165,7 +169,7 @@ public class SokobanGui extends JFrame implements Steppable {
 
 		/* Also panel (maga a game) */
 
-		JPanel panelMain = new JPanel();
+		JPanel panelMain = new JPanel();//The game, my dude
 		this.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(new GridLayout(GRIDSIZE, GRIDSIZE, 0, 0));
 		panelMain.setPreferredSize(new Dimension(792, 792));
@@ -175,18 +179,18 @@ public class SokobanGui extends JFrame implements Steppable {
 		boolean grey = false;
 		for (i = 0; i < (GRIDSIZE * GRIDSIZE); i++) {
 			JPanel p = new JPanel();
-
+			//Setting up the panels to be ready to display dank memery
 			if (grey)
 				p.setBackground(Color.LIGHT_GRAY);
 			else
 				p.setBackground(Color.WHITE);
-
+			//Grey-nogrey. Mid-life crisis.
 			grey = !grey;
 			gameGrid.add(p);
 			panelMain.add(p);
 		}
 		
-		initializeLevel();
+		initializeLevel();//Initialize the level itself
 
 		LOGGER.log(Level.FINE, "GUI Initialized");
 	}
